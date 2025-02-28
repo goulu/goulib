@@ -14,9 +14,9 @@ see the `IPython notebook <http://nbviewer.ipython.org/github/Goulu/goulib/blob/
 .. image:: https://github.com/goulu/Goulib/actions/workflows/build.yml/badge.svg
     :target: https://github.com/goulu/Goulib/actions/workflows/build.yml
     :alt: Build
-.. image:: https://coveralls.io/repos/goulu/goulib/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/goulu/goulib?branch=master
-    :alt: Tests
+.. image:: https://coveralls.io/repos/github/goulu/Goulib/badge.svg?branch=master
+    :target: https://coveralls.io/github/goulu/Goulib?branch=master
+    :alt: Coverage
 .. image:: https://readthedocs.org/projects/goulib/badge/?version=latest
   :target: http://goulib.readthedocs.org/en/latest/
   :alt: Doc

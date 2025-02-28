@@ -1,2 +1,2 @@
 call pip install -e .
-call pip install sphinx pytest pytest-cov
+call pip install -r requirements-dev.txt

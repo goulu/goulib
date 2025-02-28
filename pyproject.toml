@@ -25,26 +25,8 @@ classifiers = [
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Multimedia :: Graphics :: Graphics Conversion",
 ]
-dependencies = [
-    "networkx",
-    "numpy",
-    "scikit-image",
-    "scipy",
-    "pydot",
-    "pydotplus",
-    "graphviz",
-    "ipython",
-    "lxml",
-    "xlrd",
-    "xlsxwriter",
-    "dxfgrabber",
-    "dxfwrite",
-    "svg.path",
-    "tinycss",
-    "pdfminer.six",
-    "sortedcollections",
-    "bitarray",
-    "pint",
-    "pillow",
-    "matplotlib"
-]
+
+dynamic = ["dependencies", "optional-dependencies"]
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+optional-dependencies = {dev = { file = ["requirements-dev.txt"] }}
