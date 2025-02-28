@@ -11,9 +11,9 @@
     xlsxwriter
     dxfgrabber
     dxfwrite
-    svgpath
+    svg.path
     tinycss
-    pdfminersix
+    pdfminer
     sortedcollections
     bitarray
     pint
