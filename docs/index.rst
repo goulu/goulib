@@ -20,16 +20,12 @@ see the `IPython notebook <http://nbviewer.ipython.org/github/Goulu/goulib/blob/
 .. image:: https://readthedocs.org/projects/goulib/badge/?version=latest
   :target: http://goulib.readthedocs.org/en/latest/
   :alt: Doc
-.. image:: https://www.openhub.net/accounts/Goulu/widgets/account_tiny?format=gif
-	:target: https://www.openhub.net/accounts/Goulu
-.. image:: https://api.coderwall.com/goulu/endorsecount.png
-    :target: https://coderwall.com/goulu
   
 :author: Philippe Guglielmetti goulib@goulu.net
 :installation: "pip install goulib"
 :distribution: https://pypi.python.org/pypi/goulib
-:documentation: https://readthedocs.org/
-:notebook: http://nbviewer.ipython.org/github/Goulu/goulib/blob/master/notebook.ipynb
+:documentation: http://goulib.readthedocs.org/en/latest/
+:notebook: https://mybinder.org/v2/gh/goulu/goulib/HEAD?urlpath=%2Fdoc%2Ftree%2Fexamples%2Fnotebook.ipynb
 :source: https://github.com/goulu/goulib
 
 Requirements

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf8
 """
-utilities for unit tests (using nose)
+utilities for unit tests (using pytest)
 """
 
 
@@ -182,6 +182,7 @@ setlog()
 
 def runmodule(level=logging.INFO, verbosity=1, argv=None):
     """
+    mocks a nose call to run the current module as a test suite
     :param argv: optional list of string with additional options passed to pytest.main
     see http://nose.readthedocs.org/en/latest/usage.html
     see https://docs.pytest.org/en/stable/how-to/usage.html

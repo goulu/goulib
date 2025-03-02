@@ -3,7 +3,7 @@ goulib
 
 library of useful Python code for scientific + technical applications.
 
-see the `IPython notebook <http://nbviewer.ipython.org/github/Goulu/goulib/blob/master/notebook.ipynb>`_ for an overview of features
+see the `IPython notebook <https://nbviewer.org/github/goulu/goulib/blob/master/examples/notebook.ipynb>`_ for an overview of features
 
 .. image:: https://badge.fury.io/gh/goulu%2Fgoulib.svg
     :target: https://badge.fury.io/gh/goulu%2Fgoulib
@@ -13,8 +13,8 @@ see the `IPython notebook <http://nbviewer.ipython.org/github/Goulu/goulib/blob/
 .. image:: https://badge.fury.io/py/goulib.svg
     :target: https://pypi.python.org/pypi/goulib/
     :alt: Version
-.. image:: https://travis-ci.org/goulu/goulib.svg?branch=master
-    :target: https://travis-ci.org/goulu/goulib
+.. image:: https://github.com/goulu/Goulib/actions/workflows/build.yml/badge.svg
+    :target: https://github.com/goulu/Goulib/actions/workflows/build.yml
     :alt: Build
 .. image:: https://coveralls.io/repos/github/goulu/Goulib/badge.svg?branch=master
     :target: https://coveralls.io/github/goulu/Goulib?branch=master
@@ -26,8 +26,8 @@ see the `IPython notebook <http://nbviewer.ipython.org/github/Goulu/goulib/blob/
 :author: Philippe Guglielmetti goulib@goulu.net
 :installation: "pip install goulib"
 :distribution: https://pypi.python.org/pypi/goulib
-:documentation: https://goulib.readthedocs.org/
-:notebook: .. image:: https://mybinder.org/badge_logo.svg :target: https://mybinder.org/v2/gh/goulu/goulib/master?filepath=notebook.ipynb
+:documentation: http://goulib.readthedocs.org/en/latest/
+:notebooks: .. image:: https://mybinder.org/badge_logo.svg :target: https://mybinder.org/v2/gh/goulu/goulib/HEAD?urlpath=%2Fdoc%2Ftree%2Fexamples%2Fnotebook.ipynb
 :source: https://github.com/goulu/goulib
 
 Modules
