@@ -20,7 +20,8 @@ import functools
 import fractions
 import numbers
 import random
-import bitarray
+from typing import Iterable
+from bitarray import bitarray
 
 from goulib import itertools2, decorators
 
@@ -991,14 +992,17 @@ def proper_divisors(n):
     ''':return: all divisors of n except n itself.'''
     return (divisor for divisor in divisors(n) if divisor != n)
 
+def erathostene(n):
+    return n * n, 2 * n
 
 class Sieve:
-
+    '''General sieve
+    '''
     # should be derived from bitarray but ...
     # https://github.com/ilanschnell/bitarray/issues/69
-    # TODO: simplify when solved
-    def __init__(self, f, init):
-        self._ = bitarray.bitarray(init)
+    # TODO: simplify when solved (still a problem in 2025...)
+    def __init__(self, init:Iterable, f=erathostene):
+        self._ = bitarray(init)
         self.f = f
 
     def __len__(self):
@@ -1009,7 +1013,9 @@ class Sieve:
 
     def __call__(self, n):
         self.resize(n)
-        return (i for i, v in enumerate(self._) if v)
+        for i in range(n):
+            if self._[i]:
+                yield i
 
     def resize(self, n):
         k = len(self) - 1
@@ -1026,13 +1032,8 @@ class Sieve:
                 break
             self._[i2::s] = False  # bitarray([False]*int((n-i2)/s+1))
 
-
-def erathostene(n):
-    return n * n, 2 * n
-
-
-# array of bool indicating primality
-_sieve = Sieve(erathostene, [False, False, True])
+# bitset indicating primality
+_sieve = Sieve('001', erathostene)
 
 
 def sieve(n, oneisprime=False):

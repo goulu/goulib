@@ -275,8 +275,9 @@ class TestIntOrFloat:
 
 class TestSieve:
     def test_sieve(self):
-        last = sieve(10000)[-1]  # more than _sieve for coverage
-        assert last == 9973
+        assert sieve(50)[-1]== 47 
+        assert sieve(10000)[-1]== 9973  # more than _sieve for coverage
+        assert sieve(50)[-1]== 47 # test smaller afterwards for side effect
 
 
 class TestPrimes:
