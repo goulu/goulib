@@ -1,3 +1,6 @@
+v3.0.1, 2025-10-20
+* Linux (Mint) compatibility
+
 v3.0.0, 2025-02-26
 
 * goulib is live again ! 

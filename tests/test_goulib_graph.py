@@ -6,7 +6,7 @@ import os
 import time
 
 path = os.path.dirname(os.path.abspath(__file__))
-results = path+'\\results\\graph\\'  # path for results
+results = os.path.join(path, 'results', 'graph')  # path for results
 
 
 class TestGeoGraph:
@@ -22,19 +22,20 @@ class TestGeoGraph:
         self.sphere = delauney_triangulation(
             nodes, 'Qz', tol=0)  # 'Qz' required for spheres
 
-        self.dot = GeoGraph(path+'/data/cluster.dot')
+        self.dot = GeoGraph(os.path.join(path, 'data', 'cluster.dot'))
 
     def test_save(self):
-        self.dot.save(results+'cluster.png', transparent=False)
+        self.dot.save(os.path.join(results, 'cluster.png'), transparent=False)
 
         # 3D graph
-        self.sphere.save(results+'graph.sphere.png', transparent=False)
+        self.sphere.save(os.path.join(
+            results, 'graph.sphere.png'), transparent=False)
 
     def test_to_drawing(self):
         d = to_drawing(self.geo)  # 2D
-        d.save(results+'graph.geo.drawing.svg')
+        d.save(os.path.join(results, 'graph.geo.drawing.svg'))
         d = to_drawing(self.sphere)  # 3D
-        d.save(results+'graph.sphere.drawing.svg')
+        d.save(os.path.join(results, 'graph.sphere.drawing.svg'))
 
     def test_render(self):
         # define a function that maps edge data to a color
@@ -50,7 +51,8 @@ class TestGeoGraph:
             node_size=50,
             labels=lambda x: x[1]['key'],  # key of dict of node attributes
         )  # this sets geo.render_args ...
-        self.geo.save(results+'graph.graph.png', transparent=False)
+        self.geo.save(os.path.join(results, 'graph.graph.png'),
+                      transparent=False)
 
     def test_is_multigraph(self):
         assert not self.cube.is_multigraph()
@@ -135,7 +137,7 @@ class TestGeoGraph:
         assert d == 0
         assert len(list(close)) == 3
 
-        g.remove_node((0, 0, 0)) # tested above
+        g.remove_node((0, 0, 0))  # tested above
         close, d = g.closest_edges((0, 0, 0))
         assert d == 1
         assert len(list(close)) == 6
@@ -225,14 +227,14 @@ class TestDelauneyEMST(TestCase):
         assert graph.number_of_nodes() == self.n
         assert nx.is_connected(graph)
         assert graph.is_directed() == False
-        graph.save(results+'graph.delauney.png')
+        graph.save(os.path.join(results, 'graph.delauney.png'))
 
     def test_emst(self):
         start = time.perf_counter()
         graph = euclidean_minimum_spanning_tree(self.nodes)
         logging.info('Spanning tree %d : %f' %
                      (self.n, time.perf_counter()-start))
-        graph.save(results+'graph.emst.png')
+        graph.save(os.path.join(results, 'graph.emst.png'))
         graph = to_networkx_graph(graph, create_using=nx.Graph())  # issue #12
 
 

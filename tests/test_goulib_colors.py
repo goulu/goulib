@@ -269,7 +269,8 @@ class TestPantone:
         t = [Cell(name, style={'background-color': pantone[name].hex})
              for name in sorted(pantone)]
         t = Table(reshape(t, (0, 10)))
-        with open(path + '\\results\\colors.pantone.html', 'w') as f:
+        out = os.path.join(path, 'results', 'colors.pantone.html')
+        with open(out, 'w') as f:
             f.write(t.html())
 
 
@@ -293,5 +294,6 @@ class TestBlackBody2Color:
         from goulib.table import Table, Cell
         from goulib.itertools2 import arange
 
+        out = os.path.join(path, 'results', 'colors.blackbody.html')
         Table([Cell(str(t), style={'background-color': blackBody2Color(t).hex})
-               for t in arange(500, 12000, 500)]).save(path + '\\results\\colors.blackbody.html')
+               for t in arange(500, 12000, 500)]).save(out)

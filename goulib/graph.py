@@ -77,9 +77,9 @@ except ImportError:  # fallback, especially because I couldn't manage to install
 
 _nk = 0  # node key
 
-try:  # pygraphviz is optional
+try:  # pygraphviz is preferred on Linux
     from pygraphviz import AGraph  # http://pygraphviz.github.io/
-except Exception:
+except Exception as _:
     class AGraph():
         pass  # dummy class to let _Geo.__init__ work nevertheless
 
@@ -145,12 +145,20 @@ class _Geo(plot.Plot):
                 ext = data.split('.')[-1].lower()
                 if ext == 'dot':
                     # https://github.com/artiste-qb-net/quantum-fog/issues/9
-                    data = nx.nx_pydot.read_dot(data)
+                    try:
+                        import pygraphviz
+                        # https://stackoverflow.com/a/42177300/1395973
+                        from pathlib import Path
+                        dot = Path(data).read_text()
+                        data = nx.drawing.nx_agraph.from_agraph(
+                            pygraphviz.AGraph(dot))
+                    except ImportError:
+                        data = nx.nx_pydot.read_dot(data)
                 elif ext == 'json':
                     data = read_json(
                         data, directed=self.is_directed(), multigraph=self.multi)
                 else:
-                    raise(Exception('unknown file format'))
+                    raise (Exception('unknown file format'))
             elif isinstance(data, AGraph):
                 if not getattr(data, 'has_layout', False):
                     data.layout()
@@ -719,7 +727,7 @@ def draw_networkx(g, pos=None, **kwargs):
         if isinstance(labels, list):  # a dict is expected:
             labels = dict(zip(g.nodes(), labels))
         nx.draw_networkx_labels(g, pos, labels,  **itertools2.subdict(kwargs, (
-         'font_size', 'font_color', 'font_family', 'font_weight', 'alpha', 'bbox','horizontalalignment', 'verticalalignment', 'ax'
+            'font_size', 'font_color', 'font_family', 'font_weight', 'alpha', 'bbox', 'horizontalalignment', 'verticalalignment', 'ax'
         )))
 
     return fig
@@ -761,12 +769,12 @@ def write_dot(g, filename):
     try:
         import pygraphviz
         from networkx.drawing.nx_agraph import write_dot as _write_dot
-        logging.info("using package pygraphviz")
+        logging.info("using package pygraphviz. Mandatory on Linux")
     except ImportError:
         try:
             import pydot
             from networkx.drawing.nx_pydot import write_dot as _write_dot
-            logging.info("using package pydot")
+            logging.info("using package pydot (on Windows)")
         except ImportError:
             logging.error("Both pygraphviz and pydot were not found. See \
                 http://networkx.github.io/documentation/latest/reference/drawing.html \

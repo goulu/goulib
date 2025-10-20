@@ -6,7 +6,7 @@ import matplotlib
 
 import os
 path = os.path.dirname(os.path.abspath(__file__))
-results = path+'\\results\\image\\'  # path for results
+results = os.path.join(path, 'results', 'image')  # path for results
 
 
 def assert_image(image, name=None, convert=False):
@@ -17,7 +17,7 @@ def assert_image(image, name=None, convert=False):
     """
     from skimage.exposure import is_low_contrast
     if name:
-        image.save(results+name, autoconvert=convert)
+        image.save(os.path.join(results, name), autoconvert=convert)
     if is_low_contrast(image.array):
         logging.warning('image %s has low contrast' % name)
 
@@ -29,7 +29,7 @@ class TestImage(TestCase):
         assert self.lena == self.lena  # make sure image comparizon works
         assert_image(self.lena.grayscale('L'),
                      'grayscale.png')  # force to uint8
-        self.gray = Image(results+'grayscale.png')
+        self.gray = Image(os.path.join(results, 'grayscale.png'))
         self.camera = Image(data.camera())
 
     def test_pdf(self):
@@ -67,7 +67,7 @@ class TestImage(TestCase):
 
         s = self.lena.size
         lena2 = self.lena.resize((s[0], s[1]*2))
-        lena2.save(results+'lena.2.width.png')
+        lena2.save(os.path.join(results, 'lena.2.width.png'))
 
         tol = 4/64  # don't know why...
 
@@ -118,7 +118,8 @@ class TestImage(TestCase):
         assert self.lena == lena3
 
     def test_html(self):
-       pytest.skip("not yet implemented")  # do not implement this one as it requires IPython
+        # do not implement this one as it requires IPython
+        pytest.skip("not yet implemented")
 
     def test__repr_html_(self):
         h = self.lena.convert('P')._repr_html_()

@@ -6,7 +6,7 @@ from goulib.drawing import *
 
 import os
 path = os.path.dirname(os.path.abspath(__file__))
-results = path+'\\results\\drawing\\'  # path for results
+results = os.path.join(path, 'results', 'drawing')  # path for results
 
 
 class TestTrans:

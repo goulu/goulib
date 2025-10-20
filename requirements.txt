@@ -2,8 +2,7 @@
     numpy
     scikit-image
     scipy
-    pydot
-    pydotplus
+    pygraphviz
     graphviz
     ipython
     lxml
