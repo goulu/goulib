@@ -25,6 +25,8 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest coveralls
         pip install .
+    - name: Setup Graphviz
+      uses: ts-graphviz/setup-graphviz@v2.0.2
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
