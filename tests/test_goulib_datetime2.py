@@ -162,62 +162,21 @@ class TestTimeIntersect:
         assert time_intersect([d[0], d[2]], [d[1], d[3]]) == td
 
 
-class TestDatetime:
-    def test___sub__(self):
-        # datetime = datetime()
-        # assert_equal(expected, datetime.__sub__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-
-class TestTimedelta:
-    def test_isoformat(self):
-        # timedelta = timedelta()
-        # assert_equal(expected, timedelta.isoformat())
-        pytest.skip("not yet implemented")  # TODO: implement
-
-
-class TestDatetime2:
-    def test___init__(self):
-        # datetime2 = datetime2(*args, **kwargs)
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___sub__(self):
-        # datetime2 = datetime2(*args, **kwargs)
-        # assert_equal(expected, datetime2.__sub__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-
-class TestDate2:
-    def test_init__(self):
-        # date2 = date2()
-        # assert_equal(expected, date2.init__(*args, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-
-class TestTime2:
-    def test___init__(self):
-        # time2 = time2(*args, **kwargs)
-        pytest.skip("not yet implemented")  # TODO: implement
-
-
-class TestTimedelta2:
-    def test___init__(self):
-        # timedelta2 = timedelta2(*args, **kwargs)
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_isoformat(self):
-        # timedelta2 = timedelta2(*args, **kwargs)
-        # assert_equal(expected, timedelta2.isoformat())
-        pytest.skip("not yet implemented")  # TODO: implement
-
-
 class TestAddMonths:
     def test_add_months(self):
         # assert_equal(expected, add_months(date, months))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # month wrap with end-of-month handling and leap year
+        d = date(year=2020, month=1, day=31)
+        assert add_months(d, 1) == date(year=2020, month=2, day=29)
+        assert add_months(date(year=2019, month=12, day=15),
+                          2) == date(year=2020, month=2, day=15)
 
 
 class TestDateAdd:
     def test_date_add(self):
         # assert_equal(expected, date_add(date, years, months, weeks, days))
-        pytest.skip("not yet implemented")  # TODO: implement
+        d = date(year=2019, month=1, day=31)
+        res = date_add(d, years=1, months=1, weeks=1, days=1)
+        # expected = add_months(d, years*12+months) + (weeks*7+days)*oneday
+        expected = add_months(d, 1*12 + 1) + (1*7 + 1) * oneday
+        assert res == expected

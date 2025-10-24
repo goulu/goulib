@@ -14,25 +14,7 @@ import datetime as dt
 
 # classes extending builtin
 
-class datetime2(dt.datetime):
-    def __init__(self, *args, **kwargs):
-        super(datetime2, self).__init__(*args, **kwargs)
-
-    def __sub__(self, other):
-        d = super(datetime2, self).__sub__(self, other)
-        return timedelta(d)
-
-
-class date2(dt.date):
-    def init__(self, *args, **kwargs):
-        super(date2, self).__init__(*args, **kwargs)
-
-
-class time2(dt.time):
-    def __init__(self, *args, **kwargs):
-        super(time2, self).__init__(*args, **kwargs)
-
-
+"""
 class timedelta2(dt.timedelta):
     def __init__(self, *args, **kwargs):
         super(timedelta2, self).__init__(*args, **kwargs)
@@ -41,7 +23,7 @@ class timedelta2(dt.timedelta):
     def isoformat(self):
         # allow seamless json serialization
         return str(self)
-
+"""
 
 # useful constants
 timedelta0 = timedelta(0)
