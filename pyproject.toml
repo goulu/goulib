@@ -10,7 +10,7 @@ authors = [
 ]
 description = "library of useful Python code for scientific + technical applications"
 readme = "README.rst"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 keywords = ["math", "geometry", "graph", "optimization", "drawing"]
 license = {file = "LICENSE.TXT"}
 classifiers = [
