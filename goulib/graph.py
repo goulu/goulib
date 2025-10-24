@@ -77,13 +77,6 @@ except ImportError:  # fallback, especially because I couldn't manage to install
 
 _nk = 0  # node key
 
-try:  # pygraphviz is preferred on Linux
-    from pygraphviz import AGraph  # http://pygraphviz.github.io/
-except Exception as _:
-    class AGraph():
-        pass  # dummy class to let _Geo.__init__ work nevertheless
-
-
 def to_networkx_graph(data, create_using=None, multigraph_input=False):
     """Make a NetworkX graph from a known data structure.
     enhances `networkx.convert.to_networkx_graph`
@@ -138,30 +131,20 @@ class _Geo(plot.Plot):
         self.parent = parent
         self.idx = None  # index is created at first call to add_node
 
-        self._map = {}  # map from original node name to position for AGraph and other graphs were 'pos' is a node attribute
+        self._map = {}  # map from original node name to position for pygraphviz.AGraph and other graphs were 'pos' is a node attribute
 
         if data:
             if isinstance(data, str):  # suppose data is a filename
                 ext = data.split('.')[-1].lower()
                 if ext == 'dot':
-                    # https://github.com/artiste-qb-net/quantum-fog/issues/9
-                    try:
-                        import pygraphviz
-                        # https://stackoverflow.com/a/42177300/1395973
-                        from pathlib import Path
-                        dot = Path(data).read_text()
-                        data = nx.drawing.nx_agraph.from_agraph(
-                            pygraphviz.AGraph(dot))
-                    except ImportError:
-                        data = nx.nx_pydot.read_dot(data)
+                    import pydot
+                    dot = pydot.graph_from_dot_file(data)
+                    data = nx.drawing.nx_pydot.from_pydot(dot[0])
                 elif ext == 'json':
                     data = read_json(
                         data, directed=self.is_directed(), multigraph=self.multi)
                 else:
                     raise (Exception('unknown file format'))
-            elif isinstance(data, AGraph):
-                if not getattr(data, 'has_layout', False):
-                    data.layout()
 
             to_networkx_graph(data, self)
         elif nodes:
@@ -766,20 +749,7 @@ def write_dxf(g, filename):
 
 
 def write_dot(g, filename):
-    try:
-        import pygraphviz
-        from networkx.drawing.nx_agraph import write_dot as _write_dot
-        logging.info("using package pygraphviz. Mandatory on Linux")
-    except ImportError:
-        try:
-            import pydot
-            from networkx.drawing.nx_pydot import write_dot as _write_dot
-            logging.info("using package pydot (on Windows)")
-        except ImportError:
-            logging.error("Both pygraphviz and pydot were not found. See \
-                http://networkx.github.io/documentation/latest/reference/drawing.html \
-                for info")
-            raise
+    import pydot
 
     if isinstance(g, _Geo) or any(map(lambda n: hasattr(n, 'pos'), g.nodes())):
         g = g.copy()
@@ -792,7 +762,7 @@ def write_dot(g, filename):
         if pos is not None:  # format pos as neato wants it : "x,y"
             n[1]['pos'] = '"%s,%s"' % pos
 
-    _write_dot(g, filename)
+    nx.drawing.nx_pydot.write_dot(g, filename)
 
 
 def to_json(g, **kwargs):
