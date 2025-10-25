@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf8
 
+from pytest import approx
 from goulib.math2 import *
 from goulib.tests import *
 
@@ -275,9 +276,9 @@ class TestIntOrFloat:
 
 class TestSieve:
     def test_sieve(self):
-        assert sieve(50)[-1]== 47 
-        assert sieve(10000)[-1]== 9973  # more than _sieve for coverage
-        assert sieve(50)[-1]== 47 # test smaller afterwards for side effect
+        assert sieve(50)[-1] == 47
+        assert sieve(10000)[-1] == 9973  # more than _sieve for coverage
+        assert sieve(50)[-1] == 47  # test smaller afterwards for side effect
 
 
 class TestPrimes:
@@ -387,12 +388,11 @@ class TestNumFromDigits:
         assert num_from_digits([1, 2, 3, 4]) == 1234
         assert num_from_digits([1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0], 2) == 2014
         assert num_from_digits('ABCD', 16) == 43981
-        assert num_from_digits([10,11,12,13], 16) == 43981
+        assert num_from_digits([10, 11, 12, 13], 16) == 43981
         with pytest.raises(ValueError):
-            num_from_digits([10,11,12,13], 10)
+            num_from_digits([10, 11, 12, 13], 10)
         with pytest.raises(ValueError):
             num_from_digits('G', 16)
-
 
 
 class TestNumberOfDigits:
@@ -775,7 +775,13 @@ class TestRecurrence:
 
     def test_recurrence(self):
         # assert (expected, recurrence(factors, values, max))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Test fibonacci-like sequence: F(n) = F(n-1) + F(n-2) with F(0)=0, F(1)=1
+        fib = list(itertools2.take(10, recurrence([1, 1], [0, 1])))
+        assert fib == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+        # Test lucas sequence
+        lucas = list(itertools2.take(8, recurrence([1, 1], [2, 1])))
+        assert lucas == [2, 1, 3, 4, 7, 11, 18, 29]
 
 
 class TestLucasLehmer:
@@ -788,19 +794,28 @@ class TestLucasLehmer:
 class TestReverse:
     def test_reverse(self):
         # assert_equal(expected, reverse(i))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert reverse(123) == 321
+        assert reverse(1000) == 1
+        assert reverse(4994) == 4994  # palindrome
+        assert reverse(12345) == 54321
 
 
 class TestLychrelSeq:
     def test_lychrel_seq(self):
         # assert_equal(expected, lychrel_seq(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Test with a simple case: 19 -> 28 (19+91) -> 99 (28+82)
+        seq = list(itertools2.take(3, lychrel_seq(19)))
+        assert seq[0] == (19, 91)
+        assert seq[1] == (110, 11)  # 19+91=110
+        assert seq[2] == (121, 121)  # 110+011=121, palindrome reached
 
 
 class TestLychrelCount:
     def test_lychrel_count(self):
         # assert_equal(expected, lychrel_count(n, limit))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert lychrel_count(19) == 2  # Takes 2 iterations to reach 121
+        assert lychrel_count(89) == 24  # Known case
+        assert lychrel_count(196) >= 96  # Known Lychrel candidate
 
 
 class TestPow:
@@ -826,7 +841,12 @@ class TestIsqrt:
 class TestAbundance:
     def test_abundance(self):
         # assert_equal(expected, abundance(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # divisors: 1,2,3,4,6,12 sum=28, 28-2*12=4... wait
+        assert abundance(12) == 28/12
+        # For 12: divisors are 1,2,3,4,6,12. Sum=28. abundance = 28-2*12 = 4
+        # Actually for perfect: sum(divisors) = 2*n
+        assert abundance(6) == 2  # 6 is perfect: 1+2+3+6 = 12 = 2*6
+        assert abundance(28) == 2  # 28 is perfect
 
 
 class TestFactorial:
@@ -926,31 +946,44 @@ class TestChakravala:
 class TestBouncy:
     def test_bouncy(self):
         # assert_equal(expected, bouncy(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert bouncy(1223) == False  # non-decreasing
+        assert bouncy(134421) == True  # digits go up and down
+        assert bouncy(12345) == False  # strictly increasing
+        assert bouncy(12345, True) == True  # strictly increasing
+        assert bouncy(54321) == False  # strictly decreasing
+        assert bouncy(54321, None, True) == True  # strictly decreasing
 
 
 class TestIsHappy:
     def test_is_happy(self):
         # assert_equal(expected, is_happy(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert is_happy(1) == True
+        assert is_happy(7) == True
+        assert is_happy(10) == True
+        assert is_happy(4) == False  # unhappy cycle
 
 
 class TestNumberOfDivisors:
     def test_number_of_divisors(self):
         # assert_equal(expected, number_of_divisors(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert number_of_divisors(1) == 1
+        assert number_of_divisors(6) == 4  # 1, 2, 3, 6
+        assert number_of_divisors(12) == 6  # 1, 2, 3, 4, 6, 12
 
 
 class TestFactorialGen:
     def test_factorial_gen(self):
         # assert_equal(expected, factorial_gen())
-        pytest.skip("not yet implemented")  # TODO: implement
+        facts = list(itertools2.take(6, factorial_gen()))
+        assert facts == [1, 1, 2, 6, 24, 120]
 
 
 class TestEuclidGen:
     def test_euclid_gen(self):
         # assert_equal(expected, euclid_gen())
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Euclid numbers: 1 + product of first n primes
+        euclids = list(itertools2.take(5, euclid_gen()))
+        assert euclids == [3, 7, 31, 211, 2311]  # 1+2, 1+2*3, 1+2*3*5, etc.
 
 
 class TestEgcd:
@@ -1020,73 +1053,103 @@ class TestDeBrujin:
 class TestXgcd:
     def test_xgcd(self):
         # assert_equal(expected, xgcd(a, b))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # xgcd returns (g, x, y) such that a*x + b*y = g = gcd(a,b)
+        g, x, y = xgcd(30, 50)
+        assert g == 10
+        assert 30 * x + 50 * y == g
 
 
 class TestIsclose:
     def test_isclose(self):
         # assert_equal(expected, isclose(a, b, rel_tol, abs_tol))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert isclose(1.0, 1.0)
+        assert isclose(1.0, 1.00001, rel_tol=1e-4)
+        assert not isclose(1.0, 1.1, rel_tol=1e-4)
 
 
 class TestOmega:
     def test_omega(self):
         # assert_equal(expected, omega(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # omega(n) = number of distinct prime factors
+        assert omega(1) == 0
+        assert omega(12) == 2  # 12 = 2^2 * 3, two distinct primes
+        assert omega(30) == 3  # 30 = 2 * 3 * 5
 
 
 class TestBigomega:
     def test_bigomega(self):
         # assert_equal(expected, bigomega(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # bigomega(n) = number of prime factors counted with multiplicity
+        assert bigomega(1) == 0
+        assert bigomega(12) == 3  # 12 = 2 * 2 * 3
+        assert bigomega(30) == 3  # 30 = 2 * 3 * 5
 
 
 class TestMoebius:
     def test_moebius(self):
         # assert_equal(expected, moebius(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert moebius(1) == 1
+        assert moebius(2) == -1  # one prime
+        assert moebius(6) == 1  # two distinct primes: 2*3
+        assert moebius(12) == 0  # 12 = 2^2 * 3, has squared prime
 
 
 class TestPrimeKtuple:
     def test_prime_ktuple(self):
         # assert_equal(expected, prime_ktuple(constellation))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # twin primes have pattern (0, 2)
+        twins = list(itertools2.take(5, prime_ktuple((0, 2))))
+        assert twins[0] == (3, 5)
+        assert twins[1] == (5, 7)
 
 
 class TestTwinPrimes:
     def test_twin_primes(self):
         # assert_equal(expected, twin_primes())
-        pytest.skip("not yet implemented")  # TODO: implement
+        twins = list(itertools2.take(5, twin_primes()))
+        assert twins == [(3, 5), (5, 7), (11, 13), (17, 19), (29, 31)]
 
 
 class TestCousinPrimes:
     def test_cousin_primes(self):
         # assert_equal(expected, cousin_primes())
-        pytest.skip("not yet implemented")  # TODO: implement
+        # cousin primes differ by 4
+        cousins = list(itertools2.take(3, cousin_primes()))
+        assert cousins[0] == (3, 7)
+        assert cousins[1] == (7, 11)
 
 
 class TestSexyPrimes:
     def test_sexy_primes(self):
         # assert_equal(expected, sexy_primes())
-        pytest.skip("not yet implemented")  # TODO: implement
+        # sexy primes differ by 6
+        sexy = list(itertools2.take(5, sexy_primes()))
+        assert sexy[0] == (5, 11)
+        assert sexy[1] == (7, 13)
 
 
 class TestSexyPrimeTriplets:
     def test_sexy_prime_triplets(self):
         # assert_equal(expected, sexy_prime_triplets())
-        pytest.skip("not yet implemented")  # TODO: implement
+        triplets = list(itertools2.take(3, sexy_prime_triplets()))
+        assert triplets[0] == (7, 13, 19)
+        assert triplets[1] == (17, 23, 29)
 
 
 class TestSexyPrimeQuadruplets:
     def test_sexy_prime_quadruplets(self):
         # assert_equal(expected, sexy_prime_quadruplets())
-        pytest.skip("not yet implemented")  # TODO: implement
+        quads = list(itertools2.take(2, sexy_prime_quadruplets()))
+        assert quads[0] == (5, 11, 17, 23)
+        assert quads[1] == (11, 17, 23, 29)
 
 
 class TestLogBinomial:
     def test_log_binomial(self):
         # assert_equal(expected, log_binomial(n, k))
-        pytest.skip("not yet implemented")  # TODO: implement
+        import math
+        # log_binomial(n, k) should equal log(binomial(n, k))
+        assert approx(log_binomial(10, 5), 1e-5) == math.log(binomial(10, 5))
 
 
 class TestIlog:
@@ -1130,55 +1193,94 @@ class TestCoprimesGen:
 class TestTetrahedral:
     def test_tetrahedral(self):
         # assert_equal(expected, tetrahedral(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Tetrahedral numbers: n*(n+1)*(n+2)/6
+        assert tetrahedral(0) == 0
+        assert tetrahedral(1) == 1
+        assert tetrahedral(2) == 4
+        assert tetrahedral(3) == 10
+        assert tetrahedral(4) == 20
 
 
 class TestSumOfSquares:
     def test_sum_of_squares(self):
         # assert_equal(expected, sum_of_squares(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Square pyramidal: sum of squares 1^2 + 2^2 + ... + n^2 = n(n+1)(2n+1)/6
+        assert sum_of_squares(0) == 0
+        assert sum_of_squares(1) == 1
+        assert sum_of_squares(2) == 5
+        assert sum_of_squares(3) == 14
+        assert sum_of_squares(4) == 30
 
 
 class TestSumOfCubes:
     def test_sum_of_cubes(self):
         # assert_equal(expected, sum_of_cubes(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Sum of cubes: 1^3 + 2^3 + ... + n^3 = (n(n+1)/2)^2
+        assert sum_of_cubes(0) == 0
+        assert sum_of_cubes(1) == 1
+        assert sum_of_cubes(2) == 9
+        assert sum_of_cubes(3) == 36
+        assert sum_of_cubes(4) == 100
 
 
 class TestBernouilliGen:
     def test_bernouilli_gen(self):
         # assert_equal(expected, bernouilli_gen(init))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # First few Bernoulli numbers
+        from fractions import Fraction
+        bernoullis = list(itertools2.take(6, bernouilli_gen()))
+        assert bernoullis[0] == Fraction(1, 1)
+        assert bernoullis[1] == Fraction(-1, 2)
+        assert bernoullis[2] == Fraction(1, 6)
 
 
 class TestBernouilli:
     def test_bernouilli(self):
         # assert_equal(expected, bernouilli(n, init))
-        pytest.skip("not yet implemented")  # TODO: implement
+        from fractions import Fraction
+        assert bernouilli(0) == Fraction(1, 1)
+        assert bernouilli(1) == Fraction(-1, 2)
+        assert bernouilli(2) == Fraction(1, 6)
 
 
 class TestDeBruijn:
     def test_de_bruijn(self):
         # assert_equal(expected, de_bruijn(k, n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # de_bruijn already tested in TestDeBrujin above
+        result = de_bruijn('01', 3)
+        # Should contain all 3-bit patterns
+        assert len(result) >= 8  # At least 2^3 patterns
 
 
-class TestPascalGen:
+class TestPascal:
+    def test_pascal_row_gen(self):
+        rows = list(itertools2.take(5, pascal_row_gen()))
+        assert rows[0] == [1]
+        assert rows[1] == [1, 1]
+        assert rows[2] == [1, 2, 1]
+        assert rows[3] == [1, 3, 3, 1]
+        assert rows[4] == [1, 4, 6, 4, 1]
+
     def test_pascal_gen(self):
-        # assert_equal(expected, pascal_gen())
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = list(itertools2.take(15, pascal_gen()))
+        assert p == [1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 1, 4, 6, 4, 1]
 
 
 class TestIsPythagoreanTriple:
     def test_is_pythagorean_triple(self):
         # assert_equal(expected, is_pythagorean_triple(a, b, c))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert is_pythagorean_triple(3, 4, 5) == True
+        assert is_pythagorean_triple(5, 12, 13) == True
+        assert is_pythagorean_triple(8, 15, 17) == True
+        assert is_pythagorean_triple(1, 2, 3) == False
 
 
 class TestFormat:
     def test_format(self):
         # assert_equal(expected, format(x, decimals))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # This tests the format function from math2
+        assert format(3.14159, 2) == '3.14'
+        assert format(123.456, 1) == '123.5'
 
 
 class TestMultiply:
@@ -1193,13 +1295,24 @@ class TestMultiply:
 class TestSqrt:
     def test_sqrt(self):
         # assert_equal(expected, sqrt(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Integer square root
+        assert sqrt(16) == 4
+        assert sqrt(25) == 5
+        assert sqrt(100) == 10
 
 
 class TestModMatmul:
     def test_mod_matmul(self):
         # assert_equal(expected, mod_matmul(A, B, mod))
-        pytest.skip("not yet implemented")  # TODO: implement
+        A = [[1, 2], [3, 4]]
+        B = [[5, 6], [7, 8]]
+        mod = 10
+        # Regular matrix multiply then mod
+        result = mod_matmul(A, B, mod)
+        # [1*5+2*7, 1*6+2*8] = [19, 22] -> [9, 2] mod 10
+        # [3*5+7*7, 3*6+4*8] = [64, 50] -> [4, 0] mod 10
+        assert result[0][0] == 9
+        assert result[0][1] == 2
 
 
 class TestModMatpow:
@@ -1213,19 +1326,30 @@ class TestModMatpow:
 class TestZeros:
     def test_zeros(self):
         # assert_equal(expected, zeros(shape))
-        pytest.skip("not yet implemented")  # TODO: implement
+        z = zeros((2, 3))
+        assert len(z) == 2
+        assert len(z[0]) == 3
+        assert z[0][0] == 0
+        assert z[1][2] == 0
 
 
 class TestDiag:
     def test_diag(self):
         # assert_equal(expected, diag(v))
-        pytest.skip("not yet implemented")  # TODO: implement
+        d = diag([1, 2, 3])
+        assert len(d) == 3
+        assert d[0] == [1, 0, 0]
+        assert d[1] == [0, 2, 0]
+        assert d[2] == [0, 0, 3]
 
 
 class TestFactors:
     def test_factors(self):
         # assert_equal(expected, factors(n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # factors returns prime factorization
+        assert list(factors(12)) == [4, 3]
+        assert list(factors(30)) == [2, 3, 5]
+        assert list(factors(17)) == [17]
 
 
 class TestIsPrimitiveRoot:
@@ -1256,13 +1380,19 @@ class TestRandomPrime:
 class TestPrimeDivisors:
     def test_prime_divisors(self):
         # assert_equal(expected, prime_divisors(num, start))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # prime_divisors returns unique prime factors
+        assert list(prime_divisors(12)) == [2, 3]
+        assert list(prime_divisors(30)) == [2, 3, 5]
+        assert list(prime_divisors(17)) == [17]
 
 
 class TestIsMultiple:
     def test_is_multiple(self):
         # assert_equal(expected, is_multiple(n, factors))
-        pytest.skip("not yet implemented")  # TODO: implement
+        # Check if n is a multiple of only given factors
+        assert is_multiple(12, {2, 3}) == True
+        assert is_multiple(30, {2, 3, 5}) == True
+        assert is_multiple(14, {2, 3}) == False  # Has factor 7
 
 
 class TestRepunit:

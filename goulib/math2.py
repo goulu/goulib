@@ -20,7 +20,7 @@ import functools
 import fractions
 import numbers
 import random
-from typing import Iterable
+from typing import Generator, Iterable, Iterator
 from bitarray import bitarray
 
 from goulib import itertools2, decorators
@@ -62,38 +62,7 @@ def cmp(x, y):
     return sign(x - y)
 
 
-try:
-    isclose = math.isclose
-except AttributeError:
-
-    def isclose(a, b, rel_tol=1e-09, abs_tol=0.0):
-        '''approximately equal. Use this instead of a==b in floating point ops
-
-        implements https://www.python.org/dev/peps/pep-0485/
-        :param a,b: the two values to be tested to relative closeness
-        :param rel_tol: relative tolerance
-          it is the amount of error allowed, relative to the larger absolute value of a or b.
-          For example, to set a tolerance of 5%, pass tol=0.05.
-          The default tolerance is 1e-9, which assures that the two values are the same within
-          about 9 decimal digits. rel_tol must be greater than 0.0
-        :param abs_tol: minimum absolute tolerance level -- useful for comparisons near zero.
-        '''
-        # https://github.com/PythonCHB/close_pep/blob/master/isclose.py
-        if a == b:  # short-circuit exact equality
-            return True
-
-        if rel_tol < 0.0 or abs_tol < 0.0:
-            raise ValueError('error tolerances must be non-negative')
-
-        # use cmath so it will work with complex ot float
-        if math.isinf(abs(a)) or math.isinf(abs(b)):
-            # This includes the case of two infinities of opposite sign, or
-            # one infinity and one finite number. Two infinities of opposite sign
-            # would otherwise have an infinite relative tolerance.
-            return False
-        diff = abs(b - a)
-
-        return (((diff <= abs(rel_tol * b)) or (diff <= abs(rel_tol * a))) or (diff <= abs_tol))
+isclose = math.isclose  # for historic reasons : wasn't available before python 3.5
 
 
 def allclose(a, b, rel_tol=1e-09, abs_tol=0.0):
@@ -538,7 +507,7 @@ def zeros(shape):
     '''
     :see: https://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html
     '''
-    return ([0] * shape[1]) * shape[0]
+    return [[0] * shape[1]] * shape[0]
 
 
 def diag(v):
@@ -864,19 +833,23 @@ def collatz_period(n):
     return 1 + collatz_period(collatz(n))
 
 
+def pascal_row_gen():
+    '''Pascal's triangle read by rows: C(n,k) = binomial(n,k) = n!/(k!*(n-k)!), 0<=k<=n.'''
+    for row in itertools.count():
+        x = 1
+        res = [x]
+        for m in range(row):
+            x = (x * (row - m)) // (m + 1)
+            res.append(x)
+        yield res
+
 def pascal_gen():
-    '''Pascal's triangle read by rows: C(n,k) = binomial(n,k) = n!/(k!*(n-k)!), 0<=k<=n.
+    '''Generate row n of Pascal's triangle: C(n,k) = binomial(n,k) = n!/(k!*(n-k)!), 0<=k<=n.
 
     https://oeis.org/A007318
     '''
-    __author__ = 'Nick Hobson <nickh@qbyte.org>'
-    # code from https://oeis.org/A007318/a007318.py.txt with additional related functions
-    for row in itertools.count():
-        x = 1
-        yield x
-        for m in range(row):
-            x = (x * (row - m)) // (m + 1)
-            yield x
+    return itertools2.flatten(pascal_row_gen())
+    return
 
 
 def catalan(n):
@@ -992,8 +965,10 @@ def proper_divisors(n):
     ''':return: all divisors of n except n itself.'''
     return (divisor for divisor in divisors(n) if divisor != n)
 
+
 def erathostene(n):
     return n * n, 2 * n
+
 
 class Sieve:
     '''General sieve
@@ -1001,7 +976,8 @@ class Sieve:
     # should be derived from bitarray but ...
     # https://github.com/ilanschnell/bitarray/issues/69
     # TODO: simplify when solved (still a problem in 2025...)
-    def __init__(self, init:Iterable, f=erathostene):
+
+    def __init__(self, init: Iterable, f=erathostene):
         self._ = bitarray(init)
         self.f = f
 
@@ -1031,6 +1007,7 @@ class Sieve:
             if i2 > n:
                 break
             self._[i2::s] = False  # bitarray([False]*int((n-i2)/s+1))
+
 
 # bitset indicating primality
 _sieve = Sieve('001', erathostene)
@@ -1090,7 +1067,7 @@ def is_prime_euler(n, eb=(2,)):
     return True  # according to Euler, but there are
 
 
-def is_prime(n, oneisprime=False, tb=(3, 5, 7, 11), eb=(2,), mrb=None):
+def is_prime(n, oneisprime=False, tb=(3, 5, 7, 11), eb=(2,), mrb=None) -> bool:
     '''main primality test.
 
     :param n: int number to test
@@ -1232,7 +1209,7 @@ def prevprime(n):
             return n
 
 
-def primes_gen(start=2, stop=None):
+def primes_gen(start=2, stop=None) -> Iterator[int]:
     '''generate prime numbers from start'''
     if start == 1:
         yield 1  # if we asked for it explicitly
@@ -1268,7 +1245,7 @@ def random_prime(bits):
 def euclid_gen():
     '''generates Euclid numbers: 1 + product of the first n primes'''
     n = 1
-    for p in primes_gen(1):
+    for p in primes_gen():
         n = n * p
         yield n + 1
 
@@ -1438,9 +1415,9 @@ def prime_ktuple(constellation):
         for d in diffs:
             if is_prime(p + abs(d)) == (d < 0):
                 break
-            res.append(p + d)
-
-        else:
+            if d > 0:
+                res.append(p + d)
+        else:  # no break
             yield tuple(res)
 
 
@@ -1591,7 +1568,8 @@ def str_base(num, base=10, numerals='0123456789abcdefghijklmnopqrstuvwxyz'):
     :param numerals: string with all chars representing numbers in base base. chars after the base-th are ignored
     '''
     if base < 2 or base > len(numerals):
-        raise ValueError("str_base: base must be between 2 and %d" % len(numerals))
+        raise ValueError(
+            "str_base: base must be between 2 and %d" % len(numerals))
     if base == 10 and numerals[:10] == '0123456789':
         return str(num)
     if base == 2 and numerals[:2] == '01':
@@ -1627,14 +1605,16 @@ def num_from_digits(digits, base=10):
     '''
 
     if isinstance(digits, str):
-        string=digits
+        string = digits
     else:
-        string=''
+        string = ''
         for x in digits:
-            if x>=base:
-                raise ValueError("num_from_digits: digit %d is greater than base %d" % (x, base))
-            string+=str_base(x,base) 
+            if x >= base:
+                raise ValueError(
+                    "num_from_digits: digit %d is greater than base %d" % (x, base))
+            string += str_base(x, base)
     return int(string, base)
+
 
 def reverse(i):
     return int(str(i)[::-1])
@@ -1792,7 +1772,7 @@ def sum_of_cubes(n):
     return a * a  # by Nicomachus's theorem
 
 
-def bernouilli_gen(init=1):
+def bernouilli_gen(init=-1):
     '''generator of Bernouilli numbers
 
     :param init: int -1 or +1.
@@ -1810,7 +1790,7 @@ def bernouilli_gen(init=1):
         m += 1
 
 
-def bernouilli(n, init=1):
+def bernouilli(n, init=-1):
     return itertools2.takenth(n, bernouilli_gen(init))
 
 
@@ -1821,7 +1801,7 @@ def faulhaber(n, p):
     :see: https://en.wikipedia.org/wiki/Faulhaber%27s_formula
     '''
     s = 0
-    for j, a in enumerate(bernouilli_gen()):
+    for j, a in enumerate(bernouilli_gen(1)):
         if j > p:
             break
         s = s + binomial(p + 1, j) * a * n ** (p + 1 - j)
@@ -2057,7 +2037,7 @@ def get_cardinal_name(num, numbers=numbers_en):
 
 
 def abundance(n):
-    return sum(divisors(n)) - 2 * n
+    return sigma(n) / n
 
 
 def is_perfect(n):
@@ -2215,8 +2195,9 @@ def gamma_inverse(x):
     http://mathoverflow.net/questions/12828/inverse-gamma-function
     """
     k = 1.461632  # the positive zero of the digamma function, scipy.special.psi
-    assert x >= k, 'gamma(x) is strictly increasing for x >= k, k=%1.2f, x=%1.2f' % (k, x)
-    
+    assert x >= k, 'gamma(x) is strictly increasing for x >= k, k=%1.2f, x=%1.2f' % (
+        k, x)
+
     C = math.sqrt(2*math.pi)/math.e - gamma(k)  # approximately 0.036534
     L = math.log((x+C)/sqrt(2*math.pi))
     gamma_inv = 0.5+L/lambertW(L/math.e)

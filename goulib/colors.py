@@ -13,7 +13,6 @@ __credits__ = ['Colormath https://pypi.python.org/pypi/colormath/',
 
 import os
 import sys
-import logging
 import numpy
 import networkx
 from collections import OrderedDict
@@ -253,7 +252,7 @@ class Color(object):
         if target not in self._values:
             try:
                 path = converters.shortest_path(self.space, target)
-            except networkx.exception.NetworkXNoPath:
+            except networkx.NetworkXNoPath:
                 raise NotImplementedError(
                     'no conversion between %s and %s color spaces'
                     % (self.space, target)
@@ -415,7 +414,7 @@ class Palette(OrderedDict):
             for i, v in zip(keys, data):
                 self[i] = Color(v)  # v.space of RGB
 
-        return self
+        return None
 
     def index(self, c, dE=5):
         """

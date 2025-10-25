@@ -11,6 +11,7 @@ __license__ = "LGPL"
 from bisect import bisect_left, bisect_right
 from collections import OrderedDict
 
+
 class Record(OrderedDict):
     """mimics a Pascal record or a C struct"""
 
@@ -36,8 +37,10 @@ class Record(OrderedDict):
     def __repr__(self):
         res = ['%s:%s' % (k, self[k]) for k in self]
         return '{{%s}}' % (','.join(res))
-    
+
 # copied from https://code.activestate.com/recipes/577197-sortedcollection/
+
+
 class SortedCollection(object):
     '''Sequence sorted by a key function.
 
@@ -138,7 +141,7 @@ class SortedCollection(object):
 
     def __getitem__(self, i):
         return self._items[i]
-    
+
     def __setitem__(self, _, item):
         k = self._key(item)
         i = bisect_left(self._keys, k)
