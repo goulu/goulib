@@ -61,9 +61,9 @@ def rgb2cmyk(rgb, **kwargs):
 def cmyk2rgb(cmyk, **kwargs):
     """
     :param cmyk: 4-tuple of floats (cyan, magenta, yellow, black) in [0..1] range
-    :result: 3-tuple of floats (red,green,blue)
-    warning : rgb is out the [0..1] range for some cmyk
+    :return: 3-tuple of floats (red, green, blue)
 
+    warning: rgb is out the [0..1] range for some cmyk
     """
     c, m, y, k = cmyk
     w = 1 - k
@@ -77,10 +77,10 @@ def xyz2xyy(xyz, **kwargs):
     Based on formula from http://brucelindbloom.com/Eqn_XYZ_to_xyY.html
 
     Implementation Notes:
+
     1. Watch out for black, where X = Y = Z = 0. In that case, x and y are set
        to the chromaticity coordinates of the reference whitepoint.
     2. The output Y value is in the nominal range [0.0, Y[XYZ]].
-
     """
     s = sum(xyz)
     if s == 0:
@@ -184,11 +184,13 @@ class Color(object):
     """
 
     def __init__(self, value, space='RGB', name=None, illuminant='D65'):
-        """constructor
+        """Constructor.
+
         :param value: string color name, hex string, or values tuple
         :param space: string defining the color space of value
         :param name: string for color name
-        :param illuminant: string in {“A”, “D50”, “D55”, “D65”, “D75”, “E”} 
+        :param illuminant: string in {“A”, “D50”, “D55”, “D65”, “D75”, “E”}
+
             * D65 is used by default in skimage, see http://scikit-image.org/docs/dev/api/skimage.color.html
             * D50 is used in Pantone and other graphic arts
         """
@@ -463,11 +465,12 @@ class Palette(OrderedDict):
     def pil(self):
         """
         :return: a sequence of integers, or a string containing a binary 
-        representation of the palette.
+            representation of the palette.
+
         In both cases, the palette contents should be ordered (r, g, b, r, g, b, …). 
         The palette can contain up to 768 entries (3*256). 
         If a shorter palette is given, it is padded with zeros.
-        #http://effbot.org/zone/creating-palette-images.htm
+        See http://effbot.org/zone/creating-palette-images.htm
         """
         res = []
         for c in self.values():

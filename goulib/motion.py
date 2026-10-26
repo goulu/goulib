@@ -138,11 +138,12 @@ class Segments(Segment):
                 self.t1 = s.t1
 
     def insert(self, segment, autoJoin=True):
-        """ insert a segment into Segments
+        """insert a segment into Segments
+
         :param segment: the segment to add. must be in a range that is not already defined or it will rise a value error exception
         :param autoJoin: if True and the added segment has the same starting position as the last segment's end
-                         and both velocity are 0 then a segment of (pos,v=0,a=0) is automatically added.
-                         this help discribing movements only where there is curently a movement
+            and both velocity are 0 then a segment of (pos,v=0,a=0) is automatically added.
+            this help discribing movements only where there is curently a movement
         """
 
         t0 = segment.t0
@@ -409,13 +410,16 @@ def SegmentsTrapezoidalSpeed(t0, p0, p3, a, T=0, vmax=float('inf'), v0=0, v3=0):
     :param T: float specified time. if =0 (default), use specified acceleration
     :param vmax: float max speed. default is infinity (i.e. triangular speed)
     :param v0: initial speed
-    :param v3: final speed    if T <> 0 then v3 = v0
-       v1  +-------+    
-          /         \
-         /           +  v3
-    v0  +
-        |  |       | |
-       t0  t1     t2 t3 
+    :param v3: final speed (if T != 0 then v3 = v0)
+
+    ::
+
+           v1  +-------+    
+              /         \
+             /           +  v3
+        v0  +
+            |  |       | |
+           t0  t1     t2 t3 
     """
     dp = p3 - p0
     if T != 0:

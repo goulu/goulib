@@ -235,12 +235,13 @@ def _intersect_plane_plane(A, B):
 
 
 class Vector3(object):
-    """ Mutable 3D Vector.
-    See `Vector2`documentation"""
+    """Mutable 3D Vector.
+    See :class:`Vector2` documentation
+    """
 
     def __init__(self, *args):
         """Constructor.
-        :param *args: x,y,z values
+        :param args: x,y,z values
         """
         if len(args) == 1:
             value = args[0]
@@ -692,12 +693,11 @@ def Spherical(r, theta, phi):
 
 
 class Sphere(Geometry):
-    """
-    Spheres are constructed with a center **Point3** and a radius::
+    """Spheres are constructed with a center **Point3** and a radius::
 
-    >>> s = Sphere(Point3(1.0, 1.0, 1.0), 0.5)
-    >>> s
-    Sphere(<1.00, 1.00, 1.00>, radius=0.50)
+        >>> s = Sphere(Point3(1.0, 1.0, 1.0), 0.5)
+        >>> s
+        Sphere(<1.00, 1.00, 1.00>, radius=0.50)
 
     Internally there are two attributes: *c*, giving the center point and
     *r*, giving the radius.
@@ -719,10 +719,12 @@ class Sphere(Geometry):
     """
 
     def __init__(self, *args):
-        """:param args: can be
-        * Sphere
-        * center, point on sphere
-        * center, radius
+        """
+        :param args: can be
+
+            * Sphere
+            * center, point on sphere
+            * center, radius
         """
         if len(args) == 1:  # Circle or derived class
             super(Sphere, self).__init__(*args)

@@ -81,9 +81,10 @@ def to_networkx_graph(data, create_using=None, multigraph_input=False):
     """Make a NetworkX graph from a known data structure.
     enhances `networkx.convert.to_networkx_graph`
     :param data: any type handled by `convert.to_networkx_graph`, plus:
-    * :class:`scipy.spatial.qhull.Delaunay` to enable building a graph from a delauney triangulation
 
-    If create_using is a :class:`GeoGraph`and data is a Graph where nodes have a 'pos' attribute,
+        * :class:`scipy.spatial.qhull.Delaunay` to enable building a graph from a delauney triangulation
+
+    If create_using is a :class:`GeoGraph` and data is a Graph where nodes have a 'pos' attribute,
     then this attribute will be used to rename nodes as (x,y,...) tuples suitable for GeoGraph.
 
     """
@@ -370,6 +371,7 @@ class _Geo(plot.Plot):
     def remove_node(self, n):
         """
         :param n: node tuple
+
         remove node from graph and rtree
         """
         n1 = self.number_of_nodes()
@@ -453,7 +455,8 @@ class _Geo(plot.Plot):
         :param u: Node or Edge (Nodes tuple)
         :param v: Node if u is a single Node
         :param clean: bool removes disconnected nodes. must be False for certain nx algos to work
-        :result: return attributes of removed edge
+        :return: attributes of removed edge
+
         remove edge from graph. NetworkX graphs do not remove unused nodes
         """
 
@@ -626,7 +629,7 @@ def draw_networkx(g, pos=None, **kwargs):
     - function of the form lambda node:(x,y) that maps node positions.
     - None. in this case, nodes are directly used as positions if graph is a GeoGraph, otherwise nx.draw_shell is used
 
-    :param **kwargs: passed to nx.draw method as described in http://networkx.lanl.gov/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html with one tweak:
+    :param kwargs: passed to nx.draw method as described in http://networkx.lanl.gov/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html with one tweak:
 
     - if edge_color is a function of the form lambda data:color string, it is mapped over all edges
 
@@ -811,9 +814,9 @@ def delauney_triangulation(nodes, qhull_options='', incremental=False, **kwargs)
     :param nodes: _Geo graph or list of (x,y) or (x,y,z) node positions
     :param qhull_options: string passed to :meth:`scipy.spatial.Delaunay`,
     which passes it to Qhull ( http://www.qhull.org/ )
-    *'Qt' ensures all points are connected
-    *'Qz' required when nodes lie on a sphere
-    *'QJ' solves some singularity situations
+    * 'Qt' ensures all points are connected
+    * 'Qz' required when nodes lie on a sphere
+    * 'QJ' solves some singularity situations
 
     :param kwargs: passed to the :class:`GeoGraph` constructor
     :return: :class:`GeoGraph` with delauney triangulation between nodes

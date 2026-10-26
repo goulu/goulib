@@ -180,8 +180,9 @@ def xgcd(a, b):
     '''Extended GCD
 
     :return: (gcd, x, y) where gcd is the greatest common divisor of a and b
-    with the sign of b if b is nonzero, and with the sign of a if b is 0.
-    The numbers x,y are such that gcd = ax+by.'''
+        with the sign of b if b is nonzero, and with the sign of a if b is 0.
+        The numbers x,y are such that gcd = ax+by.
+    '''
     # taken from http://anh.cs.luc.edu/331/code/xgcd.py
     prevx, x = 1, 0
     prevy, y = 0, 1
@@ -399,8 +400,9 @@ def introot(n, r=2):
 def is_power(n):
     '''
     :return: integer that, when squared/cubed/etc, yields n,
-    or 0 if no such integer exists.
-    Note that the power to which this number is raised will be prime.'''
+        or 0 if no such integer exists.
+        Note that the power to which this number is raised will be prime.
+    '''
     # copied from https://pypi.python.org/pypi/primefac
     for p in primes_gen():
         r = introot(n, p)
@@ -843,6 +845,7 @@ def pascal_row_gen():
             res.append(x)
         yield res
 
+
 def pascal_gen():
     '''Generate row n of Pascal's triangle: C(n,k) = binomial(n,k) = n!/(k!*(n-k)!), 0<=k<=n.
 
@@ -948,8 +951,8 @@ def divisors(n):
     '''
     :param n: int
     :return: all divisors of n: divisors(12) -> 1,2,3,4,6,12
-    including 1 and n,
-    except for 1 which returns a single 1 to avoid messing with sum of divisors...
+        including 1 and n,
+        except for 1 which returns a single 1 to avoid messing with sum of divisors...
     '''
     if n == 1:
         yield 1
@@ -1245,7 +1248,7 @@ def random_prime(bits):
 def euclid_gen():
     '''generates Euclid numbers: 1 + product of the first n primes'''
     n = 1
-    for p in primes_gen():
+    for p in primes_gen(1):
         n = n * p
         yield n + 1
 
@@ -1398,16 +1401,18 @@ def prime_ktuple(constellation):
     :param constellation: iterable of int differences betwwen primes to return
     :note: negative int means the difference must NOT be prime
     :see: https://en.wikipedia.org/wiki/Prime_k-tuple
-    (0, 2)    twin primes
-    (0, 4)    cousin primes
-    (0, 6)    sexy primes
-    (0, 2, 6), (0, 4, 6)    prime triplets
-    (0, 6, 12, -18)    sexy prime triplets
-    (0, 2, 6, 8)    prime quadruplets
-    (0, 6, 12, 18)    sexy prime quadruplets
-    (0, 2, 6, 8, 12), (0, 4, 6, 10, 12)    quintuplet primes
-    (0, 4, 6, 10, 12, 16)    sextuplet primes
 
+    Examples::
+
+        (0, 2)    twin primes
+        (0, 4)    cousin primes
+        (0, 6)    sexy primes
+        (0, 2, 6), (0, 4, 6)    prime triplets
+        (0, 6, 12, -18)    sexy prime triplets
+        (0, 2, 6, 8)    prime quadruplets
+        (0, 6, 12, 18)    sexy prime quadruplets
+        (0, 2, 6, 8, 12), (0, 4, 6, 10, 12)    quintuplet primes
+        (0, 4, 6, 10, 12, 16)    sextuplet primes
     '''
     diffs = constellation[1:]
     for p in primes_gen():
@@ -1776,10 +1781,12 @@ def bernouilli_gen(init=-1):
     '''generator of Bernouilli numbers
 
     :param init: int -1 or +1.
-    * -1 for "first Bernoulli numbers" with B1=-1/2
-    * +1 for "second Bernoulli numbers" with B1=+1/2
-    https://en.wikipedia.org/wiki/Bernoulli_number
-    https://rosettacode.org/wiki/Bernoulli_numbers#Python:_Optimised_task_algorithm
+
+        * -1 for "first Bernoulli numbers" with B1=-1/2
+        * +1 for "second Bernoulli numbers" with B1=+1/2
+
+    See https://en.wikipedia.org/wiki/Bernoulli_number
+    and https://rosettacode.org/wiki/Bernoulli_numbers#Python:_Optimised_task_algorithm
     '''
     B, m = [], 0
     while True:
@@ -1824,7 +1831,7 @@ def lychrel_seq(n):
         n += r
 
 
-def lychrel_count(n, limit=96):
+def lychrel_count(n, limit=96) -> int:
     '''number of lychrel iterations before n becomes palindromic
 
     :param n: int number to test
@@ -2044,8 +2051,8 @@ def is_perfect(n):
     '''
     :return: -1 if n is deficient, 0 if perfect, 1 if abundant
     :see: https://en.wikipedia.org/wiki/Perfect_number,
-    https://en.wikipedia.org/wiki/Abundant_number,
-    https://en.wikipedia.org/wiki/Deficient_number
+        https://en.wikipedia.org/wiki/Abundant_number,
+        https://en.wikipedia.org/wiki/Deficient_number
     '''
     # return sign(abundance(n)) #simple, but might be slow for large n
     for s in itertools2.accumulate(divisors(n)):
@@ -2105,7 +2112,7 @@ def factorialk(n, k):
       factorialk(n, 2) = factorial2(n)
 
     :param n: int Calculate multifactorial. If `n` < 0, the return value is 0.
-    :param k : int Order of multifactorial.
+    :param k: int Order of multifactorial.
     :return: int Multifactorial of `n`.
     '''
     # code from scipy, with extact=true
@@ -2254,7 +2261,8 @@ def ilog(a, b, upper_bound=False):
     :parameter a,b: integer
     :parameter upper_bound: bool. if True, returns smallest x such that b^x>=a
     :return: x integer such that b^x=a, or upper_bound, or None
-    https://en.wikipedia.org/wiki/Discrete_logarithm
+
+    See https://en.wikipedia.org/wiki/Discrete_logarithm
     '''
     # TODO: implement using baby_step_giant_step or http://anh.cs.luc.edu/331/code/PohligHellman.py or similar
     # for now it's brute force...
@@ -2749,8 +2757,8 @@ def jacobi(a, p):
 def pollardRho_brent(n):
     '''Brent’s improvement on Pollard’s rho algorithm.
 
-    :return: int n if n is prime
-    otherwise, we keep chugging until we find a factor of n strictly between 1 and n.
+    :return: int n if n is prime,
+        otherwise, we keep chugging until we find a factor of n strictly between 1 and n.
     :see: https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm
     '''
 

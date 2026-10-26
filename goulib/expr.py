@@ -360,8 +360,11 @@ class Expr(plot.Plot):
         return r'${%s}$' % self.latex()
 
     def points(self, xmin=-1, xmax=1, step=0.1):
-        ''':return: x,y lists of float : points for a line plot
-        overriden in derived classes'''
+        """
+        :return: x,y lists of float : points for a line plot
+
+        overridden in derived classes
+        """
         if self.isconstant:
             return [xmin, xmax], [self(xmin), self(xmax)]
         x = list(itertools2.arange(xmin, xmax, step))

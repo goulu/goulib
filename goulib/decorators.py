@@ -173,19 +173,19 @@ class MultiMethod(object):
 
 def multimethod(*types):
     """
-    allows to overload functions for various parameter types
+    Allows to overload functions for various parameter types::
 
-    @multimethod(int, int)
-    def foo(a, b):
-        ...code for two ints...
+        @multimethod(int, int)
+        def foo(a, b):
+            pass  # code for two ints
 
-    @multimethod(float, float):
-    def foo(a, b):
-        ...code for two floats...
+        @multimethod(float, float)
+        def foo(a, b):
+            pass  # code for two floats
 
-    @multimethod(str, str):
-    def foo(a, b):
-        ...code for two strings...
+        @multimethod(str, str)
+        def foo(a, b):
+            pass  # code for two strings
     """
 
     def register(function):

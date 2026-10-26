@@ -44,22 +44,22 @@ class ObjectiveFunction:
 def nelder_mead(f, x_start,
                 step=0.1, no_improve_thr=10e-6, no_improv_break=10, max_iter=0,
                 alpha=1., gamma=2., rho=-0.5, sigma=0.5):
-    """
-        Pure Python implementation of the Nelder-Mead algorithm.
-        also called "downhill simplex method" taken from https://github.com/fchollet/nelder-mead
+    """Pure Python implementation of the Nelder-Mead algorithm.
 
-        Reference: https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method
-        :param f: function to optimize, must return a scalar score 
-            and operate over a numpy array of the same dimensions as x_start
-        :param x_start: (numpy array) initial position
-        :param step: (float) look-around radius in initial step
-        :param no_improv_thr, no_improv_break: (float,int): 
-            break after no_improv_break iterations with 
-            an improvement lower than no_improv_thr
-        :param max_iter: (int): always break after this number of iterations.
-            Set it to 0 to loop indefinitely.
-        :param alpha, gamma, rho, sigma: (floats): parameters of the algorithm 
-            (see Wikipedia page for reference)
+    Also called "downhill simplex method" taken from https://github.com/fchollet/nelder-mead
+    Reference: https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method
+
+    :param f: function to optimize, must return a scalar score 
+        and operate over a numpy array of the same dimensions as x_start
+    :param x_start: (numpy array) initial position
+    :param step: (float) look-around radius in initial step
+    :param no_improve_thr: (float) threshold for improvement
+    :param no_improv_break: (int) break after iterations with no improvement
+    :param max_iter: (int) always break after this number of iterations. Set it to 0 to loop indefinitely.
+    :param alpha: parameter of the algorithm (float)
+    :param gamma: parameter of the algorithm (float)
+    :param rho: parameter of the algorithm (float)
+    :param sigma: parameter of the algorithm (float)
     """
 
     # init
@@ -499,25 +499,22 @@ class DifferentialEvolution(object):
     This is a python implementation of differential evolution taken from
     http://cci.lbl.gov/cctbx_sources/scitbx/differential_evolution.py
 
-    It assumes an evaluator class is passed in that has the following
-    functionality
-    data members:
-     n              :: The number of parameters
-     domain         :: a  list [(low,high)]*n
-                       with approximate upper and lower limits for each parameter
-     x              :: a place holder for a final solution
+    It assumes an evaluator class is passed in that has the following functionality:
 
-     also a function called 'target' is needed.
-     This function should take a parameter vector as input and return a the function to be minimized.
+    Data members:
+    - n: The number of parameters
+    - domain: a list [(low,high)]*n with approximate upper and lower limits for each parameter
+    - x: a place holder for a final solution
 
-     The code below was implemented on the basis of the following sources of information:
-     1. http://www.icsi.berkeley.edu/~storn/code.html
-     2. http://www.daimi.au.dk/~krink/fec05/articles/JV_ComparativeStudy_CEC04.pdf
-     3. http://ocw.mit.edu/NR/rdonlyres/Sloan-School-of-Management/15-099Fall2003/A40397B9-E8FB-4B45-A41B-D1F69218901F/0/ses2_storn_price.pdf
+    Also a function called 'target' is needed.
+    This function should take a parameter vector as input and return the function to be minimized.
 
+    The code below was implemented on the basis of the following sources of information:
+    1. http://www.icsi.berkeley.edu/~storn/code.html
+    2. http://www.daimi.au.dk/~krink/fec05/articles/JV_ComparativeStudy_CEC04.pdf
+    3. http://ocw.mit.edu/NR/rdonlyres/Sloan-School-of-Management/15-099Fall2003/A40397B9-E8FB-4B45-A41B-D1F69218901F/0/ses2_storn_price.pdf
 
-     The developers of the differential evolution method have this advice:
-     (taken from ref. 1)
+    The developers of the differential evolution method have this advice (taken from ref. 1):
 
     If you are going to optimize your own objective function with DE, you may try the
     following classical settings for the input file first: Choose method e.g. DE/rand/1/bin,

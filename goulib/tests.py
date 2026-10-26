@@ -116,9 +116,10 @@ class TestCase(unittest.TestCase):
 
     def assertEqual(self, first, second, places=7, msg=None, delta=None, reltol=None):
         """automatically calls assertAlmostEqual when needed
-        :param first, second: objects to compare for (quasi) equality
-        :param places: int number of digits to consider in float comparisons.
-                        If None, forces strict equality
+
+        :param first: first object to compare for (quasi) equality
+        :param second: second object to compare for (quasi) equality
+        :param places: int number of digits to consider in float comparisons. If None, forces strict equality
         :param msg: optional string error message to display in case of failure
         :param delta: optional float absolute tolerance value
         :param reltol: optional float relative tolerance value

@@ -982,8 +982,8 @@ class TestEuclidGen:
     def test_euclid_gen(self):
         # assert_equal(expected, euclid_gen())
         # Euclid numbers: 1 + product of first n primes
-        euclids = list(itertools2.take(5, euclid_gen()))
-        assert euclids == [3, 7, 31, 211, 2311]  # 1+2, 1+2*3, 1+2*3*5, etc.
+        euclids = list(itertools2.take(6, euclid_gen()))
+        assert euclids == [2, 3, 7, 31, 211, 2311]  # 1+2, 1+2*3, 1+2*3*5, etc.
 
 
 class TestEgcd:

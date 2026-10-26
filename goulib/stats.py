@@ -278,8 +278,9 @@ class Discrete(Stats):
     def __init__(self, data):
         """
         :param data: can be:
-        * list of equiprobable values (uniform distribution)
-        * dict of x:p values:probability pairs
+
+            * list of equiprobable values (uniform distribution)
+            * dict of x:p values:probability pairs
         """
         n = len(data)
         if not isinstance(data, dict):  # uniform distribution

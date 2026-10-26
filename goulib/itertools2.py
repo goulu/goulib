@@ -14,7 +14,7 @@ __license__ = "LGPL"
 import itertools
 import random
 import operator
-import typing # collections 
+import typing  # collections
 import heapq
 import logging
 
@@ -290,12 +290,12 @@ def select(it1, it2, op):
 
 
 def shape(iterable):
-    """ shape of a mutidimensional array, without numpy
+    """shape of a mutidimensional array, without numpy
 
     :param iterable: iterable of iterable ... of iterable or numpy arrays...
-    :result: list of n ints corresponding to iterable's len of each dimension
+    :return: list of n ints corresponding to iterable's len of each dimension
     :warning: if iterable is not a (hyper) rect matrix, shape is evaluated from
-    the [0,0,...0] element ...
+        the [0,0,...0] element ...
     :see: http://docs.scipy.org/doc/numpy-1.10.1/reference/generated/numpy.ndarray.shape.html
     """
     res = []
@@ -593,7 +593,7 @@ def sort_indexes(iterable, key=identity, reverse=False):
     :return: iterator over indexes of iterable that correspond to the sorted iterable
     """
     # http://stackoverflow.com/questions/6422700/how-to-get-indices-of-a-sorted-array-in-python
-    return [i[0] for i in sorted(enumerate(iterable), key=lambda x:key(x[1]))]
+    return [i[0] for i in sorted(enumerate(iterable), key=lambda x: key(x[1]))]
 
 # WARNING : filter2 has been renamed from "split" at v.1.7.0 for coherency
 
@@ -880,10 +880,12 @@ def product(*iterables, **kwargs):
     def empty():
         yield ()
 
-    if len(iterables) == 0:
-        return empty()
-
     r = kwargs.get('repeat', 1)
+    if r < 0:
+        raise ValueError('repeat argument cannot be negative')
+
+    if len(iterables) == 0 or r == 0:
+        return empty()
 
     if r > 1:
         n = len(iterables)
@@ -894,7 +896,7 @@ def product(*iterables, **kwargs):
         iterables = res
 
     if len(iterables) == 1:
-        return iterables[0]
+        return ((x,) for x in iterables[0])
 
     def gen2(it1, it2, concat):
 

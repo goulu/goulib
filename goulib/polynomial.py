@@ -16,12 +16,13 @@ from . import expr
 
 class Polynomial(expr.Expr):
     def __init__(self, val):
-        """:param: val can be:
-        - an iterable of the factors in ascending powers order : Polynomial([1,2,3]) holds 3*x^2+2*x+1
-        - a string of the form "ax^n + b*x^m + ... + c x + d" where a,b,c,d, are floats and n,m ... are integers 
-          the 'x' variable name is fixed, and the spaces and '*' chars are optional.
-          terms can be in any order, and even "overlap" : Polynomial('3x+x^2-x') holds x^2+2*x
+        """
+        :param val: can be:
 
+            - an iterable of the factors in ascending powers order : Polynomial([1,2,3]) holds 3*x^2+2*x+1
+            - a string of the form "ax^n + b*x^m + ... + c x + d" where a,b,c,d, are floats and n,m ... are integers 
+              the 'x' variable name is fixed, and the spaces and '*' chars are optional.
+              terms can be in any order, and even "overlap" : Polynomial('3x+x^2-x') holds x^2+2*x
         """
         self.plist = tuple(plist(val))  # a polynomial is immutable
         s = tostring(self.plist, pow='**', mul='*')

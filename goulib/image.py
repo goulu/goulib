@@ -99,8 +99,8 @@ def guessmode(arr):
 
 def adapt_rgb(func):
     """Decorator that adapts to RGB(A) images to a gray-scale filter.
-    :param apply_to_rgb: function
-        Function that returns a filtered image from an image-filter and RGB
+
+    :param func: function that returns a filtered image from an image-filter and RGB
         image. This will only be called if the image is RGB-like.
     """
 
@@ -123,14 +123,16 @@ class Image(plot.Plot):
     def __init__(self, data=None, mode=None, **kwargs):
         """
         :param data: can be either:
-        * `PIL.Image` : makes a copy
-        * string : path of image to load OR PNG encoded image
-        * memoryview (extracted from a db blob)
-        * None : creates an empty image with kwargs parameters:
-        ** size : (y,x) pixel size tuple
-        ** mode : 'F' (gray) by default
-        ** color: to fill None=black by default
-        ** colormap: Palette or matplotlib colormap
+
+            * `PIL.Image` : makes a copy
+            * string : path of image to load OR PNG encoded image
+            * memoryview (extracted from a db blob)
+            * None : creates an empty image with kwargs parameters:
+
+                - size : (y,x) pixel size tuple
+                - mode : 'F' (gray) by default
+                - color: to fill None=black by default
+                - colormap: Palette or matplotlib colormap
         """
 
         if isinstance(data, bytes):  # check if encoded string
@@ -263,7 +265,11 @@ class Image(plot.Plot):
                 mode = 'RGB'
         a = self.convert(mode).array  # makes sure we don't change self.array
         if format is None and isinstance(path, str):
-            format = path.split('.')[-1][:3]
+            ext = path.split('.')[-1].lower()
+            if ext in ('jpg', 'jpeg'):
+                format = 'JPEG'
+            else:
+                format = ext[:3]
         if format.upper() == 'TIF':
             skimage.io.imsave(path, skimage.img_as_uint(a))
         else:
@@ -359,9 +365,9 @@ class Image(plot.Plot):
     def getcolors(self, maxcolors=256):
         """
         :return: an unsorted list of (count, color) tuples,
-        where count is the number of times the corresponding color occurs in the image.
-        If the maxcolors value is exceeded,
-        the method stops counting and returns None.
+            where count is the number of times the corresponding color occurs in the image.
+
+        If the maxcolors value is exceeded, the method stops counting and returns None.
         The default maxcolors value is 256.
         To make sure you get all colors in an image, you can pass in size[0]*size[1]
         (but make sure you have lots of memory before you do that on huge images).
@@ -506,18 +512,19 @@ class Image(plot.Plot):
     def paste(self, image, box=None, mask=None):
         """Pastes another image into this image.
 
-        :param image:   image to paste, or color given as a single numerical value for single-band images, and a tuple for multi-band images.
+        :param image: image to paste, or color given as a single numerical value
+            for single-band images, and a tuple for multi-band images.
         :param box: 2-tuple giving the upper left corner
-                    or 4-tuple defining the left, upper, right, and lower pixel coordinate,
-                    or None (same as (0, 0)).
-                    If a 4-tuple is given, the size of the pasted image must match the size of the region.
-        :param mask:optional image to update only the regions indicated by the mask.
-                    You can use either “1”, “L” or “RGBA” images (in the latter case, the alpha band is used as mask).
-                    Where the mask is 255, the given image is copied as is.
-                    Where the mask is 0, the current value is preserved.
-                    Intermediate values can be used for transparency effects.
-                    Note that if you paste an “RGBA” image, the alpha band is ignored.
-                    You can work around this by using the same image as both source image and mask.
+            or 4-tuple defining the left, upper, right, and lower pixel coordinate,
+            or None (same as (0, 0)).
+            If a 4-tuple is given, the size of the pasted image must match the size of the region.
+        :param mask: optional image to update only the regions indicated by the mask.
+            You can use either “1”, “L” or “RGBA” images (in the latter case, the alpha band is used as mask).
+            Where the mask is 255, the given image is copied as is.
+            Where the mask is 0, the current value is preserved.
+            Intermediate values can be used for transparency effects.
+            Note that if you paste an “RGBA” image, the alpha band is ignored.
+            You can work around this by using the same image as both source image and mask.
         """
         if mask is not None:
             raise (NotImplementedError('masking not yet implemented'))
@@ -541,15 +548,11 @@ class Image(plot.Plot):
         return Image(self.array > level, '1')
 
     def quantize(self, colors=256, method=None, kmeans=0, palette=None):
-        """
-        (PIL.Image compatible)
-        Convert the image to 'P' mode with the specified number
-        of colors.
+        """(PIL.Image compatible)
+        Convert the image to 'P' mode with the specified number of colors.
+
         :param colors: The desired number of colors, <= 256
-        :param method: 0 = median cut
-                       1 = maximum coverage
-                       2 = fast octree
-                       3 = libimagequant
+        :param method: 0 = median cut, 1 = maximum coverage, 2 = fast octree, 3 = libimagequant
         :param kmeans: Integer
         :param palette: Quantize to the :py:class:`PIL.ImagingPalette` palette.
         :returns: A new image

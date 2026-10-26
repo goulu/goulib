@@ -305,7 +305,7 @@ class Vector2(object):
 
     def __init__(self, *args):
         """Constructor.
-        :param *args: x,y values
+        :param args: x,y values
         """
         self.x, self.y = argPair(
             *args)  # pylint: disable=novalue-for-parameter
@@ -323,7 +323,7 @@ class Vector2(object):
 
     def __eq__(self, other):
         """
-        Tests for equality include comparing against other sequences::
+        Tests for equality include comparing against other sequences:
 
         >>> v2 = Vector2(1, 2)
         >>> v2 == Vector2(3, 4)
@@ -651,24 +651,22 @@ def _connect_circle_circle(A, B):
 
 
 class Point2(Vector2, Geometry):
-    """
-    A point on a 2D plane.  Construct in the obvious way::
+    """A point on a 2D plane. Construct in the obvious way::
 
-    >>> p = Point2(1.0, 2.0)
-    >>> p
-    Point2(1.00, 2.00)
+        >>> p = Point2(1.0, 2.0)
+        >>> p
+        Point2(1.00, 2.00)
 
     **Point2** subclasses **Vector2**, so all of **Vector2** operators and
-    methods apply.  In particular, subtracting two points gives a vector::
+    methods apply. In particular, subtracting two points gives a vector::
 
-    >>> Point2(2.0, 3.0) - Point2(1.0, 0.0)
-    Vector2(1.00, 3.00)
+        >>> Point2(2.0, 3.0) - Point2(1.0, 0.0)
+        Vector2(1.00, 3.00)
 
     ``connect(other)``
         Returns a **Segment2** which is the minimum length line segment
-        that can connect the two shapes.  *other* may be a **Point2**, **Line2**,
+        that can connect the two shapes. *other* may be a **Point2**, **Line2**,
         **Ray2**, **Segment2** or **Circle**.
-
     """
 
     def dist(self, other):
@@ -695,6 +693,7 @@ class Point2(Vector2, Geometry):
     def __contains__(self, pt):
         """
         :return: True if self and pt are the same point, False otherwise
+
         needed for coherency
         """
         if not isinstance(pt, Point2):
@@ -919,9 +918,11 @@ class Surface(Geometry):
 
 class Polygon(Surface):
     def __init__(self, args):
-        """:param args: can be
-        * Polygon
-        * iterator of points
+        """
+        :param args: can be
+
+            * Polygon
+            * iterator of points
         """
         super(Polygon, self).__init__()
         self.p = [Point2(x) for x in args]
@@ -1007,12 +1008,11 @@ class Polygon(Surface):
 
 
 class Circle(Surface):
-    """
-    Circles are constructed with a center **Point2** and a radius::
+    """Circles are constructed with a center **Point2** and a radius::
 
-    >>> c = Circle(Point2(1.0, 1.0), 0.5)
-    >>> c
-    Circle(<1.00, 1.00>, radius=0.50)
+        >>> c = Circle(Point2(1.0, 1.0), 0.5)
+        >>> c
+        Circle(<1.00, 1.00>, radius=0.50)
 
     Internally there are two attributes: *c*, giving the center point and
     *r*, giving the radius.
@@ -1032,10 +1032,12 @@ class Circle(Surface):
     """
 
     def __init__(self, *args):
-        """:param args: can be
-        * Circle
-        * center, point on circle
-        * center, radius
+        """
+        :param args: can be
+
+            * Circle
+            * center, point on circle
+            * center, radius
         """
         if len(args) == 1:  # Circle or derived class
             super(Circle, self).__init__(*args)
@@ -1094,9 +1096,8 @@ class Circle(Surface):
 
     def intersect(self, other):
         """
-        :param other: Line2, Ray2 or Segment2**, **Ray2** or **Segment2**, returns
-        a **Segment2** giving the part of the line that intersects the
-        circle, or None if there is no intersection.
+        :param other: Line2, Ray2 or Segment2; returns a **Segment2** giving the
+            part of the line that intersects the circle, or None if there is no intersection.
         """
         return other._intersect_circle(self)
 
@@ -1304,10 +1305,12 @@ class Arc2(Circle):
 class Ellipse(Circle):
 
     def __init__(self, *args):
-        """:param args: can be
-        * Ellipse
-        * center, corner point
-        * center, r1,r2,angle
+        """
+        :param args: can be
+
+            * Ellipse
+            * center, corner point
+            * center, r1,r2,angle
         """
         super(Ellipse, self).__init__(*args)
         if len(args) == 1:  # Circle or derived class
@@ -1712,7 +1715,7 @@ class Matrix3(object):
 
     def translate(self, *args):
         """
-        :param *args: x,y values
+        :param args: x,y values
         """
         x, y = argPair(*args)
         return Matrix3.new_translate(x, y)*self

@@ -106,7 +106,14 @@ Classes
 Indices and tables
 ------------------
 
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    changes
+
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
 * :doc:`changes`
+

@@ -34,8 +34,10 @@ def intersect(t1, t2):
 
 
 def intersection(t1, t2):
-    """:return: tuple intersection between 2 intervals (tuples), 
-    or None if intervals don't intersect"""
+    """
+    :return: tuple intersection between 2 intervals (tuples), 
+        or None if intervals don't intersect
+    """
     t1start, t1end = _order(t1)
     t2start, t2end = _order(t2)
     start = max(t1start, t2start)
@@ -51,7 +53,7 @@ def intersectlen(t1, t2, none=0):
     :param t2: interval 2 (tuple)
     :param none: value to return when t1 does not intersect t2
     :return: len of intersection between 2 intervals (tuples), 
-    or none if intervals don't intersect
+        or none if intervals don't intersect
     """
     i = intersection(t1, t2)
     if i is None:
@@ -69,8 +71,8 @@ class Interval(list):
 
     inspired from http://code.activestate.com/recipes/576816-interval/
     alternatives could be https://pypi.python.org/pypi/interval/
-     (outdated, no more doc)
-     or https://pypi.python.org/pypi/pyinterval/
+    (outdated, no more doc)
+    or https://pypi.python.org/pypi/pyinterval/
     """
 
     def __init__(self, start, end):

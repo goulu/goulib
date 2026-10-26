@@ -50,7 +50,7 @@ extensions = [
     'sphinx.ext.viewcode', 
     'sphinx.ext.inheritance_diagram', 
     'sphinx.ext.intersphinx',
-#    'sphinx.ext.napoleon',
+    'sphinx_rtd_theme',
     ]
 
 graphviz_output_format = 'svg'
@@ -74,23 +74,32 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'goulib'
-copyright = u'2015-2025, Ph. Guglielmetti, https://github.com/goulu/goulib'
+copyright = u'2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib'
 
 #autodoc options:
 autodoc_member_order = 'bysource'
 autoclass_content = 'both'
 
-autodoc_default_flags = [
-    'show-inheritance',
-    'members', 'inherited_members', 'special-members','undoc-members',
-]
+autodoc_default_options = {
+    'members': True,
+    'member-order': 'bysource',
+    'special-members': True,
+    'undoc-members': True,
+    'inherited-members': True,
+    'show-inheritance': True,
+}
 
 def autodoc_skip_member(app, what, name, obj, skip, options):
     exclusions = ('__weakref__',  '__subclasshook__',
                   '__doc__', '__module__', '__dict__',  
                   )
-    exclude = name in exclusions
-    return skip or exclude
+    if name in exclusions:
+        return True
+    # Skip members inherited from external packages (unittest, networkx, etc.)
+    obj_module = getattr(obj, '__module__', '')
+    if obj_module and not obj_module.startswith('goulib'):
+        return True
+    return skip
 
 def setup(app):
     app.connect('autodoc-skip-member', autodoc_skip_member)
@@ -139,11 +148,11 @@ pygments_style = 'sphinx'
 #modindex_common_prefix = []
 
 intersphinx_mapping = {
-    'python': ('http://docs.python.org/2.7', 'http://docs.python.org/objects.inv'),
-    'networkx': ('http://networkx.github.io/documentation/latest','http://networkx.github.io/documentation/latest/objects.inv'),
-    'numpy': ('http://docs.scipy.org/doc/numpy','http://docs.scipy.org/doc/numpy/objects.inv'),
-    'scipy' : ('http://docs.scipy.org/doc/scipy/reference','http://docs.scipy.org/doc/scipy/reference/objects.inv'),
-    'matplotlib': ('http://matplotlib.org/stable', None)
+    'python': ('https://docs.python.org/3', None),
+    'networkx': ('https://networkx.org/documentation/latest', None),
+    'numpy': ('https://numpy.org/doc/stable', None),
+    'scipy' : ('https://docs.scipy.org/doc/scipy', None),
+    'matplotlib': ('https://matplotlib.org/stable', None)
 }
 
 # -- Options for HTML output ---------------------------------------------------
@@ -151,10 +160,7 @@ intersphinx_mapping = {
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 
-if on_rtd:
-    html_theme = 'default'
-else:
-    html_theme = 'sphinxdoc'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

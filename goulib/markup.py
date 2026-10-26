@@ -17,7 +17,7 @@ def cgiprint(line='', unbuff=True, line_end='\r\n'):
     Print to the stdout.
     :param line: string to print, followed by line_end
     :param unbuff: boolean, True to flush the buffer after every write.
-    :param line_end: string to print after each line. By default this is \r\n , which is the standard specified by the RFC for http headers.
+    :param line_end: string to print after each line. By default this is ``\\r\\n``, which is the standard specified by the RFC for http headers.
     """
     # print(line,line_end)
     # return

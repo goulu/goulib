@@ -66,21 +66,21 @@ class Row():
 
 
 class Table():
-    """
-    to create a table, use the following syntax
+    """To create a table, use the following syntax::
 
-    t =  Table ('myTable',   ['col1',          'col2',            'col3'],
-            [ 'distance',     V(20,'m'),       V(30,'m'),         V(40,'m'),
-              ('speed','m/s'),V(2,'m/min'),    V(5,'m/s'),        V(10,'inch/s')
-            ])
+        t = Table('myTable', ['col1', 'col2', 'col3'],
+                  ['distance', V(20, 'm'), V(30, 'm'), V(40, 'm'),
+                   ('speed', 'm/s'), V(2, 'm/min'), V(5, 'm/s'), V(10, 'inch/s')
+                  ])
 
-    the row label can be a tuple of ('label','unit'). in that case, all the values of the row will be converted to 'unit' (if possible) and the cells won't diplay the units saving space 
-    in the future, the label could be replaced by a dictionary having more properties like 
-    {'label':<label>, 'comment':<comment>....}
+    The row label can be a tuple of ('label', 'unit'). In that case, all the values of the row will be converted to 'unit' (if possible) and the cells won't display the units saving space.
+    In the future, the label could be replaced by a dictionary having more properties like:
+    ``{'label': <label>, 'comment': <comment>...}``
 
-    internally, the rows are represented as
-    {'<the label>':{'col1':<value>, 'col2':<value> ....},
-     '<the next label>'         
+    Internally, the rows are represented as::
+
+        {'<the label>': {'col1': <value>, 'col2': <value>...},
+         '<the next label>'...}
     """
 
     def __init__(self, name, cols, cells):
