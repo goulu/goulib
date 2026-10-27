@@ -29,14 +29,14 @@ class TestConversions:
         c = color_to_aci('#414142', True)
         assert acadcolors[c].hex == '#414141'
 
-    @pytest.mark.skip(reason="not implemented")
     def test_aci_to_color(self):
-        # assert_equal(expected, aci_to_color(x, block_color, layer_color))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert aci_to_color(1) == '#ff0000'
+        assert aci_to_color(0, block_color='#123456') == '#123456'
+        assert aci_to_color(256, layer_color='#654321') == '#654321'
 
     def test_xyy2xyz(self):
-        # assert_equal(expected, xyy2xyz(xyY))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert xyy2xyz((0, 0, 0)) == (0, 0, 0)
+        assert xyy2xyz((0.3127, 0.3290, 1.0)) == pytest.approx((0.950456, 1.0, 1.089058), abs=1e-3)
 
 
 class TestNearestColor:
@@ -152,24 +152,18 @@ class TestColor:
                                       )
 
     def test_name(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.name())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert Color('red').name == 'red'
+        assert Color('#ff0000').name == 'red'
 
     def test___hash__(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.__hash__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert isinstance(hash(Color('blue')), int)
 
     def test___neg__(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.__neg__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert (-Color('red')).name == 'cyan'
 
     def test_deltaE(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.deltaE(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert Color('red').deltaE(Color('red')) == pytest.approx(0)
+        assert Color('red').deltaE(Color('blue')) > 10
 
     def test_str(self):
         c = self.blue
@@ -177,24 +171,21 @@ class TestColor:
         assert res
 
     def test_isclose(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.isclose(other, abs_tol))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert Color('red').isclose(Color('red'))
+        assert not Color('red').isclose(Color('blue'))
 
     def test___mul__(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.__mul__(factor))
-        pytest.skip("not yet implemented")  # TODO: implement
+        white = Color('white')
+        dim_white = white * 0.5
+        assert dim_white.lab[0] < white.lab[0]
+        assert (-white) == (white * -1)
 
     def test___radd__(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.__radd__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert 0 + self.blue == self.blue
 
     def test_compose(self):
-        # color = Color(value, space, name)
-        # assert_equal(expected, color.compose(other, f, mode))
-        pytest.skip("not yet implemented")  # TODO: implement
+        res = Color('red').compose(Color('lime'), math2.vecadd)
+        assert len(res) == 3
 
 
 class TestPalette:
@@ -214,42 +205,35 @@ class TestPalette:
         assert self.cmyk_int[2].name == 'yellow'
 
     def test_index(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.index(c, dE))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.palette.index(self.palette[0]) == 0
+        assert self.cmyk.index(self.cmyk['C']) == 'C'
 
     def test_update(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.update(data, n))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = Palette()
+        p.update(['red', 'green', 'blue'])
+        assert len(p) == 3
 
     def test_palette(self):
-        # assert_equal(expected, palette(im, ncolors))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = Palette(['red', 'green', 'blue'], 'RGB')
+        assert len(p) == 3
 
     def test_pil(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.pil())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert len(self.cmyk.pil) == 12
 
     def test__repr_html_(self):
         res = self.palette._repr_html_()
         assert res  # TODO: more
 
     def test_sorted(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.sorted(key))
-        pytest.skip("not yet implemented")  # TODO: implement
+        s = self.cmyk.sorted()
+        assert len(s) == 4
 
     def test___repr__(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.__repr__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert 'Palette of' in repr(self.palette)
 
     def test_patches(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.patches(wide, size))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = self.cmyk.patches(wide=2)
+        assert p is not None
 
 
 class TestColorLookup:
@@ -277,15 +261,15 @@ class TestPantone:
 class TestDeltaE:
 
     def test_delta_e(self):
-        # assert_equal(expected, deltaE(c1, c2))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert deltaE('red', 'red') == pytest.approx(0)
+        assert deltaE('red', 'blue') > 20
 
 
 class TestColorTable:
 
     def test_color_table(self):
-        # assert_equal(expected, ColorTable(colors, key, width))
-        pytest.skip("not yet implemented")  # TODO: implement
+        t = ColorTable(color, width=5)
+        assert t is not None
 
 
 class TestBlackBody2Color:
@@ -297,3 +281,18 @@ class TestBlackBody2Color:
         out = os.path.join(path, 'results', 'colors.blackbody.html')
         Table([Cell(str(t), style={'background-color': blackBody2Color(t).hex})
                for t in arange(500, 12000, 500)]).save(out)
+
+
+class TestLambda:
+
+    def test_lambda2RGB(self):
+        for w in [390, 430, 460, 500, 540, 600, 670, 750, 300, 800]:
+            rgb = lambda2RGB(w)
+            assert len(rgb) == 3
+
+    def test_RGB2lambda(self):
+        assert RGB2lambda(255, 50, 0) > 0
+        assert RGB2lambda(50, 255, 0) > 0
+        assert RGB2lambda(0, 50, 255) > 0
+        assert RGB2lambda(255, 0, 255) == 0
+

@@ -99,9 +99,8 @@ class TestImage(TestCase):
         # assert_image(c,"correlation.png")
 
     def test___lt__(self):
-        # image = Image(data)
-        # assert_equal(expected, image.__lt__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        small = self.lena.resize((10, 10))
+        assert small < self.lena
 
     def test___repr__(self):
         assert repr(self.lena) in [
@@ -111,7 +110,8 @@ class TestImage(TestCase):
         ]
 
     def test_mode(self):
-        pytest.skip("not yet implemented")  # useless ?
+        assert self.lena.mode == 'RGB'
+        assert self.gray.mode == 'L'
 
     def test_open(self):
         lena3 = Image.open(path+'/data/lena.png')
@@ -136,17 +136,17 @@ class TestImage(TestCase):
         assert h1 == h2
 
     def test_base64(self):
-        # image = Image(data, **kwargs)
-        # assert_equal(expected, image.base64(fmt))
-        pytest.skip("not yet implemented")  # TODO: implement
+        pytest.skip("not yet implemented")
 
     def test_grayscale(self):
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.lena.grayscale() is not None
+        assert self.lena.grayscale('L') is not None
 
     def test_invert(self):
-        # image = Image(data, **kwargs)
-        # assert_equal(expected, image.invert())
-        pytest.skip("not yet implemented")  # TODO: implement
+        inv = self.gray.invert()
+        assert inv is not None
+        assert -self.gray is not None
+        assert ~self.gray is not None
 
     def test_ndarray(self):
         pass
@@ -257,167 +257,161 @@ class TestImage(TestCase):
         assert_image(blank, 'image_stitched.png')
 
     def test___abs__(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.__abs__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert abs(self.gray) > 0
 
     def test___add__(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.__add__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = self.gray + self.gray
+        assert im is not None
 
     def test___div__(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.__div__(f))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = self.gray / 2
+        assert im is not None
 
     def test___mul__(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.__mul__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im1 = self.gray * 0.5
+        im2 = self.gray * 'red'
+        im3 = self.gray * disk(self.gray.size[0] / 2)
+        assert im1 is not None and im2 is not None and im3 is not None
 
     def test___nonzero__(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.__nonzero__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert bool(self.lena)
+        assert bool(self.gray)
 
     def test___radd__(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.__radd__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = 0 + self.gray
+        assert im == self.gray
 
     def test___sub__(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.__sub__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = self.gray - self.gray
+        assert im is not None
 
     def test_compose(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.compose(other, a, b))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = self.gray.compose(self.gray, 0.3, 0.7)
+        assert im is not None
 
     def test_correlation(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.correlation(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        c = self.gray.correlation(disk(5))
+        assert c is not None
 
     def test_crop(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.crop(lurb))
-        pytest.skip("not yet implemented")  # TODO: implement
+        c = self.lena.crop((0, 0, 10, 10))
+        assert c.size == (10, 10)
 
     def test_getdata(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.getdata(dtype))
-        pytest.skip("not yet implemented")  # TODO: implement
+        d1 = self.gray.getdata(float)
+        d2 = self.gray.getdata(np.uint8)
+        d3 = self.gray.getdata(np.int16)
+        d4 = self.gray.getdata(np.uint16)
+        assert d1 is not None and d2 is not None and d3 is not None and d4 is not None
 
     def test_getpixel(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.getpixel(yx))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p1 = self.gray.getpixel((10, 10))
+        p2 = self.lena.getpixel((10, 10))
+        assert p1 is not None and p2 is not None
 
     def test_load(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.load(path))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = Image()
+        im.load(path + '/data/lena.png')
+        assert im.size == (512, 512)
 
     def test_nchannels(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.nchannels())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.gray.nchannels == 1
+        assert self.lena.nchannels == 3
 
     def test_normalize(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.normalize(newmax, newmin))
-        pytest.skip("not yet implemented")  # TODO: implement
+        arr = normalize(self.gray.getdata(float), 100, 0)
+        assert arr.max() <= 100
+        arr_rgb = normalize(self.lena.array, 100, 0)
+        assert arr_rgb.max() <= 100
 
     def test_npixels(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.npixels())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.gray.npixels == 512 * 512
 
     def test_paste(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.paste(image, box, mask))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = Image(self.gray)
+        sub = disk(10)
+        im.paste(sub, (20, 20))
+        assert im is not None
 
     def test_putpixel(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.putpixel(yx, value))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im1 = Image(self.gray)
+        im1.putpixel((5, 5), 128)
+        assert im1.getpixel((5, 5)) == 128
+        im2 = Image(self.lena)
+        im2.putpixel((5, 5), Gcolors.Color('blue'))
+        assert im2 is not None
 
     def test_quantize(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.quantize(levels))
-        pytest.skip("not yet implemented")  # TODO: implement
+        q = self.gray.quantize(16)
+        assert q is not None
 
     def test_save(self):
         pass  # tested everywhere
 
     def test_scale(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.scale(s))
-        pytest.skip("not yet implemented")  # TODO: implement
+        s1 = self.lena.scale(0.5)
+        s2 = self.lena.scale((0.5, 0.5))
+        assert s1.size == (256, 256)
+        assert s2.size == (256, 256)
+        p = self.lena.convert('P')
+        sp = p.scale(2)
+        assert sp is not None
 
     def test_shape(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.shape())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.gray.shape == (512, 512, 1)
+        assert self.lena.shape == (512, 512, 3)
 
     def test_size(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.size())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.gray.size == (512, 512)
+        assert self.gray.width == 512
+        assert self.gray.height == 512
+        assert self.gray.ratio == 1.0
 
     def test_threshold(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.threshold(level))
-        pytest.skip("not yet implemented")  # TODO: implement
+        t1 = self.gray.threshold(100)
+        t2 = self.gray.threshold()
+        assert t1 is not None and t2 is not None
 
     def test_getcolors(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.getcolors(maxcolors))
-        pytest.skip("not yet implemented")  # TODO: implement
+        c = list(self.lena.getcolors(16))
+        assert len(c) > 0
 
     def test_getpalette(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.getpalette(maxcolors))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = self.lena.convert('P')
+        assert p.getpalette() is not None
+        assert self.lena.getpalette(16) is not None
 
     def test_setpalette(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.setpalette(p))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = self.lena.convert('P')
+        pal = p.palette
+        p.setpalette(pal)
+        assert p.palette == pal
 
     def test_new(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.new(size, color))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = Image.new('RGB', (10, 10), 'blue')
+        assert im.size == (10, 10)
 
     def test_pil(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.pil())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.lena.pil is not None
+        assert self.lena.convert('P').pil is not None
 
     def test_optimize(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.optimize(maxcolors))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = self.lena.convert('P')
+        opt = p.optimize(16)
+        assert opt is not None
 
     def test_replace(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.replace(pairs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = self.lena.convert('P')
+        p.replace([(0, 1)])
+        assert p is not None
 
     def test_sub(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.sub(other, pos, alpha, mode))
-        pytest.skip("not yet implemented")  # TODO: implement
+        s = self.gray.sub(self.gray)
+        assert s is not None
 
     def test_deltaE(self):
-        # image = Image(data, mode, **kwargs)
-        # assert_equal(expected, image.deltaE(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        d = self.lena.deltaE(self.lena)
+        assert d is not None
 
 
 class TestCorrelation:
@@ -434,85 +428,87 @@ class TestAlphaToColor:
 
 class TestAlphaComposite:
     def test_alpha_composite(self):
-        # assert_equal(expected, alpha_composite(front, back))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im1 = Image.new('RGBA', (10, 10), 'red').pil
+        im2 = Image.new('RGBA', (10, 10), 'blue').pil
+        assert alpha_composite(im1, im2) is not None
 
 
 class TestAlphaCompositeWithColor:
     def test_alpha_composite_with_color(self):
-        # assert_equal(expected, alpha_composite_with_color(image, color))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = Image.new('RGBA', (10, 10), 'red').pil
+        assert alpha_composite_with_color(im, (255, 255, 255)) is not None
 
 
 class TestPurePilAlphaToColorV1:
     def test_pure_pil_alpha_to_color_v1(self):
-        # assert_equal(expected, pure_pil_alpha_to_color_v1(image, color))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = Image.new('RGBA', (10, 10), 'red').pil
+        assert pure_pil_alpha_to_color_v1(im, (255, 255, 255)) is not None
 
 
 class TestPurePilAlphaToColorV2:
     def test_pure_pil_alpha_to_color_v2(self):
-        # assert_equal(expected, pure_pil_alpha_to_color_v2(image, color))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = Image.new('RGBA', (10, 10), 'red').pil
+        assert pure_pil_alpha_to_color_v2(im, (255, 255, 255)) is not None
 
 
 class TestNchannels:
     def test_nchannels(self):
-        # assert_equal(expected, nchannels(arr))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert nchannels(np.zeros((10, 10))) == 1
+        assert nchannels(np.zeros((10, 10, 3))) == 3
 
 
 class TestGuessmode:
     def test_guessmode(self):
-        # assert_equal(expected, guessmode(arr))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert guessmode(np.zeros((10, 10), dtype=bool)) == '1'
+        assert guessmode(np.ones((10, 10), dtype=np.uint8) * 100) == 'L'
+        assert guessmode(np.zeros((10, 10, 3), dtype=np.uint8)) == 'RGB'
 
 
 class TestAdaptRgb:
     def test_adapt_rgb(self):
-        # assert_equal(expected, adapt_rgb(func))
-        pytest.skip("not yet implemented")  # TODO: implement
+        pytest.skip("not yet implemented")
 
 
 class TestRgb2rgba:
     def test_rgb2rgba(self):
-        pass  # tested in test_convert
+        arr = rgb2rgba(np.zeros((5, 5, 3), dtype=np.uint8))
+        assert arr.shape == (5, 5, 4)
+        assert rgb2rgba(arr) is arr  # already RGBA
 
 
 class TestDisk:
     def test_disk(self):
-        # assert_equal(expected, disk(radius, antialias))
-        pytest.skip("not yet implemented")  # TODO: implement
+        d = disk(10)
+        assert d.size == (20, 20)
 
 
 class TestFspecial:
     def test_fspecial(self):
-        # assert_equal(expected, fspecial(name, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        d = fspecial('disk', radius=5)
+        assert d is not None
 
 
 class TestReadPdf:
     def test_read_pdf(self):
-        # assert_equal(expected, read_pdf(filename, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = read_pdf(path + '/data/lena.pdf')
+        assert im is not None
 
 
 class TestFig2img:
     def test_fig2img(self):
-        # assert_equal(expected, fig2img(fig))
-        pytest.skip("not yet implemented")  # TODO: implement
+        pytest.skip("not yet implemented")
 
 
 class TestQuantize:
     def test_quantize(self):
-        # assert_equal(expected, quantize(image, N, L))
-        pytest.skip("not yet implemented")  # TODO: implement
+        arr = quantize(np.zeros((10, 10), dtype=np.uint8), 2)
+        assert arr is not None
 
 
 class TestDither:
     def test_dither(self):
-        # assert_equal(expected, dither(image, method, N, L))
-        pytest.skip("not yet implemented")  # TODO: implement
+        arr = dither(np.zeros((10, 10), dtype=np.uint8), FLOYDSTEINBERG, 2)
+        assert arr is not None
 
 
 class TestGray2rgb:
@@ -522,8 +518,8 @@ class TestGray2rgb:
 
 class TestBool2gray:
     def test_bool2gray(self):
-        pass  # tested in test_convert
-        pytest.skip("not yet implemented")  # TODO: implement
+        arr = bool2gray(np.ones((5, 5), dtype=bool))
+        assert arr.max() == 255
 
 
 class TestRgba2rgb:
@@ -533,106 +529,70 @@ class TestRgba2rgb:
 
 class TestPalette:
     def test_palette(self):
-        # assert_equal(expected, palette(im, ncolors))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___init__(self):
-        # palette = Palette(data, n)
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_index(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.index(c, dE))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_pil(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.pil())
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_update(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.update(data, n))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___repr__(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.__repr__())
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_patches(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.patches(wide, size))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_sorted(self):
-        # palette = Palette(data, n)
-        # assert_equal(expected, palette.sorted(key))
-        pytest.skip("not yet implemented")  # TODO: implement
+        data = np.zeros((10, 10, 3), dtype=float)
+        data[5:] = 100.0
+        pal = palette(data, 2)
+        assert len(pal) == 2
 
 
 class TestLab2ind:
     def test_lab2ind(self):
-        pytest.skip("not yet implemented")  # TODO: implement
+        data = np.zeros((10, 10, 3), dtype=float)
+        data[5:] = 100.0
+        im, pal = lab2ind(data, colors=2)
+        assert im.shape == (10, 10)
+        assert len(pal) == 2
 
 
 class TestInd2any:
     def test_ind2any(self):
-        # assert_equal(expected, ind2any(im, palette, dest))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = np.zeros((5, 5), dtype=int)
+        pal = Gcolors.Palette(['red', 'blue'])
+        res = ind2any(im, pal, 'rgb')
+        assert res.shape == (5, 5, 3)
 
 
 class TestInd2rgb:
     def test_ind2rgb(self):
-        # assert_equal(expected, ind2rgb(im, palette))
-        pytest.skip("not yet implemented")  # TODO: implement
+        im = np.zeros((5, 5), dtype=int)
+        pal = Gcolors.Palette(['red', 'blue'])
+        rgb = ind2rgb(im, pal)
+        assert rgb.shape == (5, 5, 3)
 
 
 class TestRandomize:
     def test_randomize(self):
-        # assert_equal(expected, randomize(image, N, L))
-        pytest.skip("not yet implemented")  # TODO: implement
+        arr = np.zeros((10, 10), dtype=float)
+        res = randomize(arr, 2)
+        assert res.shape == (10, 10)
 
 
 class TestDitherer:
     def test___call__(self):
-        # ditherer = Ditherer(name, method)
-        # assert_equal(expected, ditherer.__call__(image, N))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___init__(self):
-        # ditherer = Ditherer(name, method)
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___repr__(self):
-        # ditherer = Ditherer(name, method)
-        # assert_equal(expected, ditherer.__repr__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        d = Ditherer('custom', quantize)
+        arr = np.zeros((10, 10), dtype=np.uint8)
+        assert d(arr, 2) is not None
+        assert repr(d) == 'custom'
 
 
 class TestErrorDiffusion:
     def test___call__(self):
-        # error_diffusion = ErrorDiffusion(name, positions, weights)
-        # assert_equal(expected, error_diffusion.__call__(image, N))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___init__(self):
-        # error_diffusion = ErrorDiffusion(name, positions, weights)
-        pytest.skip("not yet implemented")  # TODO: implement
+        ed = ErrorDiffusion('ed', [(0, 1), (1, 0)], [1, 1])
+        arr = np.zeros((10, 10), dtype=float)
+        res = ed(arr, 2)
+        assert res.shape == (10, 10)
 
 
 class TestFloydSteinberg:
     def test___call__(self):
-        # floyd_steinberg = FloydSteinberg()
-        # assert_equal(expected, floyd_steinberg.__call__(image, N))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___init__(self):
-        # floyd_steinberg = FloydSteinberg()
-        pytest.skip("not yet implemented")  # TODO: implement
+        fs = FloydSteinberg()
+        arr = np.zeros((10, 10), dtype=float)
+        res = fs(arr, 2)
+        assert res.shape == (10, 10)
 
 
 class TestNormalize:
     def test_normalize(self):
-        # assert_equal(expected, normalize(a, newmax, newmin))
-        pytest.skip("not yet implemented")  # TODO: implement
+        arr = normalize([[0, 10], [20, 30]], 255, 0)
+        assert arr.max() == 255
+        assert arr.min() == 0

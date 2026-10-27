@@ -60,9 +60,8 @@ class TestWorkCalendar:
         assert not self.cal.isworktime(datetime(2012, 1, 9, 7, 59, 59))
 
     def test_minus(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.minus(start, t))
-        pytest.skip("not yet implemented")  # TODO: implement
+        start = date(2012, 1, 9)
+        assert isinstance(self.cal.minus(start, timedelta(days=1)), (date, datetime))
 
     def test_networkdays(self):
         date1 = date(2011, 12, 16)  # a FRI close to year end and holidays
@@ -72,34 +71,27 @@ class TestWorkCalendar:
         assert self.cal.networkdays(date1, date(2011, 12, 19)) == 1
 
     def test_nextworkday(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.nextworkday(day))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.cal.nextworkday(date(2011, 12, 16)) == date(2012, 1, 9)
 
     def test_plus(self):
-        start = date(2011, 12, 19)  # start of holidays
-        # the company was closed 3
+        start = date(2011, 12, 19)
         end = self.base.plus(start, timedelta(days=21))
+        assert end is not None
 
     def test_prevworkday(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.prevworkday(day))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.cal.prevworkday(date(2012, 1, 9)) == date(2011, 12, 16)
 
     def test_range(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.range(start, end))
-        pytest.skip("not yet implemented")  # TODO: implement
+        r = list(self.base.range(date(2012, 1, 2), date(2012, 1, 6)))
+        assert len(r) == 4
 
     def test_setworktime(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.setworktime(worktime))
-        pytest.skip("not yet implemented")  # TODO: implement
+        c = WorkCalendar()
+        c.setworktime([9, 17])
+        assert c.worktime(date(2020, 1, 1)) == (time(9, 0), time(17, 0))
 
     def test_workdatetime(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.workdatetime(day))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.cal.workdatetime(date(2012, 1, 9)) is not None
 
     def test_workday(self):
         date1 = date(2011, 12, 16)  # a FRI close to year end and holidays
@@ -109,14 +101,11 @@ class TestWorkCalendar:
         assert self.cal.workday(date2, -1) == date1
 
     def test_workdays(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.workdays(start_date, ndays))
-        pytest.skip("not yet implemented")  # TODO: implement
+        days = list(self.cal.workdays(date(2011, 12, 16), 2))
+        assert len(days) == 3
 
     def test_worktime(self):
-        # work_calendar = WorkCalendar(worktime, parent, weekends, holidays)
-        # assert_equal(expected, work_calendar.worktime(day))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.cal.worktime(date(2012, 1, 9)) == (time(8, 0), time(16, 0))
 
 
 class TestWorkday:
@@ -126,5 +115,5 @@ class TestWorkday:
 
 class TestNetworkdays:
     def test_networkdays(self):
-        # assert_equal(expected, networkdays(start_date, end_date, holidays))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert networkdays(date(2020, 1, 6), date(2020, 1, 10)) == 5
+

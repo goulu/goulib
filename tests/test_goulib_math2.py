@@ -1436,3 +1436,61 @@ class TestRationalForm:
         assert rational_cycle(1, 7) == 142857
         assert rational_cycle(1, 81) == 123456790
         assert rational_cycle(1, 92) == 8695652173913043478260
+
+
+class TestMoreMath2:
+    def test_icbrt(self):
+        assert icbrt(0) == 0
+        assert icbrt(-5) == 0
+        assert icbrt(8) == 2
+        assert icbrt(26) == 2
+        assert icbrt(27) == 3
+
+    def test_collatz(self):
+        assert collatz(6) == 3
+        assert collatz(3) == 10
+        assert list(itertools2.take(5, collatz_gen(3))) == [3, 10, 5, 16, 8]
+        assert collatz_period(1) == 1
+        assert collatz_period(2) == 2
+        assert collatz_period(4) == 3
+
+    def test_lpf_gpf(self):
+        assert lpf(2) == 2
+        assert lpf(15) == 3
+        assert gpf(2) == 2
+        assert gpf(15) == 5
+
+    def test_powertrain_and_tower(self):
+        assert power_tower([2, 3]) == 8
+        assert powertrain(1234) == (1 ** 2) * (3 ** 4)
+        assert carries(99, 1) == 2
+        assert carries(15, 27) == 1
+
+    def test_partition(self):
+        assert partition(0) == 1
+        assert partition(4) == 5
+        assert partitionsQ(0) == 1
+        assert partitionsQ(5) == 3
+
+    def test_lambertW_gamma(self):
+        assert lambertW(0) == 0
+        assert lambertW(math.e) == pytest.approx(1)
+        assert gamma_inverse(120) == pytest.approx(6, abs=0.1)
+
+    def test_modular_advanced(self):
+        assert mod_sqrt(4, 7) in (2, 5)
+        assert mod_sqrt(2, 7) in (3, 4)
+        assert mod_sqrt(4, 13) in (2, 11)
+        assert mod_fac(5, 7, mod_is_prime=True) == 1
+        assert mod_fac(10, 5) == 0
+        assert list(itertools2.take(6, lucky_gen())) == [1, 3, 7, 9, 13, 15]
+        assert legendre2(0, 7) == 0
+        assert legendre2(2, 7) == 1
+        assert legendre2(3, 7) == -1
+
+    def test_factorization_algorithms(self):
+        assert pollardRho_brent(7) == 7
+        assert pollardRho_brent(8051) in (83, 97)
+        assert pollard_pm1(13) == 13
+        assert williams_pp1(17) == 17
+

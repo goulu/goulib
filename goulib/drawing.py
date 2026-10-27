@@ -235,10 +235,10 @@ class Entity(plot.Plot):
         return isinstance(self, Line2)  # or derived
 
     def isvertical(self, tol=0.01):
-        return self.isline() and isclose(self.start.x, self.end.x, tol)
+        return self.isline() and isclose(self.start.x, self.end.x, abs_tol=tol)
 
     def ishorizontal(self, tol=0.01):
-        return self.isline() and isclose(self.start.y, self.end.y, tol)
+        return self.isline() and isclose(self.start.y, self.end.y, abs_tol=tol)
 
     def _dxf_attr(self, attr):
         """
@@ -1041,7 +1041,7 @@ def chains(group, tol=1E-6, mergeable=None):
     changed = False
     # step 1 : add all entities in group to chains in res
     for e in group:
-        if e is None or isclose(e.length, 0, tol):
+        if e is None or isclose(e.length, 0, abs_tol=tol):
             continue  # will not be present in res
         for c in res:
             # if c.isclosed(): continue #reopen closed chains might be good

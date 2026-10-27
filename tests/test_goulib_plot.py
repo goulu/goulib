@@ -1,59 +1,87 @@
 from goulib.tests import *
-
 from goulib.plot import *
+import tempfile
+import os
+
+
+class DummyPlot(Plot):
+    def _plot(self, ax, **kwargs):
+        ax.plot([0, 1], [0, 1])
+        return ax
 
 
 class TestPlot:
-    def test_latex(self):
-        # plot = Plot()
-        # assert_equal(expected, plot.latex())
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_png(self):
-        # plot = Plot()
-        # assert_equal(expected, plot.png())
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_svg(self):
-        # plot = Plot()
-        # assert_equal(expected, plot.svg())
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_plot(self):
-        # plot = Plot()
-        # assert_equal(expected, plot.plot(**kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
-
     def test_render(self):
-        # plot = Plot()
-        # assert_equal(expected, plot.render(fmt, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = DummyPlot()
+        data = p.render('svg')
+        assert b'<svg' in data
+        data2 = render([p, p], 'png', xlim=(0, 1), ylim=(0, 1))
+        assert len(data2) > 0
 
     def test_save(self):
-        # plot = Plot()
-        # assert_equal(expected, plot.save(filename, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = DummyPlot()
+        with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as f:
+            filename = f.name
+        try:
+            p.save(filename)
+            assert os.path.getsize(filename) > 0
+        finally:
+            if os.path.exists(filename):
+                os.remove(filename)
 
-    def test_html(self):
-        # plot = Plot()
-        # assert_equal(expected, plot.html(**kwargs))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+    def test_repr_html(self):
+        p = DummyPlot()
+        html = p._repr_html_()
+        assert html is not None
+
+    def test_repr_svg(self):
+        p = DummyPlot()
+        svg_str = p._repr_svg_()
+        assert '<svg' in svg_str
+
+    def test_repr_png(self):
+        p = DummyPlot()
+        png_bytes = p._repr_png_()
+        assert len(png_bytes) > 0
+
+    def test_png(self):
+        p = DummyPlot()
+        img = p.png()
+        assert img is not None
+
+    def test_svg(self):
+        p = DummyPlot()
+        s = p.svg()
+        assert s is not None
+
+    def test_plot(self):
+        p = DummyPlot()
+        s = p.plot()
+        assert s is not None
 
 
 class TestPng:
     def test_png(self):
-        # assert_equal(expected, png(plotables, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = DummyPlot()
+        img = png([p])
+        assert img is not None
 
 
 class TestSvg:
     def test_svg(self):
-        # assert_equal(expected, svg(plotables, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = DummyPlot()
+        s = svg([p])
+        assert s is not None
 
 
 class TestSave:
     def test_save(self):
-        # assert_equal(expected, save(plotables, filename, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        p = DummyPlot()
+        with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as f:
+            filename = f.name
+        try:
+            save([p], filename)
+            assert os.path.getsize(filename) > 0
+        finally:
+            if os.path.exists(filename):
+                os.remove(filename)

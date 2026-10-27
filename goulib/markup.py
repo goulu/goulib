@@ -133,7 +133,6 @@ class element:
             kwargs['single'] = True
         out = tag(t, args, **kwargs)
         cgiprint(out)
-        return
         if self.parent is not None:
             self.parent.content.append(out)
         else:
@@ -155,7 +154,7 @@ class element:
 
         if self.tag in self.parent.twotags or self.tag in self.parent.onetags:
             self.render(self.tag, False, None, **kwargs)
-        elif self.mode == 'strict_html' and self.tag in self.parent.deptags:
+        elif self.parent.mode == 'strict_html' and self.tag in self.parent.deptags:
             raise DeprecationError(self.tag)
 
 

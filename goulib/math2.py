@@ -2802,14 +2802,14 @@ def pollard_pm1(n, B1=100, B2=1000):
     while True:
         pg = primes_gen()
         q = 2  # TODO: what about other initial values of q?
-        p = pg.next()
+        p = next(pg)
         while p <= B1:
-            q, p = pow(q, p ** ilog(B1, p), n), pg.next()
+            q, p = pow(q, p ** ilog(B1, p), n), next(pg)
         g = gcd(q - 1, n)
         if 1 < g < n:
             return g
         while p <= B2:
-            q, p = pow(q, p, n), pg.next()
+            q, p = pow(q, p, n), next(pg)
         g = gcd(q - 1, n)
         if 1 < g < n:
             return g

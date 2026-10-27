@@ -48,7 +48,7 @@ class Periodic(Expr):
         return repr(self._expr) + self._str_period()
 
     def __call__(self, x):
-        x = (x - self.period[0]) % (self.period[1] - self.period[0]) + self.period[0]
+        x = (x - self._period[0]) % (self._period[1] - self._period[0]) + self._period[0]
         return self._expr(x)
     
     def apply(self, f, right=None)->'Periodic':

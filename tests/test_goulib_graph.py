@@ -162,24 +162,19 @@ class TestGeoGraph:
         assert self.cube.dist((0, 0, 0), (1, 1, 1)) == math.sqrt(3)
 
     def test_contiguity(self):
-        # geo_graph = GeoGraph(G, multi, **kwargs)
-        # assert_equal(expected, geo_graph.contiguity(pt1, pt2))
-        pytest.skip("not yet implemented")  # TODO: implement
+        c = self.cube.contiguity([(0, 0, 0), (1, 0, 0)])
+        assert c is not None
 
     def test_tol(self):
-        # geo_graph = GeoGraph(G, **kwargs)
-        # assert_equal(expected, geo_graph.tol())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.cube.tol is not None
 
     def test___str__(self):
-        # geo_graph = GeoGraph(G, **kwargs)
-        # assert_equal(expected, geo_graph.__str__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert str(self.cube) is not None
 
     def test_add_nodes_from(self):
-        # geo_graph = GeoGraph(G, **kwargs)
-        # assert_equal(expected, geo_graph.add_nodes_from(nodes, **attr))
-        pytest.skip("not yet implemented")  # TODO: implement
+        g = GeoGraph()
+        g.add_nodes_from([((0, 0), {}), ((1, 1), {})])
+        assert len(g) == 2
 
     def test_copy(self):
         g = self.geo.copy()
@@ -187,14 +182,12 @@ class TestGeoGraph:
         # assert_true(g == self.geo) #TODO find why it doens't work anymore
 
     def test_number_of_nodes(self):
-        # geo_graph = GeoGraph(G, **kwargs)
-        # assert_equal(expected, geo_graph.number_of_nodes())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.cube.number_of_nodes() == 8
 
     def test_draw(self):
-        # geo_graph = GeoGraph(G, **kwargs)
-        # assert_equal(expected, geo_graph.draw(**kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        fig, ax = plt.subplots()
+        self.cube.draw(ax=ax)
+        plt.close(fig)
 
     def test_clear(self):
         g = GeoGraph(nx.random_geometric_graph(50, .25))
@@ -202,9 +195,8 @@ class TestGeoGraph:
         assert g.multi == True
 
     def test___bool__(self):
-        # geo_graph = GeoGraph(data, nodes, **kwargs)
-        # assert_equal(expected, geo_graph.__bool__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert bool(self.cube)
+        assert not bool(GeoGraph())
 
 
 class TestRender:
@@ -261,41 +253,63 @@ class TestPointsOnSphere:
 
 class TestWriteDxf:
     def test_write_dxf(self):
-        # assert_equal(expected, write_dxf(g, filename))
-        pytest.skip("not yet implemented")  # TODO: implement
+        g = GeoGraph()
+        g.add_edge((0, 0), (1, 1))
+        out = os.path.join(path, 'results', 'graph.test.dxf')
+        write_dxf(g, out)
+        assert os.path.exists(out)
 
 
 class TestToNetworkxGraph:
     def test_to_networkx_graph(self):
-        # assert_equal(expected, to_networkx_graph(data, create_using, multigraph_input))
-        pytest.skip("not yet implemented")  # TODO: implement
+        g = GeoGraph()
+        g.add_edge((0, 0), (1, 1))
+        nx_g = nx.Graph(g)
+        assert len(nx_g) == 2
 
 
 class TestDiGraph:
     def test___init__(self):
-        # di_graph = DiGraph(data, nodes, **kwargs)
-        pytest.skip("not yet implemented")  # TODO: implement
+        dg = DiGraph()
+        dg.add_edge('A', 'B')
+        assert dg.has_edge('A', 'B')
+        assert not dg.has_edge('B', 'A')
 
 
 class TestToDrawing:
     def test_to_drawing(self):
-        # assert_equal(expected, to_drawing(g, d, edges))
-        pytest.skip("not yet implemented")  # TODO: implement
+        g = GeoGraph()
+        g.add_edge((0, 0), (1, 1))
+        d = to_drawing(g)
+        assert len(d) == 1
 
 
 class TestWriteDot:
     def test_write_dot(self):
-        # assert_equal(expected, write_dot(g, filename))
-        pytest.skip("not yet implemented")  # TODO: implement
+        try:
+            import pydot
+            g = nx.Graph()
+            g.add_edge('A', 'B')
+            out = os.path.join(path, 'results', 'graph.test.dot')
+            write_dot(g, out)
+            assert os.path.exists(out)
+        except (ImportError, FileNotFoundError):
+            pass
 
 
 class TestToJson:
     def test_to_json(self):
-        # assert_equal(expected, to_json(g, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        g = GeoGraph()
+        g.add_edge((0, 0), (1, 1))
+        j = to_json(g)
+        assert 'nodes' in j and ('edges' in j or 'links' in j)
 
 
 class TestWriteJson:
     def test_write_json(self):
-        # assert_equal(expected, write_json(g, filename, **kwargs))
-        pytest.skip("not yet implemented")  # TODO: implement
+        g = GeoGraph()
+        g.add_edge((0, 0), (1, 1))
+        out = os.path.join(path, 'results', 'graph.test.json')
+        write_json(g, out)
+        assert os.path.exists(out)
+

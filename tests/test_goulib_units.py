@@ -4,10 +4,6 @@ from goulib.units import *  # pylint: disable=wildcard-import, unused-wildcard-i
 import collections
 
 class Tests:
-    def test_append_col(self):
-        # assert_equal(expected, appendCol(self, colname, values))
-        pytest.skip("not yet implemented")  # TODO: implement
-
     def test001_simple_value(self):
         ureg.define('CHF = [Currency]')
         ureg.define('EUR = 1.21*CHF')
@@ -67,41 +63,44 @@ class Tests:
 
 class TestMagnitudeIn:
     def test_magnitude_in(self):
-        # assert_equal(expected, magnitudeIn(self, unit))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        v = V(100, 'cm')
+        assert magnitudeIn(v, 'm') == 1
 
 
 class TestIsfunc:
     def test_isfunc(self):
-        # assert_equal(expected, isfunc(self, col))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        r = Row({'a': lambda: 42, 'b': 10})
+        assert r.isfunc('a')
+        assert not r.isfunc('b')
+        assert not r.isfunc('c')
 
 
 class TestSetCell:
     def test_set_cell(self):
-        # assert_equal(expected, setCell(self, row, col, value))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        t = Table('T', ['c1'], [])
+        t.setCell('r1', 'c1', V(5, 'm'))
+        assert t['r1']['c1'] == V(5, 'm')
 
 
 class TestAppendCol:
     def test_append_col(self):
-        # assert_equal(expected, appendCol(self, colname, values))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        t = Table('T', ['c1'], ['r1', 1])
+        t.appendCol('c2', {'r1': 2})
+        assert t['r1']['c2'] == 2
 
 
 class TestAppendRow:
     def test_append_row(self):
-        # assert_equal(expected, appendRow(self, label, values, unit))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        t = Table('T', ['c1'], ['r1', 1])
+        t.appendRow('r2', [2])
+        assert t['r2']['c1'] == 2
 
 
 class TestAppendColFromObj:
     def test_append_col_from_obj(self):
-        # assert_equal(expected, appendColFromObj(self, colname, obj, default))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        class Dummy:
+            r1 = 10
+        t = Table('T', ['c1'], ['r1', 1])
+        t.appendColFromObj('c2', Dummy())
+        assert t['r1']['c2'] == 10
+

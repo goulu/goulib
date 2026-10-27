@@ -26,63 +26,45 @@ class TestSegment:
     def test_end(self):
         pass  # tested below
 
+    @classmethod
+    def setup_class(self):
+        self.seg = Segment2ndDegree(0, 2, (0, 0, 2))
+
     def test_start(self):
-        pass  # tested below
+        assert self.seg.start() == (0, 0, 2, 0)
 
     def test_endAcc(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.endAcc())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.endAcc() == 2
 
     def test_endJerk(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.endJerk())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.endJerk() == 0
 
     def test_endPos(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.endPos())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.endPos() == 4.0
 
     def test_endSpeed(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.endSpeed())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.endSpeed() == 4.0
 
     def test_endTime(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.endTime())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.endTime() == 2
 
     def test_startAcc(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.startAcc())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.startAcc() == 2
 
     def test_startJerk(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.startJerk())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.startJerk() == 0
 
     def test_startPos(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.startPos())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.startPos() == 0
 
     def test_startSpeed(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.startSpeed())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.startSpeed() == 0
 
     def test_startTime(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.startTime())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.startTime() == 0
 
     def test_timeWhenPosBiggerThan(self):
-        # segment = Segment(t0, t1, funcs)
-        # assert_equal(expected, segment.timeWhenPosBiggerThan(pos, resolution))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert self.seg.timeWhenPosBiggerThan(1) > 0
 
 
 class TestSegments:
@@ -128,40 +110,40 @@ class TestSegments:
         assert segs.html() == 'Segments starts=0 ends=4<br/>t=0.000000 (0.000000,0.000000,2.000000,0.000000) --> t=2.000000 (4.000000,4.000000,2.000000,0.000000)<br/>t=2.000000 (4.000000,4.000000,-2.000000,0.000000) --> t=4.000000 (8.000000,0.000000,-2.000000,0.000000)<br/>'
 
     def test___call__(self):
-        # segments = Segments(segments, label)
-        # assert_equal(expected, segments.__call__(t))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        s1 = Segment2ndDegree(0, 2, (0, 0, 2))
+        segs = Segments([s1])
+        assert segs(1) == (1.0, 2.0, 2.0, 0)
+        assert segs(5) == (0, 0, 0, 0)
 
     def test___str__(self):
-        # segments = Segments(segments, label)
-        # assert_equal(expected, segments.__str__())
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        s1 = Segment2ndDegree(0, 2, (0, 0, 2))
+        segs = Segments([s1])
+        assert str(segs) == 'Segments starts=0 ends=2'
 
     def test_end(self):
-        # segments = Segments(segments, label)
-        # assert_equal(expected, segments.end())
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        s1 = Segment2ndDegree(0, 2, (0, 0, 2))
+        segs = Segments([s1])
+        assert segs.end() == (4.0, 4.0, 2.0, 0)
+        assert Segments().end() == (0, 0, 0, 0)
 
     def test_insert(self):
-        # segments = Segments(segments, label)
-        # assert_equal(expected, segments.insert(segment, autoJoin))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        segs = Segments()
+        s1 = Segment2ndDegree(2, 4, (0, 0, 2))
+        segs.insert(s1)
+        s0 = Segment2ndDegree(0, 2, (0, 0, 2))
+        segs.insert(s0)
+        assert len(segs.segments) == 2
 
     def test_start(self):
-        # segments = Segments(segments, label)
-        # assert_equal(expected, segments.start())
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        s1 = Segment2ndDegree(0, 2, (0, 0, 2))
+        segs = Segments([s1])
+        assert segs.start() == (0, 0, 2, 0)
+        assert Segments().start() == (0, 0, 0, 0)
 
     def test_update(self):
-        # segments = Segments(segments, label)
-        # assert_equal(expected, segments.update())
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        segs = Segments()
+        segs.update()
+        assert segs.t0 == -float('inf')
 
 
 class TestSegmentPoly:
@@ -273,8 +255,8 @@ class TestSegment2ndDegree:
         assert seg.dt() == (self.t1-self.t0)/2.  # double acceleration => half dt
 
     def test_segment2nd_degree(self):
-        # assert_equal(expected, Segment2ndDegree(t0, t1, start, end))
-        pytest.skip("not yet implemented")  # TODO: implement
+        seg = Segment2ndDegree(0, 2, (0, 0, 2))
+        assert seg(1) == (1.0, 2.0, 2.0, 0)
 
 
 class TestRamp:
@@ -329,6 +311,6 @@ class TestSegment4thDegree:
 
 class TestSegmentsTrapezoidalSpeed:
     def test_segments_trapezoidal_speed(self):
-        # assert_equal(expected, SegmentsTrapezoidalSpeed(t0, p0, p3, a, T, vmax, v0, v3))
-        # TODO: implement  # implement your test here
-        pytest.skip("not yet implemented")
+        s = SegmentsTrapezoidalSpeed(t0=0, p0=0, p3=10, a=2, vmax=4)
+        assert s.t1 > 0
+        assert s.end()[0] == 10

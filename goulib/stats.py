@@ -155,10 +155,11 @@ class Stats(object):
         self._offset = 0
         self._dsum1 = 0
         self._dsum2 = 0
-        if not data:
+        if not data and var is not None and mean is not None:
             s2 = math.sqrt(var / 2)
             data = [mean - s2, mean + s2]
-        self.extend(data)
+        if data:
+            self.extend(data)
 
     def __repr__(self):
         return "{}(mean={:.12g}, var={:.12g})".format(self.__class__.__name__, self.mu, self.var)
@@ -210,6 +211,8 @@ class Stats(object):
 
     @property
     def mean(self):
+        if self.n == 0:
+            return 0
         return self._offset + self._dsum1 / self.n
 
     avg = mean  # alias
@@ -247,8 +250,8 @@ class Stats(object):
 
     def __mul__(self, other):
         if math2.is_number(other):
-            mean = self.mean
-            var = other * self.variance
+            mean = self.mean * other
+            var = (other ** 2) * self.variance
         else:  # it's a Stat
             mean = self.mean * other.mean
             # https://fr.wikipedia.org/wiki/Variance_(statistiques_et_probabilit%C3%A9s)#Produit

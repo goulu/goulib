@@ -8,38 +8,37 @@ from math import *
 class TestGeometry:
     # tested in derived classes
     def test_connect(self):
-        # Geometry().connect(1)
-        pytest.skip("not yet implemented")  # TODO: implement
+        circ = Circle(Point2(3., 2.), 2.)
+        line = Line2(Point2(0., 0.), Point2(-1., 1.))
+        c = line.connect(circ)
+        assert c is not None
 
     def test_distance(self):
-        # Geometry().distance(1)
-        pytest.skip("not yet implemented")  # TODO: implement
+        p1 = Point2(0, 0)
+        p2 = Point2(3, 4)
+        assert p1.distance(p2) == pytest.approx(5)
 
     def test_intersect(self):
-        # Geometry().intersect(1)
-        pytest.skip("not yet implemented")  # TODO: implement
+        l1 = Line2((0, 0), (1, 1))
+        l2 = Line2((0, 1), (1, 0))
+        assert l1.intersect(l2) == Point2(0.5, 0.5)
 
     def test_point(self):
-        # Geometry().point(1)
-        pytest.skip("not yet implemented")  # TODO: implement
+        s = Segment2((0, 0), (2, 2))
+        assert s.point(0.5) == Point2(1, 1)
 
     def test_tangent(self):
-        # Geometry().tangent(1)
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test_intersect_case_2(self):
-        # geometry = Geometry()
-        # assert_equal(expected, geometry.intersect(other))
-        pytest.skip("not yet implemented")  # TODO: implement
-
-    def test___init__(self):
-        # geometry = Geometry(*args)
-        pytest.skip("not yet implemented")  # TODO: implement
+        s = Segment2((0, 0), (2, 2))
+        assert s.tangent(0.5) is not None
 
     def test___contains__(self):
-        # geometry = Geometry(*args)
-        # assert_equal(expected, geometry.__contains__(pt))
-        pytest.skip("not yet implemented")  # TODO: implement
+        s = Segment2((0, 0), (2, 2))
+        assert Point2(1, 1) in s
+        assert Point2(3, 3) not in s
+
+    def test_hash(self):
+        from goulib.geom import _hash
+        assert _hash((1, 2, 3)) != 0
 
 
 class TestPoint2:
@@ -265,9 +264,8 @@ class TestMatrix3:
         assert mat == res
 
     def test_new_translate(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.new_translate(x, y))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_translate(3, 4)
+        assert m.c == 3 and m.g == 4
 
     def test___call__(self):
         assert self.mat123(Vector2(10, 20)) == (90, 120)
@@ -278,22 +276,20 @@ class TestMatrix3:
         assert self.mat456[4] == 8
 
     def test___imul__(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.__imul__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_translate(1, 2)
+        m *= Matrix3.new_scale(2, 3)
+        assert m is not None
 
     def test___mul__(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.__mul__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_translate(1, 2) * Matrix3.new_scale(2, 3)
+        assert m is not None
 
     def test___setitem__(self):
         pass  # used everywhere
 
     def test_angle(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.angle(angle))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_rotate(pi / 2)
+        assert m.angle(0) == pytest.approx(pi / 2)
 
     def test_determinant(self):
         d = self.mat123.determinant()
@@ -302,9 +298,8 @@ class TestMatrix3:
         assert d == -39
 
     def test_identity(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.identity())
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_identity()
+        assert m.a == 1 and m.f == 1 and m.k == 1
 
     def test_inverse(self):
         inv = self.mat123.inverse()
@@ -313,69 +308,53 @@ class TestMatrix3:
         assert inv[0, 0] == -0.23076923076923075
 
     def test_mag(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.mag(v))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_scale(2, 2)
+        assert m.mag() == pytest.approx(2)
 
     def test_offset(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.offset())
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_translate(3, 4)
+        assert m.offset() == Point2(3, 4)
 
     def test_rotate(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.rotate(angle))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3().rotate(pi / 2)
+        assert m is not None
 
     def test_scale(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.scale(x, y))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3().scale(2, 3)
+        assert m is not None
 
     def test_translate(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.translate(*args))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3().translate(2, 3)
+        assert m is not None
 
     def test___abs__(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.__abs__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert abs(Matrix3()) > 0
 
     def test___eq__(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.__eq__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert Matrix3() == Matrix3.new_identity()
 
     def test___sub__(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.__sub__(other))
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3() - Matrix3()
+        assert m.a == 0
 
     def test_mag2(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.mag2())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert Matrix3().mag2() == 3
 
     def test_transpose(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.transpose())
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_translate(2, 3)
+        m.transpose()
+        assert m is not None
 
     def test_transposed(self):
-        # matrix3 = Matrix3()
-        # assert_equal(expected, matrix3.transposed())
-        pytest.skip("not yet implemented")  # TODO: implement
+        m = Matrix3.new_translate(2, 3)
+        mt = m.transposed()
+        assert mt is not None
 
     def test___iter__(self):
-        # matrix3 = Matrix3(*args)
-        # assert_equal(expected, matrix3.__iter__())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert len(list(Matrix3())) == 9
 
     def test_orientation(self):
-        # matrix3 = Matrix3(*args)
-        # assert_equal(expected, matrix3.orientation())
-        pytest.skip("not yet implemented")  # TODO: implement
+        assert Matrix3().orientation() == 1
 
 
 class TestPolar:

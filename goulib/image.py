@@ -88,6 +88,8 @@ def guessmode(arr):
     n = nchannels(arr)
     if n > 1:
         return 'RGBA'[:n]
+    if arr.dtype == bool:
+        return '1'
     if np.issubdtype(arr.dtype, float):
         return 'F'
     if arr.dtype == np.uint8:
@@ -152,9 +154,19 @@ class Image(plot.Plot):
             size = tuple(kwargs.get('size', (0, 0)))
             if n > 1:
                 size = size + (n,)
-            color = Gcolors.Color(kwargs.get('color', 'black')).rgb
-            if n == 1:
-                color = color[0]  # somewhat brute
+            c = kwargs.get('color', 'black')
+            if isinstance(c, (tuple, list)) and len(c) == n:
+                color = c
+            else:
+                c = Gcolors.Color(c)
+                if mode == 'RGBA':
+                    color = c.rgb + (1.0,)
+                elif mode == 'CMYK':
+                    color = c.cmyk
+                elif n == 1:
+                    color = c.rgb[0]
+                else:
+                    color = c.rgb
             data = np.ones(size, dtype=modes[mode].type) * color
             self._set(data, mode)
         elif isinstance(data, Image):  # copy constructor
@@ -567,6 +579,7 @@ class Image(plot.Plot):
         * palette : to force using a palette instead of the image's one for indexed images
         :return: image in desired mode
         """
+        mode = mode.upper()
         if self.mode == 'P':
             kwargs.setdefault('palette', self.palette)
         a = convert(self.array, self.mode, mode, **kwargs)
@@ -694,7 +707,7 @@ class Image(plot.Plot):
     def invert(self):
         return Image(modes[self.mode].max - self.array, self.mode)
 
-    __neg__ = __inv__ = invert  # aliases
+    __neg__ = __inv__ = __invert__ = invert  # aliases
 
     def grayscale(self, mode=None):
         """convert (color) to grayscale
@@ -871,8 +884,8 @@ class Image(plot.Plot):
     def deltaE(self, other):
         import skimage.color as skcolor
         a = skcolor.deltaE_ciede2000(
-            self.convert('lab').array,
-            other.convert('lab').array,
+            self.convert('LAB').array,
+            other.convert('LAB').array,
         )
         return Image(a, 'F')
 
@@ -938,7 +951,7 @@ def alpha_composite_with_color(image, color=(255, 255, 255)):
     color -- Tuple r, g, b (default 255, 255, 255)
 
     """
-    back = Image.new('RGBA', size=image.size, color=color + (255,))
+    back = PILImage.new('RGBA', size=image.size, color=color + (255,))
     return alpha_composite(image, back)
 
 
@@ -961,7 +974,7 @@ def pure_pil_alpha_to_color_v1(image, color=(255, 255, 255)):
         return (front * a + back * (255 - a)) / 255
 
     def blend_rgba(back, front):
-        result = [blend_value(back[i], front[i], front[3]) for i in (0, 1, 2)]
+        result = [int(round(blend_value(back[i], front[i], front[3]))) for i in (0, 1, 2)]
         return tuple(result + [255])
 
     im = image.copy()  # don't edit the reference directly
@@ -986,7 +999,7 @@ def pure_pil_alpha_to_color_v2(image, color=(255, 255, 255)):
 
     """
     image.load()  # needed for split()
-    background = Image.new('RGB', image.size, color)
+    background = PILImage.new('RGB', image.size, color)
     background.paste(image, mask=image.split()[3])  # 3 is the alpha channel
     return background
 
