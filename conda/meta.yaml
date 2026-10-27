@@ -1,0 +1,51 @@
+{% set name = "goulib" %}
+{% set version = environ.get('VERSION', '3.0.3') %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python >=3.11
+    - pip
+    - setuptools
+    - setuptools-scm
+  run:
+    - python >=3.11
+    - bitarray
+    - ipython
+    - lxml
+    - matplotlib-base
+    - networkx
+    - numpy
+    - pillow
+    - pint
+    - pydot
+    - pydotplus
+    - scikit-image
+    - scipy
+    - sortedcollections
+    - sortedcontainers
+    - xlrd
+    - xlsxwriter
+
+test:
+  imports:
+    - goulib
+
+about:
+  home: https://github.com/goulu/goulib
+  license: LGPL-3.0-or-later
+  license_file: LICENSE.TXT
+  summary: library of useful Python code for scientific + technical applications
+  dev_url: https://github.com/goulu/goulib
+  doc_url: https://goulib.readthedocs.io/
