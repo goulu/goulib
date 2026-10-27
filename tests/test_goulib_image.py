@@ -31,6 +31,9 @@ class TestImage(TestCase):
                      'grayscale.png')  # force to uint8
         self.gray = Image(os.path.join(results, 'grayscale.png'))
         self.camera = Image(data.camera())
+        self.small = self.lena.resize((32, 32))
+        self.gray_small = self.gray.resize((64, 64))
+        self.p = self.small.convert('P')
 
     def test_pdf(self):
         return  # for now for speed
@@ -122,7 +125,7 @@ class TestImage(TestCase):
         pytest.skip("not yet implemented")
 
     def test__repr_html_(self):
-        h = self.lena.convert('P')._repr_html_()
+        h = self.p._repr_html_()
         assert h
 
     def test_average_hash(self):
@@ -158,7 +161,7 @@ class TestImage(TestCase):
 
     def test_convert(self):
         for mode in modes:
-            im = self.lena.convert(mode)
+            im = self.small.convert(mode)
             assert_image(im, 'convert_%s.png' % mode)
             try:
                 im2 = im.convert('RGB')
@@ -207,10 +210,10 @@ class TestImage(TestCase):
 
     def test_dither(self):
         for k in dithering:
-            im = self.gray.dither(k)*255
+            im = self.gray_small.dither(k)*255
             assert_image(im, 'dither_%s.png' % dithering[k])
-        assert_image(self.lena.dither(), 'dither_color_2.png')
-        assert_image(self.lena.dither(n=4), 'dither_color_4.png')
+        assert_image(self.small.dither(), 'dither_color_2.png')
+        assert_image(self.small.dither(n=4), 'dither_color_4.png')
 
     def test_resize(self):
         size = 128
@@ -353,8 +356,7 @@ class TestImage(TestCase):
         s2 = self.lena.scale((0.5, 0.5))
         assert s1.size == (256, 256)
         assert s2.size == (256, 256)
-        p = self.lena.convert('P')
-        sp = p.scale(2)
+        sp = self.p.scale(2)
         assert sp is not None
 
     def test_shape(self):
@@ -373,19 +375,17 @@ class TestImage(TestCase):
         assert t1 is not None and t2 is not None
 
     def test_getcolors(self):
-        c = list(self.lena.getcolors(16))
+        c = list(self.small.getcolors(16))
         assert len(c) > 0
 
     def test_getpalette(self):
-        p = self.lena.convert('P')
-        assert p.getpalette() is not None
-        assert self.lena.getpalette(16) is not None
+        assert self.p.getpalette() is not None
+        assert self.small.getpalette(16) is not None
 
     def test_setpalette(self):
-        p = self.lena.convert('P')
-        pal = p.palette
-        p.setpalette(pal)
-        assert p.palette == pal
+        pal = self.p.palette
+        self.p.setpalette(pal)
+        assert self.p.palette == pal
 
     def test_new(self):
         im = Image.new('RGB', (10, 10), 'blue')
@@ -393,15 +393,14 @@ class TestImage(TestCase):
 
     def test_pil(self):
         assert self.lena.pil is not None
-        assert self.lena.convert('P').pil is not None
+        assert self.p.pil is not None
 
     def test_optimize(self):
-        p = self.lena.convert('P')
-        opt = p.optimize(16)
+        opt = Image(self.p).optimize(16)
         assert opt is not None
 
     def test_replace(self):
-        p = self.lena.convert('P')
+        p = Image(self.p)
         p.replace([(0, 1)])
         assert p is not None
 
