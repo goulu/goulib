@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>goulib.image &#8212; goulib 3.0.0 documentation</title>
+    <title>goulib.image &#8212; goulib 3.0.3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
-    <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="../../_static/documentation_options.js?v=9b3fc59f"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -23,7 +23,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">goulib.image</a></li> 
       </ul>
@@ -139,6 +139,8 @@
     <span class="n">n</span> <span class="o">=</span> <span class="n">nchannels</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">'RGBA'</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">'1'</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">'F'</span>
     <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">:</span>
@@ -211,9 +213,19 @@
             <span class="n">size</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'size'</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
             <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">size</span> <span class="o">=</span> <span class="n">size</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span><span class="p">,)</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="n">Gcolors</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'black'</span><span class="p">))</span><span class="o">.</span><span class="n">rgb</span>
-            <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># somewhat brute</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'black'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">color</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">Gcolors</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">'RGBA'</span><span class="p">:</span>
+                    <span class="n">color</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">rgb</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,)</span>
+                <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">'CMYK'</span><span class="p">:</span>
+                    <span class="n">color</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">cmyk</span>
+                <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">color</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">color</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">rgb</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">modes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="o">*</span> <span class="n">color</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_set</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Image</span><span class="p">):</span>  <span class="c1"># copy constructor</span>
@@ -701,6 +713,7 @@
 <span class="sd">        * palette : to force using a palette instead of the image's one for indexed images</span>
 <span class="sd">        :return: image in desired mode</span>
 <span class="sd">        """</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'P'</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">'palette'</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">palette</span><span class="p">)</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -850,7 +863,7 @@
         <span class="k">return</span> <span class="n">Image</span><span class="p">(</span><span class="n">modes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">]</span><span class="o">.</span><span class="n">max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span></div>
 
 
-    <span class="fm">__neg__</span> <span class="o">=</span> <span class="n">__inv__</span> <span class="o">=</span> <span class="n">invert</span>  <span class="c1"># aliases</span>
+    <span class="fm">__neg__</span> <span class="o">=</span> <span class="n">__inv__</span> <span class="o">=</span> <span class="fm">__invert__</span> <span class="o">=</span> <span class="n">invert</span>  <span class="c1"># aliases</span>
 
 <div class="viewcode-block" id="Image.grayscale">
 <a class="viewcode-back" href="../../modules/goulib.image.html#goulib.image.Image.grayscale">[docs]</a>
@@ -1077,8 +1090,8 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">deltaE</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">skimage.color</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">skcolor</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">skcolor</span><span class="o">.</span><span class="n">deltaE_ciede2000</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'lab'</span><span class="p">)</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
-            <span class="n">other</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'lab'</span><span class="p">)</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'LAB'</span><span class="p">)</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'LAB'</span><span class="p">)</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">Image</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">'F'</span><span class="p">)</span></div>
 
@@ -1157,7 +1170,7 @@
 <span class="sd">    color -- Tuple r, g, b (default 255, 255, 255)</span>
 
 <span class="sd">    """</span>
-    <span class="n">back</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'RGBA'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span> <span class="o">+</span> <span class="p">(</span><span class="mi">255</span><span class="p">,))</span>
+    <span class="n">back</span> <span class="o">=</span> <span class="n">PILImage</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'RGBA'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span> <span class="o">+</span> <span class="p">(</span><span class="mi">255</span><span class="p">,))</span>
     <span class="k">return</span> <span class="n">alpha_composite</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">back</span><span class="p">)</span></div>
 
 
@@ -1183,7 +1196,7 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">front</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">back</span> <span class="o">*</span> <span class="p">(</span><span class="mi">255</span> <span class="o">-</span> <span class="n">a</span><span class="p">))</span> <span class="o">/</span> <span class="mi">255</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">blend_rgba</span><span class="p">(</span><span class="n">back</span><span class="p">,</span> <span class="n">front</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">blend_value</span><span class="p">(</span><span class="n">back</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">front</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">front</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">blend_value</span><span class="p">(</span><span class="n">back</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">front</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">front</span><span class="p">[</span><span class="mi">3</span><span class="p">])))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">result</span> <span class="o">+</span> <span class="p">[</span><span class="mi">255</span><span class="p">])</span>
 
     <span class="n">im</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># don't edit the reference directly</span>
@@ -1211,7 +1224,7 @@
 
 <span class="sd">    """</span>
     <span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>  <span class="c1"># needed for split()</span>
-    <span class="n">background</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+    <span class="n">background</span> <span class="o">=</span> <span class="n">PILImage</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
     <span class="n">background</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># 3 is the alpha channel</span>
     <span class="k">return</span> <span class="n">background</span></div>
 
@@ -1812,7 +1825,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">goulib.image</a></li> 
       </ul>

@@ -4,11 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>goulib.math2 &#8212; goulib 3.0.0 documentation</title>
+    <title>goulib.math2 &#8212; goulib 3.0.3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
-    <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="../../_static/documentation_options.js?v=9b3fc59f"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -23,7 +23,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">goulib.math2</a></li> 
       </ul>
@@ -3444,14 +3444,14 @@
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">pg</span> <span class="o">=</span> <span class="n">primes_gen</span><span class="p">()</span>
         <span class="n">q</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># TODO: what about other initial values of q?</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
         <span class="k">while</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">B1</span><span class="p">:</span>
-            <span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">**</span> <span class="n">ilog</span><span class="p">(</span><span class="n">B1</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">n</span><span class="p">),</span> <span class="n">pg</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">**</span> <span class="n">ilog</span><span class="p">(</span><span class="n">B1</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">n</span><span class="p">),</span> <span class="nb">next</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
         <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">g</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">g</span>
         <span class="k">while</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">B2</span><span class="p">:</span>
-            <span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">pg</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="nb">next</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
         <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">g</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">g</span>
@@ -3684,7 +3684,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.3 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">goulib.math2</a></li> 
       </ul>
