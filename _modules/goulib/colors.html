@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goulib.colors &#8212; goulib 3.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.colors</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for goulib.colors</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">color conversion in various colorspaces and palettes</span>
+<span class="sd">"""</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Philippe Guglielmetti"</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright 2012-, Philippe Guglielmetti"</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"LGPL"</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Colormath https://pypi.python.org/pypi/colormath/'</span><span class="p">,</span>
+               <span class="s1">'Bruno Nuttens Pantone color table http://blog.brunonuttens.com/206-conversion-couleurs-pantone-lab-rvb-hexa-liste-sql-csv/'</span><span class="p">,</span>
+               <span class="p">]</span>
+
+<span class="c1"># get https://pypi.python.org/pypi/colormath/ if you need more</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">goulib</span><span class="w"> </span><span class="kn">import</span> <span class="n">math2</span><span class="p">,</span> <span class="n">itertools2</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">graph</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">goulib.table</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">Gtable</span>
+
+<span class="c1"># color conversion</span>
+
+<span class="c1"># redefine some converters in current module to build converters dict below</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">skimage.color</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">skcolor</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mplcolors</span>
+
+
+<div class="viewcode-block" id="rgb2hex">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.rgb2hex">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rgb2hex</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">illuminant</span><span class="o">=</span><span class="s1">'ignore'</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mplcolors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">c</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="hex2rgb">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.hex2rgb">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hex2rgb</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">illuminant</span><span class="o">=</span><span class="s1">'ignore'</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mplcolors</span><span class="o">.</span><span class="n">hex2color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="rgb2cmyk">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.rgb2cmyk">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rgb2cmyk</span><span class="p">(</span><span class="n">rgb</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    :param rgb: 3-tuple of floats of red,green,blue in [0..1] range</span>
+<span class="sd">    :return: 4-tuple of floats (cyan, magenta, yellow, black) in [0..1] range</span>
+<span class="sd">    """</span>
+    <span class="c1"># http://stackoverflow.com/questions/14088375/how-can-i-convert-rgb-to-cmyk-and-vice-versa-in-python</span>
+
+    <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rgb</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">r</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="cmyk2rgb">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.cmyk2rgb">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cmyk2rgb</span><span class="p">(</span><span class="n">cmyk</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    :param cmyk: 4-tuple of floats (cyan, magenta, yellow, black) in [0..1] range</span>
+<span class="sd">    :return: 3-tuple of floats (red, green, blue)</span>
+
+<span class="sd">    warning: rgb is out the [0..1] range for some cmyk</span>
+<span class="sd">    """</span>
+    <span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">cmyk</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="xyz2xyy">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.xyz2xyy">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">xyz2xyy</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Convert from XYZ to xyY</span>
+
+<span class="sd">    Based on formula from http://brucelindbloom.com/Eqn_XYZ_to_xyY.html</span>
+
+<span class="sd">    Implementation Notes:</span>
+
+<span class="sd">    1. Watch out for black, where X = Y = Z = 0. In that case, x and y are set</span>
+<span class="sd">       to the chromaticity coordinates of the reference whitepoint.</span>
+<span class="sd">    2. The output Y value is in the nominal range [0.0, Y[XYZ]].</span>
+<span class="sd">    """</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># We can't check for X == Y == Z == 0 because they may actually add up</span>
+        <span class="c1"># to 0, thus resulting in ZeroDivisionError later</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">xyz2xyy</span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="s1">'white'</span><span class="p">]</span><span class="o">.</span><span class="n">xyz</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">s</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">s</span><span class="p">,</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="xyy2xyz">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.xyy2xyz">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">xyy2xyz</span><span class="p">(</span><span class="n">xyY</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Convert from xyY to XYZ to</span>
+
+<span class="sd">    Based on formula from http://brucelindbloom.com/Eqn_xyY_to_XYZ.html</span>
+
+<span class="sd">    Implementation Notes:</span>
+
+<span class="sd">    1. Watch out for the case where y = 0.</span>
+<span class="sd">       In that case, you may want to set X = Y = Z = 0.</span>
+<span class="sd">    2. The output XYZ values are in the nominal range [0.0, 1.0].</span>
+
+<span class="sd">    """</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">xyY</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">/</span> <span class="n">y</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">/</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span></div>
+
+
+<span class="c1"># skimage.color has several useful color conversion routines, but for images</span>
+<span class="c1"># so here is a generic adapter that allows to call them with colors</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_skadapt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">adapted</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>  <span class="c1"># unsupported params. retry without</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">adapted</span>
+
+
+<span class="c1"># supported colorspaces. need more ? just add it :-)</span>
+<span class="n">colorspaces</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">'CMYK'</span><span class="p">,</span>
+    <span class="s1">'XYZ'</span><span class="p">,</span>
+    <span class="s1">'xyY'</span><span class="p">,</span>  <span class="c1"># for CIE Chromaticity plots</span>
+    <span class="s1">'Lab'</span><span class="p">,</span>
+    <span class="s1">'Luv'</span><span class="p">,</span>
+    <span class="s1">'HSV'</span><span class="p">,</span>
+    <span class="s1">'RGB'</span><span class="p">,</span>
+    <span class="s1">'HEX'</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># build a graph of available converters</span>
+<span class="c1"># as in https://github.com/gtaylor/python-colormath</span>
+
+<span class="c1"># a nx.DiGraph() would suffice, but my DiGraph are better</span>
+<span class="n">converters</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span><span class="n">multi</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">colorspaces</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">colorspaces</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">target</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">convname</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1">2</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">key</span>
+            <span class="n">converter</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="n">convname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">converter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">converter</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">skcolor</span><span class="p">,</span> <span class="n">convname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">converter</span><span class="p">:</span>  <span class="c1"># adapt it:</span>
+                    <span class="n">converter</span> <span class="o">=</span> <span class="n">_skadapt</span><span class="p">(</span><span class="n">converter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">converter</span><span class="p">:</span>
+            <span class="n">converters</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="o">=</span><span class="n">converter</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="convert">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.convert">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""convert a color between colorspaces,</span>
+<span class="sd">    eventually using intermediary steps</span>
+<span class="sd">    """</span>
+    <span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">target</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">color</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">converters</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">converters</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'f'</span><span class="p">](</span><span class="n">color</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">color</span>  <span class="c1"># isn't it beautiful ?</span></div>
+
+
+
+<div class="viewcode-block" id="Color">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Color</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A color with math operations and conversions</span>
+<span class="sd">    Color is immutable (._values caches representations)</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Color.__init__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">'RGB'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">illuminant</span><span class="o">=</span><span class="s1">'D65'</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Constructor.</span>
+
+<span class="sd">        :param value: string color name, hex string, or values tuple</span>
+<span class="sd">        :param space: string defining the color space of value</span>
+<span class="sd">        :param name: string for color name</span>
+<span class="sd">        :param illuminant: string in {“A”, “D50”, “D55”, “D65”, “D75”, “E”}</span>
+
+<span class="sd">            * D65 is used by default in skimage, see http://scikit-image.org/docs/dev/api/skimage.color.html</span>
+<span class="sd">            * D50 is used in Pantone and other graphic arts</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">illuminant</span> <span class="o">=</span> <span class="n">illuminant</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># for easier conversions</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>  <span class="c1"># copy constructor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_copy_from_</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pantone</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_copy_from_</span><span class="p">(</span><span class="n">pantone</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+                <span class="k">return</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">color</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_copy_from_</span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+                <span class="k">return</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">7</span> <span class="ow">and</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'#'</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">color_lookup</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_copy_from_</span><span class="p">(</span><span class="n">color_lookup</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+                    <span class="k">return</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">space</span> <span class="o">=</span> <span class="s1">'hex'</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Couldn't create Color(</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">)"</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">space</span><span class="p">)))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="n">space</span>  <span class="c1"># "native" space in which the color was created</span>
+
+        <span class="k">if</span> <span class="n">space</span> <span class="o">==</span> <span class="s1">'rgb'</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">_</span> <span class="o">/</span> <span class="mf">255.</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">value</span><span class="p">)</span>
+            <span class="c1"># rgb only, not whiter than white...</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">math2</span><span class="o">.</span><span class="n">sat</span><span class="p">(</span><span class="n">value</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">space</span> <span class="o">!=</span> <span class="s1">'hex'</span><span class="p">:</span>  <span class="c1"># force to floats</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>  <span class="c1"># so native space is always first</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">space</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_copy_from_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">space</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">illuminant</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">illuminant</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">_values</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hex</span> <span class="ow">in</span> <span class="n">color_lookup</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">color_lookup</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">hex</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s1">'~'</span> <span class="o">+</span> <span class="n">nearest_color</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+<div class="viewcode-block" id="Color.convert">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.convert">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" </span>
+<span class="sd">        :param target: str of desired colorspace, or none for default</span>
+<span class="sd">        :return: color in target colorspace</span>
+<span class="sd">        """</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">target</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">converters</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">networkx</span><span class="o">.</span><span class="n">NetworkXNoPath</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                    <span class="s1">'no conversion between </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1"> color spaces'</span>
+                    <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="c1"># to avoid incoherent cached values</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">'illuminant'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">illuminant</span>
+            <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
+                    <span class="n">edge</span> <span class="o">=</span> <span class="n">converters</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="s1">'f'</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">isiterable</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>  <span class="c1"># but not a string</span>
+                        <span class="n">c</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">target</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Color.str">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.str">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">math2</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">res</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">native</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rgb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'rgb'</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'lab'</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">luv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'Luv'</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cmyk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'cmyk'</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hsv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'hsv'</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'xyz'</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">xyY</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'xyY'</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Color.__hash__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__hash__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Color.__repr__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Color('</span><span class="si">%s</span><span class="s2">')"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'&lt;span style="color:</span><span class="si">%s</span><span class="s1">"&gt;</span><span class="si">%s</span><span class="s1">&lt;/span&gt;'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Color.compose">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.compose">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'rgb'</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" compose colors in given mode</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mode</span><span class="p">),</span> <span class="n">other</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mode</span><span class="p">))</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">'lab'</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">math2</span><span class="o">.</span><span class="n">sat</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">res</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+
+<div class="viewcode-block" id="Color.__add__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__add__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">other</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">native</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="p">)</span> <span class="o">+</span> <span class="n">other</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">math2</span><span class="o">.</span><span class="n">vecadd</span><span class="p">),</span> <span class="n">illuminant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">illuminant</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Color.__radd__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__radd__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""only to allow sum(colors) easily"""</span>
+        <span class="k">assert</span> <span class="n">other</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Color.__sub__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__sub__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">mode</span>
+            <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">other</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mode</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span> <span class="o">-</span> <span class="n">other</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">math2</span><span class="o">.</span><span class="n">vecsub</span><span class="p">),</span> <span class="n">illuminant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">illuminant</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Color.__mul__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__mul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">factor</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">factor</span><span class="p">)</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lab</span>
+        <span class="n">l</span> <span class="o">*=</span> <span class="n">factor</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">Color</span><span class="p">((</span><span class="n">l</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="s1">'lab'</span><span class="p">,</span> <span class="n">illuminant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">illuminant</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+
+<div class="viewcode-block" id="Color.__neg__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__neg__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" complementary color"""</span>
+        <span class="k">return</span> <span class="n">color</span><span class="p">[</span><span class="s1">'white'</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Color.deltaE">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.deltaE">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">deltaE</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""color difference according to CIEDE2000</span>
+<span class="sd">        https://en.wikipedia.org/wiki/Color_difference</span>
+<span class="sd">        """</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">illuminant</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">illuminant</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">skcolor</span><span class="o">.</span><span class="n">deltaE_ciede2000</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lab</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">lab</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Color.isclose">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.isclose">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">isclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        http://zschuessler.github.io/DeltaE/learn/</span>
+<span class="sd">        &lt;= 1.0    Not perceptible by human eyes.</span>
+<span class="sd">        1 - 2    Perceptible through close observation.</span>
+<span class="sd">        2 - 10    Perceptible at a glance.</span>
+<span class="sd">        11 - 49    Colors are more similar than opposite</span>
+<span class="sd">        100    Colors are exact opposite</span>
+<span class="sd">        """</span>
+        <span class="n">dE</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deltaE</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dE</span> <span class="o">&lt;=</span> <span class="n">abs_tol</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="Color.__eq__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Color.__eq__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">other</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">space</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">native</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">native</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="c1"># difference not perceptible to human eye</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Palette">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Palette">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Palette</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""dict of Colors indexed by anything"""</span>
+
+<div class="viewcode-block" id="Palette.__init__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Palette.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">[],</span> <span class="n">keys</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
+        <span class="c1"># mandatory http://stackoverflow.com/questions/11174702/how-to-subclass-an-ordereddict</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Palette</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keys</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Palette.update">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Palette.update">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""updates the dictionary with new colors</span>
+<span class="sd">        :param data: colors to add</span>
+<span class="sd">        :param keys: keys to use in dict, or int to discretize the Colormap</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mplcolors</span><span class="o">.</span><span class="n">Colormap</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">data</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="p">(</span><span class="n">keys</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>  <span class="c1"># RGB</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">enumerates</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># v.space of RGB</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># v.space of RGB</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="Palette.index">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Palette.index">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">dE</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :return: key of c or nearest color, None if distance is larger than deltaE</span>
+<span class="sd">        """</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">index_min</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c2</span><span class="p">:</span> <span class="n">deltaE</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="n">dE</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">deltaE</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dE</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">k</span></div>
+
+
+<div class="viewcode-block" id="Palette.__repr__">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Palette.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'</span><span class="si">%s</span><span class="s1"> of </span><span class="si">%d</span><span class="s1"> colors'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">tooltip</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="s1">'[</span><span class="si">%s</span><span class="s1">] </span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1">)</span><span class="se">\n</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">illuminant</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+
+        <span class="n">mode</span> <span class="o">=</span> <span class="s1">'inline'</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">256</span> <span class="k">else</span> <span class="s1">'flex'</span>
+
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="s1">'black'</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="s1">'white'</span><span class="p">])</span>  <span class="c1"># possible colors for labels</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="s1">'&lt;div style="display:</span><span class="si">%s</span><span class="s1">; width:100</span><span class="si">%%</span><span class="s1">;"&gt;'</span> <span class="o">%</span> <span class="n">mode</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="s1">'display:</span><span class="si">%s</span><span class="s1">-block; min-width: 1px; '</span> <span class="o">%</span> <span class="n">mode</span>
+        <span class="n">style</span> <span class="o">+=</span> <span class="s1">' flex-basis: 90</span><span class="si">%%</span><span class="s1">;'</span>
+        <span class="n">style</span> <span class="o">+=</span> <span class="s1">' background:</span><span class="si">%s</span><span class="s1">; color:</span><span class="si">%s</span><span class="s1">;'</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="s1">'&lt;div style="'</span> <span class="o">+</span> <span class="n">style</span> <span class="o">+</span> <span class="s1">'" title="</span><span class="si">%s</span><span class="s1">"&gt;&amp;nbsp;&lt;/div&gt;'</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="c1"># c2=nearest_color(c,labels,opt=max) #chose the label color with max difference to pantone color</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="n">cell</span> <span class="o">%</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span> <span class="n">tooltip</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">res</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span>
+
+<div class="viewcode-block" id="Palette.patches">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Palette.patches">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">patches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wide</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">)):</span>
+<span class="w">        </span><span class="sd">"""Image made of each palette color</span>
+<span class="sd">        """</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="n">wide</span><span class="p">,</span> <span class="n">wide</span><span class="p">))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">'P'</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pil</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :return: a sequence of integers, or a string containing a binary </span>
+<span class="sd">            representation of the palette.</span>
+
+<span class="sd">        In both cases, the palette contents should be ordered (r, g, b, r, g, b, …). </span>
+<span class="sd">        The palette can contain up to 768 entries (3*256). </span>
+<span class="sd">        If a shorter palette is given, it is padded with zeros.</span>
+<span class="sd">        See http://effbot.org/zone/creating-palette-images.htm</span>
+<span class="sd">        """</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">rgb</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math2</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="mi">255</span><span class="p">))</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math2</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">g</span> <span class="o">*</span> <span class="mi">255</span><span class="p">))</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">math2</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="mi">255</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+<div class="viewcode-block" id="Palette.sorted">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.Palette.sorted">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lab</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="c1"># http://stackoverflow.com/questions/8031418/how-to-sort-ordereddict-of-ordereddict-python</span>
+        <span class="k">return</span> <span class="n">Palette</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)))</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ColorTable">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.ColorTable">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">ColorTable</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tooltip</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="s1">'black'</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="s1">'white'</span><span class="p">])</span>  <span class="c1"># possible colors for labels</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+        <span class="n">colors</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
+        <span class="c1"># chose the label color with max difference to pantone color</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="n">nearest_color</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="nb">max</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s1">'&lt;span title="</span><span class="si">%s</span><span class="s1">" style="color:</span><span class="si">%s</span><span class="s1">"&gt;</span><span class="si">%s</span><span class="s1">&lt;/span&gt;'</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">tooltip</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">c2</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Gtable</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">'background-color'</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">hex</span><span class="p">}))</span>
+    <span class="k">return</span> <span class="n">Gtable</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">)))</span></div>
+
+
+<span class="c1"># dictionaries of standardized colors</span>
+
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+<span class="c1"># http://blog.brunonuttens.com/206-conversion-couleurs-pantone-lab-rvb-hexa-liste-sql-csv/</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">Gtable</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s1">'/colors.csv'</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">applyf</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'System'</span><span class="p">)</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="n">Palette</span><span class="p">()</span>  <span class="c1"># dict of HTML / matplotlib colors, which seem to be the same</span>
+<span class="n">color_lookup</span> <span class="o">=</span> <span class="n">Palette</span><span class="p">()</span>  <span class="c1"># reverse color dict indexed by hex</span>
+<span class="n">pantone</span> <span class="o">=</span> <span class="n">Palette</span><span class="p">()</span>  <span class="c1"># dict of pantone colors</span>
+
+<span class="c1"># http://www.w3schools.com/colors/colors_names.asp</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">table</span><span class="p">[</span><span class="s1">'websafe'</span><span class="p">]</span><span class="o">.</span><span class="n">asdict</span><span class="p">():</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">_</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="nb">hex</span> <span class="o">=</span> <span class="n">_</span><span class="p">[</span><span class="s1">'hex'</span><span class="p">]</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">illuminant</span><span class="o">=</span><span class="s1">'D65'</span><span class="p">)</span>
+    <span class="n">color</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">_</span>
+    <span class="n">color_lookup</span><span class="p">[</span><span class="n">_</span><span class="o">.</span><span class="n">hex</span><span class="p">]</span> <span class="o">=</span> <span class="n">_</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">table</span><span class="p">[</span><span class="s1">'Pantone'</span><span class="p">]</span><span class="o">.</span><span class="n">asdict</span><span class="p">():</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">_</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+    <span class="n">pantone</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="p">((</span><span class="n">_</span><span class="p">[</span><span class="s1">'L'</span><span class="p">],</span> <span class="n">_</span><span class="p">[</span><span class="s1">'a'</span><span class="p">],</span> <span class="n">_</span><span class="p">[</span><span class="s1">'b'</span><span class="p">]),</span>
+                        <span class="n">space</span><span class="o">=</span><span class="s1">'Lab'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">illuminant</span><span class="o">=</span><span class="s1">'D50'</span><span class="p">)</span>
+    <span class="c1"># pantones are defined with D50 illuminant</span>
+
+<span class="n">acadcolors</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">256</span>  <span class="c1"># table of Autocad indexed colors</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">table</span><span class="p">[</span><span class="s1">'autocad'</span><span class="p">]</span><span class="o">.</span><span class="n">asdict</span><span class="p">():</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">_</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span>
+    <span class="c1"># color name is a 0..255 number</span>
+    <span class="n">acadcolors</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">_</span><span class="p">[</span><span class="s1">'hex'</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">illuminant</span><span class="o">=</span><span class="s1">'D65'</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="color_to_aci">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.color_to_aci">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">color_to_aci</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nearest</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    :return: int Autocad Color Index of color x</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">acadcolors</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">if</span> <span class="n">nearest</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">nearest_color</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acadcolors</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># name = int id</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div>
+
+
+
+<div class="viewcode-block" id="aci_to_color">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.aci_to_color">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">aci_to_color</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">block_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layer_color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">block_color</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">256</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">layer_color</span>
+    <span class="k">return</span> <span class="n">acadcolors</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">hex</span></div>
+
+
+
+<div class="viewcode-block" id="deltaE">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.deltaE">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">deltaE</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">):</span>
+    <span class="c1"># http://scikit-image.org/docs/dev/api/skimage.color.html#skimage.color.deltaE_ciede2000</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">skcolor</span><span class="o">.</span><span class="n">deltaE_ciede2000</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">lab</span><span class="p">,</span> <span class="n">c2</span><span class="o">.</span><span class="n">lab</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="nearest_color">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.nearest_color">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">nearest_color</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="nb">min</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="n">deltaE</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    :param x: Color</span>
+<span class="sd">    :param l: list or dict of Color, color by default</span>
+<span class="sd">    :param opt: with opt=max you can find the most different color ...</span>
+<span class="sd">    :return: nearest Color of x in  l</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">l</span> <span class="ow">or</span> <span class="n">color</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">opt</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c2</span><span class="p">:</span> <span class="n">comp</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c2</span><span class="p">))</span></div>
+
+
+<span class="c1"># http://stackoverflow.com/questions/876853/generating-color-ranges-in-python</span>
+
+
+<div class="viewcode-block" id="color_range">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.color_range">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">color_range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">'hsv'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">""":param n: int number of colors to generate</span>
+<span class="sd">    :param start: string hex color or color name</span>
+<span class="sd">    :param end: string hex color or color name</span>
+<span class="sd">    :result: list of n Color interpolated between start and end, included</span>
+<span class="sd">    """</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">end</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Color</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="n">space</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">n</span><span class="p">)]</span></div>
+
+
+
+<span class="sd">"""some (astro) physics calculators"""</span>
+
+<span class="n">_cmf</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="blackBody2Color">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.blackBody2Color">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">blackBody2Color</span><span class="p">(</span><span class="n">tempK</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">""":param wavelength: black body temperature in K (Sun is 5780)</span>
+<span class="sd">    :result: Color</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span>
+
+    <span class="k">global</span> <span class="n">_cmf</span>
+    <span class="k">if</span> <span class="n">_cmf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_cmf</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s1">'/cie-cmf.txt'</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+    <span class="c1"># http://www.vendian.org/mncharity/dir3/blackbody/</span>
+    <span class="c1"># https://scipython.com/blog/converting-a-spectrum-to-a-colour/#rating-26</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">planck</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" Returns the spectral radiance of a black body at temperature T.</span>
+<span class="sd">        Returns the spectral radiance, B(lam, T), in W.sr-1.m-2 of a black body</span>
+<span class="sd">        at temperature T (in K) at a wavelength lam (in nm), using Planck's law.</span>
+<span class="sd">        """</span>
+
+        <span class="n">lam_m</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">/</span> <span class="mf">1.e9</span>
+        <span class="n">fac</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="n">lam_m</span> <span class="o">/</span> <span class="n">k</span> <span class="o">/</span> <span class="n">T</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">lam_m</span> <span class="o">**</span> <span class="mi">5</span> <span class="o">/</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">fac</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">B</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">spec_to_xyz</span><span class="p">(</span><span class="n">spec</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Convert a spectrum to an xyz point.</span>
+<span class="sd">        The spectrum must be on the same grid of points as the colour-matching</span>
+<span class="sd">        function, self.cmf: 380-780 nm in 5 nm steps.</span>
+<span class="sd">        """</span>
+
+        <span class="n">XYZ</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spec</span><span class="p">[:,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">_cmf</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">den</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">XYZ</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">den</span> <span class="o">==</span> <span class="mf">0.</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">XYZ</span>
+        <span class="k">return</span> <span class="n">XYZ</span> <span class="o">/</span> <span class="n">den</span>
+
+    <span class="c1"># The grid of visible wavelengths corresponding to the grid of colour-matching</span>
+    <span class="c1"># functions used by the ColourSystem instance.</span>
+    <span class="n">lam</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">380.</span><span class="p">,</span> <span class="mf">781.</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">spec_to_xyz</span><span class="p">(</span><span class="n">planck</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">tempK</span><span class="p">)),</span> <span class="s1">'xyz'</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="lambda2RGB">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.lambda2RGB">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">lambda2RGB</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">""":param w: float wavelength in nanometers (between 380 and 780)</span>
+<span class="sd">    :result: [R,G,B] float</span>
+<span class="sd">    """</span>
+    <span class="c1"># http://codingmess.blogspot.com/2009/05/conversion-of-nm-in-nanometers.html</span>
+
+    <span class="c1"># colour</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">380</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">440</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="mf">440.</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">440.</span> <span class="o">-</span> <span class="mf">350.</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">elif</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">440</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">490</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="mf">440.</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">490.</span> <span class="o">-</span> <span class="mf">440.</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">elif</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">490</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">510</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="mf">510.</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">510.</span> <span class="o">-</span> <span class="mf">490.</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">510</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">580</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="mf">510.</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">580.</span> <span class="o">-</span> <span class="mf">510.</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">580</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">645</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="mf">645.</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">645.</span> <span class="o">-</span> <span class="mf">580.</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">645</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;=</span> <span class="mi">780</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># intensity correction</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">380</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">420</span><span class="p">:</span>
+        <span class="n">SSS</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="mi">350</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">420</span> <span class="o">-</span> <span class="mi">350</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">420</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;=</span> <span class="mi">700</span><span class="p">:</span>
+        <span class="n">SSS</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">elif</span> <span class="n">w</span> <span class="o">&gt;</span> <span class="mi">700</span> <span class="ow">and</span> <span class="n">w</span> <span class="o">&lt;=</span> <span class="mi">780</span><span class="p">:</span>
+        <span class="n">SSS</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="p">(</span><span class="mi">780</span> <span class="o">-</span> <span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">780</span> <span class="o">-</span> <span class="mi">700</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">SSS</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">SSS</span> <span class="o">*=</span> <span class="mi">255</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">SSS</span> <span class="o">*</span> <span class="n">R</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">SSS</span> <span class="o">*</span> <span class="n">G</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">SSS</span> <span class="o">*</span> <span class="n">B</span><span class="p">)]</span></div>
+
+
+
+<div class="viewcode-block" id="RGB2lambda">
+<a class="viewcode-back" href="../../modules/goulib.colors.html#goulib.colors.RGB2lambda">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">RGB2lambda</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="c1"># http://codingmess.blogspot.com/2010/02/transforming-rgb-data-to-wavelength.html</span>
+<span class="w">    </span><span class="sd">"""Returns 0 if indeciferable"""</span>
+    <span class="c1"># selects range by maximum component</span>
+    <span class="c1"># if max is blue - range is 380 - 489</span>
+    <span class="c1"># if max is green - range is 490 - 579</span>
+    <span class="c1"># if max is red - range is 580 - 645</span>
+
+    <span class="c1"># which colour has highest intensity?</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+    <span class="n">highind</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">G</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
+        <span class="n">high</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+        <span class="n">highind</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">B</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
+        <span class="n">high</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+        <span class="n">highind</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="c1"># normalize highest to 1.0</span>
+    <span class="n">RGBnorm</span> <span class="o">=</span> <span class="p">[</span><span class="n">R</span> <span class="o">/</span> <span class="n">high</span><span class="p">,</span> <span class="n">G</span> <span class="o">/</span> <span class="n">high</span><span class="p">,</span> <span class="n">B</span> <span class="o">/</span> <span class="n">high</span><span class="p">]</span>
+
+    <span class="c1"># start decoding</span>
+    <span class="n">RGBlambda</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">highind</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># red is highest</span>
+        <span class="k">if</span> <span class="n">B</span> <span class="o">&gt;=</span> <span class="n">G</span><span class="p">:</span>  <span class="c1"># there is more blue than green</span>
+            <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># max red and more blue than green shouldn't happen</span>
+        <span class="c1"># wavelength linearly changes from 645 to 580 as green increases</span>
+        <span class="n">RGBlambda</span> <span class="o">=</span> <span class="mi">645</span> <span class="o">-</span> <span class="n">RGBnorm</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">645.</span> <span class="o">-</span> <span class="mf">580.</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">highind</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># green is max, range is 510 - 579</span>
+        <span class="k">if</span> <span class="n">R</span> <span class="o">&gt;</span> <span class="n">B</span><span class="p">:</span>  <span class="c1"># range is 510 - 579</span>
+            <span class="n">RGBlambda</span> <span class="o">=</span> <span class="mi">510</span> <span class="o">+</span> <span class="n">RGBnorm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">580</span> <span class="o">-</span> <span class="mi">510</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># blue is higher than red, range is 490 - 510</span>
+            <span class="n">RGBlambda</span> <span class="o">=</span> <span class="mi">510</span> <span class="o">-</span> <span class="n">RGBnorm</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">510</span> <span class="o">-</span> <span class="mi">490</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">highind</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># blue is max, range is 380 - 490</span>
+        <span class="k">if</span> <span class="n">G</span> <span class="o">&gt;</span> <span class="n">R</span><span class="p">:</span>  <span class="c1"># range is 440 - 490</span>
+            <span class="n">RGBlambda</span> <span class="o">=</span> <span class="n">RGBnorm</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">490</span> <span class="o">-</span> <span class="mi">440</span><span class="p">)</span> <span class="o">+</span> <span class="mi">440</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># there is more red than green, range is 380 - 440</span>
+            <span class="n">RGBlambda</span> <span class="o">=</span> <span class="mi">440</span> <span class="o">-</span> <span class="n">RGBnorm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">440</span> <span class="o">-</span> <span class="mi">380</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">RGBlambda</span></div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.colors</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 27, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

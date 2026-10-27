@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goulib.periodic &#8212; goulib 3.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.periodic</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for goulib.periodic</h1><div class="highlight"><pre>
+<span></span><span class="sd">'''</span>
+<span class="sd">periodic functions</span>
+
+<span class="sd">! work in progress, not tested yet !</span>
+<span class="sd">'''</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Philippe Guglielmetti"</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright 2025, Philippe Guglielmetti"</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"LGPL"</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">math2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.expr</span><span class="w"> </span><span class="kn">import</span> <span class="n">Expr</span>
+
+<span class="n">Period</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span><span class="nb">float</span><span class="p">]</span>
+<div class="viewcode-block" id="Periodic">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Periodic</span><span class="p">(</span><span class="n">Expr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''</span>
+<span class="sd">    periodic function defined by an Expr and a period</span>
+<span class="sd">    '''</span>
+    <span class="n">_period</span><span class="p">:</span><span class="n">Period</span>
+    <span class="n">_expr</span><span class="p">:</span><span class="n">Expr</span>
+<div class="viewcode-block" id="Periodic.__init__">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span><span class="n">Expr</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span><span class="n">Period</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">'''constructor</span>
+<span class="sd">        :param f: Expr</span>
+<span class="sd">        :param period: Period (start, end) for periodicity'''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expr</span> <span class="o">=</span> <span class="n">f</span>
+        <span class="k">if</span> <span class="n">math2</span><span class="o">.</span><span class="n">is_number</span><span class="p">(</span><span class="n">period</span><span class="p">):</span>
+            <span class="n">period</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_period</span> <span class="o">=</span> <span class="n">period</span>
+
+        <span class="c1"># to initialize context and such stuff</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Periodic</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span><span class="kc">None</span>  <span class="c1"># should not be used</span></div>
+
+
+<div class="viewcode-block" id="Periodic.period">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic.period">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">period</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">float</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_period</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_str_period</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s2">", period=</span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="n">p</span> <span class="k">if</span> <span class="n">p</span> <span class="k">else</span> <span class="s2">""</span>
+    
+<div class="viewcode-block" id="Periodic.__str__">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_str_period</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Periodic.__repr__">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_str_period</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Periodic.__call__">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Periodic.apply">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic.apply">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">-&gt;</span><span class="s1">'Periodic'</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">'''function composition self o f = f(self(x))</span>
+<span class="sd">        overrides Expr.apply</span>
+<span class="sd">        :param f: function to apply</span>
+<span class="sd">        :param right: optional second argument for f</span>
+<span class="sd">        :return: a new Periodic object'''</span>
+        <span class="k">return</span> <span class="n">Periodic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">right</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Periodic.applx">
+<a class="viewcode-back" href="../../modules/goulib.periodic.html#goulib.periodic.Periodic.applx">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">applx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="s1">'x'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'Periodic'</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">'''function composition f o self = self(f(x))</span>
+<span class="sd">        overrides Expr.apply</span>
+<span class="sd">        :param f: function to apply</span>
+<span class="sd">        :param var: string variable name</span>
+<span class="sd">        :return: a new Periodic object'''</span>
+        <span class="k">return</span> <span class="n">Periodic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_expr</span><span class="o">.</span><span class="n">applx</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">var</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_period</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.periodic</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 27, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

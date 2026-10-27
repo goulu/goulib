@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <script src="../_static/documentation_options.js?v=acc74ff5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.polynomial" href="goulib.polynomial.html" />
@@ -48,19 +48,19 @@
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code>(plotables, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.plot.plot" title="goulib.plot.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>(plotables, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">png</span></code>(plotables, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.plot.png" title="goulib.plot.png"><code class="xref py py-obj docutils literal notranslate"><span class="pre">png</span></code></a>(plotables, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">render</span></code>(plotables[, fmt])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.plot.render" title="goulib.plot.render"><code class="xref py py-obj docutils literal notranslate"><span class="pre">render</span></code></a>(plotables[, fmt])</p></td>
 <td><p>renders several Plot objects</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(plotables, filename, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.plot.save" title="goulib.plot.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(plotables, filename, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">svg</span></code>(plotables, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.plot.svg" title="goulib.plot.svg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">svg</span></code></a>(plotables, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -68,11 +68,82 @@
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Plot</span></code>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.plot.Plot" title="goulib.plot.Plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Plot</span></code></a>()</p></td>
 <td><p>base class for plotable rich object display on IPython notebooks inspired from <a class="reference external" href="http://nbviewer.ipython.org/github/ipython/ipython/blob/3607712653c66d63e0d7f13f073bde8c0f209ba8/docs/examples/notebooks/display_protocol.ipynb">http://nbviewer.ipython.org/github/ipython/ipython/blob/3607712653c66d63e0d7f13f073bde8c0f209ba8/docs/examples/notebooks/display_protocol.ipynb</a></p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.plot.Plot">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.plot.</span></span><span class="sig-name descname"><span class="pre">Plot</span></span><a class="reference internal" href="../_modules/goulib/plot.html#Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.Plot" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>base class for plotable rich object display on IPython notebooks
+inspired from <a class="reference external" href="http://nbviewer.ipython.org/github/ipython/ipython/blob/3607712653c66d63e0d7f13f073bde8c0f209ba8/docs/examples/notebooks/display_protocol.ipynb">http://nbviewer.ipython.org/github/ipython/ipython/blob/3607712653c66d63e0d7f13f073bde8c0f209ba8/docs/examples/notebooks/display_protocol.ipynb</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.plot.Plot.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'svg'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#Plot.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.Plot.render" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.plot.Plot.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#Plot.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.Plot.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.plot.Plot.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#Plot.html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.Plot.html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.plot.Plot.svg">
+<span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#Plot.svg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.Plot.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.plot.Plot.png">
+<span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#Plot.png"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.Plot.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.plot.Plot.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#Plot.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.Plot.plot" title="Link to this definition">¶</a></dt>
+<dd><p>renders on IPython Notebook
+(alias to make usage more straightforward)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.plot.Plot.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.plot.Plot.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.plot.render">
+<span class="sig-prename descclassname"><span class="pre">goulib.plot.</span></span><span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plotables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'svg'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.render" title="Link to this definition">¶</a></dt>
+<dd><p>renders several Plot objects</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.plot.png">
+<span class="sig-prename descclassname"><span class="pre">goulib.plot.</span></span><span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plotables</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#png"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.plot.svg">
+<span class="sig-prename descclassname"><span class="pre">goulib.plot.</span></span><span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plotables</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#svg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.plot.plot">
+<span class="sig-prename descclassname"><span class="pre">goulib.plot.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plotables</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.plot.plot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.plot.save">
+<span class="sig-prename descclassname"><span class="pre">goulib.plot.</span></span><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plotables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/plot.html#save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.plot.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 
 
@@ -82,6 +153,30 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.plot</a><ul>
+<li><a class="reference internal" href="#goulib.plot.Plot"><code class="docutils literal notranslate"><span class="pre">Plot</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.plot.Plot.render"><code class="docutils literal notranslate"><span class="pre">Plot.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.Plot.save"><code class="docutils literal notranslate"><span class="pre">Plot.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.Plot.html"><code class="docutils literal notranslate"><span class="pre">Plot.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.Plot.svg"><code class="docutils literal notranslate"><span class="pre">Plot.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.Plot.png"><code class="docutils literal notranslate"><span class="pre">Plot.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.Plot.plot"><code class="docutils literal notranslate"><span class="pre">Plot.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.Plot.__annotations__"><code class="docutils literal notranslate"><span class="pre">Plot.__annotations__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.plot.render"><code class="docutils literal notranslate"><span class="pre">render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.png"><code class="docutils literal notranslate"><span class="pre">png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.svg"><code class="docutils literal notranslate"><span class="pre">svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.plot.save"><code class="docutils literal notranslate"><span class="pre">save()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="goulib.piecewise.html"
@@ -133,9 +228,9 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2025, Ph. Guglielmetti, https://github.com/goulu/goulib.
-      Last updated on Feb 27, 2025.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 27, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
   </body>
 </html>

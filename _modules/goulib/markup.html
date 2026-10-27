@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goulib.markup &#8212; goulib 3.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.markup</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for goulib.markup</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">simple HTML/XML generation (forked from `markup &lt;http://pypi.python.org/pypi/markup/&gt;`_)</span>
+
+<span class="sd"># This code is in the public domain, it comes</span>
+<span class="sd"># with absolutely no warranty and you can do</span>
+<span class="sd"># absolutely whatever you want with it.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">keyword</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># from http://www.voidspace.org.uk/python/cgiutils.html</span>
+
+
+<div class="viewcode-block" id="cgiprint">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.cgiprint">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cgiprint</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">unbuff</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">line_end</span><span class="o">=</span><span class="s1">'</span><span class="se">\r\n</span><span class="s1">'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Print to the stdout.</span>
+<span class="sd">    :param line: string to print, followed by line_end</span>
+<span class="sd">    :param unbuff: boolean, True to flush the buffer after every write.</span>
+<span class="sd">    :param line_end: string to print after each line. By default this is ``\\r\\n``, which is the standard specified by the RFC for http headers.</span>
+<span class="sd">    """</span>
+    <span class="c1"># print(line,line_end)</span>
+    <span class="c1"># return</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line_end</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">unbuff</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="style_dict2str">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.style_dict2str">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">style_dict2str</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">;'</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">style</span><span class="o">.</span><span class="n">items</span><span class="p">())</span></div>
+
+
+
+<div class="viewcode-block" id="style_str2dict">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.style_str2dict">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">style_str2dict</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">style</span><span class="p">:</span>  <span class="c1"># skip if None or empty string</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">style</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">';'</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">res</span></div>
+
+
+
+<div class="viewcode-block" id="tag">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.tag">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">tag</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">between</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""generate full tag."""</span>
+    <span class="n">single</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'single'</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"&lt;</span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="n">tag</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>               <span class="c1"># when value is None that means stuff like &lt;... checked&gt;</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># strip this so class_ will mean class, etc.</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">'http_equiv'</span><span class="p">:</span>         <span class="c1"># special cases, maybe change _ to - overall?</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="s1">'http-equiv'</span>
+            <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">'accept_charset'</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="s1">'accept-charset'</span>
+            <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">'style'</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">style_dict2str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">="</span><span class="si">%s</span><span class="s1">"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">escape</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">between</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">between</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># unicode</span>
+            <span class="n">between</span> <span class="o">=</span> <span class="n">between</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'ascii'</span><span class="p">,</span> <span class="s1">'xmlcharrefreplace'</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
+                <span class="s2">"utf-8"</span><span class="p">,</span> <span class="s2">"backslashreplace"</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"</span><span class="si">%s</span><span class="s2">&gt;</span><span class="si">%s</span><span class="s2">&lt;/</span><span class="si">%s</span><span class="s2">&gt;"</span> <span class="o">%</span> <span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">between</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">single</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"</span><span class="si">%s</span><span class="s2"> /&gt;"</span> <span class="o">%</span> <span class="n">out</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"</span><span class="si">%s</span><span class="s2">&gt;"</span> <span class="o">%</span> <span class="n">out</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+
+
+<span class="c1"># tags which are reserved python keywords will be referred</span>
+<span class="c1"># to by a leading underscore otherwise we end up with a syntax error</span>
+
+
+<div class="viewcode-block" id="element">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.element">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">element</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""This class handles the addition of a new element."""</span>
+
+<div class="viewcode-block" id="element.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.element.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">case</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+        <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s1">'upper'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="s1">'lower'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="s1">'given'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span></div>
+
+
+<div class="viewcode-block" id="element.__call__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.element.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># if class_ was defined in parent it should be added to every element</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">class_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">'class_'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s1">'class_'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">class_</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">myarg</span><span class="p">,</span> <span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">myarg</span><span class="p">,</span> <span class="n">mydict</span> <span class="ow">in</span> <span class="n">_argsdicts</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)]</span>
+            <span class="k">return</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">myarg</span><span class="p">,</span> <span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">myarg</span><span class="p">,</span> <span class="n">mydict</span> <span class="ow">in</span> <span class="n">_argsdicts</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)]</span>
+            <span class="k">return</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">twotags</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">myarg</span><span class="p">,</span> <span class="n">mydict</span> <span class="ow">in</span> <span class="n">_argsdicts</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">myarg</span><span class="p">,</span> <span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">onetags</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">myarg</span><span class="p">,</span> <span class="n">mydict</span> <span class="ow">in</span> <span class="n">_argsdicts</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+                    <span class="c1"># here myarg is always None, because len( args ) = 0</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">myarg</span><span class="p">,</span> <span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ClosingError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'strict_html'</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">deptags</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DeprecationError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidElementError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="element.render">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.element.render">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">single</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Append the actual tags to content."""</span>
+        <span class="k">if</span> <span class="n">single</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">'single'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">tag</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">cgiprint</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">out</span></div>
+
+
+<div class="viewcode-block" id="element.close">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.element.close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Append a closing tag unless element has only opening tag."""</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">twotags</span><span class="p">:</span>
+            <span class="n">cgiprint</span><span class="p">(</span><span class="s2">"&lt;/</span><span class="si">%s</span><span class="s2">&gt;"</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+            <span class="c1"># self.parent.content.append( "&lt;/%s&gt;" % self.tag )</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">onetags</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ClosingError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'strict_html'</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">deptags</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DeprecationError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="element.open">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.element.open">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Append an opening tag."""</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">twotags</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">onetags</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'strict_html'</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">deptags</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DeprecationError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="page">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">page</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is our main class representing a document. Elements are added</span>
+<span class="sd">    as attributes of an instance of this class.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="page.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'strict_html'</span><span class="p">,</span> <span class="n">case</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">,</span> <span class="n">onetags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">twotags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Stuff that effects the whole document.</span>
+
+<span class="sd">        :param mode: string. can be either:</span>
+
+<span class="sd">        - 'strict_html'   for HTML 4.01 (default)</span>
+<span class="sd">        - 'html'          alias for 'strict_html'</span>
+<span class="sd">        - 'loose_html'    to allow some deprecated elements</span>
+<span class="sd">        - 'xml'           to allow arbitrary elements</span>
+
+<span class="sd">        :param case:  string. can be either:</span>
+
+<span class="sd">        - 'lower'         element names will be printed in lower case (default)</span>
+<span class="sd">        - 'upper'         they will be printed in upper case</span>
+<span class="sd">        - 'given'         element names will be printed as they are given</span>
+
+<span class="sd">        :param onetags:  list or tuple of valid elements with opening tags only</span>
+<span class="sd">        :param twotags:  list or tuple of valid elements with both opening and closing tags</span>
+
+<span class="sd">        these two keyword arguments may be used to select the set of valid elements in 'xml' mode</span>
+<span class="sd">        invalid elements will raise appropriate exceptions</span>
+
+<span class="sd">        :param separator: string to place between added elements, defaults to newline</span>
+
+<span class="sd">        :param class_:    a class that will be added to every element if defined</span>
+
+<span class="sd">        """</span>
+
+        <span class="n">valid_onetags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"AREA"</span><span class="p">,</span> <span class="s2">"BASE"</span><span class="p">,</span> <span class="s2">"BR"</span><span class="p">,</span> <span class="s2">"COL"</span><span class="p">,</span> <span class="s2">"FRAME"</span><span class="p">,</span>
+                         <span class="s2">"HR"</span><span class="p">,</span> <span class="s2">"IMG"</span><span class="p">,</span> <span class="s2">"INPUT"</span><span class="p">,</span> <span class="s2">"LINK"</span><span class="p">,</span> <span class="s2">"META"</span><span class="p">,</span> <span class="s2">"PARAM"</span><span class="p">]</span>
+        <span class="n">valid_twotags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"ABBR"</span><span class="p">,</span> <span class="s2">"ACRONYM"</span><span class="p">,</span> <span class="s2">"ADDRESS"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"BDO"</span><span class="p">,</span> <span class="s2">"BIG"</span><span class="p">,</span> <span class="s2">"BLOCKQUOTE"</span><span class="p">,</span> <span class="s2">"BODY"</span><span class="p">,</span> <span class="s2">"BUTTON"</span><span class="p">,</span>
+                         <span class="s2">"CAPTION"</span><span class="p">,</span> <span class="s2">"CITE"</span><span class="p">,</span> <span class="s2">"CODE"</span><span class="p">,</span> <span class="s2">"COLGROUP"</span><span class="p">,</span> <span class="s2">"DD"</span><span class="p">,</span> <span class="s2">"DEL"</span><span class="p">,</span> <span class="s2">"DFN"</span><span class="p">,</span> <span class="s2">"DIV"</span><span class="p">,</span> <span class="s2">"DL"</span><span class="p">,</span> <span class="s2">"DT"</span><span class="p">,</span> <span class="s2">"EM"</span><span class="p">,</span> <span class="s2">"FIELDSET"</span><span class="p">,</span>
+                         <span class="s2">"FORM"</span><span class="p">,</span> <span class="s2">"FRAMESET"</span><span class="p">,</span> <span class="s2">"H1"</span><span class="p">,</span> <span class="s2">"H2"</span><span class="p">,</span> <span class="s2">"H3"</span><span class="p">,</span> <span class="s2">"H4"</span><span class="p">,</span> <span class="s2">"H5"</span><span class="p">,</span> <span class="s2">"H6"</span><span class="p">,</span> <span class="s2">"HEAD"</span><span class="p">,</span> <span class="s2">"HTML"</span><span class="p">,</span> <span class="s2">"I"</span><span class="p">,</span> <span class="s2">"IFRAME"</span><span class="p">,</span> <span class="s2">"INS"</span><span class="p">,</span>
+                         <span class="s2">"KBD"</span><span class="p">,</span> <span class="s2">"LABEL"</span><span class="p">,</span> <span class="s2">"LEGEND"</span><span class="p">,</span> <span class="s2">"LI"</span><span class="p">,</span> <span class="s2">"MAP"</span><span class="p">,</span> <span class="s2">"NOFRAMES"</span><span class="p">,</span> <span class="s2">"NOSCRIPT"</span><span class="p">,</span> <span class="s2">"OBJECT"</span><span class="p">,</span> <span class="s2">"OL"</span><span class="p">,</span> <span class="s2">"OPTGROUP"</span><span class="p">,</span>
+                         <span class="s2">"OPTION"</span><span class="p">,</span> <span class="s2">"P"</span><span class="p">,</span> <span class="s2">"PRE"</span><span class="p">,</span> <span class="s2">"Q"</span><span class="p">,</span> <span class="s2">"SAMP"</span><span class="p">,</span> <span class="s2">"SCRIPT"</span><span class="p">,</span> <span class="s2">"SELECT"</span><span class="p">,</span> <span class="s2">"SMALL"</span><span class="p">,</span> <span class="s2">"SPAN"</span><span class="p">,</span> <span class="s2">"STRONG"</span><span class="p">,</span> <span class="s2">"STYLE"</span><span class="p">,</span>
+                         <span class="s2">"SUB"</span><span class="p">,</span> <span class="s2">"SUP"</span><span class="p">,</span> <span class="s2">"TABLE"</span><span class="p">,</span> <span class="s2">"TBODY"</span><span class="p">,</span> <span class="s2">"TD"</span><span class="p">,</span> <span class="s2">"TEXTAREA"</span><span class="p">,</span> <span class="s2">"TFOOT"</span><span class="p">,</span> <span class="s2">"TH"</span><span class="p">,</span> <span class="s2">"THEAD"</span><span class="p">,</span> <span class="s2">"TITLE"</span><span class="p">,</span> <span class="s2">"TR"</span><span class="p">,</span>
+                         <span class="s2">"TT"</span><span class="p">,</span> <span class="s2">"UL"</span><span class="p">,</span> <span class="s2">"VAR"</span><span class="p">]</span>
+        <span class="n">dont_wait</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"HTML"</span><span class="p">,</span> <span class="s2">"BODY"</span><span class="p">]</span>
+        <span class="n">deprecated_onetags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"BASEFONT"</span><span class="p">,</span> <span class="s2">"ISINDEX"</span><span class="p">]</span>
+        <span class="n">deprecated_twotags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"APPLET"</span><span class="p">,</span> <span class="s2">"CENTER"</span><span class="p">,</span>
+                              <span class="s2">"DIR"</span><span class="p">,</span> <span class="s2">"FONT"</span><span class="p">,</span> <span class="s2">"MENU"</span><span class="p">,</span> <span class="s2">"S"</span><span class="p">,</span> <span class="s2">"STRIKE"</span><span class="p">,</span> <span class="s2">"U"</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">footer</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">case</span> <span class="o">=</span> <span class="n">case</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">separator</span> <span class="o">=</span> <span class="n">separator</span>
+
+        <span class="c1"># init( ) sets it to True so we know that &lt;/body&gt;&lt;/html&gt; has to be printed at the end</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_full</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_</span> <span class="o">=</span> <span class="n">class_</span>
+
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">'strict_html'</span> <span class="ow">or</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">'html'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span> <span class="o">=</span> <span class="n">valid_onetags</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span> <span class="o">=</span> <span class="n">valid_twotags</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deptags</span> <span class="o">=</span> <span class="n">deprecated_onetags</span> <span class="o">+</span> <span class="n">deprecated_twotags</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deptags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">deptags</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="s1">'strict_html'</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">'loose_html'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span> <span class="o">=</span> <span class="n">valid_onetags</span> <span class="o">+</span> <span class="n">deprecated_onetags</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span> <span class="o">=</span> <span class="n">valid_twotags</span> <span class="o">+</span> <span class="n">deprecated_twotags</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span> <span class="o">+=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">'xml'</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">onetags</span> <span class="ow">and</span> <span class="n">twotags</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span> <span class="o">=</span> <span class="n">onetags</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span> <span class="o">=</span> <span class="n">twotags</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">onetags</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">twotags</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">twotags</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">onetags</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">CustomizationError</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">onetags</span> <span class="o">=</span> <span class="n">russell</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">twotags</span> <span class="o">=</span> <span class="n">russell</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ModeError</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.__getattr__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.__getattr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+
+        <span class="c1"># tags should start with double underscore</span>
+        <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"__"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">attr</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"__"</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="c1"># tag with single underscore should be a reserved keyword</span>
+        <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'_'</span><span class="p">):</span>
+            <span class="n">attr</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">element</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">case</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">case</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.__str__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_full</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'strict_html'</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'loose_html'</span><span class="p">):</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'&lt;/body&gt;'</span><span class="p">,</span> <span class="s1">'&lt;/html&gt;'</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">separator</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">footer</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">separator</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">footer</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.__call__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">escape</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Return the document as a string.</span>
+
+<span class="sd">        escape --   False   print normally</span>
+<span class="sd">                    True    replace &lt; and &gt; by &amp;lt; and &amp;gt;</span>
+<span class="sd">                            the default escape sequences in most browsers"""</span>
+
+        <span class="k">if</span> <span class="n">escape</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="page.add">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.add">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This is an alias to addcontent."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addcontent</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="page.addfooter">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.addfooter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">addfooter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Add some text to the bottom of the document"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">footer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.addheader">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.addheader">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">addheader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Add some text to the top of the document"""</span>
+        <span class="n">cgiprint</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.addcontent">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.addcontent">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">addcontent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Add some text to the main part of the document"""</span>
+        <span class="n">cgiprint</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.init">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.init">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">'en'</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metainfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">footer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">charset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">doctype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bodyattrs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This method is used for complete documents with appropriate</span>
+<span class="sd">        doctype, encoding, title, etc information. For an /XML snippet</span>
+<span class="sd">        omit this method.</span>
+
+<span class="sd">        lang --     language, usually a two character string, will appear</span>
+<span class="sd">                    as &lt;html lang='en'&gt; in html mode (ignored in xml mode)</span>
+
+<span class="sd">        css --      Cascading Style Sheet filename as a string or a list of</span>
+<span class="sd">                    strings for multiple css files (ignored in xml mode)</span>
+
+<span class="sd">        metainfo -- a dictionary in the form { 'name':'content' } to be inserted</span>
+<span class="sd">                    into meta element(s) as &lt;meta name='name' content='content'&gt;</span>
+<span class="sd">                    (ignored in xml mode)</span>
+
+<span class="sd">        base     -- set the &lt;base href="..."&gt; tag in &lt;head&gt;</span>
+
+<span class="sd">        bodyattrs --a dictionary in the form { 'key':'value', ... } which will be added</span>
+<span class="sd">                    as attributes of the &lt;body&gt; element as &lt;body key='value' ... &gt;</span>
+<span class="sd">                    (ignored in xml mode)</span>
+
+<span class="sd">        script --   dictionary containing src:type pairs, &lt;script type='text/type' src=src&gt;&lt;/script&gt;</span>
+<span class="sd">                    or a list of [ 'src1', 'src2', ... ] in which case 'javascript' is assumed for all</span>
+
+<span class="sd">        title --    the title of the document as a string to be inserted into</span>
+<span class="sd">                    a title element as &lt;title&gt;my title&lt;/title&gt; (ignored in xml mode)</span>
+
+<span class="sd">        header --   some text to be inserted right after the &lt;body&gt; element</span>
+<span class="sd">                    (ignored in xml mode)</span>
+
+<span class="sd">        footer --   some text to be inserted right before the &lt;/body&gt; element</span>
+<span class="sd">                    (ignored in xml mode)</span>
+
+<span class="sd">        charset --  a string defining the character set, will be inserted into a</span>
+<span class="sd">                    &lt;meta http-equiv='Content-Type' content='text/html; charset=myset'&gt;</span>
+<span class="sd">                    element (ignored in xml mode)</span>
+
+<span class="sd">        encoding -- a string defining the encoding, will be put into to first line of</span>
+<span class="sd">                    the document as &lt;?xml version='1.0' encoding='myencoding' ?&gt; in</span>
+<span class="sd">                    xml mode (ignored in html mode)</span>
+
+<span class="sd">        doctype --  the document type string, defaults to</span>
+<span class="sd">                    &lt;!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'&gt;</span>
+<span class="sd">                    in html mode (ignored in xml mode)"""</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_full</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'strict_html'</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'loose_html'</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">doctype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">doctype</span> <span class="o">=</span> <span class="s2">"&lt;!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'&gt;"</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doctype</span><span class="p">)</span>
+            <span class="n">cgiprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">separator</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">lang</span><span class="o">=</span><span class="n">lang</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">charset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">(</span><span class="n">http_equiv</span><span class="o">=</span><span class="s1">'Content-Type'</span><span class="p">,</span>
+                          <span class="n">content</span><span class="o">=</span><span class="s2">"text/html; charset=</span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="n">charset</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metainfo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metainfo</span><span class="p">(</span><span class="n">metainfo</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">css</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="n">css</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">script</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scripts</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">base</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="s1">'</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">base</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">bodyattrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">(</span><span class="o">**</span><span class="n">bodyattrs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">header</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">footer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">footer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">footer</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'xml'</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">doctype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">doctype</span> <span class="o">=</span> <span class="s2">"&lt;?xml version='1.0' encoding='</span><span class="si">%s</span><span class="s2">' ?&gt;"</span> <span class="o">%</span> <span class="n">encoding</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">doctype</span> <span class="o">=</span> <span class="s2">"&lt;?xml version='1.0' ?&gt;"</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doctype</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.css">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.css">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">css</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filelist</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This convenience function is only useful for html.</span>
+<span class="sd">        It adds css stylesheet(s) to the document via the &lt;link&gt; element."""</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filelist</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">filelist</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="s1">'stylesheet'</span><span class="p">,</span>
+                      <span class="nb">type</span><span class="o">=</span><span class="s1">'text/css'</span><span class="p">,</span> <span class="n">media</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">filelist</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">href</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="s1">'stylesheet'</span><span class="p">,</span>
+                          <span class="nb">type</span><span class="o">=</span><span class="s1">'text/css'</span><span class="p">,</span> <span class="n">media</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.metainfo">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.metainfo">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">metainfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mydict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This convenience function is only useful for html.</span>
+<span class="sd">        It adds meta information via the &lt;meta&gt; element, the argument is</span>
+<span class="sd">        a dictionary of the form { 'name':'content' }."""</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mydict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="s2">"Metainfo should be called with a dictionary argument of name:content pairs."</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="page.scripts">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.page.scripts">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scripts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mydict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Only useful in html, mydict is dictionary of src:type pairs or a list</span>
+<span class="sd">        of script sources [ 'src1', 'src2', ... ] in which case 'javascript' is assumed for type.</span>
+<span class="sd">        Will be rendered as &lt;script type='text/type' src=src&gt;&lt;/script&gt;"""</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mydict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">src</span><span class="p">,</span> <span class="nb">type</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">script</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="n">src</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">'text/</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="nb">type</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">src</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">script</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="n">src</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">'text/javascript'</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">"Script should be given a dictionary of src:type pairs or a list of javascript src's."</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_oneliner</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""An instance of oneliner returns a string corresponding to one element.</span>
+<span class="sd">    This class can be used to write 'oneliners' that return a string</span>
+<span class="sd">    immediately so there is no need to instantiate the page class."""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">case</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">case</span> <span class="o">=</span> <span class="n">case</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+
+        <span class="c1"># tags should start with double underscore</span>
+        <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"__"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">attr</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"__"</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="c1"># tag with single underscore should be a reserved keyword</span>
+        <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'_'</span><span class="p">):</span>
+            <span class="n">attr</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">element</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">case</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">case</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+
+<span class="n">oneliner</span> <span class="o">=</span> <span class="n">_oneliner</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span>
+<span class="n">upper_oneliner</span> <span class="o">=</span> <span class="n">_oneliner</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="s1">'upper'</span><span class="p">)</span>
+<span class="n">given_oneliner</span> <span class="o">=</span> <span class="n">_oneliner</span><span class="p">(</span><span class="n">case</span><span class="o">=</span><span class="s1">'given'</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_argsdicts</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">mydict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A utility generator that pads argument list and dictionary values, will only be called with len( args ) = 0, 1."""</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">_totuple</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"We should have never gotten here."</span><span class="p">)</span>
+
+    <span class="n">mykeys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mydict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">myvalues</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">_totuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">mydict</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
+
+    <span class="n">maxlength</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="p">[</span><span class="n">args</span><span class="p">]</span> <span class="o">+</span> <span class="n">myvalues</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxlength</span><span class="p">):</span>
+        <span class="n">thisdict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mykeys</span><span class="p">,</span> <span class="n">myvalues</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">thisdict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="n">thisdict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">thisarg</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="n">thisarg</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">yield</span> <span class="n">thisarg</span><span class="p">,</span> <span class="n">thisdict</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_totuple</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Utility stuff to convert string, int, long, float, None or anything to a usable tuple."""</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<div class="viewcode-block" id="escape">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.escape">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">escape</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Escape special html characters."""</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">'&amp;'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&amp;'</span><span class="p">,</span> <span class="s1">'&amp;amp;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'&gt;'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&gt;'</span><span class="p">,</span> <span class="s1">'&amp;gt;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'&lt;'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&lt;'</span><span class="p">,</span> <span class="s1">'&amp;lt;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'</span><span class="se">\"</span><span class="s1">'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\"</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'&amp;quot;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'</span><span class="se">\'</span><span class="s1">'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\'</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'&amp;quot;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">newline</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="s1">'&lt;br&gt;'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">text</span></div>
+
+
+
+<span class="n">_escape</span> <span class="o">=</span> <span class="n">escape</span>
+
+
+<div class="viewcode-block" id="unescape">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.unescape">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">unescape</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Inverse of escape."""</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">'&amp;amp;'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&amp;amp;'</span><span class="p">,</span> <span class="s1">'&amp;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'&amp;gt;'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&amp;gt;'</span><span class="p">,</span> <span class="s1">'&gt;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'&amp;lt;'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&amp;lt;'</span><span class="p">,</span> <span class="s1">'&lt;'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">'&amp;quot;'</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&amp;quot;'</span><span class="p">,</span> <span class="s1">'</span><span class="se">\"</span><span class="s1">'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">text</span></div>
+
+
+
+<div class="viewcode-block" id="dummy">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.dummy">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">dummy</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A dummy class for attaching attributes."""</span>
+    <span class="k">pass</span></div>
+
+
+
+<span class="n">doctype</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">()</span>
+<span class="n">doctype</span><span class="o">.</span><span class="n">frameset</span> <span class="o">=</span> <span class="s2">"""&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"&gt;"""</span>
+<span class="n">doctype</span><span class="o">.</span><span class="n">strict</span> <span class="o">=</span> <span class="s2">"""&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;"""</span>
+<span class="n">doctype</span><span class="o">.</span><span class="n">loose</span> <span class="o">=</span> <span class="s2">"""&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;"""</span>
+
+
+<div class="viewcode-block" id="russell">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.russell">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">russell</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A dummy class that contains anything."""</span>
+
+<div class="viewcode-block" id="russell.__contains__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.russell.__contains__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MarkupError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.MarkupError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MarkupError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""All our exceptions subclass this."""</span>
+
+<div class="viewcode-block" id="MarkupError.__str__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.MarkupError.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ClosingError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.ClosingError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ClosingError</span><span class="p">(</span><span class="n">MarkupError</span><span class="p">):</span>
+<div class="viewcode-block" id="ClosingError.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.ClosingError.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">"The element '</span><span class="si">%s</span><span class="s2">' does not accept non-keyword arguments (has no closing tag)."</span> <span class="o">%</span> <span class="n">tag</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="OpeningError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.OpeningError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpeningError</span><span class="p">(</span><span class="n">MarkupError</span><span class="p">):</span>
+<div class="viewcode-block" id="OpeningError.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.OpeningError.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">"The element '</span><span class="si">%s</span><span class="s2">' can not be opened."</span> <span class="o">%</span> <span class="n">tag</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ArgumentError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.ArgumentError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArgumentError</span><span class="p">(</span><span class="n">MarkupError</span><span class="p">):</span>
+<div class="viewcode-block" id="ArgumentError.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.ArgumentError.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">"The element '</span><span class="si">%s</span><span class="s2">' was called with more than one non-keyword argument."</span> <span class="o">%</span> <span class="n">tag</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="InvalidElementError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.InvalidElementError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">InvalidElementError</span><span class="p">(</span><span class="n">MarkupError</span><span class="p">):</span>
+<div class="viewcode-block" id="InvalidElementError.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.InvalidElementError.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">"The element '</span><span class="si">%s</span><span class="s2">' is not valid for your mode '</span><span class="si">%s</span><span class="s2">'."</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">tag</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="DeprecationError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.DeprecationError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DeprecationError</span><span class="p">(</span><span class="n">MarkupError</span><span class="p">):</span>
+<div class="viewcode-block" id="DeprecationError.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.DeprecationError.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">"The element '</span><span class="si">%s</span><span class="s2">' is deprecated, instantiate markup.page with mode='loose_html' to allow it."</span> <span class="o">%</span> <span class="n">tag</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ModeError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.ModeError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModeError</span><span class="p">(</span><span class="n">MarkupError</span><span class="p">):</span>
+<div class="viewcode-block" id="ModeError.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.ModeError.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">"Mode '</span><span class="si">%s</span><span class="s2">' is invalid, possible values: strict_html, html (alias for strict_html), loose_html, xml."</span> <span class="o">%</span> <span class="n">mode</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="CustomizationError">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.CustomizationError">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomizationError</span><span class="p">(</span><span class="n">MarkupError</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomizationError.__init__">
+<a class="viewcode-back" href="../../modules/goulib.markup.html#goulib.markup.CustomizationError.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">"If you customize the allowed elements, you must define both types 'onetags' and 'twotags'."</span></div>
+</div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.markup</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 27, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

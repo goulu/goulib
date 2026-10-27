@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <script src="../_static/documentation_options.js?v=acc74ff5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.interval" href="goulib.interval.html" />
@@ -63,88 +63,88 @@
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt_rgb</span></code>(func)</p></td>
-<td><p>Decorator that adapts to RGB(A) images to a gray-scale filter. :param apply_to_rgb: function     Function that returns a filtered image from an image-filter and RGB     image. This will only be called if the image is RGB-like.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.adapt_rgb" title="goulib.image.adapt_rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt_rgb</span></code></a>(func)</p></td>
+<td><p>Decorator that adapts to RGB(A) images to a gray-scale filter.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_composite</span></code>(front, back)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.alpha_composite" title="goulib.image.alpha_composite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_composite</span></code></a>(front, back)</p></td>
 <td><p>Alpha composite two RGBA images.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_composite_with_color</span></code>(image[, color])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.alpha_composite_with_color" title="goulib.image.alpha_composite_with_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_composite_with_color</span></code></a>(image[, color])</p></td>
 <td><p>Alpha composite an RGBA image with a single color image of the specified color and the same size as the original image.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool2gray</span></code>(im)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.bool2gray" title="goulib.image.bool2gray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool2gray</span></code></a>(im)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool2rgb</span></code>(im[, color0, color1])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.bool2rgb" title="goulib.image.bool2rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool2rgb</span></code></a>(im[, color0, color1])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmyk2rgb</span></code>(cmyk)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.cmyk2rgb" title="goulib.image.cmyk2rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmyk2rgb</span></code></a>(cmyk)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert</span></code>(a, source, target, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.convert" title="goulib.image.convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert</span></code></a>(a, source, target, **kwargs)</p></td>
 <td><p>convert an image between modes, eventually using intermediary steps :param a: nparray (x,y,n) containing image :param source: string : key of source image mode in modes :param target: string : key of target image mode in modes</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_type</span></code>(data, type)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.convert_type" title="goulib.image.convert_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_type</span></code></a>(data, type)</p></td>
 <td><p>convert inner format of image :param data: nparray (x,y,n) containing image :param type: target np.type :return: nparray (x,y,n) with new type replaces outdated skimage.util.dtype.convert using  <a class="reference external" href="https://scikit-image.org/docs/0.24.x/api/skimage.html#utility-functions">https://scikit-image.org/docs/0.24.x/api/skimage.html#utility-functions</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">disk</span></code>(radius[, antialias])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.disk" title="goulib.image.disk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disk</span></code></a>(radius[, antialias])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dither</span></code>(image[, method, N])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.dither" title="goulib.image.dither"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dither</span></code></a>(image[, method, N])</p></td>
 <td><p>Quantize a gray image, using dithering.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fig2img</span></code>(fig)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.fig2img" title="goulib.image.fig2img"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fig2img</span></code></a>(fig)</p></td>
 <td><p>Convert a Matplotlib figure to a PIL Image in RGBA format and return it</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fspecial</span></code>(name, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.fspecial" title="goulib.image.fspecial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fspecial</span></code></a>(name, **kwargs)</p></td>
 <td><p>mimics the Matlab image toolbox fspecial function <a class="reference external" href="http://www.mathworks.com/help/images/ref/fspecial.html?refresh=true">http://www.mathworks.com/help/images/ref/fspecial.html?refresh=true</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gray2bool</span></code>(image[, method, N])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.gray2bool" title="goulib.image.gray2bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gray2bool</span></code></a>(image[, method, N])</p></td>
 <td><p>Quantize a gray image, using dithering.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gray2rgb</span></code>(im[, color0, color1])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.gray2rgb" title="goulib.image.gray2rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gray2rgb</span></code></a>(im[, color0, color1])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">guessmode</span></code>(arr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.guessmode" title="goulib.image.guessmode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">guessmode</span></code></a>(arr)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ind2any</span></code>(im, palette, dest)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.ind2any" title="goulib.image.ind2any"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ind2any</span></code></a>(im, palette, dest)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ind2rgb</span></code>(im, palette)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.ind2rgb" title="goulib.image.ind2rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ind2rgb</span></code></a>(im, palette)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">lab2ind</span></code>(im[, colors])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.lab2ind" title="goulib.image.lab2ind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lab2ind</span></code></a>(im[, colors])</p></td>
 <td><p>convert a Lab image to indexed colors :param a: nparray (x,y,n) containing image :param colors: int number of colors or predefined Palette :ref: <a class="reference external" href="http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html">http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nchannels</span></code>(arr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.nchannels" title="goulib.image.nchannels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nchannels</span></code></a>(arr)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code>(a[, newmax, newmin])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.normalize" title="goulib.image.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code></a>(a[, newmax, newmin])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">palette</span></code>(im, ncolors[, tol])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.palette" title="goulib.image.palette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">palette</span></code></a>(im, ncolors[, tol])</p></td>
 <td><p>extract the color palette of image array (in its own colorspace.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pure_pil_alpha_to_color_v1</span></code>(image[, color])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.pure_pil_alpha_to_color_v1" title="goulib.image.pure_pil_alpha_to_color_v1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pure_pil_alpha_to_color_v1</span></code></a>(image[, color])</p></td>
 <td><p>Alpha composite an RGBA Image with a specified color.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pure_pil_alpha_to_color_v2</span></code>(image[, color])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.pure_pil_alpha_to_color_v2" title="goulib.image.pure_pil_alpha_to_color_v2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pure_pil_alpha_to_color_v2</span></code></a>(image[, color])</p></td>
 <td><p>Alpha composite an RGBA Image with a specified color.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantize</span></code>(image[, N, L])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.quantize" title="goulib.image.quantize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantize</span></code></a>(image[, N, L])</p></td>
 <td><p>Quantize a gray image.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">randomize</span></code>(image[, N, L])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.randomize" title="goulib.image.randomize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">randomize</span></code></a>(image[, N, L])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_pdf</span></code>(filename, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.read_pdf" title="goulib.image.read_pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_pdf</span></code></a>(filename, **kwargs)</p></td>
 <td><p>reads a bitmap graphics on a .pdf file only the first page is parsed</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb2cmyk</span></code>(rgb)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.rgb2cmyk" title="goulib.image.rgb2cmyk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb2cmyk</span></code></a>(rgb)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb2rgba</span></code>(array)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.rgb2rgba" title="goulib.image.rgb2rgba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb2rgba</span></code></a>(array)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -152,23 +152,927 @@
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ditherer</span></code>(name, method)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.Ditherer" title="goulib.image.Ditherer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ditherer</span></code></a>(name, method)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ErrorDiffusion</span></code>(name, positions, weights[, wsum])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.ErrorDiffusion" title="goulib.image.ErrorDiffusion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ErrorDiffusion</span></code></a>(name, positions, weights[, wsum])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FloydSteinberg</span></code>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.FloydSteinberg" title="goulib.image.FloydSteinberg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FloydSteinberg</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Image</span></code>([data, mode])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.image.Image" title="goulib.image.Image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Image</span></code></a>([data, mode])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mode</span></code>(name, nchannels, type, min, max)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.image.Mode" title="goulib.image.Mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mode</span></code></a>(name, nchannels, type, min, max)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.image.Mode">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">Mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchannels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Mode" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Mode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchannels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Mode.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Mode.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Mode.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Mode.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Mode.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.nchannels">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">nchannels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#nchannels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.nchannels" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.guessmode">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">guessmode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#guessmode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.guessmode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.adapt_rgb">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">adapt_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#adapt_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.adapt_rgb" title="Link to this definition">¶</a></dt>
+<dd><p>Decorator that adapts to RGB(A) images to a gray-scale filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> – function that returns a filtered image from an image-filter and RGB
+image. This will only be called if the image is RGB-like.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.image.Image">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="goulib.plot.html#goulib.plot.Plot" title="goulib.plot.Plot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Plot</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – <p>can be either:</p>
+<ul>
+<li><p><cite>PIL.Image</cite> : makes a copy</p></li>
+<li><p>string : path of image to load OR PNG encoded image</p></li>
+<li><p>memoryview (extracted from a db blob)</p></li>
+<li><p>None : creates an empty image with kwargs parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>size : (y,x) pixel size tuple</p></li>
+<li><p>mode : ‘F’ (gray) by default</p></li>
+<li><p>color: to fill None=black by default</p></li>
+<li><p>colormap: Palette or matplotlib colormap</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – <p>can be either:</p>
+<ul>
+<li><p><cite>PIL.Image</cite> : makes a copy</p></li>
+<li><p>string : path of image to load OR PNG encoded image</p></li>
+<li><p>memoryview (extracted from a db blob)</p></li>
+<li><p>None : creates an empty image with kwargs parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>size : (y,x) pixel size tuple</p></li>
+<li><p>mode : ‘F’ (gray) by default</p></li>
+<li><p>color: to fill None=black by default</p></li>
+<li><p>colormap: Palette or matplotlib colormap</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.shape">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#goulib.image.Image.shape" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.size">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#goulib.image.Image.size" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.width">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#goulib.image.Image.width" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.height">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#goulib.image.Image.height" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.nchannels">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">nchannels</span></span><a class="headerlink" href="#goulib.image.Image.nchannels" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.npixels">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">npixels</span></span><a class="headerlink" href="#goulib.image.Image.npixels" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__nonzero__">
+<span class="sig-name descname"><span class="pre">__nonzero__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__nonzero__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__nonzero__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__lt__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__lt__" title="Link to this definition">¶</a></dt>
+<dd><p>is smaller</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.load" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoconvert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.save" title="Link to this definition">¶</a></dt>
+<dd><p>saves an image
+:param path: string with path/filename.ext
+:param autoconvert: bool, if True converts color planes formats to RGB
+:param format_str: str of file format. set to ‘PNG’ by skimage.io.imsave
+:param kwargs: optional params passed to skimage.io.imsave:
+:return: self for chaining</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'PNG'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.render" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.open">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.open" title="Link to this definition">¶</a></dt>
+<dd><p>PIL(low) compatibility</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.new">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'black'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.new" title="Link to this definition">¶</a></dt>
+<dd><p>PIL(low) compatibility</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.pil">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pil</span></span><a class="headerlink" href="#goulib.image.Image.pil" title="Link to this definition">¶</a></dt>
+<dd><p>convert to PIL(low) Image
+:see: <a class="reference external" href="http://effbot.org/imagingbook/concepts.htm">http://effbot.org/imagingbook/concepts.htm</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.getdata">
+<span class="sig-name descname"><span class="pre">getdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'numpy.uint8'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.getdata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.getdata" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.split">
+<span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.split" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.getpixel">
+<span class="sig-name descname"><span class="pre">getpixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.getpixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.getpixel" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.putpixel">
+<span class="sig-name descname"><span class="pre">putpixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.putpixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.putpixel" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.getpalette">
+<span class="sig-name descname"><span class="pre">getpalette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxcolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.getpalette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.getpalette" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.setpalette">
+<span class="sig-name descname"><span class="pre">setpalette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.setpalette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.setpalette" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.getcolors">
+<span class="sig-name descname"><span class="pre">getcolors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxcolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.getcolors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.getcolors" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an unsorted list of (count, color) tuples,
+where count is the number of times the corresponding color occurs in the image.</p>
+</dd>
+</dl>
+<p>If the maxcolors value is exceeded, the method stops counting and returns None.
+The default maxcolors value is 256.
+To make sure you get all colors in an image, you can pass in size[0]*size[1]
+(but make sure you have lots of memory before you do that on huge images).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pairs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.replace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.replace" title="Link to this definition">¶</a></dt>
+<dd><p>replace a color by another
+currently works only for indexed color images
+:param pairs: iterable of (from,to) ints</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxcolors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.optimize" title="Link to this definition">¶</a></dt>
+<dd><p>remove unused colors from the palette</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.crop">
+<span class="sig-name descname"><span class="pre">crop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lurb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.crop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.crop" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lurl</strong> – 4-tuple with left,up,right,bottom int coordinates</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slice</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__getitem__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.image.Image.ratio">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ratio</span></span><a class="headerlink" href="#goulib.image.Image.ratio" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.resize">
+<span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.resize" title="Link to this definition">¶</a></dt>
+<dd><p>Resize image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a resized copy of image.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>size</strong> – int tuple (width, height) requested size in pixels</p></li>
+<li><p><strong>filter</strong> – <ul>
+<li><p>NEAREST (use nearest neighbour),</p></li>
+<li><p>BILINEAR (linear interpolation in a 2x2 environment),</p></li>
+<li><p>BICUBIC (cubic spline interpolation in a 4x4 environment)</p></li>
+<li><p>LANCZOS (a high-quality downsampling filter)</p></li>
+</ul>
+</p></li>
+<li><p><strong>kwargs</strong> – extra parameters passed to skimage.transform.resize</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.rotate" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a rotated copy of image.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>angle</strong> – float rotation angle in degrees in counter-clockwork direction</p></li>
+<li><p><strong>kwargs</strong> – extra parameters passed to skimage.transform.rotate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.flip">
+<span class="sig-name descname"><span class="pre">flip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flipx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flipy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.flip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.flip" title="Link to this definition">¶</a></dt>
+<dd><p>Flip image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a flipped copy of image.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>flipx</strong> – bool flip X direction</p></li>
+<li><p><strong>flipy</strong> – bool flip Y direction</p></li>
+<li><p><strong>kwargs</strong> – extra parameters passed to skimage.transform.rotate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.paste">
+<span class="sig-name descname"><span class="pre">paste</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.paste"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.paste" title="Link to this definition">¶</a></dt>
+<dd><p>Pastes another image into this image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – image to paste, or color given as a single numerical value
+for single-band images, and a tuple for multi-band images.</p></li>
+<li><p><strong>box</strong> – 2-tuple giving the upper left corner
+or 4-tuple defining the left, upper, right, and lower pixel coordinate,
+or None (same as (0, 0)).
+If a 4-tuple is given, the size of the pasted image must match the size of the region.</p></li>
+<li><p><strong>mask</strong> – optional image to update only the regions indicated by the mask.
+You can use either “1”, “L” or “RGBA” images (in the latter case, the alpha band is used as mask).
+Where the mask is 255, the given image is copied as is.
+Where the mask is 0, the current value is preserved.
+Intermediate values can be used for transparency effects.
+Note that if you paste an “RGBA” image, the alpha band is ignored.
+You can work around this by using the same image as both source image and mask.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.threshold" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.quantize">
+<span class="sig-name descname"><span class="pre">quantize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kmeans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.quantize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.quantize" title="Link to this definition">¶</a></dt>
+<dd><p>(PIL.Image compatible)
+Convert the image to ‘P’ mode with the specified number of colors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>colors</strong> – The desired number of colors, &lt;= 256</p></li>
+<li><p><strong>method</strong> – 0 = median cut, 1 = maximum coverage, 2 = fast octree, 3 = libimagequant</p></li>
+<li><p><strong>kmeans</strong> – Integer</p></li>
+<li><p><strong>palette</strong> – Quantize to the <code class="xref py py-class docutils literal notranslate"><span class="pre">PIL.ImagingPalette</span></code> palette.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.convert" title="Link to this definition">¶</a></dt>
+<dd><p>convert image mode
+:param mode: string destination mode
+:param kwargs: optional params passed to converter(s). can contain:
+* palette : to force using a palette instead of the image’s one for indexed images
+:return: image in desired mode</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.average_hash">
+<span class="sig-name descname"><span class="pre">average_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hash_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.average_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.average_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Average Hash</p>
+<dl class="field-list simple">
+<dt class="field-odd">See<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html">http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html</a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>hash_size</strong> – int sqrt of the hash size. 8 (64 bits) is perfect for usual photos</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int of hash_size**2 bits</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.perceptual_hash">
+<span class="sig-name descname"><span class="pre">perceptual_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hash_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highfreq_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.perceptual_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.perceptual_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Perceptual Hash</p>
+<dl class="field-list simple">
+<dt class="field-odd">See<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html">http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html</a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>hash_size</strong> – int sqrt of the hash size. 8 (64 bits) is perfect for usual photos</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int of hash_size**2 bits</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hash_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.dist" title="Link to this definition">¶</a></dt>
+<dd><p>distance between images</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hash_size</strong> – int sqrt of the hash size. 8 (64 bits) is perfect for usual photos</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>float
+=0 if images are equal or very similar (same average_hash)
+=1 if images are completely decorrelated (half of the hash bits are the same by luck)
+=2 if images are inverted</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__hash__" title="Link to this definition">¶</a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__abs__">
+<span class="sig-name descname"><span class="pre">__abs__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__abs__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__abs__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float Frobenius norm of image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.invert">
+<span class="sig-name descname"><span class="pre">invert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.invert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.invert" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.Image.__neg__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__inv__">
+<span class="sig-name descname"><span class="pre">__inv__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.Image.__inv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.grayscale">
+<span class="sig-name descname"><span class="pre">grayscale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.grayscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.grayscale" title="Link to this definition">¶</a></dt>
+<dd><p>convert (color) to grayscale
+:param mode: string target mode (should be in ‘FUIL’) or automatic if none</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.colorize">
+<span class="sig-name descname"><span class="pre">colorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.colorize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.colorize" title="Link to this definition">¶</a></dt>
+<dd><p>colorize a grayscale image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color0</strong><strong>,</strong><strong>color1</strong> – 2 colors.
+- If only one is specified, image is colorized from white (for 0) to the specified color (for 1)
+- if 2 colors are specified, image is colorized from color0 (for 0) to color1 (for 1)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>RGB(A) color</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.dither">
+<span class="sig-name descname"><span class="pre">dither</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.dither"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.dither" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.normalize" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.filter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.correlation">
+<span class="sig-name descname"><span class="pre">correlation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.correlation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.correlation" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the correlation between two, single-channel, grayscale input images.
+The second image must be smaller than the first.
+:param other: the Image we’re looking for</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.scale" title="Link to this definition">¶</a></dt>
+<dd><p>resize image by factor s</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> – (sx, sy) tuple of float scaling factor, or scalar s=sx=sy</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Image scaled</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.shift">
+<span class="sig-name descname"><span class="pre">shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.shift" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.expand">
+<span class="sig-name descname"><span class="pre">expand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.expand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.expand" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image in larger canvas size, pasted at ox,oy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.compose">
+<span class="sig-name descname"><span class="pre">compose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.compose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.compose" title="Link to this definition">¶</a></dt>
+<dd><p>compose new image from a*self + b*other</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.add" title="Link to this definition">¶</a></dt>
+<dd><p>simply adds other image at px,py (subbixel) coordinates</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__radd__">
+<span class="sig-name descname"><span class="pre">__radd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__radd__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__radd__" title="Link to this definition">¶</a></dt>
+<dd><p>only to allow sum(images) easily</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.sub">
+<span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.sub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.sub" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__sub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.deltaE">
+<span class="sig-name descname"><span class="pre">deltaE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.deltaE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.deltaE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__mul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__div__">
+<span class="sig-name descname"><span class="pre">__div__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Image.__div__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Image.__div__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.__truediv__">
+<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.Image.__truediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.image.Image.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.image.Image.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.Image.html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.Image.plot" title="Link to this definition">¶</a></dt>
+<dd><p>renders on IPython Notebook
+(alias to make usage more straightforward)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.png">
+<span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.Image.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Image.svg">
+<span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.Image.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.alpha_composite">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">alpha_composite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">front</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">back</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#alpha_composite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.alpha_composite" title="Link to this definition">¶</a></dt>
+<dd><p>Alpha composite two RGBA images.</p>
+<p>Source: <a class="reference external" href="http://stackoverflow.com/a/9166671/284318">http://stackoverflow.com/a/9166671/284318</a></p>
+<p>Keyword Arguments:
+front – PIL RGBA Image object
+back – PIL RGBA Image object</p>
+<p>The algorithm comes from <a class="reference external" href="http://en.wikipedia.org/wiki/Alpha_compositing">http://en.wikipedia.org/wiki/Alpha_compositing</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.alpha_composite_with_color">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">alpha_composite_with_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(255,</span> <span class="pre">255,</span> <span class="pre">255)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#alpha_composite_with_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.alpha_composite_with_color" title="Link to this definition">¶</a></dt>
+<dd><p>Alpha composite an RGBA image with a single color image of the
+specified color and the same size as the original image.</p>
+<p>Keyword Arguments:
+image – PIL RGBA Image object
+color – Tuple r, g, b (default 255, 255, 255)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.pure_pil_alpha_to_color_v1">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">pure_pil_alpha_to_color_v1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(255,</span> <span class="pre">255,</span> <span class="pre">255)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#pure_pil_alpha_to_color_v1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.pure_pil_alpha_to_color_v1" title="Link to this definition">¶</a></dt>
+<dd><p>Alpha composite an RGBA Image with a specified color.</p>
+<p>NOTE: This version is much slower than the
+alpha_composite_with_color solution. Use it only if
+numpy is not available.</p>
+<p>Source: <a class="reference external" href="http://stackoverflow.com/a/9168169/284318">http://stackoverflow.com/a/9168169/284318</a></p>
+<p>Keyword Arguments:
+image – PIL RGBA Image object
+color – Tuple r, g, b (default 255, 255, 255)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.pure_pil_alpha_to_color_v2">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">pure_pil_alpha_to_color_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(255,</span> <span class="pre">255,</span> <span class="pre">255)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#pure_pil_alpha_to_color_v2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.pure_pil_alpha_to_color_v2" title="Link to this definition">¶</a></dt>
+<dd><p>Alpha composite an RGBA Image with a specified color.</p>
+<p>Simpler, faster version than the solutions above.</p>
+<p>Source: <a class="reference external" href="http://stackoverflow.com/a/9459208/284318">http://stackoverflow.com/a/9459208/284318</a></p>
+<p>Keyword Arguments:
+image – PIL RGBA Image object
+color – Tuple r, g, b (default 255, 255, 255)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.disk">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">disk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antialias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#disk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.disk" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.fspecial">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">fspecial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#fspecial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.fspecial" title="Link to this definition">¶</a></dt>
+<dd><p>mimics the Matlab image toolbox fspecial function
+<a class="reference external" href="http://www.mathworks.com/help/images/ref/fspecial.html?refresh=true">http://www.mathworks.com/help/images/ref/fspecial.html?refresh=true</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.normalize">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.normalize" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.read_pdf">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">read_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#read_pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.read_pdf" title="Link to this definition">¶</a></dt>
+<dd><p>reads a bitmap graphics on a .pdf file
+only the first page is parsed</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.fig2img">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">fig2img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#fig2img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.fig2img" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a Matplotlib figure to a PIL Image in RGBA format and return it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fig</strong> – matplotlib figure</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PIL image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.quantize">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">quantize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#quantize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.quantize" title="Link to this definition">¶</a></dt>
+<dd><p>Quantize a gray image.
+:param image: ndarray input image.
+:param N: int number of quantization levels.
+:param L: float max value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.randomize">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">randomize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#randomize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.randomize" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.image.Ditherer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">Ditherer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Ditherer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Ditherer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Ditherer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Ditherer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Ditherer.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Ditherer.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Ditherer.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Ditherer.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.Ditherer.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#Ditherer.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.Ditherer.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.image.ErrorDiffusion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">ErrorDiffusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wsum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#ErrorDiffusion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.ErrorDiffusion" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#goulib.image.Ditherer" title="goulib.image.Ditherer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ditherer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.ErrorDiffusion.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wsum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#ErrorDiffusion.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.ErrorDiffusion.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.ErrorDiffusion.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#ErrorDiffusion.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.ErrorDiffusion.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.image.ErrorDiffusion.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.image.ErrorDiffusion.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.ErrorDiffusion.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.ErrorDiffusion.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.image.FloydSteinberg">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">FloydSteinberg</span></span><a class="reference internal" href="../_modules/goulib/image.html#FloydSteinberg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.FloydSteinberg" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#goulib.image.ErrorDiffusion" title="goulib.image.ErrorDiffusion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ErrorDiffusion</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.FloydSteinberg.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#FloydSteinberg.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.FloydSteinberg.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.FloydSteinberg.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#FloydSteinberg.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.FloydSteinberg.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.image.FloydSteinberg.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.image.FloydSteinberg.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.image.FloydSteinberg.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.FloydSteinberg.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.dither">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">dither</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#dither"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.dither" title="Link to this definition">¶</a></dt>
+<dd><p>Quantize a gray image, using dithering.
+:param image: ndarray input image.
+:param method: key in dithering dict
+:param N: int number of quantization levels.
+References
+———-
+<a class="reference external" href="http://www.efg2.com/Lab/Library/ImageProcessing/DHALF.TXT">http://www.efg2.com/Lab/Library/ImageProcessing/DHALF.TXT</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.gray2bool">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">gray2bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.gray2bool" title="Link to this definition">¶</a></dt>
+<dd><p>Quantize a gray image, using dithering.
+:param image: ndarray input image.
+:param method: key in dithering dict
+:param N: int number of quantization levels.
+References
+———-
+<a class="reference external" href="http://www.efg2.com/Lab/Library/ImageProcessing/DHALF.TXT">http://www.efg2.com/Lab/Library/ImageProcessing/DHALF.TXT</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.rgb2cmyk">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">rgb2cmyk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rgb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#rgb2cmyk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.rgb2cmyk" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.cmyk2rgb">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">cmyk2rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmyk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#cmyk2rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.cmyk2rgb" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.gray2rgb">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">gray2rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#gray2rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.gray2rgb" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.bool2rgb">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">bool2rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.image.bool2rgb" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.bool2gray">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">bool2gray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#bool2gray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.bool2gray" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.rgb2rgba">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">rgb2rgba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#rgb2rgba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.rgb2rgba" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.palette">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">palette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncolors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#palette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.palette" title="Link to this definition">¶</a></dt>
+<dd><p>extract the color palette of image array
+(in its own colorspace. use Lab for best results)
+:param im: nparray (x,y,n) containing image
+:param ncolors: int number of colors
+:param tol: tolerance for precision/speed compromise.
+1/100 means about 100 points per color are taken for kmeans segmentation
+:return: array of ncolors most used in image (center of kmeans centroids)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.lab2ind">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">lab2ind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#lab2ind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.lab2ind" title="Link to this definition">¶</a></dt>
+<dd><p>convert a Lab image to indexed colors
+:param a: nparray (x,y,n) containing image
+:param colors: int number of colors or predefined Palette
+:ref: <a class="reference external" href="http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html">http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.ind2any">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">ind2any</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#ind2any"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.ind2any" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.ind2rgb">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">ind2rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#ind2rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.ind2rgb" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.convert_type">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">convert_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#convert_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.convert_type" title="Link to this definition">¶</a></dt>
+<dd><p>convert inner format of image
+:param data: nparray (x,y,n) containing image
+:param type: target np.type
+:return: nparray (x,y,n) with new type
+replaces outdated skimage.util.dtype.convert using 
+<a class="reference external" href="https://scikit-image.org/docs/0.24.x/api/skimage.html#utility-functions">https://scikit-image.org/docs/0.24.x/api/skimage.html#utility-functions</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.image.convert">
+<span class="sig-prename descclassname"><span class="pre">goulib.image.</span></span><span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#goulib.image.Mode" title="goulib.image.Mode"><span class="pre">Mode</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#goulib.image.Mode" title="goulib.image.Mode"><span class="pre">Mode</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/image.html#convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.image.convert" title="Link to this definition">¶</a></dt>
+<dd><p>convert an image between modes, eventually using intermediary steps
+:param a: nparray (x,y,n) containing image
+:param source: string : key of source image mode in modes
+:param target: string : key of target image mode in modes</p>
+</dd></dl>
+
 </section>
 
 
@@ -178,6 +1082,139 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.image</a><ul>
+<li><a class="reference internal" href="#goulib.image.Mode"><code class="docutils literal notranslate"><span class="pre">Mode</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.image.Mode.__init__"><code class="docutils literal notranslate"><span class="pre">Mode.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Mode.__repr__"><code class="docutils literal notranslate"><span class="pre">Mode.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.image.nchannels"><code class="docutils literal notranslate"><span class="pre">nchannels()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.guessmode"><code class="docutils literal notranslate"><span class="pre">guessmode()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.adapt_rgb"><code class="docutils literal notranslate"><span class="pre">adapt_rgb()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image"><code class="docutils literal notranslate"><span class="pre">Image</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.image.Image.__init__"><code class="docutils literal notranslate"><span class="pre">Image.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.shape"><code class="docutils literal notranslate"><span class="pre">Image.shape</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.size"><code class="docutils literal notranslate"><span class="pre">Image.size</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.width"><code class="docutils literal notranslate"><span class="pre">Image.width</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.height"><code class="docutils literal notranslate"><span class="pre">Image.height</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.nchannels"><code class="docutils literal notranslate"><span class="pre">Image.nchannels</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.npixels"><code class="docutils literal notranslate"><span class="pre">Image.npixels</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__nonzero__"><code class="docutils literal notranslate"><span class="pre">Image.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__lt__"><code class="docutils literal notranslate"><span class="pre">Image.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.load"><code class="docutils literal notranslate"><span class="pre">Image.load()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.save"><code class="docutils literal notranslate"><span class="pre">Image.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.render"><code class="docutils literal notranslate"><span class="pre">Image.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.open"><code class="docutils literal notranslate"><span class="pre">Image.open()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.new"><code class="docutils literal notranslate"><span class="pre">Image.new()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.pil"><code class="docutils literal notranslate"><span class="pre">Image.pil</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.getdata"><code class="docutils literal notranslate"><span class="pre">Image.getdata()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.split"><code class="docutils literal notranslate"><span class="pre">Image.split()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.getpixel"><code class="docutils literal notranslate"><span class="pre">Image.getpixel()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.putpixel"><code class="docutils literal notranslate"><span class="pre">Image.putpixel()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.getpalette"><code class="docutils literal notranslate"><span class="pre">Image.getpalette()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.setpalette"><code class="docutils literal notranslate"><span class="pre">Image.setpalette()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.getcolors"><code class="docutils literal notranslate"><span class="pre">Image.getcolors()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.replace"><code class="docutils literal notranslate"><span class="pre">Image.replace()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.optimize"><code class="docutils literal notranslate"><span class="pre">Image.optimize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.crop"><code class="docutils literal notranslate"><span class="pre">Image.crop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__getitem__"><code class="docutils literal notranslate"><span class="pre">Image.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.ratio"><code class="docutils literal notranslate"><span class="pre">Image.ratio</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.resize"><code class="docutils literal notranslate"><span class="pre">Image.resize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.rotate"><code class="docutils literal notranslate"><span class="pre">Image.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.flip"><code class="docutils literal notranslate"><span class="pre">Image.flip()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.paste"><code class="docutils literal notranslate"><span class="pre">Image.paste()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.threshold"><code class="docutils literal notranslate"><span class="pre">Image.threshold()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.quantize"><code class="docutils literal notranslate"><span class="pre">Image.quantize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.convert"><code class="docutils literal notranslate"><span class="pre">Image.convert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__repr__"><code class="docutils literal notranslate"><span class="pre">Image.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.average_hash"><code class="docutils literal notranslate"><span class="pre">Image.average_hash()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.perceptual_hash"><code class="docutils literal notranslate"><span class="pre">Image.perceptual_hash()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.dist"><code class="docutils literal notranslate"><span class="pre">Image.dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__hash__"><code class="docutils literal notranslate"><span class="pre">Image.__hash__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__abs__"><code class="docutils literal notranslate"><span class="pre">Image.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.invert"><code class="docutils literal notranslate"><span class="pre">Image.invert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__neg__"><code class="docutils literal notranslate"><span class="pre">Image.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__inv__"><code class="docutils literal notranslate"><span class="pre">Image.__inv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.grayscale"><code class="docutils literal notranslate"><span class="pre">Image.grayscale()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.colorize"><code class="docutils literal notranslate"><span class="pre">Image.colorize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.dither"><code class="docutils literal notranslate"><span class="pre">Image.dither()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.normalize"><code class="docutils literal notranslate"><span class="pre">Image.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.filter"><code class="docutils literal notranslate"><span class="pre">Image.filter()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.correlation"><code class="docutils literal notranslate"><span class="pre">Image.correlation()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.scale"><code class="docutils literal notranslate"><span class="pre">Image.scale()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.shift"><code class="docutils literal notranslate"><span class="pre">Image.shift()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.expand"><code class="docutils literal notranslate"><span class="pre">Image.expand()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.compose"><code class="docutils literal notranslate"><span class="pre">Image.compose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.add"><code class="docutils literal notranslate"><span class="pre">Image.add()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__add__"><code class="docutils literal notranslate"><span class="pre">Image.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__radd__"><code class="docutils literal notranslate"><span class="pre">Image.__radd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.sub"><code class="docutils literal notranslate"><span class="pre">Image.sub()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__sub__"><code class="docutils literal notranslate"><span class="pre">Image.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__eq__"><code class="docutils literal notranslate"><span class="pre">Image.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.deltaE"><code class="docutils literal notranslate"><span class="pre">Image.deltaE()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__mul__"><code class="docutils literal notranslate"><span class="pre">Image.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__div__"><code class="docutils literal notranslate"><span class="pre">Image.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__truediv__"><code class="docutils literal notranslate"><span class="pre">Image.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.__annotations__"><code class="docutils literal notranslate"><span class="pre">Image.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.html"><code class="docutils literal notranslate"><span class="pre">Image.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.plot"><code class="docutils literal notranslate"><span class="pre">Image.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.png"><code class="docutils literal notranslate"><span class="pre">Image.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Image.svg"><code class="docutils literal notranslate"><span class="pre">Image.svg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.image.alpha_composite"><code class="docutils literal notranslate"><span class="pre">alpha_composite()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.alpha_composite_with_color"><code class="docutils literal notranslate"><span class="pre">alpha_composite_with_color()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.pure_pil_alpha_to_color_v1"><code class="docutils literal notranslate"><span class="pre">pure_pil_alpha_to_color_v1()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.pure_pil_alpha_to_color_v2"><code class="docutils literal notranslate"><span class="pre">pure_pil_alpha_to_color_v2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.disk"><code class="docutils literal notranslate"><span class="pre">disk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.fspecial"><code class="docutils literal notranslate"><span class="pre">fspecial()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.read_pdf"><code class="docutils literal notranslate"><span class="pre">read_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.fig2img"><code class="docutils literal notranslate"><span class="pre">fig2img()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.randomize"><code class="docutils literal notranslate"><span class="pre">randomize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Ditherer"><code class="docutils literal notranslate"><span class="pre">Ditherer</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.image.Ditherer.__init__"><code class="docutils literal notranslate"><span class="pre">Ditherer.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Ditherer.__call__"><code class="docutils literal notranslate"><span class="pre">Ditherer.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.Ditherer.__repr__"><code class="docutils literal notranslate"><span class="pre">Ditherer.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.image.ErrorDiffusion"><code class="docutils literal notranslate"><span class="pre">ErrorDiffusion</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.image.ErrorDiffusion.__init__"><code class="docutils literal notranslate"><span class="pre">ErrorDiffusion.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.ErrorDiffusion.__call__"><code class="docutils literal notranslate"><span class="pre">ErrorDiffusion.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.ErrorDiffusion.__annotations__"><code class="docutils literal notranslate"><span class="pre">ErrorDiffusion.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.ErrorDiffusion.__repr__"><code class="docutils literal notranslate"><span class="pre">ErrorDiffusion.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.image.FloydSteinberg"><code class="docutils literal notranslate"><span class="pre">FloydSteinberg</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.image.FloydSteinberg.__init__"><code class="docutils literal notranslate"><span class="pre">FloydSteinberg.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.FloydSteinberg.__call__"><code class="docutils literal notranslate"><span class="pre">FloydSteinberg.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.FloydSteinberg.__annotations__"><code class="docutils literal notranslate"><span class="pre">FloydSteinberg.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.FloydSteinberg.__repr__"><code class="docutils literal notranslate"><span class="pre">FloydSteinberg.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.image.dither"><code class="docutils literal notranslate"><span class="pre">dither()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.gray2bool"><code class="docutils literal notranslate"><span class="pre">gray2bool()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.rgb2cmyk"><code class="docutils literal notranslate"><span class="pre">rgb2cmyk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.cmyk2rgb"><code class="docutils literal notranslate"><span class="pre">cmyk2rgb()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.gray2rgb"><code class="docutils literal notranslate"><span class="pre">gray2rgb()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.bool2rgb"><code class="docutils literal notranslate"><span class="pre">bool2rgb()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.bool2gray"><code class="docutils literal notranslate"><span class="pre">bool2gray()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.rgb2rgba"><code class="docutils literal notranslate"><span class="pre">rgb2rgba()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.palette"><code class="docutils literal notranslate"><span class="pre">palette()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.lab2ind"><code class="docutils literal notranslate"><span class="pre">lab2ind()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.ind2any"><code class="docutils literal notranslate"><span class="pre">ind2any()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.ind2rgb"><code class="docutils literal notranslate"><span class="pre">ind2rgb()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.convert_type"><code class="docutils literal notranslate"><span class="pre">convert_type()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.image.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="goulib.graph.html"
@@ -229,9 +1266,9 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2025, Ph. Guglielmetti, https://github.com/goulu/goulib.
-      Last updated on Feb 27, 2025.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 27, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
   </body>
 </html>

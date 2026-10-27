@@ -1,10 +1,12 @@
 goulib
 ======
 
-library of useful Python code for scientific + technical applications
+library of useful Python code for scientific + technical applications.
 
-see the `IPython notebook <http://nbviewer.ipython.org/github/Goulu/goulib/blob/master/notebook.ipynb>`_ for an overview of features
+see the `IPython notebook <https://github.com/goulu/goulib/blob/master/examples/notebook.ipynb>`_ for an overview of features
 
+.. image:: https://badge.fury.io/gh/goulu%2Fgoulib.svg
+    :target: https://badge.fury.io/gh/goulu%2Fgoulib
 .. image:: http://img.shields.io/badge/license-LGPL-green.svg
     :target: https://github.com/goulu/goulib/blob/master/LICENSE.TXT
     :alt: License
@@ -14,22 +16,18 @@ see the `IPython notebook <http://nbviewer.ipython.org/github/Goulu/goulib/blob/
 .. image:: https://github.com/goulu/Goulib/actions/workflows/build.yml/badge.svg
     :target: https://github.com/goulu/Goulib/actions/workflows/build.yml
     :alt: Build
-.. image:: https://coveralls.io/repos/goulu/goulib/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/goulu/goulib?branch=master
-    :alt: Tests
+.. image:: https://coveralls.io/repos/github/goulu/Goulib/badge.svg?branch=master
+    :target: https://coveralls.io/github/goulu/Goulib?branch=master
+    :alt: Coverage
 .. image:: https://readthedocs.org/projects/goulib/badge/?version=latest
   :target: http://goulib.readthedocs.org/en/latest/
   :alt: Doc
-.. image:: https://www.openhub.net/accounts/Goulu/widgets/account_tiny?format=gif
-	:target: https://www.openhub.net/accounts/Goulu
-.. image:: https://api.coderwall.com/goulu/endorsecount.png
-    :target: https://coderwall.com/goulu
   
 :author: Philippe Guglielmetti goulib@goulu.net
 :installation: "pip install goulib"
 :distribution: https://pypi.python.org/pypi/goulib
-:documentation: https://readthedocs.org/
-:notebook: http://nbviewer.ipython.org/github/Goulu/goulib/blob/master/notebook.ipynb
+:documentation: http://goulib.readthedocs.org/en/latest/
+:examples: .. https://github.com/goulu/goulib/blob/master/examples/notebook.ipynb
 :source: https://github.com/goulu/goulib
 
 Requirements
@@ -108,7 +106,14 @@ Classes
 Indices and tables
 ------------------
 
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    changes
+
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
 * :doc:`changes`
+

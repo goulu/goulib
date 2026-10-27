@@ -30,12 +30,3 @@
       timedeltaf
       timef
    
-   .. rubric:: Classes
-
-   .. autosummary::
-   
-      date2
-      datetime2
-      time2
-      timedelta2
-   

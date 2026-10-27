@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <script src="../_static/documentation_options.js?v=acc74ff5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.geom" href="goulib.geom.html" />
@@ -48,10 +48,10 @@
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_function_source</span></code>(f)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.expr.get_function_source" title="goulib.expr.get_function_source"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_function_source</span></code></a>(f)</p></td>
 <td><p>returns cleaned code of a function or lambda currently only supports: - lambda x:formula_of_(x) - def anything(x): return formula_of_(x)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plouffe</span></code>(f[, epsilon])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.expr.plouffe" title="goulib.expr.plouffe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plouffe</span></code></a>(f[, epsilon])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -59,17 +59,430 @@
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.expr.Context" title="goulib.expr.Context"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Expr</span></code>(f[, context])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.expr.Expr" title="goulib.expr.Expr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Expr</span></code></a>(f[, context])</p></td>
 <td><p>Math expressions that can be evaluated like standard functions combined using standard operators and plotted in IPython/Jupyter notebooks</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextVisitor</span></code>(dialect[, context])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.expr.TextVisitor" title="goulib.expr.TextVisitor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextVisitor</span></code></a>(dialect[, context])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.expr.Context">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.expr.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><a class="reference internal" href="../_modules/goulib/expr.html#Context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Context" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.expr.Context.constants">
+<span class="sig-name descname"><span class="pre">constants</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{&lt;class</span> <span class="pre">'bool'&gt;:</span> <span class="pre">{False:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'False',</span> <span class="pre">'False',</span> <span class="pre">'False'),</span> <span class="pre">True:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'True',</span> <span class="pre">'True',</span> <span class="pre">'True')},</span> <span class="pre">&lt;class</span> <span class="pre">'complex'&gt;:</span> <span class="pre">{1j:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'i',</span> <span class="pre">'i',</span> <span class="pre">'i')},</span> <span class="pre">&lt;class</span> <span class="pre">'float'&gt;:</span> <span class="pre">{2.718281828459045:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'e',</span> <span class="pre">'e',</span> <span class="pre">'\\e'),</span> <span class="pre">3.141592653589793:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'pi',</span> <span class="pre">'pi',</span> <span class="pre">'\\pi'),</span> <span class="pre">6.283185307179586:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'tau',</span> <span class="pre">'tau',</span> <span class="pre">'\\tau'),</span> <span class="pre">inf:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'inf',</span> <span class="pre">'inf',</span> <span class="pre">'\\inf'),</span> <span class="pre">nan:</span> <span class="pre">(None,</span> <span class="pre">None,</span> <span class="pre">'nan',</span> <span class="pre">'nan',</span> <span class="pre">'\\nan')}}</span></span><a class="headerlink" href="#goulib.expr.Context.constants" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.expr.Context.variables">
+<span class="sig-name descname"><span class="pre">variables</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.expr.Context.variables" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.expr.Context.operators">
+<span class="sig-name descname"><span class="pre">operators</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{&lt;class</span> <span class="pre">'ast.Add'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">add&gt;,</span> <span class="pre">1100,</span> <span class="pre">'+',</span> <span class="pre">'+',</span> <span class="pre">'+'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.And'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">and_&gt;,</span> <span class="pre">400,</span> <span class="pre">'</span> <span class="pre">and</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">and</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\wedge</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.BitXor'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">xor&gt;,</span> <span class="pre">800,</span> <span class="pre">'</span> <span class="pre">xor</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">xor</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">xor</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Call'&gt;:</span> <span class="pre">(None,</span> <span class="pre">9000),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Constant'&gt;:</span> <span class="pre">(None,</span> <span class="pre">9000),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Div'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">truediv&gt;,</span> <span class="pre">1201,</span> <span class="pre">'/',</span> <span class="pre">'/',</span> <span class="pre">'\\frac{%s}{%s}'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Eq'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">eq&gt;,</span> <span class="pre">600,</span> <span class="pre">'=',</span> <span class="pre">'</span> <span class="pre">==</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">=</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.FloorDiv'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">floordiv&gt;,</span> <span class="pre">1201,</span> <span class="pre">'//',</span> <span class="pre">'//',</span> <span class="pre">'\\left\\lfloor\\frac{%s}{%s}\\right\\rfloor'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Gt'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">gt&gt;,</span> <span class="pre">600,</span> <span class="pre">'</span> <span class="pre">&gt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">&gt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\gtr</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.GtE'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">ge&gt;,</span> <span class="pre">600,</span> <span class="pre">'</span> <span class="pre">&gt;=</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">&gt;=</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\gec</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Invert'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">not_&gt;,</span> <span class="pre">1300,</span> <span class="pre">'~',</span> <span class="pre">'~',</span> <span class="pre">'\\sim</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.LShift'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">lshift&gt;,</span> <span class="pre">1000,</span> <span class="pre">'</span> <span class="pre">&lt;&lt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">&lt;&lt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\ll</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Lt'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">lt&gt;,</span> <span class="pre">600,</span> <span class="pre">'</span> <span class="pre">&lt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">&lt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\ltr</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.LtE'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">le&gt;,</span> <span class="pre">600,</span> <span class="pre">'</span> <span class="pre">&lt;=</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">&lt;=</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\leq</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Mod'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">mod&gt;,</span> <span class="pre">1200,</span> <span class="pre">'</span> <span class="pre">mod</span> <span class="pre">',</span> <span class="pre">'%',</span> <span class="pre">'</span> <span class="pre">\\bmod</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Mult'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">mul&gt;,</span> <span class="pre">1200,</span> <span class="pre">'*',</span> <span class="pre">'*',</span> <span class="pre">'</span> <span class="pre">\\cdot</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Name'&gt;:</span> <span class="pre">(None,</span> <span class="pre">9000),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Not'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">not_&gt;,</span> <span class="pre">500,</span> <span class="pre">'not</span> <span class="pre">',</span> <span class="pre">'not</span> <span class="pre">',</span> <span class="pre">'\\neg'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.NotEq'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">ne&gt;,</span> <span class="pre">600,</span> <span class="pre">'&lt;&gt;',</span> <span class="pre">'!=</span> <span class="pre">',</span> <span class="pre">'\\neq'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Or'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">or_&gt;,</span> <span class="pre">300,</span> <span class="pre">'</span> <span class="pre">or</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">or</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\vee</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Pow'&gt;:</span> <span class="pre">(&lt;function</span> <span class="pre">pow&gt;,</span> <span class="pre">1400,</span> <span class="pre">'^',</span> <span class="pre">'**',</span> <span class="pre">'^'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.RShift'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">rshift&gt;,</span> <span class="pre">1000,</span> <span class="pre">'</span> <span class="pre">&gt;&gt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">&gt;&gt;</span> <span class="pre">',</span> <span class="pre">'</span> <span class="pre">\\gg</span> <span class="pre">'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.Sub'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">sub&gt;,</span> <span class="pre">1101,</span> <span class="pre">'-',</span> <span class="pre">'-',</span> <span class="pre">'-'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.UAdd'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">pos&gt;,</span> <span class="pre">1150,</span> <span class="pre">'+',</span> <span class="pre">'+',</span> <span class="pre">'+'),</span> <span class="pre">&lt;class</span> <span class="pre">'ast.USub'&gt;:</span> <span class="pre">(&lt;built-in</span> <span class="pre">function</span> <span class="pre">neg&gt;,</span> <span class="pre">1150,</span> <span class="pre">'-',</span> <span class="pre">'-',</span> <span class="pre">'-')}</span></span><a class="headerlink" href="#goulib.expr.Context.operators" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Context.precedence">
+<span class="sig-name descname"><span class="pre">precedence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/ast.html#ast.AST" title="(in Python v3.15)"><span class="pre">AST</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/goulib/expr.html#Context.precedence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Context.precedence" title="Link to this definition">¶</a></dt>
+<dd><p>calculate the precedence of op</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Context.add_function">
+<span class="sig-name descname"><span class="pre">add_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Context.add_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Context.add_function" title="Link to this definition">¶</a></dt>
+<dd><p>add a function to those allowed in Expr.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – function</p></li>
+<li><p><strong>s</strong> – string representation, should be formula-like</p></li>
+<li><p><strong>r</strong> – repr representation, should be cut&amp;pastable in a calculator, or in python …</p></li>
+<li><p><strong>l</strong> – LaTeX representation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Context.add_constant">
+<span class="sig-name descname"><span class="pre">add_constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Context.add_constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Context.add_constant" title="Link to this definition">¶</a></dt>
+<dd><p>add a constant to those recognized in Expr.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> – constant</p></li>
+<li><p><strong>s</strong> – string representation, should be formula-like</p></li>
+<li><p><strong>r</strong> – repr representation, should be cut&amp;pastable in a calculator, or in python …</p></li>
+<li><p><strong>l</strong> – LaTeX representation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Context.add_module">
+<span class="sig-name descname"><span class="pre">add_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Context.add_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Context.add_module" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Context.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/ast.html#ast.AST" title="(in Python v3.15)"><span class="pre">AST</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/ast.html#ast.AST" title="(in Python v3.15)"><span class="pre">AST</span></a></span></span><a class="reference internal" href="../_modules/goulib/expr.html#Context.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Context.eval" title="Link to this definition">¶</a></dt>
+<dd><p>safe eval of ast node : only functions and _operators listed above can be used</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> – ast.AST to evaluate</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>number or expression string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Context.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Context.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Context.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.expr.get_function_source">
+<span class="sig-prename descclassname"><span class="pre">goulib.expr.</span></span><span class="sig-name descname"><span class="pre">get_function_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#get_function_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.get_function_source" title="Link to this definition">¶</a></dt>
+<dd><p>returns cleaned code of a function or lambda
+currently only supports:
+- lambda x:formula_of_(x)
+- def anything(x): return formula_of_(x)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.expr.plouffe">
+<span class="sig-prename descclassname"><span class="pre">goulib.expr.</span></span><span class="sig-name descname"><span class="pre">plouffe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#plouffe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.plouffe" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.expr.Expr">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.expr.</span></span><span class="sig-name descname"><span class="pre">Expr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;goulib.expr.Context</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="goulib.plot.html#goulib.plot.Plot" title="goulib.plot.Plot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Plot</span></code></a></p>
+<p>Math expressions that can be evaluated like standard functions
+combined using standard operators
+and plotted in IPython/Jupyter notebooks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> – function or operator, Expr to copy construct, or formula string</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;goulib.expr.Context</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> – function or operator, Expr to copy construct, or formula string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.expr.Expr.isNum">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isNum</span></span><a class="headerlink" href="#goulib.expr.Expr.isNum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.expr.Expr.isconstant">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isconstant</span></span><a class="headerlink" href="#goulib.expr.Expr.isconstant" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if Expr evaluates to a constant number or bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.eval" title="Link to this definition">¶</a></dt>
+<dd><p>evaluate the Expr at x OR compose self(x())</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__float__">
+<span class="sig-name descname"><span class="pre">__float__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__float__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__float__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.latex">
+<span class="sig-name descname"><span class="pre">latex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.latex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.latex" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string LaTex formula</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.points" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>x,y lists of float : points for a line plot</p>
+</dd>
+</dl>
+<p>overridden in derived classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.apply" title="Link to this definition">¶</a></dt>
+<dd><p>function composition self o f = f(self(x))
+override in derived classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.applx">
+<span class="sig-name descname"><span class="pre">applx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.applx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.applx" title="Link to this definition">¶</a></dt>
+<dd><p>function composition f o self = self(f(x))
+override in derived classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__ne__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__ne__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__lt__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__lt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__le__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__le__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__ge__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__ge__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__gt__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__gt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__sub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__neg__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__neg__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__mul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__rmul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__rmul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__truediv__">
+<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__truediv__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__truediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__pow__">
+<span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__pow__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__pow__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__div__">
+<span class="sig-name descname"><span class="pre">__div__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.expr.Expr.__div__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__invert__">
+<span class="sig-name descname"><span class="pre">__invert__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__invert__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__invert__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__and__">
+<span class="sig-name descname"><span class="pre">__and__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__and__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__and__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__or__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__or__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__xor__">
+<span class="sig-name descname"><span class="pre">__xor__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__xor__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__xor__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__lshift__">
+<span class="sig-name descname"><span class="pre">__lshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__lshift__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__lshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__rshift__">
+<span class="sig-name descname"><span class="pre">__rshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.__rshift__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.__rshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.complexity">
+<span class="sig-name descname"><span class="pre">complexity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#Expr.complexity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.Expr.complexity" title="Link to this definition">¶</a></dt>
+<dd><p>measures the complexity of Expr
+:return: int, sum of the precedence of used ops</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'body':</span> <span class="pre">&lt;class</span> <span class="pre">'ast.AST'&gt;,</span> <span class="pre">'context':</span> <span class="pre">&lt;class</span> <span class="pre">'goulib.expr.Context'&gt;}</span></span><a class="headerlink" href="#goulib.expr.Expr.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.expr.Expr.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.expr.Expr.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.expr.Expr.html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.expr.Expr.plot" title="Link to this definition">¶</a></dt>
+<dd><p>renders on IPython Notebook
+(alias to make usage more straightforward)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.png">
+<span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.expr.Expr.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'svg'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.expr.Expr.render" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.expr.Expr.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.Expr.svg">
+<span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.expr.Expr.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.expr.</span></span><span class="sig-name descname"><span class="pre">TextVisitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dialect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;goulib.expr.Context</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/ast.html#ast.NodeVisitor" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeVisitor</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dialect</strong> – int index in _operators of symbols to use</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dialect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;goulib.expr.Context</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dialect</strong> – int index in _operators of symbols to use</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.visit_Call">
+<span class="sig-name descname"><span class="pre">visit_Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.visit_Call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.visit_Call" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.visit_Name">
+<span class="sig-name descname"><span class="pre">visit_Name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.visit_Name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.visit_Name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.visit_UnaryOp">
+<span class="sig-name descname"><span class="pre">visit_UnaryOp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.visit_UnaryOp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.visit_UnaryOp" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.visit_BinOp">
+<span class="sig-name descname"><span class="pre">visit_BinOp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.visit_BinOp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.visit_BinOp" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.visit_Compare">
+<span class="sig-name descname"><span class="pre">visit_Compare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.visit_Compare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.visit_Compare" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.visit_Constant">
+<span class="sig-name descname"><span class="pre">visit_Constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.visit_Constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.visit_Constant" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.expr.TextVisitor.generic_visit">
+<span class="sig-name descname"><span class="pre">generic_visit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/expr.html#TextVisitor.generic_visit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.expr.TextVisitor.generic_visit" title="Link to this definition">¶</a></dt>
+<dd><p>Called if no explicit visitor function exists for a node.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -79,6 +492,84 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.expr</a><ul>
+<li><a class="reference internal" href="#goulib.expr.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.expr.Context.constants"><code class="docutils literal notranslate"><span class="pre">Context.constants</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.variables"><code class="docutils literal notranslate"><span class="pre">Context.variables</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.operators"><code class="docutils literal notranslate"><span class="pre">Context.operators</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.precedence"><code class="docutils literal notranslate"><span class="pre">Context.precedence()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.add_function"><code class="docutils literal notranslate"><span class="pre">Context.add_function()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.add_constant"><code class="docutils literal notranslate"><span class="pre">Context.add_constant()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.add_module"><code class="docutils literal notranslate"><span class="pre">Context.add_module()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.eval"><code class="docutils literal notranslate"><span class="pre">Context.eval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Context.__init__"><code class="docutils literal notranslate"><span class="pre">Context.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.expr.get_function_source"><code class="docutils literal notranslate"><span class="pre">get_function_source()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.plouffe"><code class="docutils literal notranslate"><span class="pre">plouffe()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr"><code class="docutils literal notranslate"><span class="pre">Expr</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.expr.Expr.__init__"><code class="docutils literal notranslate"><span class="pre">Expr.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.isNum"><code class="docutils literal notranslate"><span class="pre">Expr.isNum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.isconstant"><code class="docutils literal notranslate"><span class="pre">Expr.isconstant</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.eval"><code class="docutils literal notranslate"><span class="pre">Expr.eval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__call__"><code class="docutils literal notranslate"><span class="pre">Expr.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__float__"><code class="docutils literal notranslate"><span class="pre">Expr.__float__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__repr__"><code class="docutils literal notranslate"><span class="pre">Expr.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__str__"><code class="docutils literal notranslate"><span class="pre">Expr.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.latex"><code class="docutils literal notranslate"><span class="pre">Expr.latex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.points"><code class="docutils literal notranslate"><span class="pre">Expr.points()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.apply"><code class="docutils literal notranslate"><span class="pre">Expr.apply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.applx"><code class="docutils literal notranslate"><span class="pre">Expr.applx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__eq__"><code class="docutils literal notranslate"><span class="pre">Expr.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__ne__"><code class="docutils literal notranslate"><span class="pre">Expr.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__lt__"><code class="docutils literal notranslate"><span class="pre">Expr.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__le__"><code class="docutils literal notranslate"><span class="pre">Expr.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__ge__"><code class="docutils literal notranslate"><span class="pre">Expr.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__gt__"><code class="docutils literal notranslate"><span class="pre">Expr.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__add__"><code class="docutils literal notranslate"><span class="pre">Expr.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__sub__"><code class="docutils literal notranslate"><span class="pre">Expr.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__neg__"><code class="docutils literal notranslate"><span class="pre">Expr.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__mul__"><code class="docutils literal notranslate"><span class="pre">Expr.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__rmul__"><code class="docutils literal notranslate"><span class="pre">Expr.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__truediv__"><code class="docutils literal notranslate"><span class="pre">Expr.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__pow__"><code class="docutils literal notranslate"><span class="pre">Expr.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__div__"><code class="docutils literal notranslate"><span class="pre">Expr.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__invert__"><code class="docutils literal notranslate"><span class="pre">Expr.__invert__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__and__"><code class="docutils literal notranslate"><span class="pre">Expr.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__or__"><code class="docutils literal notranslate"><span class="pre">Expr.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__xor__"><code class="docutils literal notranslate"><span class="pre">Expr.__xor__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__lshift__"><code class="docutils literal notranslate"><span class="pre">Expr.__lshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__rshift__"><code class="docutils literal notranslate"><span class="pre">Expr.__rshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.complexity"><code class="docutils literal notranslate"><span class="pre">Expr.complexity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__annotations__"><code class="docutils literal notranslate"><span class="pre">Expr.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.__hash__"><code class="docutils literal notranslate"><span class="pre">Expr.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.html"><code class="docutils literal notranslate"><span class="pre">Expr.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.plot"><code class="docutils literal notranslate"><span class="pre">Expr.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.png"><code class="docutils literal notranslate"><span class="pre">Expr.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.render"><code class="docutils literal notranslate"><span class="pre">Expr.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.save"><code class="docutils literal notranslate"><span class="pre">Expr.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.Expr.svg"><code class="docutils literal notranslate"><span class="pre">Expr.svg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor"><code class="docutils literal notranslate"><span class="pre">TextVisitor</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.__init__"><code class="docutils literal notranslate"><span class="pre">TextVisitor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.visit_Call"><code class="docutils literal notranslate"><span class="pre">TextVisitor.visit_Call()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.visit_Name"><code class="docutils literal notranslate"><span class="pre">TextVisitor.visit_Name()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.visit_UnaryOp"><code class="docutils literal notranslate"><span class="pre">TextVisitor.visit_UnaryOp()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.visit_BinOp"><code class="docutils literal notranslate"><span class="pre">TextVisitor.visit_BinOp()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.visit_Compare"><code class="docutils literal notranslate"><span class="pre">TextVisitor.visit_Compare()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.visit_Constant"><code class="docutils literal notranslate"><span class="pre">TextVisitor.visit_Constant()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.expr.TextVisitor.generic_visit"><code class="docutils literal notranslate"><span class="pre">TextVisitor.generic_visit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="goulib.drawing.html"
@@ -130,9 +621,9 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2025, Ph. Guglielmetti, https://github.com/goulu/goulib.
-      Last updated on Feb 27, 2025.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 27, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
   </body>
 </html>

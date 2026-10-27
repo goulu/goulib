@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <script src="../_static/documentation_options.js?v=acc74ff5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.drawing" href="goulib.drawing.html" />
@@ -48,28 +48,28 @@
 <p class="rubric">Functions</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">debug</span></code>(func)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.decorators.debug" title="goulib.decorators.debug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">debug</span></code></a>(func)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_thread_pool</span></code>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.decorators.get_thread_pool" title="goulib.decorators.get_thread_pool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_thread_pool</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">itimeout</span></code>(iterable, timeout)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.decorators.itimeout" title="goulib.decorators.itimeout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">itimeout</span></code></a>(iterable, timeout)</p></td>
 <td><p>timeout for loops :param iterable: any iterable :param timeout: float max running time in seconds  :yield: items in iterator until timeout occurs :raise: multiprocessing.TimeoutError if timeout occured</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">memoize</span></code>(obj)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.decorators.memoize" title="goulib.decorators.memoize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">memoize</span></code></a>(obj)</p></td>
 <td><p>speed up repeated calls to a function by caching its results in a dict index by params :see: <a class="reference external" href="https://en.wikipedia.org/wiki/Memoization">https://en.wikipedia.org/wiki/Memoization</a></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">multimethod</span></code>(*types)</p></td>
-<td><p>allows to overload functions for various parameter types</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.decorators.multimethod" title="goulib.decorators.multimethod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multimethod</span></code></a>(*types)</p></td>
+<td><p>Allows to overload functions for various parameter types.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nodebug</span></code>(func)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.decorators.nodebug" title="goulib.decorators.nodebug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nodebug</span></code></a>(func)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">timeit</span></code>(method)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.decorators.timeit" title="goulib.decorators.timeit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timeit</span></code></a>(method)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code>(timeout)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.decorators.timeout" title="goulib.decorators.timeout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code></a>(timeout)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -77,11 +77,94 @@
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiMethod</span></code>(name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.decorators.MultiMethod" title="goulib.decorators.MultiMethod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiMethod</span></code></a>(name)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.memoize">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">memoize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#memoize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.memoize" title="Link to this definition">¶</a></dt>
+<dd><p>speed up repeated calls to a function by caching its results in a dict index by params
+:see: <a class="reference external" href="https://en.wikipedia.org/wiki/Memoization">https://en.wikipedia.org/wiki/Memoization</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.debug">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.debug" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.nodebug">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">nodebug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#nodebug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.nodebug" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.timeit">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">timeit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#timeit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.timeit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.get_thread_pool">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">get_thread_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#get_thread_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.get_thread_pool" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.timeout">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#timeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.timeout" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.itimeout">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">itimeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#itimeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.itimeout" title="Link to this definition">¶</a></dt>
+<dd><p>timeout for loops
+:param iterable: any iterable
+:param timeout: float max running time in seconds 
+:yield: items in iterator until timeout occurs
+:raise: multiprocessing.TimeoutError if timeout occured</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.decorators.MultiMethod">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">MultiMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#MultiMethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.MultiMethod" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.decorators.MultiMethod.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#MultiMethod.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.MultiMethod.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.decorators.MultiMethod.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#MultiMethod.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.MultiMethod.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.decorators.MultiMethod.register">
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#MultiMethod.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.MultiMethod.register" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.decorators.multimethod">
+<span class="sig-prename descclassname"><span class="pre">goulib.decorators.</span></span><span class="sig-name descname"><span class="pre">multimethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/decorators.html#multimethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.decorators.multimethod" title="Link to this definition">¶</a></dt>
+<dd><p>Allows to overload functions for various parameter types:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@multimethod</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">pass</span>  <span class="c1"># code for two ints</span>
+
+<span class="nd">@multimethod</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">pass</span>  <span class="c1"># code for two floats</span>
+
+<span class="nd">@multimethod</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">pass</span>  <span class="c1"># code for two strings</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -91,6 +174,29 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.decorators</a><ul>
+<li><a class="reference internal" href="#goulib.decorators.memoize"><code class="docutils literal notranslate"><span class="pre">memoize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.debug"><code class="docutils literal notranslate"><span class="pre">debug()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.nodebug"><code class="docutils literal notranslate"><span class="pre">nodebug()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.timeit"><code class="docutils literal notranslate"><span class="pre">timeit()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.get_thread_pool"><code class="docutils literal notranslate"><span class="pre">get_thread_pool()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.timeout"><code class="docutils literal notranslate"><span class="pre">timeout()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.itimeout"><code class="docutils literal notranslate"><span class="pre">itimeout()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.MultiMethod"><code class="docutils literal notranslate"><span class="pre">MultiMethod</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.decorators.MultiMethod.__init__"><code class="docutils literal notranslate"><span class="pre">MultiMethod.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.MultiMethod.__call__"><code class="docutils literal notranslate"><span class="pre">MultiMethod.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.decorators.MultiMethod.register"><code class="docutils literal notranslate"><span class="pre">MultiMethod.register()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.decorators.multimethod"><code class="docutils literal notranslate"><span class="pre">multimethod()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="goulib.datetime2.html"
@@ -142,9 +248,9 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2025, Ph. Guglielmetti, https://github.com/goulu/goulib.
-      Last updated on Feb 27, 2025.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 27, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
   </body>
 </html>

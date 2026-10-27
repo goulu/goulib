@@ -152,6 +152,7 @@
       partition
       partitionsQ
       pascal_gen
+      pascal_row_gen
       pentagonal
       pfactor
       pi_digits_gen
