@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Changes &#8212; goulib 3.0.3 documentation</title>
+    <title>Changes &#8212; goulib 3.0.4 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css?v=34905f61" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
-    <script src="_static/documentation_options.js?v=9b3fc59f"></script>
+    <script src="_static/documentation_options.js?v=50b65552"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -28,7 +28,7 @@
         <li class="right" >
           <a href="modules/goulib.workdays.html" title="goulib.workdays"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">goulib 3.0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">goulib 3.0.4 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Changes</a></li> 
       </ul>
     </div>  
@@ -40,8 +40,32 @@
             
   <section id="changes">
 <h1>Changes<a class="headerlink" href="#changes" title="Link to this heading">¶</a></h1>
-<p>v3.0.1, 2025-10-20
-* Linux (Mint) compatibility</p>
+<p>v3.0.4, 2026-10-27</p>
+<ul class="simple">
+<li><p>automated Conda packaging and publishing to Anaconda.org via GitHub Actions with dedicated recipe <code class="file docutils literal notranslate"><span class="pre">conda/meta.yaml</span></code></p></li>
+<li><p>explicit setuptools package discovery in <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> to prevent packaging extra directories</p></li>
+<li><p>modernized license metadata in <code class="file docutils literal notranslate"><span class="pre">pyproject.toml</span></code> to SPDX standard (PEP 639)</p></li>
+<li><p>fix random <cite>NetworkXNoPath</cite> error in <code class="xref py py-mod docutils literal notranslate"><span class="pre">image</span></code> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">colors</span></code> by disabling spatial tolerance on converter graphs</p></li>
+<li><p>fix <cite>GeneratorExit</cite> warning in <code class="xref py py-meth docutils literal notranslate"><span class="pre">table.Table.icol()</span></code></p></li>
+</ul>
+<p>v3.0.3, 2026-10-27</p>
+<ul class="simple">
+<li><p>test coverage increased to &gt;90% across the library</p></li>
+<li><p>major speedup of <code class="xref py py-mod docutils literal notranslate"><span class="pre">image</span></code> tests (runtime reduced from ~120s to ~5s)</p></li>
+<li><p>restored documentation deployment to GitHub Pages in build workflow</p></li>
+<li><p>restored <cite>sphinxdoc</cite> theme for ReadTheDocs</p></li>
+</ul>
+<p>v3.0.2, 2026-10-26</p>
+<ul class="simple">
+<li><p>documentation updated across modules (<code class="xref py py-mod docutils literal notranslate"><span class="pre">colors</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">geom</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">geom3d</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">image</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">math2</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">optim</span></code>)</p></li>
+<li><p>modernized <code class="xref py py-mod docutils literal notranslate"><span class="pre">datetime2</span></code> and added tests</p></li>
+<li><p>additional tests and bug fixes in <code class="xref py py-mod docutils literal notranslate"><span class="pre">math2</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">containers</span></code>, and <code class="xref py py-mod docutils literal notranslate"><span class="pre">colors</span></code></p></li>
+<li><p>updated CI matrix for Python 3.14 and 3.15</p></li>
+</ul>
+<p>v3.0.1, 2025-10-20</p>
+<ul class="simple">
+<li><p>Linux (Mint) compatibility</p></li>
+</ul>
 <p>v3.0.0, 2025-02-26</p>
 <ul class="simple">
 <li><p>goulib is live again !</p></li>
@@ -198,7 +222,7 @@ We had to use of <a class="reference external" href="http://pypi.python.org/pypi
         <li class="right" >
           <a href="modules/goulib.workdays.html" title="goulib.workdays"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">goulib 3.0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">goulib 3.0.4 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Changes</a></li> 
       </ul>
     </div>
