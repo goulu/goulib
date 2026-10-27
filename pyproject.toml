@@ -12,15 +12,17 @@ description = "library of useful Python code for scientific + technical applicat
 readme = "README.rst"
 requires-python = ">=3.11"
 keywords = ["math", "geometry", "graph", "optimization", "drawing"]
-license = {file = "LICENSE.TXT"}
+license = "LGPL-3.0-or-later"
+license-files = ["LICENSE.TXT"]
 classifiers = [
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Topic :: Scientific/Engineering",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Multimedia :: Graphics :: Graphics Conversion",
@@ -30,3 +32,6 @@ dynamic = ["dependencies", "optional-dependencies"]
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
 optional-dependencies = {dev = { file = ["requirements-dev.txt"] }}
+
+[tool.setuptools.packages.find]
+include = ["goulib*"]
