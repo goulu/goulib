@@ -1401,7 +1401,7 @@ def ind2rgb(im, palette):
 
 
 # a nx.DiGraph() would suffice, but my DiGraph are better
-converters = graph.DiGraph(multi=False)
+converters = graph.DiGraph(multi=False, tol=0)
 for source in modes:
     for target in modes:
         key = (modes[source].name, modes[target].name)

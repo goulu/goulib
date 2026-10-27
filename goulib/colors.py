@@ -148,7 +148,7 @@ colorspaces = (
 # as in https://github.com/gtaylor/python-colormath
 
 # a nx.DiGraph() would suffice, but my DiGraph are better
-converters = graph.DiGraph(multi=False)
+converters = graph.DiGraph(multi=False, tol=0)
 for source in colorspaces:
     for target in colorspaces:
         key = (source.lower(), target.lower())

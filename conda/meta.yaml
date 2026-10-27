@@ -1,5 +1,5 @@
 {% set name = "goulib" %}
-{% set version = environ.get('VERSION', '3.0.3') %}
+{% set version = environ.get('VERSION', '3.0.4') %}
 
 package:
   name: {{ name|lower }}

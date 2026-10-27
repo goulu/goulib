@@ -570,7 +570,7 @@ class Table(list):
         for row in self:
             try:
                 yield row[i]
-            except:
+            except Exception:
                 yield None
 
     def col(self, column, title=False):

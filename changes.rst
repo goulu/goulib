@@ -1,4 +1,27 @@
+v3.0.4, 2026-10-27
+
+* automated Conda packaging and publishing to Anaconda.org via GitHub Actions with dedicated recipe :file:`conda/meta.yaml`
+* explicit setuptools package discovery in :file:`pyproject.toml` to prevent packaging extra directories
+* modernized license metadata in :file:`pyproject.toml` to SPDX standard (PEP 639)
+* fix random `NetworkXNoPath` error in :mod:`image` and :mod:`colors` by disabling spatial tolerance on converter graphs
+* fix `GeneratorExit` warning in :meth:`table.Table.icol`
+
+v3.0.3, 2026-10-27
+
+* test coverage increased to >90% across the library
+* major speedup of :mod:`image` tests (runtime reduced from ~120s to ~5s)
+* restored documentation deployment to GitHub Pages in build workflow
+* restored `sphinxdoc` theme for ReadTheDocs
+
+v3.0.2, 2026-10-26
+
+* documentation updated across modules (:mod:`colors`, :mod:`geom`, :mod:`geom3d`, :mod:`image`, :mod:`math2`, :mod:`optim`)
+* modernized :mod:`datetime2` and added tests
+* additional tests and bug fixes in :mod:`math2`, :mod:`containers`, and :mod:`colors`
+* updated CI matrix for Python 3.14 and 3.15
+
 v3.0.1, 2025-10-20
+
 * Linux (Mint) compatibility
 
 v3.0.0, 2025-02-26
