@@ -50,6 +50,7 @@ extensions = [
     'sphinx.ext.viewcode', 
     'sphinx.ext.inheritance_diagram', 
     'sphinx.ext.intersphinx',
+    'myst_parser',
 ]
 
 graphviz_output_format = 'svg'
@@ -63,7 +64,10 @@ inheritance_graph_attrs = dict(rankdir="LR", size='""', fontsize=24, ratio='expa
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'

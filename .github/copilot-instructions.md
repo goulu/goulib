@@ -10,7 +10,7 @@ Key facts
 
 Where to look first
 
-- `README.rst` — high level overview and module list.
+- `README.md` — high level overview and module list.
 - `pyproject.toml` — packaging, version, and dependency wiring (`requirements.txt` is the canonical dependency list).
 - `docs/conf.py` — sphinx configuration; shows how the package is imported for docs and where to find version string (`goulib/__init__.py`).
 - `tests/` — many tests contain concrete examples of API usage; copy examples from tests for realistic changes.
