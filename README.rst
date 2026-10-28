@@ -13,6 +13,9 @@ see the `IPython notebook <https://github.com/goulu/goulib/blob/master/examples/
 .. image:: https://badge.fury.io/py/goulib.svg
     :target: https://pypi.python.org/pypi/goulib/
     :alt: Version
+.. image:: https://anaconda.org/goulu/goulib/badges/version.svg
+    :target: https://anaconda.org/channels/goulu/packages/Goulib/overview
+    :alt: Conda
 .. image:: https://github.com/goulu/Goulib/actions/workflows/build.yml/badge.svg
     :target: https://github.com/goulu/Goulib/actions/workflows/build.yml
     :alt: Build
