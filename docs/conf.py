@@ -59,7 +59,9 @@ napoleon_include_special_with_doc = False
 
 autosummary_generate = True
 
-inheritance_graph_attrs = dict(rankdir="LR", size='""', fontsize=24, ratio='expand')
+inheritance_graph_attrs = dict(rankdir="LR", size='""', fontsize=16)
+inheritance_node_attrs = dict(shape='box', fontsize=14, height=0.4, margin='"0.15,0.08"')
+inheritance_edge_attrs = dict(fontsize=12)
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -193,6 +195,14 @@ html_theme = 'sphinxdoc'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+html_css_files = [
+    'custom.css',
+]
+
+html_js_files = [
+    'graphviz_zoom.js',
+]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
