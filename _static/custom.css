@@ -1,0 +1,100 @@
+/* Custom styling for Sphinx documentation and Graphviz diagrams */
+
+div.graphviz-wrapper {
+    position: relative;
+    margin: 1.5em 0;
+    border: 1px solid #d3dbe2;
+    border-radius: 6px;
+    background: #fdfdfd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+div.graphviz-wrapper:fullscreen {
+    background: #ffffff;
+    border: none;
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+}
+
+.graphviz-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: #f7f9fa;
+    border-bottom: 1px solid #e1e4e5;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #444;
+    user-select: none;
+}
+
+.graphviz-toolbar button {
+    background: #ffffff;
+    border: 1px solid #c9d1d9;
+    border-radius: 4px;
+    padding: 3px 9px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: background 0.15s, border-color 0.15s, transform 0.05s;
+}
+
+.graphviz-toolbar button:hover {
+    background: #eef2f5;
+    border-color: #8c9ba5;
+}
+
+.graphviz-toolbar button:active {
+    transform: scale(0.96);
+}
+
+.graphviz-toolbar .zoom-level-text {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 48px;
+    text-align: center;
+    display: inline-block;
+}
+
+.graphviz-toolbar input[type="range"].zoom-slider {
+    width: 120px;
+    cursor: pointer;
+    margin: 0 4px;
+    vertical-align: middle;
+}
+
+.graphviz-toolbar .toolbar-hint {
+    margin-left: auto;
+    color: #888;
+    font-size: 11px;
+}
+
+div.graphviz-viewport {
+    position: relative;
+    overflow: auto;
+    max-height: 75vh;
+    padding: 20px;
+    background: #ffffff;
+    flex: 1;
+    cursor: grab;
+}
+
+div.graphviz-viewport.panning {
+    cursor: grabbing;
+}
+
+/* Ensure graphviz object is not restricted by Sphinx default max-width: 100% */
+div.graphviz-viewport object.graphviz,
+div.graphviz object.graphviz {
+    max-width: none !important;
+    display: block;
+    transform-origin: 0 0;
+}
