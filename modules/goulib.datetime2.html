@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.datetime2 &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.decorators" href="goulib.decorators.html" />
+    <link rel="prev" title="goulib.containers" href="goulib.containers.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.decorators.html" title="goulib.decorators"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.containers.html" title="goulib.containers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.datetime2</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.datetime2">
+<span id="goulib-datetime2"></span><h1>goulib.datetime2<a class="headerlink" href="#module-goulib.datetime2" title="Link to this heading">¶</a></h1>
+<p>additions to <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime" title="(in Python v3.15)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">datetime</span></code></a> standard library</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.add_months" title="goulib.datetime2.add_months"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_months</span></code></a>(date, months)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.date_add" title="goulib.datetime2.date_add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date_add</span></code></a>(date[, years, months, weeks, days])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.datef" title="goulib.datetime2.datef"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datef</span></code></a>(d[, fmt])</p></td>
+<td><p>converts something to a date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.datetime_intersect" title="goulib.datetime2.datetime_intersect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime_intersect</span></code></a>(t1, t2)</p></td>
+<td><p>returns timedelta overlap between 2 intervals (tuples) of datetime</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.datetimef" title="goulib.datetime2.datetimef"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetimef</span></code></a>(d[, t, fmt])</p></td>
+<td><p>&quot;converts something to a datetime :param d: can be:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.days" title="goulib.datetime2.days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">days</span></code></a>(start, length[, step])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.daysgen" title="goulib.datetime2.daysgen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">daysgen</span></code></a>(start, length[, step])</p></td>
+<td><p>returns a range of dates or datetimes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.equal" title="goulib.datetime2.equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equal</span></code></a>(a, b[, epsilon])</p></td>
+<td><p>approximately equal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.fmt2regex" title="goulib.datetime2.fmt2regex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fmt2regex</span></code></a>(fmt)</p></td>
+<td><p>converts a date/time format string to the regex that comiles it</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.hours" title="goulib.datetime2.hours"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hours</span></code></a>(td)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.minutes" title="goulib.datetime2.minutes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">minutes</span></code></a>(td)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.strftimedelta" title="goulib.datetime2.strftimedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strftimedelta</span></code></a>(t[, fmt])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.tdround" title="goulib.datetime2.tdround"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tdround</span></code></a>(td[, s])</p></td>
+<td><p>return timedelta rounded to s seconds</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.time_add" title="goulib.datetime2.time_add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_add</span></code></a>(t, d)</p></td>
+<td><p>adds delta to time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.time_intersect" title="goulib.datetime2.time_intersect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_intersect</span></code></a>(t1, t2)</p></td>
+<td><p>returns timedelta overlap between 2 intervals (tuples) of time</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.time_sub" title="goulib.datetime2.time_sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_sub</span></code></a>(t1, t2)</p></td>
+<td><p>substracts 2 time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.timedelta_div" title="goulib.datetime2.timedelta_div"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timedelta_div</span></code></a>(t1, t2)</p></td>
+<td><p>divides a timedelta by a timedelta or a number.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.timedelta_mul" title="goulib.datetime2.timedelta_mul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timedelta_mul</span></code></a>(t1, t2)</p></td>
+<td><p>multiplies a timedelta.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.timedelta_sum" title="goulib.datetime2.timedelta_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timedelta_sum</span></code></a>(timedeltas)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.datetime2.timedeltaf" title="goulib.datetime2.timedeltaf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timedeltaf</span></code></a>(t[, fmt])</p></td>
+<td><p>converts something to a timedelta.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.datetime2.timef" title="goulib.datetime2.timef"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timef</span></code></a>(t[, fmt])</p></td>
+<td><p>converts something to a time.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.datetimef">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">datetimef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%Y-%m-%d'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#datetimef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.datetimef" title="Link to this definition">¶</a></dt>
+<dd><p>“converts something to a datetime
+:param d: can be:</p>
+<ul class="simple">
+<li><p>datetime : result is a copy of d with time optionally replaced</p></li>
+<li><p>date : result is date at time t, (00:00AM by default)</p></li>
+<li><p>int or float : if fmt is None, d is considered as Excel date numeric format
+(see <a class="reference external" href="http://answers.oreilly.com/topic/1694-how-excel-stores-date-and-time-values/">http://answers.oreilly.com/topic/1694-how-excel-stores-date-and-time-values/</a> )</p></li>
+<li><p>string or specified format: result is datetime parsed using specified format string</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fmt</strong> – format string. See <a class="reference external" href="http://docs.python.org/2/library/datetime.html#strftime-strptime-behavior">http://docs.python.org/2/library/datetime.html#strftime-strptime-behavior</a></p></li>
+<li><p><strong>t</strong> – optional time. replaces the time of the datetime obtained from d. Allows datetimef(date,time)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.datef">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">datef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%Y-%m-%d'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#datef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.datef" title="Link to this definition">¶</a></dt>
+<dd><p>converts something to a date. See datetimef</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.timef">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">timef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%H:%M:%S'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#timef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.timef" title="Link to this definition">¶</a></dt>
+<dd><p>converts something to a time. See datetimef</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.fmt2regex">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">fmt2regex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#fmt2regex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.fmt2regex" title="Link to this definition">¶</a></dt>
+<dd><p>converts a date/time format string to the regex that comiles it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fmt</strong> – string</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>compiled regex</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.timedeltaf">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">timedeltaf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#timedeltaf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.timedeltaf" title="Link to this definition">¶</a></dt>
+<dd><p>converts something to a timedelta.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> – can be:</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>already a timedelta, or a time, or a int/float giving a number of days (Excel)</p></li>
+<li><p>or a string in HH:MM:SS format by default</p></li>
+<li><p>or a string in timedelta str() output format</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.strftimedelta">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">strftimedelta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%H:%M:%S'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#strftimedelta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.strftimedelta" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> – float seconds or timedelta</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.tdround">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">tdround</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#tdround"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.tdround" title="Link to this definition">¶</a></dt>
+<dd><p>return timedelta rounded to s seconds</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.minutes">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">minutes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#minutes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.minutes" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>td</strong> – timedelta</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>float timedelta in minutes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.hours">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">hours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">td</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#hours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.hours" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>td</strong> – timedelta</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>float timedelta in hours</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.daysgen">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">daysgen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.timedelta(days=1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#daysgen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.daysgen" title="Link to this definition">¶</a></dt>
+<dd><p>returns a range of dates or datetimes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.days">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">days</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.timedelta(days=1)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#days"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.days" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.timedelta_sum">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">timedelta_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timedeltas</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#timedelta_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.timedelta_sum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.timedelta_div">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">timedelta_div</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#timedelta_div"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.timedelta_div" title="Link to this definition">¶</a></dt>
+<dd><p>divides a timedelta by a timedelta or a number.
+should be a method of timedelta…</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.timedelta_mul">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">timedelta_mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#timedelta_mul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.timedelta_mul" title="Link to this definition">¶</a></dt>
+<dd><p>multiplies a timedelta. should be a method of timedelta…</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.time_sub">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">time_sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#time_sub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.time_sub" title="Link to this definition">¶</a></dt>
+<dd><p>substracts 2 time. should be a method of time…</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.time_add">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">time_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#time_add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.time_add" title="Link to this definition">¶</a></dt>
+<dd><p>adds delta to time. should be a method of time…</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.add_months">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">add_months</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#add_months"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.add_months" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.date_add">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">date_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weeks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#date_add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.date_add" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.equal">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.timedelta(microseconds=500000)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.equal" title="Link to this definition">¶</a></dt>
+<dd><p>approximately equal. Use this instead of a==b
+:return: True if a and b are less than seconds apart</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.datetime_intersect">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">datetime_intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#datetime_intersect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.datetime_intersect" title="Link to this definition">¶</a></dt>
+<dd><p>returns timedelta overlap between 2 intervals (tuples) of datetime</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.datetime2.time_intersect">
+<span class="sig-prename descclassname"><span class="pre">goulib.datetime2.</span></span><span class="sig-name descname"><span class="pre">time_intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/datetime2.html#time_intersect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.datetime2.time_intersect" title="Link to this definition">¶</a></dt>
+<dd><p>returns timedelta overlap between 2 intervals (tuples) of time</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.datetime2</a><ul>
+<li><a class="reference internal" href="#goulib.datetime2.datetimef"><code class="docutils literal notranslate"><span class="pre">datetimef()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.datef"><code class="docutils literal notranslate"><span class="pre">datef()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.timef"><code class="docutils literal notranslate"><span class="pre">timef()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.fmt2regex"><code class="docutils literal notranslate"><span class="pre">fmt2regex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.timedeltaf"><code class="docutils literal notranslate"><span class="pre">timedeltaf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.strftimedelta"><code class="docutils literal notranslate"><span class="pre">strftimedelta()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.tdround"><code class="docutils literal notranslate"><span class="pre">tdround()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.minutes"><code class="docutils literal notranslate"><span class="pre">minutes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.hours"><code class="docutils literal notranslate"><span class="pre">hours()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.daysgen"><code class="docutils literal notranslate"><span class="pre">daysgen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.days"><code class="docutils literal notranslate"><span class="pre">days()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.timedelta_sum"><code class="docutils literal notranslate"><span class="pre">timedelta_sum()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.timedelta_div"><code class="docutils literal notranslate"><span class="pre">timedelta_div()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.timedelta_mul"><code class="docutils literal notranslate"><span class="pre">timedelta_mul()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.time_sub"><code class="docutils literal notranslate"><span class="pre">time_sub()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.time_add"><code class="docutils literal notranslate"><span class="pre">time_add()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.add_months"><code class="docutils literal notranslate"><span class="pre">add_months()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.date_add"><code class="docutils literal notranslate"><span class="pre">date_add()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.equal"><code class="docutils literal notranslate"><span class="pre">equal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.datetime_intersect"><code class="docutils literal notranslate"><span class="pre">datetime_intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.datetime2.time_intersect"><code class="docutils literal notranslate"><span class="pre">time_intersect()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.containers.html"
+                          title="previous chapter">goulib.containers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.decorators.html"
+                          title="next chapter">goulib.decorators</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.datetime2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.decorators.html" title="goulib.decorators"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.containers.html" title="goulib.containers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.datetime2</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

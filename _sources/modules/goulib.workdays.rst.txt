@@ -1,0 +1,25 @@
+﻿goulib.workdays
+===============
+
+.. automodule:: goulib.workdays
+
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+   
+      FullTime
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      networkdays
+      workday
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      WorkCalendar
+   

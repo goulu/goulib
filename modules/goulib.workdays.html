@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.workdays &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Changes" href="../changes.html" />
+    <link rel="prev" title="goulib.units" href="goulib.units.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../changes.html" title="Changes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.units.html" title="goulib.units"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.workdays</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.workdays">
+<span id="goulib-workdays"></span><h1>goulib.workdays<a class="headerlink" href="#module-goulib.workdays" title="Link to this heading">¶</a></h1>
+<p>WorkCalendar class with datetime operations on working hours, handling holidays
+merges and improves <a class="reference external" href="http://pypi.python.org/pypi/BusinessHours/">BusinessHours</a> 
+and <a class="reference external" href="http://pypi.python.org/pypi/workdays/">workdays</a> packages</p>
+<p class="rubric">Module Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.workdays.FullTime" title="goulib.workdays.FullTime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FullTime</span></code></a></p></td>
+<td><p>compatibility with <a class="reference external" href="http://pypi.python.org/pypi/BusinessHours">http://pypi.python.org/pypi/BusinessHours</a></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.workdays.networkdays" title="goulib.workdays.networkdays"><code class="xref py py-obj docutils literal notranslate"><span class="pre">networkdays</span></code></a>(start_date, end_date[, holidays])</p></td>
+<td><p>Same as Excel NETWORKDAYS function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.workdays.workday" title="goulib.workdays.workday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">workday</span></code></a>(start_date, ndays[, holidays])</p></td>
+<td><p>Same as Excel WORKDAY function.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.workdays.WorkCalendar" title="goulib.workdays.WorkCalendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorkCalendar</span></code></a>([worktime, parent, weekends, ...])</p></td>
+<td><p>WorkCalendar class with datetime operations on working hours</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.workdays.</span></span><span class="sig-name descname"><span class="pre">WorkCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worktime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[datetime.time(0,</span> <span class="pre">0),</span> <span class="pre">datetime.time(23,</span> <span class="pre">59,</span> <span class="pre">59,</span> <span class="pre">999999)]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weekends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holidays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>WorkCalendar class with datetime operations on working hours</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.MON">
+<span class="sig-name descname"><span class="pre">MON</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.MON" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.TUE">
+<span class="sig-name descname"><span class="pre">TUE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.TUE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.WED">
+<span class="sig-name descname"><span class="pre">WED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.WED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.THU">
+<span class="sig-name descname"><span class="pre">THU</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.THU" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.FRI">
+<span class="sig-name descname"><span class="pre">FRI</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.FRI" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.SAT">
+<span class="sig-name descname"><span class="pre">SAT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.SAT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.SUN">
+<span class="sig-name descname"><span class="pre">SUN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.SUN" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worktime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[datetime.time(0,</span> <span class="pre">0),</span> <span class="pre">datetime.time(23,</span> <span class="pre">59,</span> <span class="pre">59,</span> <span class="pre">999999)]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weekends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holidays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.start">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.start" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.end">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#goulib.workdays.WorkCalendar.end" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.setworktime">
+<span class="sig-name descname"><span class="pre">setworktime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worktime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.setworktime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.setworktime" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.addholidays">
+<span class="sig-name descname"><span class="pre">addholidays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">days</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.addholidays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.addholidays" title="Link to this definition">¶</a></dt>
+<dd><p>add day(s) to to known holidays. dates with year==4 (to allow Feb 29th) apply every year
+note : holidays set may contain weekends too.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.isworkday">
+<span class="sig-name descname"><span class="pre">isworkday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.isworkday"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.isworkday" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return True if day is a work day</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.isworktime">
+<span class="sig-name descname"><span class="pre">isworktime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.isworktime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.isworktime" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return True if you’re supposed to work at that time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.nextworkday">
+<span class="sig-name descname"><span class="pre">nextworkday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.nextworkday"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.nextworkday" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return next work day</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.prevworkday">
+<span class="sig-name descname"><span class="pre">prevworkday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.prevworkday"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.prevworkday" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return previous work day</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.range">
+<span class="sig-name descname"><span class="pre">range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.range" title="Link to this definition">¶</a></dt>
+<dd><p>range of workdays between start (included) and end (not included)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.workdays">
+<span class="sig-name descname"><span class="pre">workdays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndays</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.workdays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.workdays" title="Link to this definition">¶</a></dt>
+<dd><p>list of ndays workdays from start</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.workday">
+<span class="sig-name descname"><span class="pre">workday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndays</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.workday"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.workday" title="Link to this definition">¶</a></dt>
+<dd><p>Same as Excel WORKDAY function.
+Returns a date that is the indicated number of working days before or after the starting date. 
+Working days exclude weekends and any dates identified as holidays.
+Use WORKDAY to exclude weekends or holidays when you calculate invoice due dates, 
+expected delivery times, or the number of days of work performed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.cast">
+<span class="sig-name descname"><span class="pre">cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retro</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.cast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.cast" title="Link to this definition">¶</a></dt>
+<dd><p>force time to be in workhours</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.worktime">
+<span class="sig-name descname"><span class="pre">worktime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.worktime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.worktime" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return interval of time worked a given day</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.workdatetime">
+<span class="sig-name descname"><span class="pre">workdatetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.workdatetime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.workdatetime" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return interval of datetime worked a given day</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.diff">
+<span class="sig-name descname"><span class="pre">diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.diff" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return timedelta worktime between t1 and t2 (= t2-t1)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.gethours">
+<span class="sig-name descname"><span class="pre">gethours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.gethours"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.gethours" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return fractional work hours between t1 and t2 (= t2-t1)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.plus">
+<span class="sig-name descname"><span class="pre">plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.plus" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return start time + t work time (positive or negative)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.minus">
+<span class="sig-name descname"><span class="pre">minus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.minus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.minus" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;return start time - t work time (positive or negative)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.workdays.WorkCalendar.networkdays">
+<span class="sig-name descname"><span class="pre">networkdays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#WorkCalendar.networkdays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.WorkCalendar.networkdays" title="Link to this definition">¶</a></dt>
+<dd><p>Same as Excel NETWORKDAYS function.
+Returns the number of whole working days between 
+start_date and end_date (inclusive of both start_date and end_date). 
+Working days exclude weekends and any dates identified in holidays. 
+Use NETWORKDAYS to calculate employee benefits that accrue 
+based on the number of days worked during a specific term</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="goulib.workdays.FullTime">
+<span class="sig-prename descclassname"><span class="pre">goulib.workdays.</span></span><span class="sig-name descname"><span class="pre">FullTime</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;goulib.workdays.WorkCalendar</span> <span class="pre">object&gt;</span></span><a class="headerlink" href="#goulib.workdays.FullTime" title="Link to this definition">¶</a></dt>
+<dd><p>compatibility with <a class="reference external" href="http://pypi.python.org/pypi/BusinessHours">http://pypi.python.org/pypi/BusinessHours</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.workdays.workday">
+<span class="sig-prename descclassname"><span class="pre">goulib.workdays.</span></span><span class="sig-name descname"><span class="pre">workday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndays</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holidays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#workday"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.workday" title="Link to this definition">¶</a></dt>
+<dd><p>Same as Excel WORKDAY function.
+Returns a date that is the indicated number of working days before or after the starting date. 
+Working days exclude weekends and any dates identified as holidays.
+Use WORKDAY to exclude weekends or holidays when you calculate invoice due dates, 
+expected delivery times, or the number of days of work performed.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.workdays.networkdays">
+<span class="sig-prename descclassname"><span class="pre">goulib.workdays.</span></span><span class="sig-name descname"><span class="pre">networkdays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holidays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/workdays.html#networkdays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.workdays.networkdays" title="Link to this definition">¶</a></dt>
+<dd><p>Same as Excel NETWORKDAYS function.
+Returns the number of whole working days between 
+start_date and end_date (inclusive of both start_date and end_date). 
+Working days exclude weekends and any dates identified in holidays. 
+Use NETWORKDAYS to calculate employee benefits that accrue 
+based on the number of days worked during a specific term</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.workdays</a><ul>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar"><code class="docutils literal notranslate"><span class="pre">WorkCalendar</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.MON"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.MON</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.TUE"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.TUE</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.WED"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.WED</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.THU"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.THU</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.FRI"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.FRI</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.SAT"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.SAT</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.SUN"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.SUN</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.__init__"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.start"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.end"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.setworktime"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.setworktime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.addholidays"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.addholidays()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.isworkday"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.isworkday()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.isworktime"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.isworktime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.nextworkday"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.nextworkday()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.prevworkday"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.prevworkday()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.range"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.range()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.workdays"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.workdays()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.workday"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.workday()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.cast"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.cast()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.worktime"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.worktime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.workdatetime"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.workdatetime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.diff"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.diff()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.gethours"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.gethours()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.plus"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.plus()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.minus"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.minus()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.WorkCalendar.networkdays"><code class="docutils literal notranslate"><span class="pre">WorkCalendar.networkdays()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.workdays.FullTime"><code class="docutils literal notranslate"><span class="pre">FullTime</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.workday"><code class="docutils literal notranslate"><span class="pre">workday()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.workdays.networkdays"><code class="docutils literal notranslate"><span class="pre">networkdays()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.units.html"
+                          title="previous chapter">goulib.units</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../changes.html"
+                          title="next chapter">Changes</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.workdays.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../changes.html" title="Changes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.units.html" title="goulib.units"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.workdays</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.periodic &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.piecewise" href="goulib.piecewise.html" />
+    <link rel="prev" title="goulib.optim" href="goulib.optim.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.piecewise.html" title="goulib.piecewise"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.optim.html" title="goulib.optim"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.periodic</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.periodic">
+<span id="goulib-periodic"></span><h1>goulib.periodic<a class="headerlink" href="#module-goulib.periodic" title="Link to this heading">¶</a></h1>
+<p>periodic functions</p>
+<p>! work in progress, not tested yet !</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.periodic.Periodic" title="goulib.periodic.Periodic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Periodic</span></code></a>(f, period)</p></td>
+<td><p>periodic function defined by an Expr and a period</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.periodic.</span></span><span class="sig-name descname"><span class="pre">Periodic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expr</span></code></a></p>
+<p>periodic function defined by an Expr and a period</p>
+<p>constructor
+:param f: Expr
+:param period: Period (start, end) for periodicity</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>constructor
+:param f: Expr
+:param period: Period (start, end) for periodicity</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.period">
+<span class="sig-name descname"><span class="pre">period</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic.period"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic.period" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__and__">
+<span class="sig-name descname"><span class="pre">__and__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__and__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'_expr':</span> <span class="pre">&lt;class</span> <span class="pre">'goulib.expr.Expr'&gt;,</span> <span class="pre">'_period':</span> <span class="pre">tuple[float,</span> <span class="pre">float]}</span></span><a class="headerlink" href="#goulib.periodic.Periodic.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__div__">
+<span class="sig-name descname"><span class="pre">__div__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__div__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__float__">
+<span class="sig-name descname"><span class="pre">__float__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__float__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__ge__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__gt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.periodic.Periodic.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__invert__">
+<span class="sig-name descname"><span class="pre">__invert__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__invert__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__le__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__lshift__">
+<span class="sig-name descname"><span class="pre">__lshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__lshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__lt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__mul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__ne__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__neg__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__or__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__pow__">
+<span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__pow__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__rmul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__rshift__">
+<span class="sig-name descname"><span class="pre">__rshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__rshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__sub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__truediv__">
+<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__truediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.__xor__">
+<span class="sig-name descname"><span class="pre">__xor__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.__xor__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#goulib.periodic.Periodic" title="goulib.periodic.Periodic"><span class="pre">Periodic</span></a></span></span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic.apply" title="Link to this definition">¶</a></dt>
+<dd><p>function composition self o f = f(self(x))
+overrides Expr.apply
+:param f: function to apply
+:param right: optional second argument for f
+:return: a new Periodic object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.complexity">
+<span class="sig-name descname"><span class="pre">complexity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.complexity" title="Link to this definition">¶</a></dt>
+<dd><p>measures the complexity of Expr
+:return: int, sum of the precedence of used ops</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></span><a class="headerlink" href="#goulib.periodic.Periodic.eval" title="Link to this definition">¶</a></dt>
+<dd><p>evaluate the Expr at x OR compose self(x())</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.isNum">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isNum</span></span><a class="headerlink" href="#goulib.periodic.Periodic.isNum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.isconstant">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isconstant</span></span><a class="headerlink" href="#goulib.periodic.Periodic.isconstant" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if Expr evaluates to a constant number or bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.latex">
+<span class="sig-name descname"><span class="pre">latex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.latex" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string LaTex formula</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.plot" title="Link to this definition">¶</a></dt>
+<dd><p>renders on IPython Notebook
+(alias to make usage more straightforward)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.png">
+<span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.points" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>x,y lists of float : points for a line plot</p>
+</dd>
+</dl>
+<p>overridden in derived classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'svg'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.render" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.svg">
+<span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.periodic.Periodic.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.periodic.Periodic.applx">
+<span class="sig-name descname"><span class="pre">applx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#goulib.periodic.Periodic" title="goulib.periodic.Periodic"><span class="pre">Periodic</span></a></span></span><a class="reference internal" href="../_modules/goulib/periodic.html#Periodic.applx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.periodic.Periodic.applx" title="Link to this definition">¶</a></dt>
+<dd><p>function composition f o self = self(f(x))
+overrides Expr.apply
+:param f: function to apply
+:param var: string variable name
+:return: a new Periodic object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.periodic</a><ul>
+<li><a class="reference internal" href="#goulib.periodic.Periodic"><code class="docutils literal notranslate"><span class="pre">Periodic</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__init__"><code class="docutils literal notranslate"><span class="pre">Periodic.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.period"><code class="docutils literal notranslate"><span class="pre">Periodic.period()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__str__"><code class="docutils literal notranslate"><span class="pre">Periodic.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__repr__"><code class="docutils literal notranslate"><span class="pre">Periodic.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__call__"><code class="docutils literal notranslate"><span class="pre">Periodic.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__add__"><code class="docutils literal notranslate"><span class="pre">Periodic.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__and__"><code class="docutils literal notranslate"><span class="pre">Periodic.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__annotations__"><code class="docutils literal notranslate"><span class="pre">Periodic.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__div__"><code class="docutils literal notranslate"><span class="pre">Periodic.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__eq__"><code class="docutils literal notranslate"><span class="pre">Periodic.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__float__"><code class="docutils literal notranslate"><span class="pre">Periodic.__float__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__ge__"><code class="docutils literal notranslate"><span class="pre">Periodic.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__gt__"><code class="docutils literal notranslate"><span class="pre">Periodic.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__hash__"><code class="docutils literal notranslate"><span class="pre">Periodic.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__invert__"><code class="docutils literal notranslate"><span class="pre">Periodic.__invert__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__le__"><code class="docutils literal notranslate"><span class="pre">Periodic.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__lshift__"><code class="docutils literal notranslate"><span class="pre">Periodic.__lshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__lt__"><code class="docutils literal notranslate"><span class="pre">Periodic.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__mul__"><code class="docutils literal notranslate"><span class="pre">Periodic.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__ne__"><code class="docutils literal notranslate"><span class="pre">Periodic.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__neg__"><code class="docutils literal notranslate"><span class="pre">Periodic.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__or__"><code class="docutils literal notranslate"><span class="pre">Periodic.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__pow__"><code class="docutils literal notranslate"><span class="pre">Periodic.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__rmul__"><code class="docutils literal notranslate"><span class="pre">Periodic.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__rshift__"><code class="docutils literal notranslate"><span class="pre">Periodic.__rshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__sub__"><code class="docutils literal notranslate"><span class="pre">Periodic.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__truediv__"><code class="docutils literal notranslate"><span class="pre">Periodic.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.__xor__"><code class="docutils literal notranslate"><span class="pre">Periodic.__xor__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.apply"><code class="docutils literal notranslate"><span class="pre">Periodic.apply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.complexity"><code class="docutils literal notranslate"><span class="pre">Periodic.complexity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.eval"><code class="docutils literal notranslate"><span class="pre">Periodic.eval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.html"><code class="docutils literal notranslate"><span class="pre">Periodic.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.isNum"><code class="docutils literal notranslate"><span class="pre">Periodic.isNum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.isconstant"><code class="docutils literal notranslate"><span class="pre">Periodic.isconstant</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.latex"><code class="docutils literal notranslate"><span class="pre">Periodic.latex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.plot"><code class="docutils literal notranslate"><span class="pre">Periodic.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.png"><code class="docutils literal notranslate"><span class="pre">Periodic.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.points"><code class="docutils literal notranslate"><span class="pre">Periodic.points()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.render"><code class="docutils literal notranslate"><span class="pre">Periodic.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.save"><code class="docutils literal notranslate"><span class="pre">Periodic.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.svg"><code class="docutils literal notranslate"><span class="pre">Periodic.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.periodic.Periodic.applx"><code class="docutils literal notranslate"><span class="pre">Periodic.applx()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.optim.html"
+                          title="previous chapter">goulib.optim</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.piecewise.html"
+                          title="next chapter">goulib.piecewise</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.periodic.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.piecewise.html" title="goulib.piecewise"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.optim.html" title="goulib.optim"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.periodic</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goulib.tests &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for goulib.tests</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf8</span>
+<span class="sd">"""</span>
+<span class="sd">utilities for unit tests (using pytest)</span>
+<span class="sd">"""</span>
+
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Philippe Guglielmetti"</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright 2014-, Philippe Guglielmetti"</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"LGPL"</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">goulib</span><span class="w"> </span><span class="kn">import</span> <span class="n">itertools2</span><span class="p">,</span> <span class="n">decorators</span>
+
+
+<div class="viewcode-block" id="pprint_gen">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.pprint_gen">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pprint_gen</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">'...'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""generates items at specified indices"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">l</span><span class="o">+</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">l</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>  <span class="c1"># infinite iterable</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">))</span>  <span class="c1"># to remove overlaps</span>
+    <span class="n">indices</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">hole</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">indices</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="k">yield</span> <span class="n">item</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">hole</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">l</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">sep</span>
+                <span class="k">break</span>  <span class="c1"># finished</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hole</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">hole</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sep</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">sep</span></div>
+
+
+
+<div class="viewcode-block" id="pprint">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.pprint">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pprint</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">sep</span> <span class="o">=</span> <span class="s1">'...'</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">pprint_gen</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">sep</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">decorators</span><span class="o">.</span><span class="n">itimeout</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>  <span class="c1"># to keep unicode untouched</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">decorators</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">sep</span><span class="p">:</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TestCase">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.TestCase">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TestCase.assertSequenceEqual">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.TestCase.assertSequenceEqual">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assertSequenceEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seq_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reltol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        An equality assertion for ordered sequences (like lists and tuples).</span>
+<span class="sd">        constraints on seq1,seq2 from unittest.TestCase.assertSequenceEqual are mostly removed</span>
+
+<span class="sd">        :param seq1, seq2: iterables to compare for (quasi) equality</span>
+<span class="sd">        :param msg: optional string message to use on failure instead of a list of differences</span>
+<span class="sd">        :param places: int number of digits to consider in float comparisons.</span>
+<span class="sd">                If None, enforces strict equality</span>
+<span class="sd">        :param delta: optional float absolute tolerance value</span>
+<span class="sd">        :param reltol: optional float relative tolerance value</span>
+<span class="sd">        """</span>
+
+        <span class="c1"># we must tee or copy sequences in order to exhaust generators in pprint</span>
+        <span class="c1"># TODO: find a way (if any...) to move this in pprint</span>
+        <span class="n">seq1</span><span class="p">,</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">tee</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">seq2</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">tee</span><span class="p">(</span><span class="n">seq2</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">seq1_repr</span> <span class="o">=</span> <span class="n">pprint</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+        <span class="n">seq2_repr</span> <span class="o">=</span> <span class="n">pprint</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">seq_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">seq_type_name</span> <span class="o">=</span> <span class="n">seq_type</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq_type</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span>
+                    <span class="s1">'First sequence is not a </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">seq_type_name</span><span class="p">,</span> <span class="n">seq1_repr</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq2</span><span class="p">,</span> <span class="n">seq_type</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span>
+                    <span class="s1">'Second sequence is not a </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">seq_type_name</span><span class="p">,</span> <span class="n">seq2_repr</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">seq_type_name</span> <span class="o">=</span> <span class="s2">"sequence"</span>
+
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">(</span><span class="n">seq_type_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span> <span class="n">seq1_repr</span><span class="p">,</span> <span class="n">seq2_repr</span><span class="p">)</span>
+        <span class="n">differing</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1">s differ: </span><span class="si">%s</span><span class="s1"> != </span><span class="si">%s</span><span class="se">\n</span><span class="s1">'</span> <span class="o">%</span> <span class="n">elements</span>
+
+        <span class="k">class</span><span class="w"> </span><span class="nc">End</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="s1">'(end)'</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">End</span><span class="p">()</span>  <span class="c1"># a special object is appended to detect mismatching lengths</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item1</span><span class="p">,</span> <span class="n">item2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="p">[</span><span class="n">end</span><span class="p">]),</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">seq2</span><span class="p">,</span> <span class="p">[</span><span class="n">end</span><span class="p">])):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">msg</span> <span class="k">if</span> <span class="n">msg</span> <span class="k">else</span> <span class="n">differing</span><span class="p">)</span> <span class="o">+</span> \
+                <span class="s1">'First differing element </span><span class="si">%d</span><span class="s1">: </span><span class="si">%s</span><span class="s1"> != </span><span class="si">%s</span><span class="se">\n</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="n">places</span><span class="p">,</span>
+                             <span class="n">msg</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span> <span class="n">reltol</span><span class="o">=</span><span class="n">reltol</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">i</span>  <span class="c1"># number of elements checked</span></div>
+
+
+    <span class="n">base_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TestCase.assertEqual">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.TestCase.assertEqual">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reltol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""automatically calls assertAlmostEqual when needed</span>
+
+<span class="sd">        :param first: first object to compare for (quasi) equality</span>
+<span class="sd">        :param second: second object to compare for (quasi) equality</span>
+<span class="sd">        :param places: int number of digits to consider in float comparisons. If None, forces strict equality</span>
+<span class="sd">        :param msg: optional string error message to display in case of failure</span>
+<span class="sd">        :param delta: optional float absolute tolerance value</span>
+<span class="sd">        :param reltol: optional float relative tolerance value</span>
+<span class="sd">        """</span>
+        <span class="c1"># inspired from http://stackoverflow.com/a/3124155/190597 (KennyTM)</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
+
+        <span class="k">if</span> <span class="n">delta</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">places</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_types</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">second</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_types</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">TestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">places</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">second</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertSequenceEqual</span><span class="p">(</span>
+                    <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="n">places</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span> <span class="n">reltol</span><span class="o">=</span><span class="n">reltol</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># for some classes like pint.Quantity</span>
+                <span class="nb">super</span><span class="p">(</span><span class="n">TestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">reltol</span><span class="p">:</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="n">first</span><span class="o">/</span><span class="n">second</span> <span class="k">if</span> <span class="n">second</span> <span class="k">else</span> <span class="n">second</span><span class="o">/</span><span class="n">first</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1"> != </span><span class="si">%s</span><span class="s1"> within </span><span class="si">%.2f%%</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">reltol</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">TestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span>
+                <span class="n">ratio</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="n">reltol</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># float and classes</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">super</span><span class="p">(</span><span class="n">TestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span>
+                    <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="n">places</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># unsupported operand type(s) for -</span>
+                <span class="nb">super</span><span class="p">(</span><span class="n">TestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestCase.assertCountEqual">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.TestCase.assertCountEqual">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assertCountEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""compare iterables converted to sets : order has no importance"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">seq1</span><span class="p">),</span> <span class="nb">set</span><span class="p">(</span><span class="n">seq2</span><span class="p">),</span> <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestCase.assertMatch">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.TestCase.assertMatch">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assertMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">msg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">'string </span><span class="si">%s</span><span class="s1"> does not match regex </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">flags</span><span class="p">),</span> <span class="n">msg</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="setlog">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.setlog">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">setlog</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">'</span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(filename)s</span><span class="s1">:</span><span class="si">%(funcName)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1">'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""initializes logging</span>
+<span class="sd">    :param level: logging level</span>
+<span class="sd">    :param fmt: string</span>
+<span class="sd">    """</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">fmt</span><span class="p">)</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">logger</span></div>
+
+
+
+<span class="n">setlog</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="runmodule">
+<a class="viewcode-back" href="../../modules/goulib.tests.html#goulib.tests.runmodule">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">runmodule</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">argv</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    mocks a nose call to run the current module as a test suite</span>
+<span class="sd">    :param argv: optional list of string with additional options passed to pytest.main</span>
+<span class="sd">    see http://nose.readthedocs.org/en/latest/usage.html</span>
+<span class="sd">    see https://docs.pytest.org/en/stable/how-to/usage.html</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+    <span class="n">module_name</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"__main__"</span><span class="p">]</span><span class="o">.</span><span class="vm">__file__</span>
+
+    <span class="k">if</span> <span class="n">argv</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="n">module_name</span><span class="p">])</span>
+
+    <span class="n">setlog</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+<span class="w">    </span><span class="sd">""" ensures stdout is printed after the tests results"""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
+
+    <span class="n">old_stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">mystdout</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">module_name</span><span class="p">]</span><span class="o">+</span><span class="n">argv</span>
+    <span class="p">)</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">old_stdout</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mystdout</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span></div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+﻿goulib.markup
+=============
+
+.. automodule:: goulib.markup
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      _argsdicts
+      _escape
+      _totuple
+      cgiprint
+      escape
+      style_dict2str
+      style_str2dict
+      tag
+      unescape
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      _oneliner
+      dummy
+      element
+      page
+      russell
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      ArgumentError
+      ClosingError
+      CustomizationError
+      DeprecationError
+      InvalidElementError
+      MarkupError
+      ModeError
+      OpeningError
+   

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.polynomial &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.stats" href="goulib.stats.html" />
+    <link rel="prev" title="goulib.plot" href="goulib.plot.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.stats.html" title="goulib.stats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.plot.html" title="goulib.plot"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.polynomial</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.polynomial">
+<span id="goulib-polynomial"></span><h1>goulib.polynomial<a class="headerlink" href="#module-goulib.polynomial" title="Link to this heading">¶</a></h1>
+<p>simple manipulation of polynomials (without SimPy)
+see <a class="reference external" href="http://docs.sympy.org/dev/modules/polys/reference.html">http://docs.sympy.org/dev/modules/polys/reference.html</a> if you need more …</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_n</span></code>(str)</p></td>
+<td><p>Parse the number part of a polynomial string term</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_p</span></code>(str)</p></td>
+<td><p>Parse the power part of a polynomial string term</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">_strip_leading_zeros</span></code>(p)</p></td>
+<td><p>Remove the leading (in terms of high orders of x) zeros in the polynomial</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tostring_term</span></code>(c, i, **kwargs)</p></td>
+<td><p>Convert a single coefficient c and power e to a string cx^i</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.polynomial.add" title="goulib.polynomial.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(p1, p2)</p></td>
+<td><p>Return a new plist corresponding to the sum of the two input plists.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.polynomial.derivative" title="goulib.polynomial.derivative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derivative</span></code></a>(plist)</p></td>
+<td><p>Return a new plist corresponding to the derivative of the input plist.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.polynomial.integral" title="goulib.polynomial.integral"><code class="xref py py-obj docutils literal notranslate"><span class="pre">integral</span></code></a>(plist)</p></td>
+<td><p>Return a new plist corresponding to the integral of the input plist.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.polynomial.mult_const" title="goulib.polynomial.mult_const"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mult_const</span></code></a>(p, c)</p></td>
+<td><p>Return a new plist corresponding to the input plist multplied by a const</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.polynomial.mult_one" title="goulib.polynomial.mult_one"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mult_one</span></code></a>(p, c, i)</p></td>
+<td><p>Return a new plist corresponding to the product of the input plist p with the single term c*x^i</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.polynomial.multiply" title="goulib.polynomial.multiply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiply</span></code></a>(p1, p2)</p></td>
+<td><p>Return a new plist corresponding to the product of the two input plists</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.polynomial.parse_string" title="goulib.polynomial.parse_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_string</span></code></a>(s)</p></td>
+<td><p>Do very, very primitive parsing of a string into a plist.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.polynomial.peval" title="goulib.polynomial.peval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">peval</span></code></a>(plist, x[, x2])</p></td>
+<td><p>Eval the plist at value x.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.polynomial.plist" title="goulib.polynomial.plist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plist</span></code></a>(term)</p></td>
+<td><p>Force term to have the form of a polynomial list</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.polynomial.power" title="goulib.polynomial.power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">power</span></code></a>(p, e)</p></td>
+<td><p>Return a new plist corresponding to the e-th power of the input plist p</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.polynomial.sub" title="goulib.polynomial.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sub</span></code></a>(p1, p2)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.polynomial.tostring" title="goulib.polynomial.tostring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tostring</span></code></a>(p, **kwargs)</p></td>
+<td><p>Convert a plist into a string.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.polynomial.Polynomial" title="goulib.polynomial.Polynomial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Polynomial</span></code></a>(val)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">Polynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expr</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> – <p>can be:</p>
+<ul class="simple">
+<li><p>an iterable of the factors in ascending powers order : Polynomial([1,2,3]) holds 3*x^2+2*x+1</p></li>
+<li><p>a string of the form “ax^n + b*x^m + … + c x + d” where a,b,c,d, are floats and n,m … are integers 
+the ‘x’ variable name is fixed, and the spaces and ‘*’ chars are optional.
+terms can be in any order, and even “overlap” : Polynomial(‘3x+x^2-x’) holds x^2+2*x</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> – <p>can be:</p>
+<ul class="simple">
+<li><p>an iterable of the factors in ascending powers order : Polynomial([1,2,3]) holds 3*x^2+2*x+1</p></li>
+<li><p>a string of the form “ax^n + b*x^m + … + c x + d” where a,b,c,d, are floats and n,m … are integers 
+the ‘x’ variable name is fixed, and the spaces and ‘*’ chars are optional.
+terms can be in any order, and even “overlap” : Polynomial(‘3x+x^2-x’) holds x^2+2*x</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__lt__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__lt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__radd__">
+<span class="sig-name descname"><span class="pre">__radd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__radd__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__radd__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__sub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__rsub__">
+<span class="sig-name descname"><span class="pre">__rsub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__rsub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__rsub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__mul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__rmul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__rmul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__neg__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__neg__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__pow__">
+<span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.__pow__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.__pow__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.integral">
+<span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.integral" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.derivative">
+<span class="sig-name descname"><span class="pre">derivative</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#Polynomial.derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.Polynomial.derivative" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__and__">
+<span class="sig-name descname"><span class="pre">__and__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__and__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.polynomial.Polynomial.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__div__">
+<span class="sig-name descname"><span class="pre">__div__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__div__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__float__">
+<span class="sig-name descname"><span class="pre">__float__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__float__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__ge__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__gt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.polynomial.Polynomial.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__invert__">
+<span class="sig-name descname"><span class="pre">__invert__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__invert__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__le__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__lshift__">
+<span class="sig-name descname"><span class="pre">__lshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__lshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__ne__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__or__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__rshift__">
+<span class="sig-name descname"><span class="pre">__rshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__rshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__truediv__">
+<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__truediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.__xor__">
+<span class="sig-name descname"><span class="pre">__xor__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.__xor__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.applx">
+<span class="sig-name descname"><span class="pre">applx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></span><a class="headerlink" href="#goulib.polynomial.Polynomial.applx" title="Link to this definition">¶</a></dt>
+<dd><p>function composition f o self = self(f(x))
+override in derived classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></span><a class="headerlink" href="#goulib.polynomial.Polynomial.apply" title="Link to this definition">¶</a></dt>
+<dd><p>function composition self o f = f(self(x))
+override in derived classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.complexity">
+<span class="sig-name descname"><span class="pre">complexity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.complexity" title="Link to this definition">¶</a></dt>
+<dd><p>measures the complexity of Expr
+:return: int, sum of the precedence of used ops</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="goulib.expr.html#goulib.expr.Expr" title="goulib.expr.Expr"><span class="pre">Expr</span></a></span></span><a class="headerlink" href="#goulib.polynomial.Polynomial.eval" title="Link to this definition">¶</a></dt>
+<dd><p>evaluate the Expr at x OR compose self(x())</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.isNum">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isNum</span></span><a class="headerlink" href="#goulib.polynomial.Polynomial.isNum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.isconstant">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isconstant</span></span><a class="headerlink" href="#goulib.polynomial.Polynomial.isconstant" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if Expr evaluates to a constant number or bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.latex">
+<span class="sig-name descname"><span class="pre">latex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.latex" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string LaTex formula</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.plot" title="Link to this definition">¶</a></dt>
+<dd><p>renders on IPython Notebook
+(alias to make usage more straightforward)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.png">
+<span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.points">
+<span class="sig-name descname"><span class="pre">points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.points" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>x,y lists of float : points for a line plot</p>
+</dd>
+</dl>
+<p>overridden in derived classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'svg'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.render" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.polynomial.Polynomial.svg">
+<span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.polynomial.Polynomial.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.plist">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">plist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">term</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#plist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.plist" title="Link to this definition">¶</a></dt>
+<dd><p>Force term to have the form of a polynomial list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.peval">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">peval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#peval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.peval" title="Link to this definition">¶</a></dt>
+<dd><p>Eval the plist at value x. If two values are given, the
+difference between the second and the first is returned. This
+latter feature is included for the purpose of evaluating
+definite integrals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.integral">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.integral" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new plist corresponding to the integral of the input plist.
+This function uses zero as the constant term, which is okay when
+evaluating a definite integral, for example, but is otherwise
+ambiguous.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.derivative">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">derivative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.derivative" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new plist corresponding to the derivative of the input plist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.add">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.add" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new plist corresponding to the sum of the two input plists.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.sub">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#sub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.sub" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.mult_const">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">mult_const</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#mult_const"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.mult_const" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new plist corresponding to the input plist multplied by a const</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.multiply">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#multiply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.multiply" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new plist corresponding to the product of the two input plists</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.mult_one">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">mult_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#mult_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.mult_one" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new plist corresponding to the product of the input plist p
+with the single term c*x^i</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.power">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.power" title="Link to this definition">¶</a></dt>
+<dd><p>Return a new plist corresponding to the e-th power of the input plist p</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.parse_string">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">parse_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#parse_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.parse_string" title="Link to this definition">¶</a></dt>
+<dd><p>Do very, very primitive parsing of a string into a plist.
+‘x’ is the only term considered for the polynomial, and this
+routine can only handle terms of the form:
+7x^2 + 6x - 5
+and will choke on seemingly simple forms such as
+x^2*7 - 1
+or
+x**2 - 1</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.polynomial.tostring">
+<span class="sig-prename descclassname"><span class="pre">goulib.polynomial.</span></span><span class="sig-name descname"><span class="pre">tostring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/polynomial.html#tostring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.polynomial.tostring" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a plist into a string. This looks overly complex at first,
+but most of the complexity is caused by special cases.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.polynomial</a><ul>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial"><code class="docutils literal notranslate"><span class="pre">Polynomial</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__init__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__lt__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__eq__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__add__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__radd__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__radd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__sub__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__rsub__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__rsub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__mul__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__rmul__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__neg__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__pow__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.integral"><code class="docutils literal notranslate"><span class="pre">Polynomial.integral()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.derivative"><code class="docutils literal notranslate"><span class="pre">Polynomial.derivative()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__and__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__annotations__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__call__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__div__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__float__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__float__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__ge__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__gt__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__hash__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__invert__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__invert__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__le__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__lshift__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__lshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__ne__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__or__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__repr__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__rshift__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__rshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__str__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__truediv__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.__xor__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__xor__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.applx"><code class="docutils literal notranslate"><span class="pre">Polynomial.applx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.apply"><code class="docutils literal notranslate"><span class="pre">Polynomial.apply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.complexity"><code class="docutils literal notranslate"><span class="pre">Polynomial.complexity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.eval"><code class="docutils literal notranslate"><span class="pre">Polynomial.eval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.html"><code class="docutils literal notranslate"><span class="pre">Polynomial.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.isNum"><code class="docutils literal notranslate"><span class="pre">Polynomial.isNum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.isconstant"><code class="docutils literal notranslate"><span class="pre">Polynomial.isconstant</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.latex"><code class="docutils literal notranslate"><span class="pre">Polynomial.latex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.plot"><code class="docutils literal notranslate"><span class="pre">Polynomial.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.png"><code class="docutils literal notranslate"><span class="pre">Polynomial.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.points"><code class="docutils literal notranslate"><span class="pre">Polynomial.points()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.render"><code class="docutils literal notranslate"><span class="pre">Polynomial.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.save"><code class="docutils literal notranslate"><span class="pre">Polynomial.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.Polynomial.svg"><code class="docutils literal notranslate"><span class="pre">Polynomial.svg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.polynomial.plist"><code class="docutils literal notranslate"><span class="pre">plist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.peval"><code class="docutils literal notranslate"><span class="pre">peval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.integral"><code class="docutils literal notranslate"><span class="pre">integral()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.derivative"><code class="docutils literal notranslate"><span class="pre">derivative()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.add"><code class="docutils literal notranslate"><span class="pre">add()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.sub"><code class="docutils literal notranslate"><span class="pre">sub()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.mult_const"><code class="docutils literal notranslate"><span class="pre">mult_const()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.multiply"><code class="docutils literal notranslate"><span class="pre">multiply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.mult_one"><code class="docutils literal notranslate"><span class="pre">mult_one()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.power"><code class="docutils literal notranslate"><span class="pre">power()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.parse_string"><code class="docutils literal notranslate"><span class="pre">parse_string()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.polynomial.tostring"><code class="docutils literal notranslate"><span class="pre">tostring()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.plot.html"
+                          title="previous chapter">goulib.plot</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.stats.html"
+                          title="next chapter">goulib.stats</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.polynomial.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.stats.html" title="goulib.stats"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.plot.html" title="goulib.plot"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.polynomial</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

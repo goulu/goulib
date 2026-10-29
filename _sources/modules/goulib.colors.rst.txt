@@ -1,0 +1,36 @@
+﻿goulib.colors
+=============
+
+.. automodule:: goulib.colors
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      ColorTable
+      RGB2lambda
+      _skadapt
+      aci_to_color
+      blackBody2Color
+      cmyk2rgb
+      color_range
+      color_to_aci
+      convert
+      converter
+      deltaE
+      hex2rgb
+      lambda2RGB
+      nearest_color
+      rgb2cmyk
+      rgb2hex
+      xyy2xyz
+      xyz2xyy
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Color
+      Palette
+   

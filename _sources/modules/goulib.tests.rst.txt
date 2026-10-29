@@ -1,0 +1,21 @@
+﻿goulib.tests
+============
+
+.. automodule:: goulib.tests
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      pprint
+      pprint_gen
+      runmodule
+      setlog
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TestCase
+   

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goulib.notebook &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.notebook</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for goulib.notebook</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">python function to write html texts and values inline within a Notebook</span>
+
+<span class="sd">Advantagously replaces "print" since this is more powerfull and has no compatibility issues between python 2 and 3</span>
+
+<span class="sd">exemple: h('the result is',time,'[ms]')</span>
+
+<span class="sd">"""</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Philippe Guglielmetti"</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright 2016, Philippe Guglielmetti"</span>
+<span class="n">__credits__</span><span class="o">=</span> <span class="p">[</span><span class="s2">""</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"LGPL"</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.markup</span><span class="w"> </span><span class="kn">import</span> <span class="n">tag</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.itertools2</span><span class="w"> </span><span class="kn">import</span> <span class="n">isiterable</span>
+
+
+<div class="viewcode-block" id="html">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.html">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">html</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">_repr_html_</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span> <span class="c1">#skip logging.error</span>
+
+    <span class="k">if</span> <span class="n">sep</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sep</span><span class="o">=</span><span class="s1">' '</span>
+        <span class="n">bra</span><span class="p">,</span><span class="n">ket</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span><span class="s1">''</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
+            <span class="n">res</span><span class="o">=</span><span class="s1">',</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">"</span><span class="o">%</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="n">k</span><span class="p">),</span><span class="n">html</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+            <span class="k">return</span> <span class="s1">'{</span><span class="si">%s</span><span class="s1">}'</span><span class="o">%</span><span class="n">res</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
+            <span class="n">bra</span><span class="p">,</span><span class="n">ket</span><span class="o">=</span><span class="s1">'['</span><span class="p">,</span><span class="s1">']'</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bra</span><span class="p">,</span><span class="n">ket</span><span class="o">=</span><span class="s1">'('</span><span class="p">,</span><span class="s1">')'</span>
+
+    <span class="k">if</span> <span class="n">isiterable</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span> <span class="c1">#iterable, but not a string</span>
+        <span class="k">return</span> <span class="n">bra</span><span class="o">+</span><span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span><span class="o">+</span><span class="n">ket</span>
+
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="h1">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.h1">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">h1</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">))))</span></div>
+
+
+<div class="viewcode-block" id="h2">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.h2">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">h2</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'h2'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">))))</span></div>
+
+
+<div class="viewcode-block" id="h3">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.h3">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">h3</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'h3'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">))))</span></div>
+
+
+<div class="viewcode-block" id="h4">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.h4">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">h4</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'h4'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">))))</span></div>
+
+
+<div class="viewcode-block" id="h">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.h">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">)))</span></div>
+
+
+<span class="c1">#redefine "print" for notebooks ...</span>
+<span class="c1">#http://stackoverflow.com/questions/15411967/how-can-i-check-if-code-is-executed-in-the-ipython-notebook</span>
+<span class="k">if</span> <span class="s1">'get_ipython'</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="o">=</span> <span class="n">h</span> <span class="c1"># allowed in Python 3</span>
+
+<div class="viewcode-block" id="hinfo">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.hinfo">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hinfo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'div'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">),</span><span class="n">style</span><span class="o">=</span><span class="s2">"background-color:#337ab7;color:#ffffff"</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="hsuccess">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.hsuccess">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hsuccess</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'div'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">),</span><span class="n">style</span><span class="o">=</span><span class="s2">"background-color:#5cb85c;color:#ffffff"</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="hwarning">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.hwarning">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hwarning</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'div'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">),</span><span class="n">style</span><span class="o">=</span><span class="s2">"background-color:#f0ad4e;color:#ffffff"</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="herror">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.herror">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">herror</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tag</span><span class="p">(</span><span class="s1">'div'</span><span class="p">,</span><span class="n">html</span><span class="p">(</span><span class="n">args</span><span class="p">),</span><span class="n">style</span><span class="o">=</span><span class="s2">"background-color:#d9534f;color:#ffffff"</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="latex">
+<a class="viewcode-back" href="../../modules/goulib.notebook.html#goulib.notebook.latex">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">latex</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">""" to force LaTeX representation """</span>
+    <span class="k">return</span> <span class="n">Math</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">latex</span><span class="p">())</span></div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.notebook</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

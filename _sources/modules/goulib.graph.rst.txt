@@ -1,0 +1,32 @@
+﻿goulib.graph
+============
+
+.. automodule:: goulib.graph
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      delauney_triangulation
+      draw_networkx
+      euclidean_minimum_spanning_tree
+      figure
+      points_on_sphere
+      read_json
+      to_drawing
+      to_json
+      to_networkx_graph
+      write_dot
+      write_dxf
+      write_json
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      DiGraph
+      GeoGraph
+      _Geo
+      index
+   

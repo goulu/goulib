@@ -1,0 +1,22 @@
+﻿goulib.plot
+===========
+
+.. automodule:: goulib.plot
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      plot
+      png
+      render
+      save
+      svg
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Plot
+   

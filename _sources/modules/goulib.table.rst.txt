@@ -1,0 +1,20 @@
+﻿goulib.table
+============
+
+.. automodule:: goulib.table
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      attr
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Cell
+      Row
+      Table
+   

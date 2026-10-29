@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goulib.polynomial &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.polynomial</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for goulib.polynomial</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">simple manipulation of polynomials (without SimPy)</span>
+<span class="sd">see http://docs.sympy.org/dev/modules/polys/reference.html if you need more ...</span>
+<span class="sd">"""</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Rick Muller + Philippe Guglielmetti"</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright 2013, Philippe Guglielmetti"</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"http://code.activestate.com/recipes/362193-manipulate-simple-polynomials-in-python/"</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"LGPL"</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">expr</span>
+
+
+<div class="viewcode-block" id="Polynomial">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Polynomial</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">Expr</span><span class="p">):</span>
+<div class="viewcode-block" id="Polynomial.__init__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :param val: can be:</span>
+
+<span class="sd">            - an iterable of the factors in ascending powers order : Polynomial([1,2,3]) holds 3*x^2+2*x+1</span>
+<span class="sd">            - a string of the form "ax^n + b*x^m + ... + c x + d" where a,b,c,d, are floats and n,m ... are integers </span>
+<span class="sd">              the 'x' variable name is fixed, and the spaces and '*' chars are optional.</span>
+<span class="sd">              terms can be in any order, and even "overlap" : Polynomial('3x+x^2-x') holds x^2+2*x</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plist</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">plist</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>  <span class="c1"># a polynomial is immutable</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">tostring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="nb">pow</span><span class="o">=</span><span class="s1">'**'</span><span class="p">,</span> <span class="n">mul</span><span class="o">=</span><span class="s1">'*'</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Polynomial</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></div>
+
+
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    def __str__(self):</span>
+<span class="sd">        ''':return: the best string we can for text output'''</span>
+<span class="sd">        return tostring(self.plist)</span>
+<span class="sd">    </span>
+<span class="sd">    def __repr__(self):</span>
+<span class="sd">        ''':return: a string we can cut/paste in a calculator'''</span>
+<span class="sd">        return tostring(self.plist,mul='*')</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">tostring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Polynomial.__lt__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__lt__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">plist</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">plist</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="c1"># compare the coefficients by decreasing degree</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># equality</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__eq__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__eq__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plist</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">plist</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plist</span> <span class="o">==</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">plist</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__add__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__add__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="n">plist</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__radd__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__radd__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="n">plist</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__sub__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__sub__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="n">plist</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__rsub__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__rsub__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">Polynomial</span><span class="p">(</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="n">plist</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__mul__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__mul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="n">plist</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__rmul__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__rmul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="n">plist</span><span class="p">(</span><span class="n">other</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__neg__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__neg__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.__pow__">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.__pow__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">power</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.integral">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.integral">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">integral</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">integral</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Polynomial.derivative">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.Polynomial.derivative">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">derivative</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plist</span><span class="p">))</span></div>
+</div>
+
+
+
+<span class="c1"># Define some simple utility functions. These manipulate "plists", polynomials</span>
+<span class="c1">#  that are stored as python lists. Thus, 3x^2 + 2x + 1 would be stored</span>
+<span class="c1">#  as [1,2,3] (lowest to highest power of x, even though polynomials</span>
+<span class="c1">#  are typically written from highest to lowest power).</span>
+
+<div class="viewcode-block" id="plist">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.plist">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plist</span><span class="p">(</span><span class="n">term</span><span class="p">):</span>
+    <span class="s2">"Force term to have the form of a polynomial list"</span>
+
+    <span class="k">try</span><span class="p">:</span>  <span class="c1"># already a Polynomial ?</span>
+        <span class="k">return</span> <span class="n">term</span><span class="o">.</span><span class="n">plist</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">try</span><span class="p">:</span>  <span class="c1"># a string ?</span>
+        <span class="k">return</span> <span class="n">parse_string</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">try</span><span class="p">:</span>  <span class="c1"># a list of coeffcients ?</span>
+        <span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">term</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">term</span><span class="p">]</span>  <span class="c1"># then it's a constant</span></div>
+
+
+
+<div class="viewcode-block" id="peval">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.peval">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">peval</span><span class="p">(</span><span class="n">plist</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x2</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""\</span>
+<span class="sd">    Eval the plist at value x. If two values are given, the</span>
+<span class="sd">    difference between the second and the first is returned. This</span>
+<span class="sd">    latter feature is included for the purpose of evaluating</span>
+<span class="sd">    definite integrals.</span>
+<span class="sd">    """</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">x2</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plist</span><span class="p">)):</span>
+            <span class="n">val</span> <span class="o">+=</span> <span class="n">plist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plist</span><span class="p">)):</span>
+            <span class="n">val</span> <span class="o">+=</span> <span class="n">plist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">val</span></div>
+
+
+
+<div class="viewcode-block" id="integral">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.integral">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">integral</span><span class="p">(</span><span class="n">plist</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Return a new plist corresponding to the integral of the input plist.</span>
+<span class="sd">    This function uses zero as the constant term, which is okay when</span>
+<span class="sd">    evaluating a definite integral, for example, but is otherwise</span>
+<span class="sd">    ambiguous.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">plist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">plist</span><span class="p">)):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">plist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>  <span class="c1"># attempt to cast back to int</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new</span></div>
+
+
+
+<div class="viewcode-block" id="derivative">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.derivative">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">derivative</span><span class="p">(</span><span class="n">plist</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Return a new plist corresponding to the derivative of the input plist.</span>
+<span class="sd">    """</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">plist</span><span class="p">)):</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">plist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">new</span><span class="p">:</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">new</span></div>
+
+
+
+<div class="viewcode-block" id="add">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.add">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="s2">"Return a new plist corresponding to the sum of the two input plists."</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p2</span><span class="p">):</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p2</span><span class="p">)):</span>
+            <span class="n">new</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">p2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p2</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="p">)):</span>
+            <span class="n">new</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">p1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">new</span></div>
+
+
+
+<div class="viewcode-block" id="sub">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.sub">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">add</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">mult_const</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="mult_const">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.mult_const">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mult_const</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="s2">"Return a new plist corresponding to the input plist multplied by a const"</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">c</span> <span class="o">*</span> <span class="n">pi</span> <span class="k">for</span> <span class="n">pi</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="multiply">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.multiply">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="s2">"Return a new plist corresponding to the product of the two input plists"</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p2</span><span class="p">):</span>
+        <span class="n">short</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">short</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">short</span><span class="p">)):</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="n">mult_one</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">short</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">new</span></div>
+
+
+
+<div class="viewcode-block" id="mult_one">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.mult_one">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mult_one</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""\</span>
+<span class="sd">    Return a new plist corresponding to the product of the input plist p</span>
+<span class="sd">    with the single term c*x^i</span>
+<span class="sd">    """</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span>  <span class="c1"># increment the list with i zeros</span>
+    <span class="k">for</span> <span class="n">pi</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new</span></div>
+
+
+
+<div class="viewcode-block" id="power">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.power">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">power</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="s2">"Return a new plist corresponding to the e-th power of the input plist p"</span>
+    <span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">==</span> <span class="n">e</span><span class="p">,</span> <span class="s2">"Can only take integral power of a plist"</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="n">multiply</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new</span></div>
+
+
+
+<div class="viewcode-block" id="parse_string">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.parse_string">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_string</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""\</span>
+<span class="sd">    Do very, very primitive parsing of a string into a plist.</span>
+<span class="sd">    'x' is the only term considered for the polynomial, and this</span>
+<span class="sd">    routine can only handle terms of the form:</span>
+<span class="sd">    7x^2 + 6x - 5</span>
+<span class="sd">    and will choke on seemingly simple forms such as</span>
+<span class="sd">    x^2*7 - 1</span>
+<span class="sd">    or</span>
+<span class="sd">    x**2 - 1</span>
+<span class="sd">    """</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'$'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+        <span class="s1">'*'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>  <span class="c1"># remove LateX marks and optional * mul symbols</span>
+    <span class="n">termpat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">'([-+]?\s*\d*\.?\d*)(x?\^?\d?)'</span><span class="p">)</span>
+    <span class="c1"># print "Parsing string: ",str</span>
+    <span class="c1"># print termpat.findall(str)</span>
+    <span class="n">res_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">termpat</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">p</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_parse_n</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">_parse_p</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">res_dict</span><span class="p">:</span>
+            <span class="n">res_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">n</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">highest_order</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">res_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">highest_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">res_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">res</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_parse_n</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="s2">"Parse the number part of a polynomial string term"</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="nb">str</span> <span class="o">==</span> <span class="s1">'-'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">elif</span> <span class="nb">str</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_parse_p</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="s2">"Parse the power part of a polynomial string term"</span>
+    <span class="n">pat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">'x\^?(\d)?'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">pat</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_strip_leading_zeros</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s2">"Remove the leading (in terms of high orders of x) zeros in the polynomial"</span>
+    <span class="c1"># compute the highest nonzero element of the list</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">[:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="tostring">
+<a class="viewcode-back" href="../../modules/goulib.polynomial.html#goulib.polynomial.tostring">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">tostring</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""\</span>
+<span class="sd">    Convert a plist into a string. This looks overly complex at first,</span>
+<span class="sd">    but most of the complexity is caused by special cases.</span>
+<span class="sd">    """</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">_strip_leading_zeros</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="nb">str</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="nb">str</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'plus'</span><span class="p">,</span> <span class="s1">'+'</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">str</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'minus'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">))</span>
+                <span class="nb">str</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_tostring_term</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">str</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_tostring_term</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="nb">str</span> <span class="o">=</span> <span class="s1">'0'</span>
+    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_tostring_term</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="s2">"Convert a single coefficient c and power e to a string cx^i"</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'minus'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">)</span> <span class="o">+</span> <span class="n">res</span>
+    <span class="k">elif</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># by default there is no multiplication sign</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'mul'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span> <span class="o">+</span> <span class="n">res</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">+</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'pow'</span><span class="p">,</span> <span class="s1">'^'</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.polynomial</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

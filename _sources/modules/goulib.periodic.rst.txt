@@ -1,0 +1,12 @@
+﻿goulib.periodic
+===============
+
+.. automodule:: goulib.periodic
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Periodic
+   

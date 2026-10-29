@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goulib.motion &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <script src="../../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.motion</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for goulib.motion</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">motion simulation (kinematics)</span>
+<span class="sd">"""</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Philippe Guglielmetti"</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright 2013, Philippe Guglielmetti"</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"http://osterone.bobstgroup.com/wiki/index.php?title=UtlCam"</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"LGPL"</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">polynomial</span><span class="p">,</span> <span class="n">itertools2</span><span class="p">,</span> <span class="n">math2</span>
+
+
+<div class="viewcode-block" id="PVA">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.PVA">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PVA</span><span class="p">(</span><span class="n">plot</span><span class="o">.</span><span class="n">Plot</span><span class="p">):</span>  <span class="c1"># TODO: make it an Expr</span>
+<span class="w">    </span><span class="sd">"""represents a function of time returning position, velocity, and acceleration</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="PVA.__init__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.PVA.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">funcs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span> <span class="o">=</span> <span class="n">funcs</span></div>
+
+
+<div class="viewcode-block" id="PVA.__call__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.PVA.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Segment">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Segment</span><span class="p">(</span><span class="n">PVA</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">""" a PVA defined between 2 times, null elsewhere</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Segment.__init__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">funcs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Segment</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t0</span> <span class="o">=</span> <span class="n">t0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t1</span> <span class="o">=</span> <span class="n">t1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="Segment.dt">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.dt">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">t1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span></div>
+
+
+<div class="viewcode-block" id="Segment.start">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.start">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Segment</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segment.startPos">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.startPos">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">startPos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.startSpeed">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.startSpeed">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">startSpeed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.startAcc">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.startAcc">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">startAcc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.startJerk">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.startJerk">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">startJerk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.startTime">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.startTime">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">startTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span></div>
+
+
+<div class="viewcode-block" id="Segment.end">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.end">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Segment</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segment.endPos">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.endPos">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">endPos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.endSpeed">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.endSpeed">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">endSpeed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.endAcc">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.endAcc">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">endAcc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.endJerk">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.endJerk">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">endJerk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Segment.endTime">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.endTime">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">endTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segment.timeWhenPosBiggerThan">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.timeWhenPosBiggerThan">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">timeWhenPosBiggerThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.010</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" search the first time when the position is bigger than pos</span>
+<span class="sd">        :params pos: the pos that must at least be reached</span>
+<span class="sd">        :params resolution: the time resolution in sec"""</span>
+        <span class="c1"># brute force and stupid!!!</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t1</span><span class="p">,</span> <span class="n">resolution</span><span class="p">):</span>
+            <span class="n">p</span><span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">t</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="n">pos</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">t</span></div>
+
+
+<div class="viewcode-block" id="Segment.__call__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">t1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Segment</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :params ticks: a list of (time,state) to add ticks</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">t0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">t0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span>
+        <span class="k">if</span> <span class="n">t1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">t1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t1</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">500.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">step</span><span class="p">)]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>  <span class="c1"># transpose because of</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pos'</span><span class="p">,</span> <span class="s1">'vel'</span><span class="p">,</span> <span class="s1">'acc'</span><span class="p">,</span> <span class="s1">'jrk'</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">y_arr</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_arr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'best'</span><span class="p">)</span>
+        <span class="c1">#        for tick in self.ticks:</span>
+        <span class="c1">#            ax.axvline(x=tick[0],color='0.5')</span>
+        <span class="k">return</span> <span class="n">ax</span></div>
+
+
+
+<div class="viewcode-block" id="Segments">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Segments</span><span class="p">(</span><span class="n">Segment</span><span class="p">):</span>
+<div class="viewcode-block" id="Segments.__init__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="p">[],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Segments'</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        can be initialized with a list of segment (that of course can also be a Segments)</span>
+<span class="sd">        :param label: a label can be given</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t0</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t1</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segments.__str__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span></div>
+
+
+<div class="viewcode-block" id="Segments.html">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.html">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">'&lt;br/&gt;'</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">+=</span> <span class="s1">'t=</span><span class="si">%f</span><span class="s1"> (</span><span class="si">%f</span><span class="s1">,</span><span class="si">%f</span><span class="s1">,</span><span class="si">%f</span><span class="s1">,</span><span class="si">%f</span><span class="s1">) --&gt; t=</span><span class="si">%f</span><span class="s1"> (</span><span class="si">%f</span><span class="s1">,</span><span class="si">%f</span><span class="s1">,</span><span class="si">%f</span><span class="s1">,</span><span class="si">%f</span><span class="s1">)&lt;br/&gt;'</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">t0</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">2</span><span class="p">],</span> <span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">3</span><span class="p">],</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">t1</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">endPos</span><span class="p">(),</span> <span class="n">s</span><span class="o">.</span><span class="n">endSpeed</span><span class="p">(),</span> <span class="n">s</span><span class="o">.</span><span class="n">endAcc</span><span class="p">(),</span> <span class="n">s</span><span class="o">.</span><span class="n">end</span><span class="p">()[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">t</span></div>
+
+
+<div class="viewcode-block" id="Segments.update">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.update">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" yet only calculates t0 and t1 """</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">t0</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">t0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">t0</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">t0</span>
+            <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">t1</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">t1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">t1</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">t1</span></div>
+
+
+<div class="viewcode-block" id="Segments.insert">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.insert">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segment</span><span class="p">,</span> <span class="n">autoJoin</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""insert a segment into Segments</span>
+
+<span class="sd">        :param segment: the segment to add. must be in a range that is not already defined or it will rise a value error exception</span>
+<span class="sd">        :param autoJoin: if True and the added segment has the same starting position as the last segment's end</span>
+<span class="sd">            and both velocity are 0 then a segment of (pos,v=0,a=0) is automatically added.</span>
+<span class="sd">            this help discribing movements only where there is curently a movement</span>
+<span class="sd">        """</span>
+
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">t0</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">t1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">segments</span> <span class="o">=</span> <span class="p">[</span><span class="n">segment</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t0</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">t0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t1</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">t1</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">t0</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">t1</span><span class="p">:</span>
+            <span class="n">previous</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">previousP</span> <span class="o">=</span> <span class="n">previous</span><span class="o">.</span><span class="n">endPos</span><span class="p">()</span>
+            <span class="n">previousT</span> <span class="o">=</span> <span class="n">previous</span><span class="o">.</span><span class="n">endTime</span><span class="p">()</span>
+            <span class="n">previousV</span> <span class="o">=</span> <span class="n">previous</span><span class="o">.</span><span class="n">endSpeed</span><span class="p">()</span>
+            <span class="n">segmentP</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">segmentV</span> <span class="o">=</span> <span class="n">segment</span><span class="o">.</span><span class="n">start</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">autoJoin</span> <span class="ow">and</span> <span class="n">t0</span> <span class="o">&gt;</span> <span class="n">previousT</span> <span class="ow">and</span> <span class="n">math2</span><span class="o">.</span><span class="n">allclose</span><span class="p">([</span><span class="n">previousP</span><span class="p">,</span> <span class="n">previousV</span><span class="p">,</span> <span class="n">segmentV</span><span class="p">],</span> <span class="p">[</span><span class="n">segmentP</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                                                              <span class="n">abs_tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SegmentPoly</span><span class="p">(</span><span class="n">previous</span><span class="o">.</span><span class="n">t1</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="p">[</span><span class="n">previous</span><span class="o">.</span><span class="n">endPos</span><span class="p">()]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">t1</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">t0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">segment</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">t1</span> <span class="o">&lt;=</span> <span class="n">t0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">t0</span> <span class="o">&gt;=</span> <span class="n">t1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">segment</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
+            <span class="n">l</span> <span class="o">+=</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">t0</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'--&gt;'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">t1</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'impossible to add the segment t0='</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">segment</span><span class="o">.</span><span class="n">t0</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' t1='</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">segment</span><span class="o">.</span><span class="n">t1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' to already existing segments'</span> <span class="o">+</span> <span class="n">l</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segments.add">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.add">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segments</span><span class="p">,</span> <span class="n">autoJoin</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" add a segment or a list of segment to the segments """</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">segments</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">autoJoin</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">autoJoin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">'Segments starts='</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t0</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' ends='</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segments.start">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.start">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segments.end">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.end">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Segments.__call__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segments.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="n">s</span><span class="o">.</span><span class="n">t0</span> <span class="ow">and</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="n">t1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">s</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># oversimplified: assuming PVAJ; should check that all segments are of the same nature</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SegmentPoly">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.SegmentPoly">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SegmentPoly</span><span class="p">(</span><span class="n">Segment</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">""" a segment defined by a polynomial position law</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="SegmentPoly.__init__">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.SegmentPoly.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">polynomial</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">derivative</span><span class="p">()</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">derivative</span><span class="p">()</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">derivative</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SegmentPoly</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""":return: string LaTex formula"""</span>
+        <span class="k">return</span> <span class="s1">'pos(t)=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_latex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'t'</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_repr_latex_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">'$</span><span class="si">%s</span><span class="s1">$'</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_latex</span><span class="p">()</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_pva</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_delta</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="ramp">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.ramp">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">ramp</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    :param dp: float delta position or None if unknown</span>
+<span class="sd">    :param v0: float initial velocity or None if unknown</span>
+<span class="sd">    :param v1: float final velocity or None if unknown</span>
+<span class="sd">    :param a: float acceleration</span>
+<span class="sd">    :return: float shortest time to accelerate between constraints</span>
+<span class="sd">    """</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dv</span> <span class="o">=</span> <span class="n">_delta</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dv</span><span class="p">:</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dv</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span>  <span class="c1"># time to accelerate</span>
+    <span class="k">try</span><span class="p">:</span>  <span class="c1"># solve a.t^2/2+v0.t == dp</span>
+        <span class="n">dt</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">math2</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="o">-</span><span class="n">dp</span><span class="p">)))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>  <span class="c1"># solve v1.t-a.t^2/2 == dp</span>
+            <span class="n">dt</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">math2</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="o">-</span><span class="n">a</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="o">-</span><span class="n">dp</span><span class="p">)))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dt</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># return smallest positive</span></div>
+
+
+
+<div class="viewcode-block" id="trapeze">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.trapeze">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">trapeze</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">v0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    :param dp: float delta position</span>
+<span class="sd">    :param vmax: float maximal velocity</span>
+<span class="sd">    :param a: float acceleration</span>
+<span class="sd">    :param v0: float initial velocity, 0 by default </span>
+<span class="sd">    :param v2: float final velocity, 0 by default </span>
+<span class="sd">    :return: tuple of 6 values:</span>
+<span class="sd">    </span>
+<span class="sd">    * time at end of acceleration</span>
+<span class="sd">    * position at end of acceleration</span>
+<span class="sd">    * velocity at end of acceleration</span>
+<span class="sd">    * time at begin of deceleration</span>
+<span class="sd">    * position at begin of deceleration</span>
+<span class="sd">    * total time</span>
+<span class="sd">    """</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">ramp</span><span class="p">(</span><span class="n">dp</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>  <span class="c1"># acceleration time</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">v0</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">t1</span>  <span class="c1"># speed reached</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">*</span> <span class="p">(</span><span class="n">v0</span> <span class="o">+</span> <span class="n">v1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span>  <span class="c1"># position at end of acceleration</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">ramp</span><span class="p">(</span><span class="n">dp</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># deceleration time</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="n">t3</span> <span class="o">*</span> <span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span>  <span class="c1"># distance to decelerate</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dp</span> <span class="o">-</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">p2</span><span class="p">)</span> <span class="o">/</span> <span class="n">v1</span>  <span class="c1"># time at constant velocity</span>
+    <span class="k">return</span> <span class="n">t1</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">t1</span> <span class="o">+</span> <span class="n">t2</span><span class="p">,</span> <span class="n">dp</span> <span class="o">-</span> <span class="n">p2</span><span class="p">,</span> <span class="n">t1</span> <span class="o">+</span> <span class="n">t2</span> <span class="o">+</span> <span class="n">t3</span></div>
+
+
+
+<div class="viewcode-block" id="Segment2ndDegree">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment2ndDegree">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">Segment2ndDegree</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span><span class="o">-&gt;</span><span class="n">SegmentPoly</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""calculates a constant acceleration Segment between start and end</span>
+<span class="sd">    </span>
+<span class="sd">    :param t0,t1: float start,end time. one of both may be None for undefined</span>
+<span class="sd">    :param start: (position, velocity, acceleration) float tuple. some values may be None for undefined</span>
+<span class="sd">    :param end: (position, velocity, acceleration) float tuple. some values may be None for undefined</span>
+<span class="sd">    :return: :class:`SegmentPoly`</span>
+<span class="sd">    </span>
+<span class="sd">    the function can cope with almost any combination of defined/undefined parameters,</span>
+<span class="sd">    among others (see tests):</span>
+<span class="sd">    </span>
+<span class="sd">    * Segment2ndDegree(t0,t1,(p0,v0),p1) # time interval and start + end positions  + initial speed</span>
+<span class="sd">    * Segment2ndDegree(t0,t1,(p0,v0,a)) # time interval and start with acceleration</span>
+<span class="sd">    * Segment2ndDegree(t0,t1,None,(p1,v1,a)) # time interval and end pva</span>
+<span class="sd">    * Segment2ndDegree(t0,None,(p0,v0),(p1,v1)) # start + end positions + velocities</span>
+<span class="sd">    * Segment2ndDegree(t0,None,(p0,v0,a),(None,v1)) # start pva + end velocity</span>
+<span class="sd">    * Segment2ndDegree(None,t1,p0,(p1,v1,a)) # end pva + start position</span>
+<span class="sd">    </span>
+<span class="sd">    the function also accepts some combinations of overconstraining parameters:</span>
+<span class="sd">    </span>
+<span class="sd">    * Segment2ndDegree(t0,t1,(p0,v0,a),p1) # time interval, start pva, end position =&gt; adjust t1</span>
+<span class="sd">    * Segment2ndDegree(t0,t1,(p0,v0,a),(None,v1)) # time interval, start pva, v1=max vel =&gt; adjust t1</span>
+<span class="sd">    </span>
+<span class="sd">    :raise ValueError: when not enough parameters are specified to define the Segment univoquely</span>
+<span class="sd">    </span>
+<span class="sd">    """</span>
+    <span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">a0</span> <span class="o">=</span> <span class="n">_pva</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">p1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">_pva</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">a0</span> <span class="o">=</span> <span class="n">a1</span>
+    <span class="c1"># to handle the many possible cases, we evaluate missing information in a loop</span>
+    <span class="k">for</span> <span class="n">_retries</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>  <span class="c1"># two loops are enough to solve all cases , according to tests</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_delta</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">)</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="n">_delta</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="n">dv</span> <span class="o">=</span> <span class="n">_delta</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">dt</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">a0</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>  <span class="c1"># we have all required data</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">SegmentPoly</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="p">[</span><span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">a0</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">])</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">p1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">math2</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p1</span><span class="p">):</span>  <span class="c1"># consider p1 as max position</span>
+                <span class="n">res2</span> <span class="o">=</span> <span class="n">Segment2ndDegree</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">a0</span><span class="p">),</span> <span class="n">p1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">res2</span><span class="o">.</span><span class="n">dt</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">res</span><span class="o">.</span><span class="n">dt</span><span class="p">():</span>  <span class="c1"># this case arises earlier</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="n">res2</span>
+            <span class="k">if</span> <span class="n">v1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">math2</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v1</span><span class="p">):</span>  <span class="c1"># consider v1 as max velocity</span>
+                <span class="n">res2</span> <span class="o">=</span> <span class="n">Segment2ndDegree</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">a0</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">v1</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">res2</span><span class="o">.</span><span class="n">dt</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">res</span><span class="o">.</span><span class="n">dt</span><span class="p">():</span>  <span class="c1"># this case arises earlier</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="n">res2</span>
+            <span class="k">return</span> <span class="n">res</span>
+
+        <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># try to determine it from available params</span>
+            <span class="k">if</span> <span class="n">a0</span><span class="p">:</span>
+                <span class="n">dt</span> <span class="o">=</span> <span class="n">ramp</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">a0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">dt</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">dp</span> <span class="o">/</span> <span class="p">(</span><span class="n">v0</span> <span class="o">+</span> <span class="n">v1</span><span class="p">)</span>  <span class="c1"># time to reach the position</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="n">t0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">t0</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">dt</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">t1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">t1</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">dt</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="n">a0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">a0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dv</span><span class="p">)</span> <span class="o">/</span> <span class="n">dt</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">a0</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="p">(</span><span class="n">dp</span> <span class="o">-</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">dt</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">v0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">v0</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">a0</span> <span class="o">*</span> <span class="n">dt</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">p0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">p0</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">dt</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">v1</span> <span class="o">+</span> <span class="n">v0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span></div>
+
+
+
+<div class="viewcode-block" id="Segment4thDegree">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.Segment4thDegree">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">Segment4thDegree</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""smooth trajectory from an initial position and initial speed (p0,v0) to a final position and speed (p1,v1)</span>
+<span class="sd">    * if t1&lt;=t0, t1 is calculated</span>
+<span class="sd">    """</span>
+    <span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">_a0</span> <span class="o">=</span> <span class="n">_pva</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">p1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">_a1</span> <span class="o">=</span> <span class="n">_pva</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">t1</span> <span class="o">&lt;=</span> <span class="n">t0</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">p1</span> <span class="o">-</span> <span class="n">p0</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">+</span> <span class="n">v0</span><span class="p">)</span>  <span class="c1"># truediv</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">dt</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="k">return</span> <span class="n">SegmentPoly</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="p">[</span><span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">dt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">),</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)])</span>  <span class="c1"># truediv</span></div>
+
+
+
+<div class="viewcode-block" id="SegmentsTrapezoidalSpeed">
+<a class="viewcode-back" href="../../modules/goulib.motion.html#goulib.motion.SegmentsTrapezoidalSpeed">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">SegmentsTrapezoidalSpeed</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">),</span> <span class="n">v0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">v3</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    :param t0: float start time</span>
+<span class="sd">    :param p0: float start position</span>
+<span class="sd">    :param p3: float end position</span>
+<span class="sd">    :param a: float specified acceleration. if =0, use specified time</span>
+<span class="sd">    :param T: float specified time. if =0 (default), use specified acceleration</span>
+<span class="sd">    :param vmax: float max speed. default is infinity (i.e. triangular speed)</span>
+<span class="sd">    :param v0: initial speed</span>
+<span class="sd">    :param v3: final speed (if T != 0 then v3 = v0)</span>
+
+<span class="sd">    ::</span>
+
+<span class="sd">           v1  +-------+    </span>
+<span class="sd">              /         \</span>
+<span class="sd">             /           +  v3</span>
+<span class="sd">        v0  +</span>
+<span class="sd">            |  |       | |</span>
+<span class="sd">           t0  t1     t2 t3 </span>
+<span class="sd">    """</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="n">p3</span> <span class="o">-</span> <span class="n">p0</span>
+    <span class="k">if</span> <span class="n">T</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">t0</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'must fix this bug'</span>
+        <span class="k">assert</span> <span class="n">v3</span> <span class="o">==</span> <span class="n">v0</span><span class="p">,</span> <span class="s1">'if T is the constraint, v0 must equal v3'</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">v1</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">/</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">v0</span>  <span class="c1"># (v0+v1)/2 *t1 = dp/2  ==&gt; v0*t1 + v1*t1 =dp</span>
+        <span class="k">if</span> <span class="n">v1</span> <span class="o">&gt;</span> <span class="n">vmax</span><span class="p">:</span>
+            <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">'vmax not yet implemented: must be infinite'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">-</span> <span class="n">v0</span><span class="p">)</span> <span class="o">/</span> <span class="n">t1</span>
+    <span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">t3</span><span class="p">)</span> <span class="o">=</span> <span class="n">trapeze</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">v3</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">'Trapeze start=</span><span class="si">{0}</span><span class="s1">, end=</span><span class="si">{1}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">t3</span><span class="p">)</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">Segment2ndDegree</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">+</span> <span class="n">t0</span><span class="p">,</span> <span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
+    <span class="n">cst</span> <span class="o">=</span> <span class="n">SegmentPoly</span><span class="p">(</span><span class="n">t1</span> <span class="o">+</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t2</span> <span class="o">+</span> <span class="n">t0</span><span class="p">,</span> <span class="p">[</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p0</span><span class="p">,</span> <span class="n">v1</span><span class="p">])</span>
+    <span class="n">dec</span> <span class="o">=</span> <span class="n">Segment2ndDegree</span><span class="p">(</span><span class="n">t2</span> <span class="o">+</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t3</span> <span class="o">+</span> <span class="n">t0</span><span class="p">,</span> <span class="p">(</span><span class="n">p2</span> <span class="o">+</span> <span class="n">p0</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span><span class="p">))</span>
+    <span class="n">trap</span> <span class="o">=</span> <span class="n">Segments</span><span class="p">([</span><span class="n">acc</span><span class="p">,</span> <span class="n">cst</span><span class="p">,</span> <span class="n">dec</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trap</span></div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.motion</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

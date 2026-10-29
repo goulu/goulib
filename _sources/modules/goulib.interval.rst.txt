@@ -1,0 +1,24 @@
+﻿goulib.interval
+===============
+
+.. automodule:: goulib.interval
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      _order
+      in_interval
+      intersect
+      intersection
+      intersectlen
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Box
+      Interval
+      Intervals
+   

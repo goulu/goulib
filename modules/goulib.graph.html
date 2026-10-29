@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.graph &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.image" href="goulib.image.html" />
+    <link rel="prev" title="goulib.geom3d" href="goulib.geom3d.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.image.html" title="goulib.image"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.geom3d.html" title="goulib.geom3d"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.graph</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.graph">
+<span id="goulib-graph"></span><h1>goulib.graph<a class="headerlink" href="#module-goulib.graph" title="Link to this heading">¶</a></h1>
+<p>efficient Euclidian Graphs for <code class="xref py py-mod docutils literal notranslate"><span class="pre">networkx</span></code> and related algorithms</p>
+<dl class="field-list simple">
+<dt class="field-odd">requires<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><a class="reference external" href="http://networkx.github.io/">networkx</a></p></li>
+<li><p><a class="reference external" href="http://pypi.python.org/pypi/matplotlib/">matplotlib</a></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">optional<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.scipy.org/">scipy</a> for delauney triangulation</p></li>
+<li><p><a class="reference external" href="http://toblerity.org/rtree/">rtree</a> for faster GeoGraph algorithms</p></li>
+</ul>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.graph.delauney_triangulation" title="goulib.graph.delauney_triangulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delauney_triangulation</span></code></a>(nodes[, ...])</p></td>
+<td><p><a class="reference external" href="https://en.wikipedia.org/wiki/Delaunay_triangulation">https://en.wikipedia.org/wiki/Delaunay_triangulation</a> :param nodes: _Geo graph or list of (x,y) or (x,y,z) node positions :param qhull_options: string passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">scipy.spatial.Delaunay()</span></code>, which passes it to Qhull ( <a class="reference external" href="http://www.qhull.org/">http://www.qhull.org/</a> ) * 'Qt' ensures all points are connected * 'Qz' required when nodes lie on a sphere * 'QJ' solves some singularity situations</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.draw_networkx" title="goulib.graph.draw_networkx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_networkx</span></code></a>(g[, pos])</p></td>
+<td><p>improves nx.draw_networkx :param g: NetworkX Graph :param pos: can be either :</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.graph.euclidean_minimum_spanning_tree" title="goulib.graph.euclidean_minimum_spanning_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">euclidean_minimum_spanning_tree</span></code></a>(nodes, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.figure" title="goulib.graph.figure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">figure</span></code></a>(g[, box])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.graph.points_on_sphere" title="goulib.graph.points_on_sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">points_on_sphere</span></code></a>(N)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.read_json" title="goulib.graph.read_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_json</span></code></a>(filename[, directed, multigraph, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.graph.to_drawing" title="goulib.graph.to_drawing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_drawing</span></code></a>(g[, d, edges])</p></td>
+<td><p>draws Graph to a <cite>Drawing</cite> :param g: <code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code> :param d: existing <code class="xref py py-class docutils literal notranslate"><span class="pre">Drawing</span></code> to draw onto, or None to create a new Drawing :param edges: iterable of edges (with data) that will be added, in the same order.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.to_json" title="goulib.graph.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>(g, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.graph.to_networkx_graph" title="goulib.graph.to_networkx_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_networkx_graph</span></code></a>(data[, create_using, ...])</p></td>
+<td><p>Make a NetworkX graph from a known data structure.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.write_dot" title="goulib.graph.write_dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_dot</span></code></a>(g, filename)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.graph.write_dxf" title="goulib.graph.write_dxf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_dxf</span></code></a>(g, filename)</p></td>
+<td><p>writes <a class="reference external" href="https://networkx.org/documentation/latest/reference/classes/graph.html#networkx.Graph" title="(in NetworkX v3.7.1rc0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code></a> in .dxf format</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.write_json" title="goulib.graph.write_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_json</span></code></a>(g, filename, **kwargs)</p></td>
+<td><p>write a JSON file, suitable for D*.js representation</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.graph.DiGraph" title="goulib.graph.DiGraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiGraph</span></code></a>(*args[, backend])</p></td>
+<td><p>directed graph with nodes positions can be set to non multiedges anytime with attribute multi=False</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.GeoGraph" title="goulib.graph.GeoGraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoGraph</span></code></a>(*args[, backend])</p></td>
+<td><p>Undirected graph with nodes positions can be set to non multiedges anytime with attribute multi=False</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">_Geo</span></code>(parent[, data, nodes])</p></td>
+<td><p>base class for graph with nodes at specified positions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.graph.index" title="goulib.graph.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.graph.index">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">index</span></span><a class="reference internal" href="../_modules/goulib/graph.html#index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.graph.index.Index">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#index.Index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Index" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+<p>fallback for rtree.index</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__class_getitem__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__class_getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>See PEP 585</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__contains__" title="Link to this definition">¶</a></dt>
+<dd><p>True if the dictionary has the specified key, else False.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__delitem__">
+<span class="sig-name descname"><span class="pre">__delitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__delitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Delete self[key].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__ge__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__getattribute__">
+<span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__getattribute__" title="Link to this definition">¶</a></dt>
+<dd><p>Return getattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self[key].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__gt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.graph.index.Index.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#index.Index.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Index.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__ior__">
+<span class="sig-name descname"><span class="pre">__ior__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__ior__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__iter__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement iter(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__le__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Return len(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__lt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__ne__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__new__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__new__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__or__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__reversed__">
+<span class="sig-name descname"><span class="pre">__reversed__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__reversed__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a reverse iterator over the dict keys.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__ror__">
+<span class="sig-name descname"><span class="pre">__ror__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__ror__" title="Link to this definition">¶</a></dt>
+<dd><p>Return value|self.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__setitem__">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.__setitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Set self[key] to value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.__sizeof__">
+<span class="sig-name descname"><span class="pre">__sizeof__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">size</span> <span class="pre">of</span> <span class="pre">D</span> <span class="pre">in</span> <span class="pre">memory,</span> <span class="pre">in</span> <span class="pre">bytes</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.__sizeof__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None.</span>&#160; <span class="pre">Remove</span> <span class="pre">all</span> <span class="pre">items</span> <span class="pre">from</span> <span class="pre">D.</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.clear" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">shallow</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">D</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.copy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignored</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#index.Index.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Index.count" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#index.Index.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Index.delete" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.fromkeys">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">fromkeys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.fromkeys" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new dictionary with keys from iterable and values set to value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.get" title="Link to this definition">¶</a></dt>
+<dd><p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#index.Index.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Index.insert" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.items" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.keys" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.nearest">
+<span class="sig-name descname"><span class="pre">nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raw'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#index.Index.nearest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Index.nearest" title="Link to this definition">¶</a></dt>
+<dd><p>very inefficient, but remember it’s a fallback…</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">v,</span> <span class="pre">remove</span> <span class="pre">specified</span> <span class="pre">key</span> <span class="pre">and</span> <span class="pre">return</span> <span class="pre">the</span> <span class="pre">corresponding</span> <span class="pre">value.</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.pop" title="Link to this definition">¶</a></dt>
+<dd><p>If the key is not found, return the default if given; otherwise,
+raise a KeyError.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.popitem">
+<span class="sig-name descname"><span class="pre">popitem</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.popitem" title="Link to this definition">¶</a></dt>
+<dd><p>Remove and return a (key, value) pair as a 2-tuple.</p>
+<p>Pairs are returned in LIFO (last-in, first-out) order.
+Raises KeyError if the dict is empty.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.setdefault">
+<span class="sig-name descname"><span class="pre">setdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.index.Index.setdefault" title="Link to this definition">¶</a></dt>
+<dd><p>Insert key with a value of default if key is not in the dictionary.</p>
+<p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <span class="optional">]</span><em class="sig-param"><span class="n"><span class="pre">**F</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None.</span>&#160; <span class="pre">Update</span> <span class="pre">D</span> <span class="pre">from</span> <span class="pre">mapping/iterable</span> <span class="pre">E</span> <span class="pre">and</span> <span class="pre">F.</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.update" title="Link to this definition">¶</a></dt>
+<dd><p>If E is present and has a .keys() method, then does:  for k in E.keys(): D[k] = E[k]
+If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
+In either case, this is followed by: for k in F:  D[k] = F[k]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Index.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#goulib.graph.index.Index.values" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.graph.index.Property">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Property</span></span><a class="reference internal" href="../_modules/goulib/graph.html#index.Property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Property" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.index.Property.set_dimension">
+<span class="sig-name descname"><span class="pre">set_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#index.Property.set_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.index.Property.set_dimension" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.to_networkx_graph">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">to_networkx_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_using</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multigraph_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#to_networkx_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.to_networkx_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Make a NetworkX graph from a known data structure.
+enhances <cite>networkx.convert.to_networkx_graph</cite>
+:param data: any type handled by <cite>convert.to_networkx_graph</cite>, plus:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.spatial.qhull.Delaunay</span></code> to enable building a graph from a delauney triangulation</p></li>
+</ul>
+</div></blockquote>
+<p>If create_using is a <a class="reference internal" href="#goulib.graph.GeoGraph" title="goulib.graph.GeoGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoGraph</span></code></a> and data is a Graph where nodes have a ‘pos’ attribute,
+then this attribute will be used to rename nodes as (x,y,…) tuples suitable for GeoGraph.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">GeoGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#GeoGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.GeoGraph" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_Geo</span></code>, <a class="reference external" href="https://networkx.org/documentation/latest/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.7.1rc0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a></p>
+<p>Undirected graph with nodes positions
+can be set to non multiedges anytime with attribute multi=False</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – see <a class="reference internal" href="#goulib.graph.to_networkx_graph" title="goulib.graph.to_networkx_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_networkx_graph()</span></code></a> for valid types</p></li>
+<li><p><strong>kwargs</strong> – other parameters will be copied as attributes, especially:</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#GeoGraph.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.GeoGraph.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – see <a class="reference internal" href="#goulib.graph.to_networkx_graph" title="goulib.graph.to_networkx_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_networkx_graph()</span></code></a> for valid types</p></li>
+<li><p><strong>kwargs</strong> – other parameters will be copied as attributes, especially:</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.graph.GeoGraph.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__bool__">
+<span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.__bool__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if graph has at least one node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.__eq__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if self and other are equal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.graph.GeoGraph.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__networkx_backend__">
+<span class="sig-name descname"><span class="pre">__networkx_backend__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'networkx'</span></span><a class="headerlink" href="#goulib.graph.GeoGraph.__networkx_backend__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__nonzero__">
+<span class="sig-name descname"><span class="pre">__nonzero__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.__nonzero__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if graph has at least one node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.__str__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string representation, used mainly for logging and debugging</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.add_edge" title="Link to this definition">¶</a></dt>
+<dd><p>add an edge to graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>edge key</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.add_edge2">
+<span class="sig-name descname"><span class="pre">add_edge2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.add_edge2" title="Link to this definition">¶</a></dt>
+<dd><p>add an edge to graph
+:return: edge data from created or existing edge</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.add_node" title="Link to this definition">¶</a></dt>
+<dd><p>add a node or return one already very close
+:return (x,y,…) node id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.add_nodes_from">
+<span class="sig-name descname"><span class="pre">add_nodes_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.add_nodes_from" title="Link to this definition">¶</a></dt>
+<dd><p>Add multiple nodes.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>nodes_for_adding<span class="classifier">iterable container</span></dt><dd><p>A container of nodes (list, dict, set, etc.).
+OR
+A container of (node, attribute dict) tuples.
+Node attributes are updated using the attribute dict.</p>
+</dd>
+<dt>attr<span class="classifier">keyword arguments, optional (default= no attributes)</span></dt><dd><p>Update attributes for all nodes in nodes.
+Node attributes specified in nodes as a tuple take
+precedence over attributes specified via keyword arguments.</p>
+</dd>
+</dl>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<p>add_node</p>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
+<p>When adding nodes from an iterator over the graph you are changing,
+a <cite>RuntimeError</cite> can be raised with message:
+<cite>RuntimeError: dictionary changed size during iteration</cite>. This
+happens when the graph’s underlying dictionary is modified during
+iteration. To avoid this error, evaluate the iterator into a separate
+object, e.g. by using <cite>list(iterator_of_nodes)</cite>, and pass this
+object to <cite>G.add_nodes_from</cite>.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K3</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">K3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="go">[0, 1, 2, 'H', 'e', 'l', 'o']</span>
+</pre></div>
+</div>
+<p>Use keywords to update specific node attributes for every node.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use (node, attrdict) tuples to update attributes for specific nodes.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">11</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"blue"</span><span class="p">})])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"size"</span><span class="p">]</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"size"</span><span class="p">]</span>
+<span class="go">11</span>
+</pre></div>
+</div>
+<p>Evaluate an iterator over a graph if using it to modify the same graph</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># wrong way - will raise RuntimeError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># G.add_nodes_from(n + 1 for n in G.nodes)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># correct way</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.box">
+<span class="sig-name descname"><span class="pre">box</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.box" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nodes bounding box as (xmin,ymin,…),(xmax,ymax,…)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.box_size">
+<span class="sig-name descname"><span class="pre">box_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.box_size" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(x,y) size</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Remove all nodes and edges from the graph.</p>
+<p>This also removes the name, and all graph, node, and edge attributes.</p>
+<section id="id1">
+<h2>Examples<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">path_graph</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.closest_edges">
+<span class="sig-name descname"><span class="pre">closest_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.closest_edges" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>container of edges close to p and distance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.closest_nodes">
+<span class="sig-name descname"><span class="pre">closest_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.closest_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>nodes closest to a given position
+:param p: (x,y) position tuple
+:param skip: optional bool to skip n itself
+:return: list of nodes, minimal distance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.contiguity">
+<span class="sig-name descname"><span class="pre">contiguity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.contiguity" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int number of points from pts already in graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.copy" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>copy of self graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.dist" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float distance between nodes u and v</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.draw" title="Link to this definition">¶</a></dt>
+<dd><p>draw graph with default params</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.is_multigraph">
+<span class="sig-name descname"><span class="pre">is_multigraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.is_multigraph" title="Link to this definition">¶</a></dt>
+<dd><p>used internally in constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.length">
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.length" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edges</strong> – iterator over edges either as (u,v,data) or (u,v,key,data). If None, all edges are taken</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>sum of ‘length’ attributes of edges</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.multi">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">multi</span></span><a class="headerlink" href="#goulib.graph.GeoGraph.multi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.name">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#goulib.graph.GeoGraph.name" title="Link to this definition">¶</a></dt>
+<dd><p>String identifier of the graph.</p>
+<p>This graph attribute appears in the attribute dict G.graph
+keyed by the string <cite>“name”</cite>. as well as an attribute (technically
+a property) <cite>G.name</cite>. This is entirely user controlled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.number_of_nodes">
+<span class="sig-name descname"><span class="pre">number_of_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doublecheck</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.number_of_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of nodes in the graph.</p>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>nnodes<span class="classifier">int</span></dt><dd><p>The number of nodes in the graph.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2>See Also<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>order: identical method
+__len__: identical method</p>
+</section>
+<section id="id3">
+<h2>Examples<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">path_graph</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.plot" title="Link to this definition">¶</a></dt>
+<dd><p>renders on IPython Notebook
+(alias to make usage more straightforward)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.png">
+<span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.pos">
+<span class="sig-name descname"><span class="pre">pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.pos" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nodes</strong> – a single node, an iterator of all nodes if None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the position of node(s)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.remove_edge">
+<span class="sig-name descname"><span class="pre">remove_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.remove_edge" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – Node or Edge (Nodes tuple)</p></li>
+<li><p><strong>v</strong> – Node if u is a single Node</p></li>
+<li><p><strong>clean</strong> – bool removes disconnected nodes. must be False for certain nx algos to work</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>attributes of removed edge</p>
+</dd>
+</dl>
+<p>remove edge from graph. NetworkX graphs do not remove unused nodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.remove_node">
+<span class="sig-name descname"><span class="pre">remove_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.remove_node" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> – node tuple</p>
+</dd>
+</dl>
+<p>remove node from graph and rtree</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'svg'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.render" title="Link to this definition">¶</a></dt>
+<dd><p>render graph to bitmap stream
+:param fmt: string defining the format. ‘svg’ by default for INotepads
+:return: matplotlib figure as a byte stream in specified format</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.save" title="Link to this definition">¶</a></dt>
+<dd><p>save graph in various formats</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.shortest_path">
+<span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.shortest_path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.stats">
+<span class="sig-name descname"><span class="pre">stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.stats" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict of graph data to use in __repr__ or usable otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.svg">
+<span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.GeoGraph.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.graph.GeoGraph.tol">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">tol</span></span><a class="headerlink" href="#goulib.graph.GeoGraph.tol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">DiGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#DiGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.DiGraph" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_Geo</span></code>, <a class="reference external" href="https://networkx.org/documentation/latest/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.7.1rc0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></p>
+<p>directed graph with nodes positions
+can be set to non multiedges anytime with attribute multi=False</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – see <a class="reference internal" href="#goulib.graph.to_networkx_graph" title="goulib.graph.to_networkx_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_networkx_graph()</span></code></a> for valid types</p></li>
+<li><p><strong>kwargs</strong> – other parameters will be copied as attributes, especially:</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#DiGraph.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.DiGraph.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – see <a class="reference internal" href="#goulib.graph.to_networkx_graph" title="goulib.graph.to_networkx_graph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_networkx_graph()</span></code></a> for valid types</p></li>
+<li><p><strong>kwargs</strong> – other parameters will be copied as attributes, especially:</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.graph.DiGraph.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__bool__">
+<span class="sig-name descname"><span class="pre">__bool__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.__bool__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if graph has at least one node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.__eq__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if self and other are equal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.graph.DiGraph.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__networkx_backend__">
+<span class="sig-name descname"><span class="pre">__networkx_backend__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'networkx'</span></span><a class="headerlink" href="#goulib.graph.DiGraph.__networkx_backend__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__nonzero__">
+<span class="sig-name descname"><span class="pre">__nonzero__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.__nonzero__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if graph has at least one node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.__str__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string representation, used mainly for logging and debugging</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.add_edge" title="Link to this definition">¶</a></dt>
+<dd><p>add an edge to graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>edge key</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.add_edge2">
+<span class="sig-name descname"><span class="pre">add_edge2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.add_edge2" title="Link to this definition">¶</a></dt>
+<dd><p>add an edge to graph
+:return: edge data from created or existing edge</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.add_node" title="Link to this definition">¶</a></dt>
+<dd><p>add a node or return one already very close
+:return (x,y,…) node id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.add_nodes_from">
+<span class="sig-name descname"><span class="pre">add_nodes_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.add_nodes_from" title="Link to this definition">¶</a></dt>
+<dd><p>Add multiple nodes.</p>
+<section id="id4">
+<h2>Parameters<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>nodes_for_adding<span class="classifier">iterable container</span></dt><dd><p>A container of nodes (list, dict, set, etc.).
+OR
+A container of (node, attribute dict) tuples.
+Node attributes are updated using the attribute dict.</p>
+</dd>
+<dt>attr<span class="classifier">keyword arguments, optional (default= no attributes)</span></dt><dd><p>Update attributes for all nodes in nodes.
+Node attributes specified in nodes as a tuple take
+precedence over attributes specified via keyword arguments.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h2>See Also<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>add_node</p>
+</section>
+<section id="id6">
+<h2>Notes<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>When adding nodes from an iterator over the graph you are changing,
+a <cite>RuntimeError</cite> can be raised with message:
+<cite>RuntimeError: dictionary changed size during iteration</cite>. This
+happens when the graph’s underlying dictionary is modified during
+iteration. To avoid this error, evaluate the iterator into a separate
+object, e.g. by using <cite>list(iterator_of_nodes)</cite>, and pass this
+object to <cite>G.add_nodes_from</cite>.</p>
+</section>
+<section id="id7">
+<h2>Examples<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K3</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">K3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="go">[0, 1, 2, 'H', 'e', 'l', 'o']</span>
+</pre></div>
+</div>
+<p>Use keywords to update specific node attributes for every node.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use (node, attrdict) tuples to update attributes for specific nodes.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">11</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="s2">"blue"</span><span class="p">})])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"size"</span><span class="p">]</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"size"</span><span class="p">]</span>
+<span class="go">11</span>
+</pre></div>
+</div>
+<p>Evaluate an iterator over a graph if using it to modify the same graph</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># wrong way - will raise RuntimeError</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># G.add_nodes_from(n + 1 for n in G.nodes)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># correct way</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.box">
+<span class="sig-name descname"><span class="pre">box</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.box" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nodes bounding box as (xmin,ymin,…),(xmax,ymax,…)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.box_size">
+<span class="sig-name descname"><span class="pre">box_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.box_size" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(x,y) size</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Remove all nodes and edges from the graph.</p>
+<p>This also removes the name, and all graph, node, and edge attributes.</p>
+<section id="id8">
+<h2>Examples<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">path_graph</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.closest_edges">
+<span class="sig-name descname"><span class="pre">closest_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.closest_edges" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>container of edges close to p and distance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.closest_nodes">
+<span class="sig-name descname"><span class="pre">closest_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.closest_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>nodes closest to a given position
+:param p: (x,y) position tuple
+:param skip: optional bool to skip n itself
+:return: list of nodes, minimal distance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.contiguity">
+<span class="sig-name descname"><span class="pre">contiguity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.contiguity" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int number of points from pts already in graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.copy" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>copy of self graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.dist" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float distance between nodes u and v</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.draw" title="Link to this definition">¶</a></dt>
+<dd><p>draw graph with default params</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.html" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.is_multigraph">
+<span class="sig-name descname"><span class="pre">is_multigraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.is_multigraph" title="Link to this definition">¶</a></dt>
+<dd><p>used internally in constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.length">
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.length" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edges</strong> – iterator over edges either as (u,v,data) or (u,v,key,data). If None, all edges are taken</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>sum of ‘length’ attributes of edges</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.multi">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">multi</span></span><a class="headerlink" href="#goulib.graph.DiGraph.multi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.name">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#goulib.graph.DiGraph.name" title="Link to this definition">¶</a></dt>
+<dd><p>String identifier of the graph.</p>
+<p>This graph attribute appears in the attribute dict G.graph
+keyed by the string <cite>“name”</cite>. as well as an attribute (technically
+a property) <cite>G.name</cite>. This is entirely user controlled.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.number_of_nodes">
+<span class="sig-name descname"><span class="pre">number_of_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doublecheck</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.number_of_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of nodes in the graph.</p>
+<section id="id9">
+<h2>Returns<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>nnodes<span class="classifier">int</span></dt><dd><p>The number of nodes in the graph.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h2>See Also<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<p>order: identical method
+__len__: identical method</p>
+</section>
+<section id="id11">
+<h2>Examples<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">path_graph</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.plot" title="Link to this definition">¶</a></dt>
+<dd><p>renders on IPython Notebook
+(alias to make usage more straightforward)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.png">
+<span class="sig-name descname"><span class="pre">png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.png" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.pos">
+<span class="sig-name descname"><span class="pre">pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.pos" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nodes</strong> – a single node, an iterator of all nodes if None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the position of node(s)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.remove_edge">
+<span class="sig-name descname"><span class="pre">remove_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.remove_edge" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – Node or Edge (Nodes tuple)</p></li>
+<li><p><strong>v</strong> – Node if u is a single Node</p></li>
+<li><p><strong>clean</strong> – bool removes disconnected nodes. must be False for certain nx algos to work</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>attributes of removed edge</p>
+</dd>
+</dl>
+<p>remove edge from graph. NetworkX graphs do not remove unused nodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.remove_node">
+<span class="sig-name descname"><span class="pre">remove_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.remove_node" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> – node tuple</p>
+</dd>
+</dl>
+<p>remove node from graph and rtree</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'svg'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.render" title="Link to this definition">¶</a></dt>
+<dd><p>render graph to bitmap stream
+:param fmt: string defining the format. ‘svg’ by default for INotepads
+:return: matplotlib figure as a byte stream in specified format</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.save" title="Link to this definition">¶</a></dt>
+<dd><p>save graph in various formats</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.shortest_path">
+<span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.shortest_path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.stats">
+<span class="sig-name descname"><span class="pre">stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.stats" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict of graph data to use in __repr__ or usable otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.svg">
+<span class="sig-name descname"><span class="pre">svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.graph.DiGraph.svg" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.graph.DiGraph.tol">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">tol</span></span><a class="headerlink" href="#goulib.graph.DiGraph.tol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.figure">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#figure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.figure" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>g</strong> – _Geo derived Graph</p></li>
+<li><p><strong>box</strong> – optional interval.Box if g has no box</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>matplotlib axis suitable for drawing graph g</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.draw_networkx">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">draw_networkx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#draw_networkx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.draw_networkx" title="Link to this definition">¶</a></dt>
+<dd><p>improves nx.draw_networkx
+:param g: NetworkX Graph
+:param pos: can be either :</p>
+<ul class="simple">
+<li><p>optional dictionary of (x,y) node positions</p></li>
+<li><p>function of the form lambda node:(x,y) that maps node positions.</p></li>
+<li><p>None. in this case, nodes are directly used as positions if graph is a GeoGraph, otherwise nx.draw_shell is used</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> – passed to nx.draw method as described in <a class="reference external" href="http://networkx.lanl.gov/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html">http://networkx.lanl.gov/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html</a> with one tweak:</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>if edge_color is a function of the form lambda <a class="reference external" href="data:color">data:color</a> string, it is mapped over all edges</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.to_drawing">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">to_drawing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#to_drawing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.to_drawing" title="Link to this definition">¶</a></dt>
+<dd><p>draws Graph to a <cite>Drawing</cite>
+:param g: <code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code>
+:param d: existing <code class="xref py py-class docutils literal notranslate"><span class="pre">Drawing</span></code> to draw onto, or None to create a new Drawing
+:param edges: iterable of edges (with data) that will be added, in the same order. By default all edges are drawn
+:return: <code class="xref py py-class docutils literal notranslate"><span class="pre">Drawing</span></code></p>
+<p>Graph edges with an ‘entity’ property</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.write_dxf">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">write_dxf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#write_dxf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.write_dxf" title="Link to this definition">¶</a></dt>
+<dd><p>writes <a class="reference external" href="https://networkx.org/documentation/latest/reference/classes/graph.html#networkx.Graph" title="(in NetworkX v3.7.1rc0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code></a> in .dxf format</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.write_dot">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">write_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#write_dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.write_dot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.to_json">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.to_json" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string JSON representation of a graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.write_json">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">write_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#write_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.write_json" title="Link to this definition">¶</a></dt>
+<dd><p>write a JSON file, suitable for D*.js representation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.read_json">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multigraph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#read_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.read_json" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.delauney_triangulation">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">delauney_triangulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhull_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incremental</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#delauney_triangulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.delauney_triangulation" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Delaunay_triangulation">https://en.wikipedia.org/wiki/Delaunay_triangulation</a>
+:param nodes: _Geo graph or list of (x,y) or (x,y,z) node positions
+:param qhull_options: string passed to <code class="xref py py-meth docutils literal notranslate"><span class="pre">scipy.spatial.Delaunay()</span></code>,
+which passes it to Qhull ( <a class="reference external" href="http://www.qhull.org/">http://www.qhull.org/</a> )
+* ‘Qt’ ensures all points are connected
+* ‘Qz’ required when nodes lie on a sphere
+* ‘QJ’ solves some singularity situations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> – passed to the <a class="reference internal" href="#goulib.graph.GeoGraph" title="goulib.graph.GeoGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoGraph</span></code></a> constructor</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#goulib.graph.GeoGraph" title="goulib.graph.GeoGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoGraph</span></code></a> with delauney triangulation between nodes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.euclidean_minimum_spanning_tree">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">euclidean_minimum_spanning_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#euclidean_minimum_spanning_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.euclidean_minimum_spanning_tree" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nodes</strong> – list of (x,y) nodes positions</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#goulib.graph.GeoGraph" title="goulib.graph.GeoGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoGraph</span></code></a> with minimum spanning tree between nodes</p>
+</dd>
+</dl>
+<p>see <a class="reference external" href="https://en.wikipedia.org/wiki/Euclidean_minimum_spanning_tree">https://en.wikipedia.org/wiki/Euclidean_minimum_spanning_tree</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.graph.points_on_sphere">
+<span class="sig-prename descclassname"><span class="pre">goulib.graph.</span></span><span class="sig-name descname"><span class="pre">points_on_sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/graph.html#points_on_sphere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.graph.points_on_sphere" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.graph</a><ul>
+<li><a class="reference internal" href="#goulib.graph.index"><code class="docutils literal notranslate"><span class="pre">index</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.index.Index"><code class="docutils literal notranslate"><span class="pre">index.Index</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__contains__"><code class="docutils literal notranslate"><span class="pre">index.Index.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__delitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__eq__"><code class="docutils literal notranslate"><span class="pre">index.Index.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ge__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__getattribute__"><code class="docutils literal notranslate"><span class="pre">index.Index.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__getitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__gt__"><code class="docutils literal notranslate"><span class="pre">index.Index.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__hash__"><code class="docutils literal notranslate"><span class="pre">index.Index.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__init__"><code class="docutils literal notranslate"><span class="pre">index.Index.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ior__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ior__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__iter__"><code class="docutils literal notranslate"><span class="pre">index.Index.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__le__"><code class="docutils literal notranslate"><span class="pre">index.Index.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__len__"><code class="docutils literal notranslate"><span class="pre">index.Index.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__lt__"><code class="docutils literal notranslate"><span class="pre">index.Index.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ne__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__new__"><code class="docutils literal notranslate"><span class="pre">index.Index.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__or__"><code class="docutils literal notranslate"><span class="pre">index.Index.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__repr__"><code class="docutils literal notranslate"><span class="pre">index.Index.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__reversed__"><code class="docutils literal notranslate"><span class="pre">index.Index.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ror__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ror__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__setitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__sizeof__"><code class="docutils literal notranslate"><span class="pre">index.Index.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.clear"><code class="docutils literal notranslate"><span class="pre">index.Index.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.copy"><code class="docutils literal notranslate"><span class="pre">index.Index.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.count"><code class="docutils literal notranslate"><span class="pre">index.Index.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.delete"><code class="docutils literal notranslate"><span class="pre">index.Index.delete()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.fromkeys"><code class="docutils literal notranslate"><span class="pre">index.Index.fromkeys()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.get"><code class="docutils literal notranslate"><span class="pre">index.Index.get()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.insert"><code class="docutils literal notranslate"><span class="pre">index.Index.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.items"><code class="docutils literal notranslate"><span class="pre">index.Index.items()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.keys"><code class="docutils literal notranslate"><span class="pre">index.Index.keys()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.nearest"><code class="docutils literal notranslate"><span class="pre">index.Index.nearest()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.pop"><code class="docutils literal notranslate"><span class="pre">index.Index.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.popitem"><code class="docutils literal notranslate"><span class="pre">index.Index.popitem()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.setdefault"><code class="docutils literal notranslate"><span class="pre">index.Index.setdefault()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.update"><code class="docutils literal notranslate"><span class="pre">index.Index.update()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.values"><code class="docutils literal notranslate"><span class="pre">index.Index.values()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.index.Property"><code class="docutils literal notranslate"><span class="pre">index.Property</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.index.Property.set_dimension"><code class="docutils literal notranslate"><span class="pre">index.Property.set_dimension()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.to_networkx_graph"><code class="docutils literal notranslate"><span class="pre">to_networkx_graph()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph"><code class="docutils literal notranslate"><span class="pre">GeoGraph</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__init__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__annotations__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__bool__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__bool__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__eq__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__hash__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__networkx_backend__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__networkx_backend__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__nonzero__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__str__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_edge2"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_edge2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_node"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_nodes_from"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_nodes_from()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.box"><code class="docutils literal notranslate"><span class="pre">GeoGraph.box()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.box_size"><code class="docutils literal notranslate"><span class="pre">GeoGraph.box_size()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.clear"><code class="docutils literal notranslate"><span class="pre">GeoGraph.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.closest_edges"><code class="docutils literal notranslate"><span class="pre">GeoGraph.closest_edges()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.closest_nodes"><code class="docutils literal notranslate"><span class="pre">GeoGraph.closest_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.contiguity"><code class="docutils literal notranslate"><span class="pre">GeoGraph.contiguity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.copy"><code class="docutils literal notranslate"><span class="pre">GeoGraph.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.dist"><code class="docutils literal notranslate"><span class="pre">GeoGraph.dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.draw"><code class="docutils literal notranslate"><span class="pre">GeoGraph.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.html"><code class="docutils literal notranslate"><span class="pre">GeoGraph.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.is_multigraph"><code class="docutils literal notranslate"><span class="pre">GeoGraph.is_multigraph()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.length"><code class="docutils literal notranslate"><span class="pre">GeoGraph.length()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.multi"><code class="docutils literal notranslate"><span class="pre">GeoGraph.multi</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.name"><code class="docutils literal notranslate"><span class="pre">GeoGraph.name</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.number_of_nodes"><code class="docutils literal notranslate"><span class="pre">GeoGraph.number_of_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.plot"><code class="docutils literal notranslate"><span class="pre">GeoGraph.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.png"><code class="docutils literal notranslate"><span class="pre">GeoGraph.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.pos"><code class="docutils literal notranslate"><span class="pre">GeoGraph.pos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.remove_edge"><code class="docutils literal notranslate"><span class="pre">GeoGraph.remove_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.remove_node"><code class="docutils literal notranslate"><span class="pre">GeoGraph.remove_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.render"><code class="docutils literal notranslate"><span class="pre">GeoGraph.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.save"><code class="docutils literal notranslate"><span class="pre">GeoGraph.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.shortest_path"><code class="docutils literal notranslate"><span class="pre">GeoGraph.shortest_path()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.stats"><code class="docutils literal notranslate"><span class="pre">GeoGraph.stats()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.svg"><code class="docutils literal notranslate"><span class="pre">GeoGraph.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.tol"><code class="docutils literal notranslate"><span class="pre">GeoGraph.tol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph"><code class="docutils literal notranslate"><span class="pre">DiGraph</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__init__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__annotations__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__bool__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__bool__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__eq__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__hash__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__networkx_backend__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__networkx_backend__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__nonzero__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__str__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_edge2"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_edge2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_node"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_nodes_from"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_nodes_from()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.box"><code class="docutils literal notranslate"><span class="pre">DiGraph.box()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.box_size"><code class="docutils literal notranslate"><span class="pre">DiGraph.box_size()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.clear"><code class="docutils literal notranslate"><span class="pre">DiGraph.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.closest_edges"><code class="docutils literal notranslate"><span class="pre">DiGraph.closest_edges()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.closest_nodes"><code class="docutils literal notranslate"><span class="pre">DiGraph.closest_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.contiguity"><code class="docutils literal notranslate"><span class="pre">DiGraph.contiguity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.copy"><code class="docutils literal notranslate"><span class="pre">DiGraph.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.dist"><code class="docutils literal notranslate"><span class="pre">DiGraph.dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.draw"><code class="docutils literal notranslate"><span class="pre">DiGraph.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.html"><code class="docutils literal notranslate"><span class="pre">DiGraph.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.is_multigraph"><code class="docutils literal notranslate"><span class="pre">DiGraph.is_multigraph()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.length"><code class="docutils literal notranslate"><span class="pre">DiGraph.length()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.multi"><code class="docutils literal notranslate"><span class="pre">DiGraph.multi</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.name"><code class="docutils literal notranslate"><span class="pre">DiGraph.name</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.number_of_nodes"><code class="docutils literal notranslate"><span class="pre">DiGraph.number_of_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.plot"><code class="docutils literal notranslate"><span class="pre">DiGraph.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.png"><code class="docutils literal notranslate"><span class="pre">DiGraph.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.pos"><code class="docutils literal notranslate"><span class="pre">DiGraph.pos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.remove_edge"><code class="docutils literal notranslate"><span class="pre">DiGraph.remove_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.remove_node"><code class="docutils literal notranslate"><span class="pre">DiGraph.remove_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.render"><code class="docutils literal notranslate"><span class="pre">DiGraph.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.save"><code class="docutils literal notranslate"><span class="pre">DiGraph.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.shortest_path"><code class="docutils literal notranslate"><span class="pre">DiGraph.shortest_path()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.stats"><code class="docutils literal notranslate"><span class="pre">DiGraph.stats()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.svg"><code class="docutils literal notranslate"><span class="pre">DiGraph.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.tol"><code class="docutils literal notranslate"><span class="pre">DiGraph.tol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.figure"><code class="docutils literal notranslate"><span class="pre">figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.draw_networkx"><code class="docutils literal notranslate"><span class="pre">draw_networkx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.to_drawing"><code class="docutils literal notranslate"><span class="pre">to_drawing()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.write_dxf"><code class="docutils literal notranslate"><span class="pre">write_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.write_dot"><code class="docutils literal notranslate"><span class="pre">write_dot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.to_json"><code class="docutils literal notranslate"><span class="pre">to_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.write_json"><code class="docutils literal notranslate"><span class="pre">write_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.read_json"><code class="docutils literal notranslate"><span class="pre">read_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.delauney_triangulation"><code class="docutils literal notranslate"><span class="pre">delauney_triangulation()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.euclidean_minimum_spanning_tree"><code class="docutils literal notranslate"><span class="pre">euclidean_minimum_spanning_tree()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.points_on_sphere"><code class="docutils literal notranslate"><span class="pre">points_on_sphere()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.geom3d.html"
+                          title="previous chapter">goulib.geom3d</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.image.html"
+                          title="next chapter">goulib.image</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.graph.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.image.html" title="goulib.image"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.geom3d.html" title="goulib.geom3d"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.graph</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

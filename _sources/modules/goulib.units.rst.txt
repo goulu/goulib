@@ -1,0 +1,20 @@
+﻿goulib.units
+============
+
+.. automodule:: goulib.units
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      magnitudeIn
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Row
+      Table
+      View
+   

@@ -1,0 +1,32 @@
+﻿goulib.datetime2
+================
+
+.. automodule:: goulib.datetime2
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      add_months
+      date_add
+      datef
+      datetime_intersect
+      datetimef
+      days
+      daysgen
+      equal
+      fmt2regex
+      hours
+      minutes
+      strftimedelta
+      tdround
+      time_add
+      time_intersect
+      time_sub
+      timedelta_div
+      timedelta_mul
+      timedelta_sum
+      timedeltaf
+      timef
+   

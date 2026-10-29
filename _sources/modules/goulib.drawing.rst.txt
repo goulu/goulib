@@ -1,0 +1,28 @@
+﻿goulib.drawing
+==============
+
+.. automodule:: goulib.drawing
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      Trans
+      chains
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BBox
+      Chain
+      Drawing
+      Entity
+      Group
+      Instance
+      Rect
+      Spline
+      Text
+      _Group
+   

@@ -27,44 +27,70 @@ quite a lot of packages are needed for the full functionality of goulib, but mos
 
 ## Modules
 
-```{currentmodule} goulib
-```
+```{eval-rst}
+.. currentmodule:: goulib
 
-```{autosummary}
-:toctree: modules
+.. autosummary::
+    :toctree: modules
 
-colors
-containers
-datetime2
-decorators
-drawing
-expr
-geom
-geom3d
-graph
-image
-interval
-itertools2
-markup
-math2
-motion
-notebook
-optim
-periodic
-piecewise
-plot
-polynomial
-stats
-table
-tests
-units
-workdays
+    colors
+    containers
+    datetime2
+    decorators
+    drawing
+    expr
+    geom
+    geom3d
+    graph
+    image
+    interval
+    itertools2
+    markup
+    math2
+    motion
+    notebook
+    optim
+    periodic
+    piecewise
+    plot
+    polynomial
+    stats
+    table
+    tests
+    units
+    workdays
 ```
 
 ## Classes
 
-```{inheritance-diagram} colors containers datetime2 decorators drawing expr geom geom3d graph image interval itertools2 math2 motion notebook optim periodic piecewise plot polynomial stats table tests units workdays
-:parts: 2
+```{eval-rst}
+.. inheritance-diagram::
+    colors
+    containers
+    datetime2
+    decorators
+    drawing
+    expr
+    geom
+    geom3d
+    graph
+    image
+    interval
+    itertools2
+    math2
+    motion
+    notebook
+    optim
+    periodic
+    piecewise
+    plot
+    polynomial
+    stats
+    table
+    tests
+    units
+    workdays
+    :parts: 2
 ```
 
 ## Indices and tables

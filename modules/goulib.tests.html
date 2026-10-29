@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.tests &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.units" href="goulib.units.html" />
+    <link rel="prev" title="goulib.table" href="goulib.table.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.units.html" title="goulib.units"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.table.html" title="goulib.table"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.tests">
+<span id="goulib-tests"></span><h1>goulib.tests<a class="headerlink" href="#module-goulib.tests" title="Link to this heading">¶</a></h1>
+<p>utilities for unit tests (using pytest)</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.tests.pprint" title="goulib.tests.pprint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pprint</span></code></a>(iterable[, indices, timeout])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.tests.pprint_gen" title="goulib.tests.pprint_gen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pprint_gen</span></code></a>(iterable[, indices, sep])</p></td>
+<td><p>generates items at specified indices</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.tests.runmodule" title="goulib.tests.runmodule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">runmodule</span></code></a>([level, verbosity, argv])</p></td>
+<td><p>mocks a nose call to run the current module as a test suite :param argv: optional list of string with additional options passed to pytest.main see <a class="reference external" href="http://nose.readthedocs.org/en/latest/usage.html">http://nose.readthedocs.org/en/latest/usage.html</a> see <a class="reference external" href="https://docs.pytest.org/en/stable/how-to/usage.html">https://docs.pytest.org/en/stable/how-to/usage.html</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.tests.setlog" title="goulib.tests.setlog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setlog</span></code></a>([level, fmt])</p></td>
+<td><p>initializes logging :param level: logging level :param fmt: string</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.tests.TestCase" title="goulib.tests.TestCase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestCase</span></code></a>([methodName])</p></td>
+<td><p>Create an instance of the class that will use the named test method when executed.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.tests.pprint_gen">
+<span class="sig-prename descclassname"><span class="pre">goulib.tests.</span></span><span class="sig-name descname"><span class="pre">pprint_gen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">-3,</span> <span class="pre">-2,</span> <span class="pre">-1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'...'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#pprint_gen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.pprint_gen" title="Link to this definition">¶</a></dt>
+<dd><p>generates items at specified indices</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.tests.pprint">
+<span class="sig-prename descclassname"><span class="pre">goulib.tests.</span></span><span class="sig-name descname"><span class="pre">pprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">-3,</span> <span class="pre">-2,</span> <span class="pre">-1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#pprint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.pprint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.tests.TestCase">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.tests.</span></span><span class="sig-name descname"><span class="pre">TestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#TestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.TestCase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.tests.TestCase.assertSequenceEqual">
+<span class="sig-name descname"><span class="pre">assertSequenceEqual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reltol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#TestCase.assertSequenceEqual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.TestCase.assertSequenceEqual" title="Link to this definition">¶</a></dt>
+<dd><p>An equality assertion for ordered sequences (like lists and tuples).
+constraints on seq1,seq2 from unittest.TestCase.assertSequenceEqual are mostly removed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq2</strong> (<em>seq1</em><em>,</em>) – iterables to compare for (quasi) equality</p></li>
+<li><p><strong>msg</strong> – optional string message to use on failure instead of a list of differences</p></li>
+<li><p><strong>places</strong> – int number of digits to consider in float comparisons.
+If None, enforces strict equality</p></li>
+<li><p><strong>delta</strong> – optional float absolute tolerance value</p></li>
+<li><p><strong>reltol</strong> – optional float relative tolerance value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.tests.TestCase.base_types">
+<span class="sig-name descname"><span class="pre">base_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'bool'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'set'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'dict'&gt;)</span></span><a class="headerlink" href="#goulib.tests.TestCase.base_types" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.tests.TestCase.assertEqual">
+<span class="sig-name descname"><span class="pre">assertEqual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reltol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#TestCase.assertEqual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.TestCase.assertEqual" title="Link to this definition">¶</a></dt>
+<dd><p>automatically calls assertAlmostEqual when needed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first</strong> – first object to compare for (quasi) equality</p></li>
+<li><p><strong>second</strong> – second object to compare for (quasi) equality</p></li>
+<li><p><strong>places</strong> – int number of digits to consider in float comparisons. If None, forces strict equality</p></li>
+<li><p><strong>msg</strong> – optional string error message to display in case of failure</p></li>
+<li><p><strong>delta</strong> – optional float absolute tolerance value</p></li>
+<li><p><strong>reltol</strong> – optional float relative tolerance value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.tests.TestCase.assertCountEqual">
+<span class="sig-name descname"><span class="pre">assertCountEqual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#TestCase.assertCountEqual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.TestCase.assertCountEqual" title="Link to this definition">¶</a></dt>
+<dd><p>compare iterables converted to sets : order has no importance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.tests.TestCase.assertMatch">
+<span class="sig-name descname"><span class="pre">assertMatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#TestCase.assertMatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.TestCase.assertMatch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.tests.TestCase.longMessage">
+<span class="sig-name descname"><span class="pre">longMessage</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#goulib.tests.TestCase.longMessage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.tests.TestCase.maxDiff">
+<span class="sig-name descname"><span class="pre">maxDiff</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">640</span></span><a class="headerlink" href="#goulib.tests.TestCase.maxDiff" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.tests.setlog">
+<span class="sig-prename descclassname"><span class="pre">goulib.tests.</span></span><span class="sig-name descname"><span class="pre">setlog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%(levelname)s:%(filename)s:%(funcName)s:</span> <span class="pre">%(message)s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#setlog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.setlog" title="Link to this definition">¶</a></dt>
+<dd><p>initializes logging
+:param level: logging level
+:param fmt: string</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.tests.runmodule">
+<span class="sig-prename descclassname"><span class="pre">goulib.tests.</span></span><span class="sig-name descname"><span class="pre">runmodule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/tests.html#runmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.tests.runmodule" title="Link to this definition">¶</a></dt>
+<dd><p>mocks a nose call to run the current module as a test suite
+:param argv: optional list of string with additional options passed to pytest.main
+see <a class="reference external" href="http://nose.readthedocs.org/en/latest/usage.html">http://nose.readthedocs.org/en/latest/usage.html</a>
+see <a class="reference external" href="https://docs.pytest.org/en/stable/how-to/usage.html">https://docs.pytest.org/en/stable/how-to/usage.html</a></p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.tests</a><ul>
+<li><a class="reference internal" href="#goulib.tests.pprint_gen"><code class="docutils literal notranslate"><span class="pre">pprint_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.pprint"><code class="docutils literal notranslate"><span class="pre">pprint()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase"><code class="docutils literal notranslate"><span class="pre">TestCase</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertSequenceEqual"><code class="docutils literal notranslate"><span class="pre">TestCase.assertSequenceEqual()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.base_types"><code class="docutils literal notranslate"><span class="pre">TestCase.base_types</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertEqual"><code class="docutils literal notranslate"><span class="pre">TestCase.assertEqual()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertCountEqual"><code class="docutils literal notranslate"><span class="pre">TestCase.assertCountEqual()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertMatch"><code class="docutils literal notranslate"><span class="pre">TestCase.assertMatch()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.longMessage"><code class="docutils literal notranslate"><span class="pre">TestCase.longMessage</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.maxDiff"><code class="docutils literal notranslate"><span class="pre">TestCase.maxDiff</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.tests.setlog"><code class="docutils literal notranslate"><span class="pre">setlog()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.runmodule"><code class="docutils literal notranslate"><span class="pre">runmodule()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.table.html"
+                          title="previous chapter">goulib.table</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.units.html"
+                          title="next chapter">goulib.units</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.tests.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.units.html" title="goulib.units"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.table.html" title="goulib.table"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

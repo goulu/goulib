@@ -1,0 +1,22 @@
+﻿goulib.notebook
+===============
+
+.. automodule:: goulib.notebook
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      h
+      h1
+      h2
+      h3
+      h4
+      herror
+      hinfo
+      hsuccess
+      html
+      hwarning
+      latex
+   

@@ -1,0 +1,34 @@
+﻿goulib.stats
+============
+
+.. automodule:: goulib.stats
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      avg
+      confidence_interval
+      covariance
+      kurtosis
+      linear_regression
+      mean
+      mean_var
+      median
+      mode
+      normal_pdf
+      stats
+      stddev
+      var
+      variance
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Discrete
+      Normal
+      PDF
+      Stats
+   

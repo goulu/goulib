@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.itertools2 &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.markup" href="goulib.markup.html" />
+    <link rel="prev" title="goulib.interval" href="goulib.interval.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.markup.html" title="goulib.markup"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.interval.html" title="goulib.interval"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.itertools2</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.itertools2">
+<span id="goulib-itertools2"></span><h1>goulib.itertools2<a class="headerlink" href="#module-goulib.itertools2" title="Link to this heading">¶</a></h1>
+<p>additions to <a class="reference external" href="https://docs.python.org/3/library/itertools.html#module-itertools" title="(in Python v3.15)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">itertools</span></code></a> standard library</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.accumulate" title="goulib.itertools2.accumulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accumulate</span></code></a>(iterable[, func, skip_first, modulo])</p></td>
+<td><p>Return running totals.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.all" title="goulib.itertools2.all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all</span></code></a>(seq[, pred])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.all_pairs" title="goulib.itertools2.all_pairs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_pairs</span></code></a>(size)</p></td>
+<td><p>generates all i,j pairs for i,j from 0-size</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.any" title="goulib.itertools2.any"><code class="xref py py-obj docutils literal notranslate"><span class="pre">any</span></code></a>(seq[, pred])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.arange" title="goulib.itertools2.arange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arange</span></code></a>(start[, stop, step])</p></td>
+<td><p>range for floats or other types (<cite>numpy.arange</cite> without numpy)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.best" title="goulib.itertools2.best"><code class="xref py py-obj docutils literal notranslate"><span class="pre">best</span></code></a>(iterable[, key, n, reverse])</p></td>
+<td><p>generate items corresponding to the n best values of key sort order</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.brent" title="goulib.itertools2.brent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">brent</span></code></a>(iterable[, limit])</p></td>
+<td><p>Detect a cycle in iterable using Floyd &quot;tortue hand hare&quot; algorithm</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.combinations_with_replacement" title="goulib.itertools2.combinations_with_replacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combinations_with_replacement</span></code></a>(iterable, r)</p></td>
+<td><p>combinations_with_replacement('ABC', 2) --&gt; AA AB AC BB BC CC same as combinations_with_replacement except it doesn't generate duplicates</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.compose" title="goulib.itertools2.compose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compose</span></code></a>(f, g)</p></td>
+<td><p>Compose two functions -&gt; compose(f, g)(x) -&gt; f(g(x))</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.compress" title="goulib.itertools2.compress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compress</span></code></a>(iterable[, key, buffer])</p></td>
+<td><p>generates (item,count) pairs by counting the number of consecutive items in iterable)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.count_unique" title="goulib.itertools2.count_unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_unique</span></code></a>(iterable[, key])</p></td>
+<td><p>Count unique elements</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.decompress" title="goulib.itertools2.decompress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decompress</span></code></a>(iterable)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.detect_cycle" title="goulib.itertools2.detect_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_cycle</span></code></a>(iterable[, limit])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.dictsplit" title="goulib.itertools2.dictsplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dictsplit</span></code></a>(dic, keys)</p></td>
+<td><p>extract keys from dic :param dic: dict source :param keys: iterable of dict keys :result: dict,dict : the first contains entries present in source, the second the remaining entries</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.diff" title="goulib.itertools2.diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diff</span></code></a>(iterable1, iterable2)</p></td>
+<td><p>generate items in sorted iterable1 that are not in sorted iterable2</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.drop" title="goulib.itertools2.drop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drop</span></code></a>(n, iterable)</p></td>
+<td><p>Drop n elements from iterable and return the rest</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.ensure_sorted" title="goulib.itertools2.ensure_sorted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_sorted</span></code></a>(iterable[, key])</p></td>
+<td><p>makes sure iterable is sorted according to key</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.enumerates" title="goulib.itertools2.enumerates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumerates</span></code></a>(iterable)</p></td>
+<td><p>generalizes enumerate to dicts :result: key,value pair for whatever iterable type</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.every" title="goulib.itertools2.every"><code class="xref py py-obj docutils literal notranslate"><span class="pre">every</span></code></a>(n, iterable[, start])</p></td>
+<td><p>Take an element from iterator every n elements</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.filter2" title="goulib.itertools2.filter2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter2</span></code></a>(iterable, condition)</p></td>
+<td><p>like <cite>python.filter</cite> but returns 2 lists : - list of elements in iterable that satisfy condition - list of those that don't</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.find" title="goulib.itertools2.find"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find</span></code></a>(iterable, f)</p></td>
+<td><p>Return first item in iterable where f(item) == True.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.first" title="goulib.itertools2.first"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first</span></code></a>(iterable)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.first_match" title="goulib.itertools2.first_match"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_match</span></code></a>(iter1, iter2[, limit])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.flatten" title="goulib.itertools2.flatten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten</span></code></a>(iterable[, donotrecursein])</p></td>
+<td><p>iterator to flatten (depth-first) structure</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.floyd" title="goulib.itertools2.floyd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">floyd</span></code></a>(iterable[, limit])</p></td>
+<td><p>Detect a cycle in iterable using Floyd &quot;tortue hand hare&quot; algorithm</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.groups" title="goulib.itertools2.groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">groups</span></code></a>(iterable, n[, step])</p></td>
+<td><p>Make groups of 'n' elements from the iterable advancing 'step' elements on each iteration</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.icross" title="goulib.itertools2.icross"><code class="xref py py-obj docutils literal notranslate"><span class="pre">icross</span></code></a>(*sequences)</p></td>
+<td><p>Cartesian product of sequences (recursive version)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.identity" title="goulib.itertools2.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>(x)</p></td>
+<td><p>Do nothing and return the variable untouched</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.ifind" title="goulib.itertools2.ifind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ifind</span></code></a>(iterable, f[, reverse])</p></td>
+<td><p>iterates through items in iterable where f(item) == True.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.ilen" title="goulib.itertools2.ilen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ilen</span></code></a>(it)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.index" title="goulib.itertools2.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code></a>(value, iterable)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.index_max" title="goulib.itertools2.index_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_max</span></code></a>(values[, key])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.index_min" title="goulib.itertools2.index_min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_min</span></code></a>(values[, key])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.interleave" title="goulib.itertools2.interleave"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interleave</span></code></a>(l1, l2)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.intersect" title="goulib.itertools2.intersect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersect</span></code></a>(*iterables)</p></td>
+<td><p>generates itersection of N iterables</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.irange" title="goulib.itertools2.irange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">irange</span></code></a>(start_or_end[, optional_end])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.ireduce" title="goulib.itertools2.ireduce"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ireduce</span></code></a>(func, iterable[, init])</p></td>
+<td><p>Like <cite>python.reduce</cite> but using iterators (a.k.a scanl)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.iremove" title="goulib.itertools2.iremove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iremove</span></code></a>(iterable, f)</p></td>
+<td><p>removes items from an iterable based on condition :param iterable: iterable .</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.iscallable" title="goulib.itertools2.iscallable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iscallable</span></code></a>(f)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.isiterable" title="goulib.itertools2.isiterable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isiterable</span></code></a>(obj)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.isplit" title="goulib.itertools2.isplit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isplit</span></code></a>(iterable, sep[, include_sep])</p></td>
+<td><p>split iterable by separators or condition :param sep: value or function(item) returning True for items that separate :param include_sep: bool.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.itemgetter" title="goulib.itertools2.itemgetter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">itemgetter</span></code></a>(iterable, i)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.iterate" title="goulib.itertools2.iterate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iterate</span></code></a>(func, arg)</p></td>
+<td><p>After Haskell's iterate: apply function repeatedly.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.ith" title="goulib.itertools2.ith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ith</span></code></a>(iterable, i)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.last" title="goulib.itertools2.last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">last</span></code></a>(iterable)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.linspace" title="goulib.itertools2.linspace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linspace</span></code></a>(start, end[, n])</p></td>
+<td><p>iterator over n values linearly interpolated between (and including) start and end <cite>numpy.linspace</cite> without numpy</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.ndim" title="goulib.itertools2.ndim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndim</span></code></a>(iterable)</p></td>
+<td><p>number of dimensions of a mutidimensional array, without numpy</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.next_permutation" title="goulib.itertools2.next_permutation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_permutation</span></code></a>(seq[, pred])</p></td>
+<td><p>Like C++ std::next_permutation() but implemented as generator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.no" title="goulib.itertools2.no"><code class="xref py py-obj docutils literal notranslate"><span class="pre">no</span></code></a>(seq[, pred])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.nth" title="goulib.itertools2.nth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nth</span></code></a>(n, iterable[, default])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.occurences" title="goulib.itertools2.occurences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">occurences</span></code></a>(iterable)</p></td>
+<td><p>count number of occurences of each item in a finite iterable</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.pairwise" title="goulib.itertools2.pairwise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairwise</span></code></a>(iterable[, op, loop])</p></td>
+<td><p>iterates through consecutive pairs</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.product" title="goulib.itertools2.product"><code class="xref py py-obj docutils literal notranslate"><span class="pre">product</span></code></a>(*iterables, **kwargs)</p></td>
+<td><p>Cartesian product of (infinite) input iterables.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.quantify" title="goulib.itertools2.quantify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantify</span></code></a>(iterable[, pred])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.rand_seq" title="goulib.itertools2.rand_seq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rand_seq</span></code></a>(size)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.record" title="goulib.itertools2.record"><code class="xref py py-obj docutils literal notranslate"><span class="pre">record</span></code></a>(iterable[, it, max])</p></td>
+<td><p>return the index and value of iterable which exceed previous max</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.record_index" title="goulib.itertools2.record_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">record_index</span></code></a>(iterable[, it, max])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.record_value" title="goulib.itertools2.record_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">record_value</span></code></a>(iterable[, it, max])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.recurse" title="goulib.itertools2.recurse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recurse</span></code></a>(f, x)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.removef" title="goulib.itertools2.removef"><code class="xref py py-obj docutils literal notranslate"><span class="pre">removef</span></code></a>(iterable, f)</p></td>
+<td><p>removes items from an iterable based on condition :param iterable: iterable .</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.reshape" title="goulib.itertools2.reshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reshape</span></code></a>(data, dims)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.select" title="goulib.itertools2.select"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select</span></code></a>(it1, it2, op)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.shape" title="goulib.itertools2.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a>(iterable)</p></td>
+<td><p>shape of a mutidimensional array, without numpy</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.shuffle" title="goulib.itertools2.shuffle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shuffle</span></code></a>(ary)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.sort_indexes" title="goulib.itertools2.sort_indexes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_indexes</span></code></a>(iterable[, key, reverse])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.sorted_iterable" title="goulib.itertools2.sorted_iterable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sorted_iterable</span></code></a>(iterable[, key, buffer])</p></td>
+<td><p>sorts an &quot;almost sorted&quot; (infinite) iterable</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.split" title="goulib.itertools2.split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split</span></code></a>(iterable, sep[, include_sep])</p></td>
+<td><p>like <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#str.split">https://docs.python.org/2/library/stdtypes.html#str.split</a>, but for iterable :param sep: value or function(item) returning True for items that separate :param include_sep: bool.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.subdict" title="goulib.itertools2.subdict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subdict</span></code></a>(d, keys)</p></td>
+<td><p>extract &quot;sub-dictionary&quot; :param d: dict :param keys: container of keys to extract: :result: dict: :see: <a class="reference external" href="http://stackoverflow.com/questions/5352546/best-way-to-extract-subset-of-key-value-pairs-from-python-dictionary-object/5352649#5352649">http://stackoverflow.com/questions/5352546/best-way-to-extract-subset-of-key-value-pairs-from-python-dictionary-object/5352649#5352649</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.swap" title="goulib.itertools2.swap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swap</span></code></a>(iterable)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.tails" title="goulib.itertools2.tails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tails</span></code></a>(seq)</p></td>
+<td><p>Get tails of a sequence</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.take" title="goulib.itertools2.take"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take</span></code></a>(n, iterable)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.takeevery" title="goulib.itertools2.takeevery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">takeevery</span></code></a>(n, iterable[, start])</p></td>
+<td><p>Take an element from iterator every n elements</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.takenth" title="goulib.itertools2.takenth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">takenth</span></code></a>(n, iterable[, default])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.tee" title="goulib.itertools2.tee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tee</span></code></a>(iterable[, n, copy])</p></td>
+<td><p>tee or copy depending on type and goal</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.unique" title="goulib.itertools2.unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unique</span></code></a>(iterable[, key, buffer])</p></td>
+<td><p>generate unique elements, preserving order.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.iter2" title="goulib.itertools2.iter2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter2</span></code></a>(iterable)</p></td>
+<td><p>Takes in an object that is iterable.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.itertools2.keep" title="goulib.itertools2.keep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keep</span></code></a>(iterable)</p></td>
+<td><p>iterator that keeps the last value</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Exceptions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.itertools2.SortingError" title="goulib.itertools2.SortingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SortingError</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.identity">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#identity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.identity" title="Link to this definition">¶</a></dt>
+<dd><p>Do nothing and return the variable untouched</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.isiterable">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">isiterable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#isiterable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.isiterable" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool True if obj is iterable (but not a string)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.iscallable">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">iscallable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iscallable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iscallable" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.any">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">any</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'bool'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#any"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.any" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool True if pred(x) is True for at least one element in the iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.all">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'bool'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.all" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool True if pred(x) is True for all elements in the iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.no">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">no</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'bool'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#no"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.no" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool True if pred(x) is False for every element in the iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.index">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.index" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer index of value in iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.ith">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">ith</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#ith"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.ith" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>i-th element in the iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.first">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#first"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.first" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>first element in the iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.last">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#last"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.last" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>last element in the iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.takeevery">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">takeevery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#takeevery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.takeevery" title="Link to this definition">¶</a></dt>
+<dd><p>Take an element from iterator every n elements</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.every">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.every" title="Link to this definition">¶</a></dt>
+<dd><p>Take an element from iterator every n elements</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.take">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">take</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#take"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.take" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>first n items from iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.drop">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#drop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.drop" title="Link to this definition">¶</a></dt>
+<dd><p>Drop n elements from iterable and return the rest</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.enumerates">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">enumerates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#enumerates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.enumerates" title="Link to this definition">¶</a></dt>
+<dd><p>generalizes enumerate to dicts
+:result: key,value pair for whatever iterable type</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.ilen">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">ilen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#ilen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.ilen" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int length exhausting an iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.irange">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">irange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_or_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#irange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.irange" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>iterable that counts from start to end (both included).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.arange">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">arange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#arange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.arange" title="Link to this definition">¶</a></dt>
+<dd><p>range for floats or other types (<cite>numpy.arange</cite> without numpy)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> – optional number. Start of interval. The interval includes this value. The default start value is 0.</p></li>
+<li><p><strong>stop</strong> – number. End of interval. The interval does not include this value, except in some cases where step is not an integer and floating point round-off affects the length of out.</p></li>
+<li><p><strong>step</strong> – optional number. Spacing between values. For any output out, this is the distance between two adjacent values, out[i+1] - out[i]. The default step size is 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.linspace">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">linspace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#linspace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.linspace" title="Link to this definition">¶</a></dt>
+<dd><p>iterator over n values linearly interpolated between (and including) start and end
+<cite>numpy.linspace</cite> without numpy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> – number, or iterable vector</p></li>
+<li><p><strong>end</strong> – number, or iterable vector</p></li>
+<li><p><strong>n</strong> – int number of interpolated values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.flatten">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">donotrecursein</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'str'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#flatten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.flatten" title="Link to this definition">¶</a></dt>
+<dd><p>iterator to flatten (depth-first) structure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> – iterable structure</p></li>
+<li><p><strong>donotrecursein</strong> – iterable types in which algo doesn’t recurse
+string type by default</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.itemgetter">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">itemgetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#itemgetter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.itemgetter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.recurse">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">recurse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#recurse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.recurse" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.swap">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#swap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.swap" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.tee">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">tee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#tee"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.tee" title="Link to this definition">¶</a></dt>
+<dd><p>tee or copy depending on type and goal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> – any iterable</p></li>
+<li><p><strong>n</strong> – int number of tees/copies to return</p></li>
+<li><p><strong>copy</strong> – optional copy function, for exemple copy.copy or copy.deepcopy</p></li>
+</ul>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>tee of iterable if it’s an iterator or generator, or (deep)copies for other types</p>
+</dd>
+</dl>
+<p>this function is useful to avoid side effects at a lower memory cost
+depending on the case</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.groups">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.groups" title="Link to this definition">¶</a></dt>
+<dd><p>Make groups of ‘n’ elements from the iterable advancing
+‘step’ elements on each iteration</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.pairwise">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#pairwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.pairwise" title="Link to this definition">¶</a></dt>
+<dd><p>iterates through consecutive pairs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> – input iterable s1,s2,s3, …. sn</p></li>
+<li><p><strong>op</strong> – optional operator to apply to each pair</p></li>
+<li><p><strong>loop</strong> – boolean True if last pair should be (sn,s1) to close the loop</p></li>
+</ul>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>pairs iterator (s1,s2), (s2,s3) … (si,si+1), … (sn-1,sn) + optional pair to close the loop</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.select">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">it1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.select" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.shape">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.shape" title="Link to this definition">¶</a></dt>
+<dd><p>shape of a mutidimensional array, without numpy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>iterable</strong> – iterable of iterable … of iterable or numpy arrays…</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of n ints corresponding to iterable’s len of each dimension</p>
+</dd>
+<dt class="field-odd">Warning<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if iterable is not a (hyper) rect matrix, shape is evaluated from
+the [0,0,…0] element …</p>
+</dd>
+<dt class="field-even">See<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://docs.scipy.org/doc/numpy-1.10.1/reference/generated/numpy.ndarray.shape.html">http://docs.scipy.org/doc/numpy-1.10.1/reference/generated/numpy.ndarray.shape.html</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.ndim">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">ndim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#ndim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.ndim" title="Link to this definition">¶</a></dt>
+<dd><p>number of dimensions of a mutidimensional array, without numpy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>iterable</strong> – iterable of iterable … of iterable or numpy arrays…</p>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>int number of dimensions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.reshape">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">reshape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#reshape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.reshape" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>data as a n-dim matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.compose">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">compose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#compose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.compose" title="Link to this definition">¶</a></dt>
+<dd><p>Compose two functions -&gt; compose(f, g)(x) -&gt; f(g(x))</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.iterate">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iterate" title="Link to this definition">¶</a></dt>
+<dd><p>After Haskell’s iterate: apply function repeatedly.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.accumulate">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">accumulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">add&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modulo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#accumulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.accumulate" title="Link to this definition">¶</a></dt>
+<dd><p>Return running totals. extends <cite>python.accumulate</cite></p>
+<p># accumulate([1,2,3,4,5]) –&gt; 1 3 6 10 15
+# accumulate([1,2,3,4,5], operator.mul) –&gt; 1 2 6 24 120</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.record">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">count(0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.record" title="Link to this definition">¶</a></dt>
+<dd><p>return the index and value of iterable which exceed previous max</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.record_index">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">record_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">count(0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#record_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.record_index" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.record_value">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">record_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">count(0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#record_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.record_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.tails">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">tails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#tails"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.tails" title="Link to this definition">¶</a></dt>
+<dd><p>Get tails of a sequence</p>
+<p>tails([1,2,3]) -&gt; [1,2,3], [2,3], [3], [].</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.ireduce">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">ireduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#ireduce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.ireduce" title="Link to this definition">¶</a></dt>
+<dd><p>Like <cite>python.reduce</cite> but using iterators (a.k.a scanl)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.occurences">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">occurences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#occurences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.occurences" title="Link to this definition">¶</a></dt>
+<dd><p>count number of occurences of each item in a finite iterable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>iterable</strong> – finite iterable</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict of int count indexed by item</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.compress">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">compress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">identity&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#compress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.compress" title="Link to this definition">¶</a></dt>
+<dd><p>generates (item,count) pairs by counting the number of consecutive items in iterable)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> – iterable, possibly infinite</p></li>
+<li><p><strong>key</strong> – optional function defining which elements are considered equal</p></li>
+<li><p><strong>buffer</strong> – optional integer. if defined, iterable is sorted with this buffer</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.decompress">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">decompress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#decompress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.decompress" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.unique">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#unique"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.unique" title="Link to this definition">¶</a></dt>
+<dd><p>generate unique elements, preserving order.
+:param iterable: iterable, possibly infinite
+:param key: optional function defining which elements are considered equal
+:param buffer: optional integer defining how many of the last unique elements to keep in memory
+mandatory if iterable is infinite</p>
+<p># unique(‘AAAABBBCCDAABBB’) –&gt; A B C D
+# unique(‘ABBCcAD’, str.lower) –&gt; A B C D</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.count_unique">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">count_unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#count_unique"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.count_unique" title="Link to this definition">¶</a></dt>
+<dd><p>Count unique elements</p>
+<p># count_unique(‘AAAABBBCCDAABBB’) –&gt; 4
+# count_unique(‘ABBCcAD’, str.lower) –&gt; 4</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.combinations_with_replacement">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">combinations_with_replacement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#combinations_with_replacement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.combinations_with_replacement" title="Link to this definition">¶</a></dt>
+<dd><p>combinations_with_replacement(‘ABC’, 2) –&gt; AA AB AC BB BC CC
+same as combinations_with_replacement except it doesn’t generate
+duplicates</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.takenth">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">takenth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#takenth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.takenth" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nth item of iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.nth">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">nth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.nth" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nth item of iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.icross">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">icross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">sequences</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#icross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.icross" title="Link to this definition">¶</a></dt>
+<dd><p>Cartesian product of sequences (recursive version)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.quantify">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">quantify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;class</span> <span class="pre">'bool'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#quantify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.quantify" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int count how many times the predicate is true</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.interleave">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">interleave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#interleave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.interleave" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l1</strong> – iterable</p></li>
+<li><p><strong>l2</strong> – iterable of same length, or 1 less than l1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>iterable interleaving elements from l1 and l2, starting by l1[0]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.shuffle">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">shuffle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#shuffle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.shuffle" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array to shuffle by Fisher-Yates algorithm</p>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>shuffled array (IN PLACE!)</p>
+</dd>
+<dt class="field-odd">See<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.drgoulu.com/2013/01/19/comment-bien-brasser-les-cartes/">http://www.drgoulu.com/2013/01/19/comment-bien-brasser-les-cartes/</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.rand_seq">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">rand_seq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#rand_seq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.rand_seq" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>range(size) shuffled</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.all_pairs">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">all_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#all_pairs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.all_pairs" title="Link to this definition">¶</a></dt>
+<dd><p>generates all i,j pairs for i,j from 0-size</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.index_min">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">index_min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">identity&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#index_min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.index_min" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>min_index, min_value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.index_max">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">index_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">identity&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#index_max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.index_max" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>max_index, max_value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.best">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">best</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#best"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.best" title="Link to this definition">¶</a></dt>
+<dd><p>generate items corresponding to the n best values of key sort order</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.sort_indexes">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">sort_indexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">identity&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#sort_indexes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.sort_indexes" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>iterator over indexes of iterable that correspond to the sorted iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.filter2">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">filter2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#filter2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.filter2" title="Link to this definition">¶</a></dt>
+<dd><p>like <cite>python.filter</cite> but returns 2 lists :
+- list of elements in iterable that satisfy condition
+- list of those that don’t</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.ifind">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">ifind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#ifind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.ifind" title="Link to this definition">¶</a></dt>
+<dd><p>iterates through items in iterable where f(item) == True.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.iremove">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">iremove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iremove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iremove" title="Link to this definition">¶</a></dt>
+<dd><p>removes items from an iterable based on condition
+:param iterable: iterable . will be modified in place
+:param f: function of the form lambda line:bool returning True if item should be removed
+:yield: removed items backwards</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.removef">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">removef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#removef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.removef" title="Link to this definition">¶</a></dt>
+<dd><p>removes items from an iterable based on condition
+:param iterable: iterable . will be modified in place
+:param f: function of the form lambda line:bool returning True if item should be removed
+:result: list of removed items.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.find">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.find" title="Link to this definition">¶</a></dt>
+<dd><p>Return first item in iterable where f(item) == True.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.isplit">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">isplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#isplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.isplit" title="Link to this definition">¶</a></dt>
+<dd><p>split iterable by separators or condition
+:param sep: value or function(item) returning True for items that separate
+:param include_sep: bool. If True the separators items are included in output, at beginning of each sub-iterator
+:result: iterates through slices before, between, and after separators</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.split">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.split" title="Link to this definition">¶</a></dt>
+<dd><p>like <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#str.split">https://docs.python.org/2/library/stdtypes.html#str.split</a>, but for iterable
+:param sep: value or function(item) returning True for items that separate
+:param include_sep: bool. If True the separators items are included in output, at beginning of each sub-iterator
+:result: list of iterable slices before, between, and after separators</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.dictsplit">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">dictsplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#dictsplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.dictsplit" title="Link to this definition">¶</a></dt>
+<dd><p>extract keys from dic
+:param dic: dict source
+:param keys: iterable of dict keys
+:result: dict,dict : the first contains entries present in source, the second the remaining entries</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.next_permutation">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">next_permutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#next_permutation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.next_permutation" title="Link to this definition">¶</a></dt>
+<dd><p>Like C++ std::next_permutation() but implemented as generator.
+see <a class="reference external" href="http://blog.bjrn.se/2008/04/lexicographic-permutations-using.html">http://blog.bjrn.se/2008/04/lexicographic-permutations-using.html</a>
+:param seq: iterable
+:param pred: a function (a,b) that returns a negative number if a&lt;b, like cmp(a,b) in Python 2.7</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">iter2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iter2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iter2" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Takes in an object that is iterable.
+<a class="reference external" href="http://code.activestate.com/recipes/578092-flattening-an-arbitrarily-deep-list-or-any-iterato/">http://code.activestate.com/recipes/578092-flattening-an-arbitrarily-deep-list-or-any-iterato/</a>
+Allows for the following method calls (that should be built into iterators anyway…)
+calls:
+- append - appends another iterable onto the iterator.
+- insert - only accepts inserting at the 0 place, inserts an iterable before other iterables.
+- adding.  an iter2 object can be added to another object that is
+iterable.  i.e. iter2 + iter (not iter + iter2).
+It’s best to make all objects iter2 objects to avoid syntax errors.  :D</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iter2.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iter2.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iter2.append"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iter2.append" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">place</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iter2.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iter2.insert" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iter2.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iter2.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2.__next__">
+<span class="sig-name descname"><span class="pre">__next__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iter2.__next__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iter2.__next__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.iter2.next" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.iter2.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#iter2.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.iter2.__iter__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.subdict">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">subdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#subdict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.subdict" title="Link to this definition">¶</a></dt>
+<dd><p>extract “sub-dictionary”
+:param d: dict
+:param keys: container of keys to extract:
+:result: dict:
+:see: <a class="reference external" href="http://stackoverflow.com/questions/5352546/best-way-to-extract-subset-of-key-value-pairs-from-python-dictionary-object/5352649#5352649">http://stackoverflow.com/questions/5352546/best-way-to-extract-subset-of-key-value-pairs-from-python-dictionary-object/5352649#5352649</a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">SortingError</span></span><a class="reference internal" href="../_modules/goulib/itertools2.html#SortingError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.SortingError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__cause__">
+<span class="sig-name descname"><span class="pre">__cause__</span></span><a class="headerlink" href="#goulib.itertools2.SortingError.__cause__" title="Link to this definition">¶</a></dt>
+<dd><p>exception cause</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__context__">
+<span class="sig-name descname"><span class="pre">__context__</span></span><a class="headerlink" href="#goulib.itertools2.SortingError.__context__" title="Link to this definition">¶</a></dt>
+<dd><p>exception context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__getattribute__">
+<span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.__getattribute__" title="Link to this definition">¶</a></dt>
+<dd><p>Return getattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__new__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.__new__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__reduce__">
+<span class="sig-name descname"><span class="pre">__reduce__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.__reduce__" title="Link to this definition">¶</a></dt>
+<dd><p>Helper for pickle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__setstate__">
+<span class="sig-name descname"><span class="pre">__setstate__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.__setstate__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__suppress_context__">
+<span class="sig-name descname"><span class="pre">__suppress_context__</span></span><a class="headerlink" href="#goulib.itertools2.SortingError.__suppress_context__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.__traceback__">
+<span class="sig-name descname"><span class="pre">__traceback__</span></span><a class="headerlink" href="#goulib.itertools2.SortingError.__traceback__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.add_note" title="Link to this definition">¶</a></dt>
+<dd><p>Exception.add_note(note) –
+add a note to the exception</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#goulib.itertools2.SortingError.args" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.SortingError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.SortingError.with_traceback" title="Link to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.ensure_sorted">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">ensure_sorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#ensure_sorted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.ensure_sorted" title="Link to this definition">¶</a></dt>
+<dd><p>makes sure iterable is sorted according to key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p>items of iterable</p>
+</dd>
+<dt class="field-even">Raise<span class="colon">:</span></dt>
+<dd class="field-even"><p>SortingError if not</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.sorted_iterable">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">sorted_iterable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#sorted_iterable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.sorted_iterable" title="Link to this definition">¶</a></dt>
+<dd><p>sorts an “almost sorted” (infinite) iterable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> – iterable</p></li>
+<li><p><strong>key</strong> – function used as sort key</p></li>
+<li><p><strong>buffer</strong> – int size of buffer. elements to swap should not be further than that</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.diff">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterable2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.diff" title="Link to this definition">¶</a></dt>
+<dd><p>generate items in sorted iterable1 that are not in sorted iterable2</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.intersect">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">iterables</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#intersect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.intersect" title="Link to this definition">¶</a></dt>
+<dd><p>generates itersection of N iterables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>iterables</strong> – any number of SORTED iterables</p>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p>elements that belong to all iterables</p>
+</dd>
+<dt class="field-odd">See<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://stackoverflow.com/questions/969709/joining-a-set-of-ordered-integer-yielding-python-iterators">http://stackoverflow.com/questions/969709/joining-a-set-of-ordered-integer-yielding-python-iterators</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.product">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">iterables</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.product" title="Link to this definition">¶</a></dt>
+<dd><p>Cartesian product of (infinite) input iterables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterables</strong> – any number of iterables</p></li>
+<li><p><strong>repeat</strong> – integer optional number of repetitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">See<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://stackoverflow.com/questions/12093364/cartesian-product-of-large-iterators-itertools">http://stackoverflow.com/questions/12093364/cartesian-product-of-large-iterators-itertools</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.itertools2.keep">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">keep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#keep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.keep" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a></p>
+<p>iterator that keeps the last value</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#keep.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.keep.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__next__">
+<span class="sig-name descname"><span class="pre">__next__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#keep.__next__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.keep.__next__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the next item from the iterator. When exhausted, raise StopIteration</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.keep.next" title="Link to this definition">¶</a></dt>
+<dd><p>Return the next item from the iterator. When exhausted, raise StopIteration</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></span><a class="headerlink" href="#goulib.itertools2.keep.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#goulib.itertools2.keep.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__init_subclass__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.itertools2.keep.__init_subclass__" title="Link to this definition">¶</a></dt>
+<dd><p>Function to initialize subclasses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__orig_bases__">
+<span class="sig-name descname"><span class="pre">__orig_bases__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(typing.Iterator,)</span></span><a class="headerlink" href="#goulib.itertools2.keep.__orig_bases__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__parameters__">
+<span class="sig-name descname"><span class="pre">__parameters__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></span><a class="headerlink" href="#goulib.itertools2.keep.__parameters__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.itertools2.keep.__slots__">
+<span class="sig-name descname"><span class="pre">__slots__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">()</span></span><a class="headerlink" href="#goulib.itertools2.keep.__slots__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.first_match">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">first_match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iter1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iter2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#first_match"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.first_match" title="Link to this definition">¶</a></dt>
+<dd><p>”
+:param limit: int max number of loops
+:return: integer i first index where iter1[i]==iter2[i]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.floyd">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">floyd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#floyd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.floyd" title="Link to this definition">¶</a></dt>
+<dd><p>Detect a cycle in iterable using Floyd “tortue hand hare” algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">See<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_Tortoise_and_Hare">https://en.wikipedia.org/wiki/Cycle_detection#Floyd’s_Tortoise_and_Hare</a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>iterable</strong> – iterable</p></li>
+<li><p><strong>limit</strong> – int limit to prevent infinite loop. no limit if None</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(i,l) tuple of integers where i=index of cycle start, l=length
+if no cycle is found, return (None,None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.brent">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">brent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#brent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.brent" title="Link to this definition">¶</a></dt>
+<dd><p>Detect a cycle in iterable using Floyd “tortue hand hare” algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">See<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Cycle_detection#Brent's_algorithm">https://en.wikipedia.org/wiki/Cycle_detection#Brent’s_algorithm</a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>iterable</strong> – iterable</p></li>
+<li><p><strong>limit</strong> – int limit to prevent infinite loop. no limit if None</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Result<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(i,l) tuple of integers where i=index of cycle start, l=length
+if no cycle is found, return (None,None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.itertools2.detect_cycle">
+<span class="sig-prename descclassname"><span class="pre">goulib.itertools2.</span></span><span class="sig-name descname"><span class="pre">detect_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/itertools2.html#detect_cycle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.itertools2.detect_cycle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.itertools2</a><ul>
+<li><a class="reference internal" href="#goulib.itertools2.identity"><code class="docutils literal notranslate"><span class="pre">identity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.isiterable"><code class="docutils literal notranslate"><span class="pre">isiterable()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iscallable"><code class="docutils literal notranslate"><span class="pre">iscallable()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.any"><code class="docutils literal notranslate"><span class="pre">any()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.all"><code class="docutils literal notranslate"><span class="pre">all()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.no"><code class="docutils literal notranslate"><span class="pre">no()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.index"><code class="docutils literal notranslate"><span class="pre">index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.ith"><code class="docutils literal notranslate"><span class="pre">ith()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.first"><code class="docutils literal notranslate"><span class="pre">first()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.last"><code class="docutils literal notranslate"><span class="pre">last()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.takeevery"><code class="docutils literal notranslate"><span class="pre">takeevery()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.every"><code class="docutils literal notranslate"><span class="pre">every()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.take"><code class="docutils literal notranslate"><span class="pre">take()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.drop"><code class="docutils literal notranslate"><span class="pre">drop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.enumerates"><code class="docutils literal notranslate"><span class="pre">enumerates()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.ilen"><code class="docutils literal notranslate"><span class="pre">ilen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.irange"><code class="docutils literal notranslate"><span class="pre">irange()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.arange"><code class="docutils literal notranslate"><span class="pre">arange()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.linspace"><code class="docutils literal notranslate"><span class="pre">linspace()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.flatten"><code class="docutils literal notranslate"><span class="pre">flatten()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.itemgetter"><code class="docutils literal notranslate"><span class="pre">itemgetter()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.recurse"><code class="docutils literal notranslate"><span class="pre">recurse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.swap"><code class="docutils literal notranslate"><span class="pre">swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.tee"><code class="docutils literal notranslate"><span class="pre">tee()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.groups"><code class="docutils literal notranslate"><span class="pre">groups()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.pairwise"><code class="docutils literal notranslate"><span class="pre">pairwise()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.select"><code class="docutils literal notranslate"><span class="pre">select()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.shape"><code class="docutils literal notranslate"><span class="pre">shape()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.ndim"><code class="docutils literal notranslate"><span class="pre">ndim()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.reshape"><code class="docutils literal notranslate"><span class="pre">reshape()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.compose"><code class="docutils literal notranslate"><span class="pre">compose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iterate"><code class="docutils literal notranslate"><span class="pre">iterate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.accumulate"><code class="docutils literal notranslate"><span class="pre">accumulate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.record"><code class="docutils literal notranslate"><span class="pre">record()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.record_index"><code class="docutils literal notranslate"><span class="pre">record_index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.record_value"><code class="docutils literal notranslate"><span class="pre">record_value()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.tails"><code class="docutils literal notranslate"><span class="pre">tails()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.ireduce"><code class="docutils literal notranslate"><span class="pre">ireduce()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.occurences"><code class="docutils literal notranslate"><span class="pre">occurences()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.decompress"><code class="docutils literal notranslate"><span class="pre">decompress()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.unique"><code class="docutils literal notranslate"><span class="pre">unique()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.count_unique"><code class="docutils literal notranslate"><span class="pre">count_unique()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.combinations_with_replacement"><code class="docutils literal notranslate"><span class="pre">combinations_with_replacement()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.takenth"><code class="docutils literal notranslate"><span class="pre">takenth()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.nth"><code class="docutils literal notranslate"><span class="pre">nth()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.icross"><code class="docutils literal notranslate"><span class="pre">icross()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.quantify"><code class="docutils literal notranslate"><span class="pre">quantify()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.interleave"><code class="docutils literal notranslate"><span class="pre">interleave()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.shuffle"><code class="docutils literal notranslate"><span class="pre">shuffle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.rand_seq"><code class="docutils literal notranslate"><span class="pre">rand_seq()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.all_pairs"><code class="docutils literal notranslate"><span class="pre">all_pairs()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.index_min"><code class="docutils literal notranslate"><span class="pre">index_min()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.index_max"><code class="docutils literal notranslate"><span class="pre">index_max()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.best"><code class="docutils literal notranslate"><span class="pre">best()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.sort_indexes"><code class="docutils literal notranslate"><span class="pre">sort_indexes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.filter2"><code class="docutils literal notranslate"><span class="pre">filter2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.ifind"><code class="docutils literal notranslate"><span class="pre">ifind()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iremove"><code class="docutils literal notranslate"><span class="pre">iremove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.removef"><code class="docutils literal notranslate"><span class="pre">removef()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.find"><code class="docutils literal notranslate"><span class="pre">find()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.isplit"><code class="docutils literal notranslate"><span class="pre">isplit()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.dictsplit"><code class="docutils literal notranslate"><span class="pre">dictsplit()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.next_permutation"><code class="docutils literal notranslate"><span class="pre">next_permutation()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iter2"><code class="docutils literal notranslate"><span class="pre">iter2</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.itertools2.iter2.__init__"><code class="docutils literal notranslate"><span class="pre">iter2.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iter2.append"><code class="docutils literal notranslate"><span class="pre">iter2.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iter2.insert"><code class="docutils literal notranslate"><span class="pre">iter2.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iter2.__add__"><code class="docutils literal notranslate"><span class="pre">iter2.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iter2.__next__"><code class="docutils literal notranslate"><span class="pre">iter2.__next__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iter2.next"><code class="docutils literal notranslate"><span class="pre">iter2.next()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.iter2.__iter__"><code class="docutils literal notranslate"><span class="pre">iter2.__iter__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.itertools2.subdict"><code class="docutils literal notranslate"><span class="pre">subdict()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError"><code class="docutils literal notranslate"><span class="pre">SortingError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__cause__"><code class="docutils literal notranslate"><span class="pre">SortingError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__context__"><code class="docutils literal notranslate"><span class="pre">SortingError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">SortingError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__init__"><code class="docutils literal notranslate"><span class="pre">SortingError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__new__"><code class="docutils literal notranslate"><span class="pre">SortingError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__reduce__"><code class="docutils literal notranslate"><span class="pre">SortingError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__repr__"><code class="docutils literal notranslate"><span class="pre">SortingError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__setstate__"><code class="docutils literal notranslate"><span class="pre">SortingError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__str__"><code class="docutils literal notranslate"><span class="pre">SortingError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">SortingError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.__traceback__"><code class="docutils literal notranslate"><span class="pre">SortingError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.add_note"><code class="docutils literal notranslate"><span class="pre">SortingError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.args"><code class="docutils literal notranslate"><span class="pre">SortingError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.SortingError.with_traceback"><code class="docutils literal notranslate"><span class="pre">SortingError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.itertools2.ensure_sorted"><code class="docutils literal notranslate"><span class="pre">ensure_sorted()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.sorted_iterable"><code class="docutils literal notranslate"><span class="pre">sorted_iterable()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.diff"><code class="docutils literal notranslate"><span class="pre">diff()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.intersect"><code class="docutils literal notranslate"><span class="pre">intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.product"><code class="docutils literal notranslate"><span class="pre">product()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep"><code class="docutils literal notranslate"><span class="pre">keep</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__init__"><code class="docutils literal notranslate"><span class="pre">keep.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__next__"><code class="docutils literal notranslate"><span class="pre">keep.__next__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.next"><code class="docutils literal notranslate"><span class="pre">keep.next()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">keep.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__annotations__"><code class="docutils literal notranslate"><span class="pre">keep.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">keep.__init_subclass__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__orig_bases__"><code class="docutils literal notranslate"><span class="pre">keep.__orig_bases__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__parameters__"><code class="docutils literal notranslate"><span class="pre">keep.__parameters__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.keep.__slots__"><code class="docutils literal notranslate"><span class="pre">keep.__slots__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.itertools2.first_match"><code class="docutils literal notranslate"><span class="pre">first_match()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.floyd"><code class="docutils literal notranslate"><span class="pre">floyd()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.brent"><code class="docutils literal notranslate"><span class="pre">brent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.itertools2.detect_cycle"><code class="docutils literal notranslate"><span class="pre">detect_cycle()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.interval.html"
+                          title="previous chapter">goulib.interval</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.markup.html"
+                          title="next chapter">goulib.markup</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.itertools2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.markup.html" title="goulib.markup"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.interval.html" title="goulib.interval"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.itertools2</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

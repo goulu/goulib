@@ -1,0 +1,99 @@
+﻿goulib.itertools2
+=================
+
+.. automodule:: goulib.itertools2
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      accumulate
+      all
+      all_pairs
+      any
+      arange
+      best
+      brent
+      combinations_with_replacement
+      compose
+      compress
+      count_unique
+      decompress
+      detect_cycle
+      dictsplit
+      diff
+      drop
+      ensure_sorted
+      enumerates
+      every
+      filter2
+      find
+      first
+      first_match
+      flatten
+      floyd
+      groups
+      icross
+      identity
+      ifind
+      ilen
+      index
+      index_max
+      index_min
+      interleave
+      intersect
+      irange
+      ireduce
+      iremove
+      iscallable
+      isiterable
+      isplit
+      itemgetter
+      iterate
+      ith
+      last
+      linspace
+      ndim
+      next_permutation
+      no
+      nth
+      occurences
+      pairwise
+      product
+      quantify
+      rand_seq
+      record
+      record_index
+      record_value
+      recurse
+      removef
+      reshape
+      select
+      shape
+      shuffle
+      sort_indexes
+      sorted_iterable
+      split
+      subdict
+      swap
+      tails
+      take
+      takeevery
+      takenth
+      tee
+      unique
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      iter2
+      keep
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      SortingError
+   

@@ -1,0 +1,32 @@
+﻿goulib.optim
+============
+
+.. automodule:: goulib.optim
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      P
+      anneal
+      first_fit_decreasing
+      hillclimb
+      hillclimb_and_restart
+      kirkpatrick_cooling
+      nelder_mead
+      reversed_sections
+      swapped_cities
+      tour_length
+      tsp
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BinDict
+      BinList
+      DifferentialEvolution
+      ObjectiveFunction
+      _Bin
+   

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.table &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.tests" href="goulib.tests.html" />
+    <link rel="prev" title="goulib.stats" href="goulib.stats.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.tests.html" title="goulib.tests"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="goulib.stats.html" title="goulib.stats"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.table</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.table">
+<span id="goulib-table"></span><h1>goulib.table<a class="headerlink" href="#module-goulib.table" title="Link to this heading">¶</a></h1>
+<p>“mini pandas.DataFrame”
+Table class with Excel + CSV I/O, easy access to columns, HTML output, and much more.</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.table.attr" title="goulib.table.attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attr</span></code></a>(args)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.table.Cell" title="goulib.table.Cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cell</span></code></a>([data, align, fmt, tag, style])</p></td>
+<td><p>Table cell with HTML attributes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.table.Row" title="goulib.table.Row"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Row</span></code></a>(data[, align, fmt, tag, style])</p></td>
+<td><p>Table row with HTML attributes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.table.Table" title="goulib.table.Table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Table</span></code></a>([data])</p></td>
+<td><p>Table class with CSV I/O, easy access to columns, HTML output</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.table.attr">
+<span class="sig-prename descclassname"><span class="pre">goulib.table.</span></span><span class="sig-name descname"><span class="pre">attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.attr" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.table.Cell">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.table.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Cell" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Table cell with HTML attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – cell value(s) of any type</p></li>
+<li><p><strong>align</strong> – string for HTML align attribute</p></li>
+<li><p><strong>fmt</strong> – format string applied applied to data</p></li>
+<li><p><strong>tag</strong> – called to build each cell. defaults to ‘td’</p></li>
+<li><p><strong>style</strong> – dict or string for HTML style attribute</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Cell.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Cell.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Cell.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – cell value(s) of any type</p></li>
+<li><p><strong>align</strong> – string for HTML align attribute</p></li>
+<li><p><strong>fmt</strong> – format string applied applied to data</p></li>
+<li><p><strong>tag</strong> – called to build each cell. defaults to ‘td’</p></li>
+<li><p><strong>style</strong> – dict or string for HTML style attribute</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Cell.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Cell.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Cell.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Cell.read">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Cell.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Cell.read" title="Link to this definition">¶</a></dt>
+<dd><p>interprets x as int, float, string or None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Cell.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Cell.html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Cell.html" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string HTML formatted cell:</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>if data is int, default align=”right”</p></li>
+<li><p>if data is float, default align=”right” and fmt=’%0.2f’</p></li>
+<li><p>if data is <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">timedelta</span></code></a>, align = “right” and formatting is done by <code class="xref py py-func docutils literal notranslate"><span class="pre">datetime2.strftimedelta()</span></code></p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.table.Row">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.table.</span></span><span class="sig-name descname"><span class="pre">Row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Row" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Table row with HTML attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – (list of) cell value(s) of any type</p></li>
+<li><p><strong>align</strong> – (list of) string for HTML align attribute</p></li>
+<li><p><strong>fmt</strong> – (list of) format string applied applied to data</p></li>
+<li><p><strong>tag</strong> – (list of) tags called to build each cell. defaults to ‘td’</p></li>
+<li><p><strong>style</strong> – (list of) dict or string for HTML style attribute</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Row.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Row.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Row.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – (list of) cell value(s) of any type</p></li>
+<li><p><strong>align</strong> – (list of) string for HTML align attribute</p></li>
+<li><p><strong>fmt</strong> – (list of) format string applied applied to data</p></li>
+<li><p><strong>tag</strong> – (list of) tags called to build each cell. defaults to ‘td’</p></li>
+<li><p><strong>style</strong> – (list of) dict or string for HTML style attribute</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Row.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Row.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Row.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Row.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Row.html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Row.html" title="Link to this definition">¶</a></dt>
+<dd><p>return in HTML format</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.table.Table">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.table.</span></span><span class="sig-name descname"><span class="pre">Table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+<p>Table class with CSV I/O, easy access to columns, HTML output</p>
+<p>inits a table, optionally by reading a Excel, csv or html file
+:param data: list of list of cells, or string as filename
+:param titles: optional list of strings used as column id
+:param footer: optional list of functions used as column reducers</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>inits a table, optionally by reading a Excel, csv or html file
+:param data: list of list of cells, or string as filename
+:param titles: optional list of strings used as column id
+:param footer: optional list of functions used as column reducers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.__repr__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>repr string of titles+5 first lines</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.__str__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string of full tables with linefeeds</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.html">
+<span class="sig-name descname"><span class="pre">html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">head</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">foot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.html" title="Link to this definition">¶</a></dt>
+<dd><p>HTML representation of table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>head</strong> – optional column headers, .titles by default</p></li>
+<li><p><strong>foot</strong> – optional column footers, .footer by default</p></li>
+<li><p><strong>style</strong> – style for the table</p></li>
+<li><p><strong>colstyle</strong> – list of dict of style attributes for each column</p></li>
+<li><p><strong>kwargs</strong> – optional parameters passed along to tag(‘table’…
+except:
+* start=optional start row
+* stop=optional end row
+used to display a subset of lines. in this case rows with ‘…’ cells
+are displayed before and/or after the lines</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string HTML representation of table</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.load" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.read_element">
+<span class="sig-name descname"><span class="pre">read_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.read_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.read_element" title="Link to this definition">¶</a></dt>
+<dd><p>read table from a DOM element.
+:Warning: drops all formatting</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.read_html">
+<span class="sig-name descname"><span class="pre">read_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.read_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.read_html" title="Link to this definition">¶</a></dt>
+<dd><p>read first table in HTML file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.read_json">
+<span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.read_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.read_json" title="Link to this definition">¶</a></dt>
+<dd><p>appends a json file made of lines dictionaries</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.read_xls">
+<span class="sig-name descname"><span class="pre">read_xls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.read_xls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.read_xls" title="Link to this definition">¶</a></dt>
+<dd><p>appends an Excel table</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.read_csv">
+<span class="sig-name descname"><span class="pre">read_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.read_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.read_csv" title="Link to this definition">¶</a></dt>
+<dd><p>appends a .csv or similar file to the table</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.write_xlsx">
+<span class="sig-name descname"><span class="pre">write_xlsx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.write_xlsx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.write_xlsx" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.json">
+<span class="sig-name descname"><span class="pre">json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.json" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string JSON representation of table</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.write_csv">
+<span class="sig-name descname"><span class="pre">write_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.write_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.write_csv" title="Link to this definition">¶</a></dt>
+<dd><p>write the table in Excel csv format, optionally transposed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>compare 2 Tables contents, mainly for tests</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.ncols">
+<span class="sig-name descname"><span class="pre">ncols</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.ncols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.ncols" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>number of columns, ignoring title</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.find_col">
+<span class="sig-name descname"><span class="pre">find_col</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.find_col"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.find_col" title="Link to this definition">¶</a></dt>
+<dd><p>finds a column from a part of the title</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.icol">
+<span class="sig-name descname"><span class="pre">icol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.icol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.icol" title="Link to this definition">¶</a></dt>
+<dd><p>iterates a column</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.col">
+<span class="sig-name descname"><span class="pre">col</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.col"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.col" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.cols">
+<span class="sig-name descname"><span class="pre">cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.cols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.cols" title="Link to this definition">¶</a></dt>
+<dd><p>iterator through columns</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.transpose">
+<span class="sig-name descname"><span class="pre">transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">titles_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.transpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.transpose" title="Link to this definition">¶</a></dt>
+<dd><p>transpose table
+:param: titles_column
+:return: Table where rows are made from self’s columns and vice-versa</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.index" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int row number of first line where column contains value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self[index].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.get" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.set" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.setcol">
+<span class="sig-name descname"><span class="pre">setcol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.setcol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.setcol" title="Link to this definition">¶</a></dt>
+<dd><p>set column values
+:param col: int or string column index
+:param value: single value assigned to whole column or iterable assigned to each cell
+:param i: optional int : index of first row to assign</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.append"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.append" title="Link to this definition">¶</a></dt>
+<dd><p>appends a line to table
+:param line: can be either:
+* a list
+* a dict or column names:values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.addcol">
+<span class="sig-name descname"><span class="pre">addcol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.addcol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.addcol" title="Link to this definition">¶</a></dt>
+<dd><p>add column to the right</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.sort">
+<span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.sort" title="Link to this definition">¶</a></dt>
+<dd><p>sort by column</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.rowasdict">
+<span class="sig-name descname"><span class="pre">rowasdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.rowasdict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.rowasdict" title="Link to this definition">¶</a></dt>
+<dd><p>returns a line as a dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.asdict">
+<span class="sig-name descname"><span class="pre">asdict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.asdict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.asdict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.groupby_gen">
+<span class="sig-name descname"><span class="pre">groupby_gen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removecol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.groupby_gen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.groupby_gen" title="Link to this definition">¶</a></dt>
+<dd><p>generates subtables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.groupby">
+<span class="sig-name descname"><span class="pre">groupby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removecol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.groupby"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.groupby" title="Link to this definition">¶</a></dt>
+<dd><p>ordered dictionary of subtables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.hierarchy">
+<span class="sig-name descname"><span class="pre">hierarchy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Level'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">Table.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkfct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">Table.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.hierarchy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.hierarchy" title="Link to this definition">¶</a></dt>
+<dd><p>builds a structure from a table containing a “level” column</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.applyf">
+<span class="sig-name descname"><span class="pre">applyf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiperrors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.applyf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.applyf" title="Link to this definition">¶</a></dt>
+<dd><p>apply a function to a column
+:param by: column name of number
+:param f: function of the form lambda cell:content
+:param skiperrors: bool. if True, errors while running f are ignored
+:return: bool True if ok, False if skiperrors==True and conversion failed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.to_datetime">
+<span class="sig-name descname"><span class="pre">to_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%Y-%m-%d</span> <span class="pre">%H:%M:%S'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiperrors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.to_datetime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.to_datetime" title="Link to this definition">¶</a></dt>
+<dd><p>convert a column to datetime</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.to_date">
+<span class="sig-name descname"><span class="pre">to_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%Y-%m-%d'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiperrors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.to_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.to_date" title="Link to this definition">¶</a></dt>
+<dd><p>convert a column to date</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.to_time">
+<span class="sig-name descname"><span class="pre">to_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%H:%M:%S'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiperrors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.to_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.to_time" title="Link to this definition">¶</a></dt>
+<dd><p>convert a column to time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.to_timedelta">
+<span class="sig-name descname"><span class="pre">to_timedelta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiperrors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.to_timedelta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.to_timedelta" title="Link to this definition">¶</a></dt>
+<dd><p>convert a column to time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.total">
+<span class="sig-name descname"><span class="pre">total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">funcs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.total"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.total" title="Link to this definition">¶</a></dt>
+<dd><p>build a footer row by appling funcs to all columns</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.remove_lines_where">
+<span class="sig-name descname"><span class="pre">remove_lines_where</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(None,</span> <span class="pre">0,</span> <span class="pre">'')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/table.html#Table.remove_lines_where"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.table.Table.remove_lines_where" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> – function of the form lambda line:bool returning True if line should be removed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int number of lines removed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__add__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self+value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__class_getitem__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__class_getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>See PEP 585</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__contains__" title="Link to this definition">¶</a></dt>
+<dd><p>Return bool(key in self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__delitem__">
+<span class="sig-name descname"><span class="pre">__delitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__delitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Delete self[key].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__ge__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__getattribute__">
+<span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__getattribute__" title="Link to this definition">¶</a></dt>
+<dd><p>Return getattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__gt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.table.Table.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.table.Table.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__iadd__">
+<span class="sig-name descname"><span class="pre">__iadd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__iadd__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement self+=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__imul__">
+<span class="sig-name descname"><span class="pre">__imul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__imul__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement self*=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__iter__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement iter(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__le__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Return len(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__lt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__mul__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self*value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__ne__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__new__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__new__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__reversed__">
+<span class="sig-name descname"><span class="pre">__reversed__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__reversed__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a reverse iterator over the list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__rmul__" title="Link to this definition">¶</a></dt>
+<dd><p>Return value*self.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__setitem__">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__setitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Set self[key] to value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.__sizeof__">
+<span class="sig-name descname"><span class="pre">__sizeof__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.__sizeof__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the size of the list in memory, in bytes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Remove all items from list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.copy" title="Link to this definition">¶</a></dt>
+<dd><p>Return a shallow copy of the list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.count" title="Link to this definition">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.extend">
+<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.extend" title="Link to this definition">¶</a></dt>
+<dd><p>Extend list by appending elements from the iterable.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.insert" title="Link to this definition">¶</a></dt>
+<dd><p>Insert object before index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.pop" title="Link to this definition">¶</a></dt>
+<dd><p>Remove and return item at index (default last).</p>
+<p>Raises IndexError if list is empty or index is out of range.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.remove" title="Link to this definition">¶</a></dt>
+<dd><p>Remove first occurrence of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.table.Table.reverse">
+<span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.table.Table.reverse" title="Link to this definition">¶</a></dt>
+<dd><p>Reverse <em>IN PLACE</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.table</a><ul>
+<li><a class="reference internal" href="#goulib.table.attr"><code class="docutils literal notranslate"><span class="pre">attr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell"><code class="docutils literal notranslate"><span class="pre">Cell</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.table.Cell.__init__"><code class="docutils literal notranslate"><span class="pre">Cell.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell.__str__"><code class="docutils literal notranslate"><span class="pre">Cell.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell.read"><code class="docutils literal notranslate"><span class="pre">Cell.read()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell.html"><code class="docutils literal notranslate"><span class="pre">Cell.html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.table.Row"><code class="docutils literal notranslate"><span class="pre">Row</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.table.Row.__init__"><code class="docutils literal notranslate"><span class="pre">Row.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Row.__str__"><code class="docutils literal notranslate"><span class="pre">Row.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Row.html"><code class="docutils literal notranslate"><span class="pre">Row.html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.table.Table"><code class="docutils literal notranslate"><span class="pre">Table</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.table.Table.__init__"><code class="docutils literal notranslate"><span class="pre">Table.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__repr__"><code class="docutils literal notranslate"><span class="pre">Table.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__str__"><code class="docutils literal notranslate"><span class="pre">Table.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.html"><code class="docutils literal notranslate"><span class="pre">Table.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.load"><code class="docutils literal notranslate"><span class="pre">Table.load()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_element"><code class="docutils literal notranslate"><span class="pre">Table.read_element()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_html"><code class="docutils literal notranslate"><span class="pre">Table.read_html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_json"><code class="docutils literal notranslate"><span class="pre">Table.read_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_xls"><code class="docutils literal notranslate"><span class="pre">Table.read_xls()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_csv"><code class="docutils literal notranslate"><span class="pre">Table.read_csv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.save"><code class="docutils literal notranslate"><span class="pre">Table.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.write_xlsx"><code class="docutils literal notranslate"><span class="pre">Table.write_xlsx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.json"><code class="docutils literal notranslate"><span class="pre">Table.json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.write_csv"><code class="docutils literal notranslate"><span class="pre">Table.write_csv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__eq__"><code class="docutils literal notranslate"><span class="pre">Table.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.ncols"><code class="docutils literal notranslate"><span class="pre">Table.ncols()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.find_col"><code class="docutils literal notranslate"><span class="pre">Table.find_col()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.icol"><code class="docutils literal notranslate"><span class="pre">Table.icol()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.col"><code class="docutils literal notranslate"><span class="pre">Table.col()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.cols"><code class="docutils literal notranslate"><span class="pre">Table.cols()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.transpose"><code class="docutils literal notranslate"><span class="pre">Table.transpose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.index"><code class="docutils literal notranslate"><span class="pre">Table.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__getitem__"><code class="docutils literal notranslate"><span class="pre">Table.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.get"><code class="docutils literal notranslate"><span class="pre">Table.get()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.set"><code class="docutils literal notranslate"><span class="pre">Table.set()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.setcol"><code class="docutils literal notranslate"><span class="pre">Table.setcol()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.append"><code class="docutils literal notranslate"><span class="pre">Table.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.addcol"><code class="docutils literal notranslate"><span class="pre">Table.addcol()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.sort"><code class="docutils literal notranslate"><span class="pre">Table.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.rowasdict"><code class="docutils literal notranslate"><span class="pre">Table.rowasdict()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.asdict"><code class="docutils literal notranslate"><span class="pre">Table.asdict()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.groupby_gen"><code class="docutils literal notranslate"><span class="pre">Table.groupby_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.groupby"><code class="docutils literal notranslate"><span class="pre">Table.groupby()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.hierarchy"><code class="docutils literal notranslate"><span class="pre">Table.hierarchy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.applyf"><code class="docutils literal notranslate"><span class="pre">Table.applyf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_datetime"><code class="docutils literal notranslate"><span class="pre">Table.to_datetime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_date"><code class="docutils literal notranslate"><span class="pre">Table.to_date()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_time"><code class="docutils literal notranslate"><span class="pre">Table.to_time()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_timedelta"><code class="docutils literal notranslate"><span class="pre">Table.to_timedelta()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.total"><code class="docutils literal notranslate"><span class="pre">Table.total()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.remove_lines_where"><code class="docutils literal notranslate"><span class="pre">Table.remove_lines_where()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__add__"><code class="docutils literal notranslate"><span class="pre">Table.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Table.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__contains__"><code class="docutils literal notranslate"><span class="pre">Table.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__delitem__"><code class="docutils literal notranslate"><span class="pre">Table.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__ge__"><code class="docutils literal notranslate"><span class="pre">Table.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Table.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__gt__"><code class="docutils literal notranslate"><span class="pre">Table.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__hash__"><code class="docutils literal notranslate"><span class="pre">Table.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__iadd__"><code class="docutils literal notranslate"><span class="pre">Table.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__imul__"><code class="docutils literal notranslate"><span class="pre">Table.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__iter__"><code class="docutils literal notranslate"><span class="pre">Table.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__le__"><code class="docutils literal notranslate"><span class="pre">Table.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__len__"><code class="docutils literal notranslate"><span class="pre">Table.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__lt__"><code class="docutils literal notranslate"><span class="pre">Table.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__mul__"><code class="docutils literal notranslate"><span class="pre">Table.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__ne__"><code class="docutils literal notranslate"><span class="pre">Table.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__new__"><code class="docutils literal notranslate"><span class="pre">Table.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__reversed__"><code class="docutils literal notranslate"><span class="pre">Table.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__rmul__"><code class="docutils literal notranslate"><span class="pre">Table.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__setitem__"><code class="docutils literal notranslate"><span class="pre">Table.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Table.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.clear"><code class="docutils literal notranslate"><span class="pre">Table.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.copy"><code class="docutils literal notranslate"><span class="pre">Table.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.count"><code class="docutils literal notranslate"><span class="pre">Table.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.extend"><code class="docutils literal notranslate"><span class="pre">Table.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.insert"><code class="docutils literal notranslate"><span class="pre">Table.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.pop"><code class="docutils literal notranslate"><span class="pre">Table.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.remove"><code class="docutils literal notranslate"><span class="pre">Table.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.reverse"><code class="docutils literal notranslate"><span class="pre">Table.reverse()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.stats.html"
+                          title="previous chapter">goulib.stats</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.tests.html"
+                          title="next chapter">goulib.tests</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.table.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.tests.html" title="goulib.tests"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="goulib.stats.html" title="goulib.stats"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.table</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

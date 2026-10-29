@@ -1,0 +1,49 @@
+﻿goulib.image
+============
+
+.. automodule:: goulib.image
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      adapt_rgb
+      alpha_composite
+      alpha_composite_with_color
+      bool2gray
+      bool2rgb
+      cmyk2rgb
+      convert
+      convert_type
+      disk
+      dither
+      fig2img
+      fspecial
+      gray2bool
+      gray2rgb
+      guessmode
+      ind2any
+      ind2rgb
+      lab2ind
+      nchannels
+      normalize
+      palette
+      pure_pil_alpha_to_color_v1
+      pure_pil_alpha_to_color_v2
+      quantize
+      randomize
+      read_pdf
+      rgb2cmyk
+      rgb2rgba
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Ditherer
+      ErrorDiffusion
+      FloydSteinberg
+      Image
+      Mode
+   

@@ -1,0 +1,38 @@
+﻿goulib.geom3d
+=============
+
+.. automodule:: goulib.geom3d
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      Spherical
+      _connect_line3_line3
+      _connect_line3_plane
+      _connect_plane_plane
+      _connect_point3_line3
+      _connect_point3_plane
+      _connect_point3_sphere
+      _connect_sphere_line3
+      _connect_sphere_plane
+      _connect_sphere_sphere
+      _intersect_line3_plane
+      _intersect_line3_sphere
+      _intersect_plane_plane
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Line3
+      Matrix4
+      Plane
+      Point3
+      Quaternion
+      Ray3
+      Segment3
+      Sphere
+      Vector3
+   

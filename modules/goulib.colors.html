@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>goulib.colors &#8212; goulib 3.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="goulib.containers" href="goulib.containers.html" />
+    <link rel="prev" title="goulib" href="../index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.containers.html" title="goulib.containers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="goulib"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.colors</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-goulib.colors">
+<span id="goulib-colors"></span><h1>goulib.colors<a class="headerlink" href="#module-goulib.colors" title="Link to this heading">¶</a></h1>
+<p>color conversion in various colorspaces and palettes</p>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.ColorTable" title="goulib.colors.ColorTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColorTable</span></code></a>(colors[, key, width])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.RGB2lambda" title="goulib.colors.RGB2lambda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGB2lambda</span></code></a>(R, G, B)</p></td>
+<td><p>Returns 0 if indeciferable</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">_skadapt</span></code>(f, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.aci_to_color" title="goulib.colors.aci_to_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aci_to_color</span></code></a>(x[, block_color, layer_color])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.blackBody2Color" title="goulib.colors.blackBody2Color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blackBody2Color</span></code></a>(tempK)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.cmyk2rgb" title="goulib.colors.cmyk2rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmyk2rgb</span></code></a>(cmyk, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.color_range" title="goulib.colors.color_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">color_range</span></code></a>(n, start, end[, space])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.color_to_aci" title="goulib.colors.color_to_aci"><code class="xref py py-obj docutils literal notranslate"><span class="pre">color_to_aci</span></code></a>(x[, nearest])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.convert" title="goulib.colors.convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert</span></code></a>(color, source, target)</p></td>
+<td><p>convert a color between colorspaces, eventually using intermediary steps</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.converter" title="goulib.colors.converter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">converter</span></code></a>(c[, illuminant])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.deltaE" title="goulib.colors.deltaE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deltaE</span></code></a>(c1, c2)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.hex2rgb" title="goulib.colors.hex2rgb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hex2rgb</span></code></a>(c[, illuminant])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.lambda2RGB" title="goulib.colors.lambda2RGB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lambda2RGB</span></code></a>(w)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.nearest_color" title="goulib.colors.nearest_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearest_color</span></code></a>(c[, l, opt, comp])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.rgb2cmyk" title="goulib.colors.rgb2cmyk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb2cmyk</span></code></a>(rgb, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.rgb2hex" title="goulib.colors.rgb2hex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb2hex</span></code></a>(c[, illuminant])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.xyy2xyz" title="goulib.colors.xyy2xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xyy2xyz</span></code></a>(xyY, **kwargs)</p></td>
+<td><p>Convert from xyY to XYZ to</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.xyz2xyy" title="goulib.colors.xyz2xyy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xyz2xyy</span></code></a>(xyz, **kwargs)</p></td>
+<td><p>Convert from XYZ to xyY</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.colors.Color" title="goulib.colors.Color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Color</span></code></a>(value[, space, name, illuminant])</p></td>
+<td><p>A color with math operations and conversions Color is immutable (._values caches representations)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.colors.Palette" title="goulib.colors.Palette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Palette</span></code></a>([data, keys])</p></td>
+<td><p>dict of Colors indexed by anything</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.rgb2hex">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">rgb2hex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">illuminant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#rgb2hex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.rgb2hex" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.hex2rgb">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">hex2rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">illuminant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#hex2rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.hex2rgb" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.rgb2cmyk">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">rgb2cmyk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rgb</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#rgb2cmyk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.rgb2cmyk" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rgb</strong> – 3-tuple of floats of red,green,blue in [0..1] range</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>4-tuple of floats (cyan, magenta, yellow, black) in [0..1] range</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.cmyk2rgb">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">cmyk2rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmyk</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#cmyk2rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.cmyk2rgb" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cmyk</strong> – 4-tuple of floats (cyan, magenta, yellow, black) in [0..1] range</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>3-tuple of floats (red, green, blue)</p>
+</dd>
+</dl>
+<p>warning: rgb is out the [0..1] range for some cmyk</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.xyz2xyy">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">xyz2xyy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#xyz2xyy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.xyz2xyy" title="Link to this definition">¶</a></dt>
+<dd><p>Convert from XYZ to xyY</p>
+<p>Based on formula from <a class="reference external" href="http://brucelindbloom.com/Eqn_XYZ_to_xyY.html">http://brucelindbloom.com/Eqn_XYZ_to_xyY.html</a></p>
+<p>Implementation Notes:</p>
+<ol class="arabic simple">
+<li><p>Watch out for black, where X = Y = Z = 0. In that case, x and y are set
+to the chromaticity coordinates of the reference whitepoint.</p></li>
+<li><p>The output Y value is in the nominal range [0.0, Y[XYZ]].</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.xyy2xyz">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">xyy2xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyY</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#xyy2xyz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.xyy2xyz" title="Link to this definition">¶</a></dt>
+<dd><p>Convert from xyY to XYZ to</p>
+<p>Based on formula from <a class="reference external" href="http://brucelindbloom.com/Eqn_xyY_to_XYZ.html">http://brucelindbloom.com/Eqn_xyY_to_XYZ.html</a></p>
+<p>Implementation Notes:</p>
+<ol class="arabic simple">
+<li><p>Watch out for the case where y = 0.
+In that case, you may want to set X = Y = Z = 0.</p></li>
+<li><p>The output XYZ values are in the nominal range [0.0, 1.0].</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.converter">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">illuminant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.converter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.convert">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.convert" title="Link to this definition">¶</a></dt>
+<dd><p>convert a color between colorspaces,
+eventually using intermediary steps</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.colors.Color">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">illuminant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'D65'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A color with math operations and conversions
+Color is immutable (._values caches representations)</p>
+<p>Constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – string color name, hex string, or values tuple</p></li>
+<li><p><strong>space</strong> – string defining the color space of value</p></li>
+<li><p><strong>name</strong> – string for color name</p></li>
+<li><p><strong>illuminant</strong> – <p>string in {“A”, “D50”, “D55”, “D65”, “D75”, “E”}</p>
+<ul>
+<li><p>D65 is used by default in skimage, see <a class="reference external" href="http://scikit-image.org/docs/dev/api/skimage.color.html">http://scikit-image.org/docs/dev/api/skimage.color.html</a></p></li>
+<li><p>D50 is used in Pantone and other graphic arts</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">illuminant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'D65'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – string color name, hex string, or values tuple</p></li>
+<li><p><strong>space</strong> – string defining the color space of value</p></li>
+<li><p><strong>name</strong> – string for color name</p></li>
+<li><p><strong>illuminant</strong> – <p>string in {“A”, “D50”, “D55”, “D65”, “D75”, “E”}</p>
+<ul>
+<li><p>D65 is used by default in skimage, see <a class="reference external" href="http://scikit-image.org/docs/dev/api/skimage.color.html">http://scikit-image.org/docs/dev/api/skimage.color.html</a></p></li>
+<li><p>D50 is used in Pantone and other graphic arts</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.name">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#goulib.colors.Color.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.convert" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> – str of desired colorspace, or none for default</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>color in target colorspace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.str">
+<span class="sig-name descname"><span class="pre">str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.str" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.native">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">native</span></span><a class="headerlink" href="#goulib.colors.Color.native" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.rgb">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">rgb</span></span><a class="headerlink" href="#goulib.colors.Color.rgb" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.hex">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">hex</span></span><a class="headerlink" href="#goulib.colors.Color.hex" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.lab">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">lab</span></span><a class="headerlink" href="#goulib.colors.Color.lab" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.luv">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">luv</span></span><a class="headerlink" href="#goulib.colors.Color.luv" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.cmyk">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">cmyk</span></span><a class="headerlink" href="#goulib.colors.Color.cmyk" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.hsv">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">hsv</span></span><a class="headerlink" href="#goulib.colors.Color.hsv" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.xyz">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">xyz</span></span><a class="headerlink" href="#goulib.colors.Color.xyz" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Color.xyY">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">xyY</span></span><a class="headerlink" href="#goulib.colors.Color.xyY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__hash__" title="Link to this definition">¶</a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.compose">
+<span class="sig-name descname"><span class="pre">compose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rgb'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.compose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.compose" title="Link to this definition">¶</a></dt>
+<dd><p>compose colors in given mode</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__radd__">
+<span class="sig-name descname"><span class="pre">__radd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__radd__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__radd__" title="Link to this definition">¶</a></dt>
+<dd><p>only to allow sum(colors) easily</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__sub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__mul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__neg__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__neg__" title="Link to this definition">¶</a></dt>
+<dd><p>complementary color</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.deltaE">
+<span class="sig-name descname"><span class="pre">deltaE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.deltaE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.deltaE" title="Link to this definition">¶</a></dt>
+<dd><p>color difference according to CIEDE2000
+<a class="reference external" href="https://en.wikipedia.org/wiki/Color_difference">https://en.wikipedia.org/wiki/Color_difference</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.isclose">
+<span class="sig-name descname"><span class="pre">isclose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.isclose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.isclose" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://zschuessler.github.io/DeltaE/learn/">http://zschuessler.github.io/DeltaE/learn/</a>
+&lt;= 1.0    Not perceptible by human eyes.
+1 - 2    Perceptible through close observation.
+2 - 10    Perceptible at a glance.
+11 - 49    Colors are more similar than opposite
+100    Colors are exact opposite</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Color.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Color.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Color.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.colors.Palette">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">Palette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Palette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Palette" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderedDict</span></code></a></p>
+<p>dict of Colors indexed by anything</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Palette.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Palette.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Palette.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Palette.update" title="Link to this definition">¶</a></dt>
+<dd><p>updates the dictionary with new colors
+:param data: colors to add
+:param keys: keys to use in dict, or int to discretize the Colormap</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Palette.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Palette.index" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>key of c or nearest color, None if distance is larger than deltaE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Palette.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Palette.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.patches">
+<span class="sig-name descname"><span class="pre">patches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(16,</span> <span class="pre">16)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Palette.patches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Palette.patches" title="Link to this definition">¶</a></dt>
+<dd><p>Image made of each palette color</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goulib.colors.Palette.pil">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pil</span></span><a class="headerlink" href="#goulib.colors.Palette.pil" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a sequence of integers, or a string containing a binary 
+representation of the palette.</p>
+</dd>
+</dl>
+<p>In both cases, the palette contents should be ordered (r, g, b, r, g, b, …). 
+The palette can contain up to 768 entries (3*256). 
+If a shorter palette is given, it is padded with zeros.
+See <a class="reference external" href="http://effbot.org/zone/creating-palette-images.htm">http://effbot.org/zone/creating-palette-images.htm</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.sorted">
+<span class="sig-name descname"><span class="pre">sorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">Palette.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#Palette.sorted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.Palette.sorted" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__class_getitem__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__class_getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__class_getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>See PEP 585</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__contains__" title="Link to this definition">¶</a></dt>
+<dd><p>True if the dictionary has the specified key, else False.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__delitem__">
+<span class="sig-name descname"><span class="pre">__delitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__delitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Delete self[key].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__ge__">
+<span class="sig-name descname"><span class="pre">__ge__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__ge__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__getattribute__">
+<span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__getattribute__" title="Link to this definition">¶</a></dt>
+<dd><p>Return getattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self[key].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__gt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#goulib.colors.Palette.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__ior__">
+<span class="sig-name descname"><span class="pre">__ior__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__ior__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__iter__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement iter(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__le__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Return len(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__lt__">
+<span class="sig-name descname"><span class="pre">__lt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__lt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__ne__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self!=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__new__">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__new__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__or__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__reduce__">
+<span class="sig-name descname"><span class="pre">__reduce__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__reduce__" title="Link to this definition">¶</a></dt>
+<dd><p>Return state information for pickling</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__reversed__">
+<span class="sig-name descname"><span class="pre">__reversed__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">)</span> <span class="pre">&lt;</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">=&gt;</span> <span class="pre">reversed(od</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__reversed__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__ror__">
+<span class="sig-name descname"><span class="pre">__ror__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__ror__" title="Link to this definition">¶</a></dt>
+<dd><p>Return value|self.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__setitem__">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.__setitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Set self[key] to value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.__sizeof__">
+<span class="sig-name descname"><span class="pre">__sizeof__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">size</span> <span class="pre">of</span> <span class="pre">D</span> <span class="pre">in</span> <span class="pre">memory,</span> <span class="pre">in</span> <span class="pre">bytes</span></span></span><a class="headerlink" href="#goulib.colors.Palette.__sizeof__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None.</span>&#160; <span class="pre">Remove</span> <span class="pre">all</span> <span class="pre">items</span> <span class="pre">from</span> <span class="pre">od.</span></span></span><a class="headerlink" href="#goulib.colors.Palette.clear" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">shallow</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">od</span></span></span><a class="headerlink" href="#goulib.colors.Palette.copy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.fromkeys">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">fromkeys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.fromkeys" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new ordered dictionary with keys from iterable and values set to value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.get" title="Link to this definition">¶</a></dt>
+<dd><p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#goulib.colors.Palette.items" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#goulib.colors.Palette.keys" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.move_to_end">
+<span class="sig-name descname"><span class="pre">move_to_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.move_to_end" title="Link to this definition">¶</a></dt>
+<dd><p>Move an existing element to the end (or beginning if last is false).</p>
+<p>Raise KeyError if the element does not exist.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">v,</span> <span class="pre">remove</span> <span class="pre">specified</span> <span class="pre">key</span> <span class="pre">and</span> <span class="pre">return</span> <span class="pre">the</span> <span class="pre">corresponding</span> <span class="pre">value.</span></span></span><a class="headerlink" href="#goulib.colors.Palette.pop" title="Link to this definition">¶</a></dt>
+<dd><p>If the key is not found, return the default if given; otherwise,
+raise a KeyError.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.popitem">
+<span class="sig-name descname"><span class="pre">popitem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.popitem" title="Link to this definition">¶</a></dt>
+<dd><p>Remove and return a (key, value) pair from the dictionary.</p>
+<p>Pairs are returned in LIFO order if last is true or FIFO order if false.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.setdefault">
+<span class="sig-name descname"><span class="pre">setdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goulib.colors.Palette.setdefault" title="Link to this definition">¶</a></dt>
+<dd><p>Insert key with a value of default if key is not in the dictionary.</p>
+<p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.colors.Palette.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#goulib.colors.Palette.values" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.ColorTable">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">ColorTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#ColorTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.ColorTable" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.color_to_aci">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">color_to_aci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nearest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#color_to_aci"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.color_to_aci" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int Autocad Color Index of color x</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.aci_to_color">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">aci_to_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#aci_to_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.aci_to_color" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.deltaE">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">deltaE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#deltaE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.deltaE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.nearest_color">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">nearest_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">min&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">deltaE&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#nearest_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.nearest_color" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Color</p></li>
+<li><p><strong>l</strong> – list or dict of Color, color by default</p></li>
+<li><p><strong>opt</strong> – with opt=max you can find the most different color …</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>nearest Color of x in  l</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.color_range">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">color_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hsv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#color_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.color_range" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – int number of colors to generate</p></li>
+<li><p><strong>start</strong> – string hex color or color name</p></li>
+<li><p><strong>end</strong> – string hex color or color name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of n Color interpolated between start and end, included</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.blackBody2Color">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">blackBody2Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tempK</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#blackBody2Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.blackBody2Color" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wavelength</strong> – black body temperature in K (Sun is 5780)</p>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>Color</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.lambda2RGB">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">lambda2RGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#lambda2RGB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.lambda2RGB" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>w</strong> – float wavelength in nanometers (between 380 and 780)</p>
+</dd>
+<dt class="field-even">Result<span class="colon">:</span></dt>
+<dd class="field-even"><p>[R,G,B] float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="goulib.colors.RGB2lambda">
+<span class="sig-prename descclassname"><span class="pre">goulib.colors.</span></span><span class="sig-name descname"><span class="pre">RGB2lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/colors.html#RGB2lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.colors.RGB2lambda" title="Link to this definition">¶</a></dt>
+<dd><p>Returns 0 if indeciferable</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.colors</a><ul>
+<li><a class="reference internal" href="#goulib.colors.rgb2hex"><code class="docutils literal notranslate"><span class="pre">rgb2hex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.hex2rgb"><code class="docutils literal notranslate"><span class="pre">hex2rgb()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.rgb2cmyk"><code class="docutils literal notranslate"><span class="pre">rgb2cmyk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.cmyk2rgb"><code class="docutils literal notranslate"><span class="pre">cmyk2rgb()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.xyz2xyy"><code class="docutils literal notranslate"><span class="pre">xyz2xyy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.xyy2xyz"><code class="docutils literal notranslate"><span class="pre">xyy2xyz()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.converter"><code class="docutils literal notranslate"><span class="pre">converter()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.colors.Color.__init__"><code class="docutils literal notranslate"><span class="pre">Color.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.name"><code class="docutils literal notranslate"><span class="pre">Color.name</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.convert"><code class="docutils literal notranslate"><span class="pre">Color.convert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.str"><code class="docutils literal notranslate"><span class="pre">Color.str()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.native"><code class="docutils literal notranslate"><span class="pre">Color.native</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.rgb"><code class="docutils literal notranslate"><span class="pre">Color.rgb</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.hex"><code class="docutils literal notranslate"><span class="pre">Color.hex</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.lab"><code class="docutils literal notranslate"><span class="pre">Color.lab</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.luv"><code class="docutils literal notranslate"><span class="pre">Color.luv</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.cmyk"><code class="docutils literal notranslate"><span class="pre">Color.cmyk</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.hsv"><code class="docutils literal notranslate"><span class="pre">Color.hsv</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.xyz"><code class="docutils literal notranslate"><span class="pre">Color.xyz</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.xyY"><code class="docutils literal notranslate"><span class="pre">Color.xyY</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__hash__"><code class="docutils literal notranslate"><span class="pre">Color.__hash__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__repr__"><code class="docutils literal notranslate"><span class="pre">Color.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.compose"><code class="docutils literal notranslate"><span class="pre">Color.compose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__add__"><code class="docutils literal notranslate"><span class="pre">Color.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__radd__"><code class="docutils literal notranslate"><span class="pre">Color.__radd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__sub__"><code class="docutils literal notranslate"><span class="pre">Color.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__mul__"><code class="docutils literal notranslate"><span class="pre">Color.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__neg__"><code class="docutils literal notranslate"><span class="pre">Color.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.deltaE"><code class="docutils literal notranslate"><span class="pre">Color.deltaE()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.isclose"><code class="docutils literal notranslate"><span class="pre">Color.isclose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Color.__eq__"><code class="docutils literal notranslate"><span class="pre">Color.__eq__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.colors.Palette"><code class="docutils literal notranslate"><span class="pre">Palette</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.colors.Palette.__init__"><code class="docutils literal notranslate"><span class="pre">Palette.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.update"><code class="docutils literal notranslate"><span class="pre">Palette.update()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.index"><code class="docutils literal notranslate"><span class="pre">Palette.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__repr__"><code class="docutils literal notranslate"><span class="pre">Palette.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.patches"><code class="docutils literal notranslate"><span class="pre">Palette.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.pil"><code class="docutils literal notranslate"><span class="pre">Palette.pil</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.sorted"><code class="docutils literal notranslate"><span class="pre">Palette.sorted()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Palette.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__contains__"><code class="docutils literal notranslate"><span class="pre">Palette.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__delitem__"><code class="docutils literal notranslate"><span class="pre">Palette.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__eq__"><code class="docutils literal notranslate"><span class="pre">Palette.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__ge__"><code class="docutils literal notranslate"><span class="pre">Palette.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Palette.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__getitem__"><code class="docutils literal notranslate"><span class="pre">Palette.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__gt__"><code class="docutils literal notranslate"><span class="pre">Palette.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__hash__"><code class="docutils literal notranslate"><span class="pre">Palette.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__ior__"><code class="docutils literal notranslate"><span class="pre">Palette.__ior__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__iter__"><code class="docutils literal notranslate"><span class="pre">Palette.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__le__"><code class="docutils literal notranslate"><span class="pre">Palette.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__len__"><code class="docutils literal notranslate"><span class="pre">Palette.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__lt__"><code class="docutils literal notranslate"><span class="pre">Palette.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__ne__"><code class="docutils literal notranslate"><span class="pre">Palette.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__new__"><code class="docutils literal notranslate"><span class="pre">Palette.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__or__"><code class="docutils literal notranslate"><span class="pre">Palette.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__reduce__"><code class="docutils literal notranslate"><span class="pre">Palette.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__reversed__"><code class="docutils literal notranslate"><span class="pre">Palette.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__ror__"><code class="docutils literal notranslate"><span class="pre">Palette.__ror__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__setitem__"><code class="docutils literal notranslate"><span class="pre">Palette.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Palette.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.clear"><code class="docutils literal notranslate"><span class="pre">Palette.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.copy"><code class="docutils literal notranslate"><span class="pre">Palette.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.fromkeys"><code class="docutils literal notranslate"><span class="pre">Palette.fromkeys()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.get"><code class="docutils literal notranslate"><span class="pre">Palette.get()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.items"><code class="docutils literal notranslate"><span class="pre">Palette.items()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.keys"><code class="docutils literal notranslate"><span class="pre">Palette.keys()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.move_to_end"><code class="docutils literal notranslate"><span class="pre">Palette.move_to_end()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.pop"><code class="docutils literal notranslate"><span class="pre">Palette.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.popitem"><code class="docutils literal notranslate"><span class="pre">Palette.popitem()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.setdefault"><code class="docutils literal notranslate"><span class="pre">Palette.setdefault()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.Palette.values"><code class="docutils literal notranslate"><span class="pre">Palette.values()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.colors.ColorTable"><code class="docutils literal notranslate"><span class="pre">ColorTable()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.color_to_aci"><code class="docutils literal notranslate"><span class="pre">color_to_aci()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.aci_to_color"><code class="docutils literal notranslate"><span class="pre">aci_to_color()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.deltaE"><code class="docutils literal notranslate"><span class="pre">deltaE()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.nearest_color"><code class="docutils literal notranslate"><span class="pre">nearest_color()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.color_range"><code class="docutils literal notranslate"><span class="pre">color_range()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.blackBody2Color"><code class="docutils literal notranslate"><span class="pre">blackBody2Color()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.lambda2RGB"><code class="docutils literal notranslate"><span class="pre">lambda2RGB()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.colors.RGB2lambda"><code class="docutils literal notranslate"><span class="pre">RGB2lambda()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../index.html"
+                          title="previous chapter">goulib</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.containers.html"
+                          title="next chapter">goulib.containers</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.colors.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="goulib.containers.html" title="goulib.containers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="goulib"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">goulib.colors</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+      Last updated on Oct 29, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    </div>
+  </body>
+</html>

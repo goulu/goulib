@@ -1,0 +1,33 @@
+﻿goulib.polynomial
+=================
+
+.. automodule:: goulib.polynomial
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      _parse_n
+      _parse_p
+      _strip_leading_zeros
+      _tostring_term
+      add
+      derivative
+      integral
+      mult_const
+      mult_one
+      multiply
+      parse_string
+      peval
+      plist
+      power
+      sub
+      tostring
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Polynomial
+   

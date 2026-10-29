@@ -1,0 +1,27 @@
+﻿goulib.motion
+=============
+
+.. automodule:: goulib.motion
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      Segment2ndDegree
+      Segment4thDegree
+      SegmentsTrapezoidalSpeed
+      _delta
+      _pva
+      ramp
+      trapeze
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PVA
+      Segment
+      SegmentPoly
+      Segments
+   

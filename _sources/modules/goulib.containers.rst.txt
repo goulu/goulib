@@ -1,0 +1,13 @@
+﻿goulib.containers
+=================
+
+.. automodule:: goulib.containers
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Record
+      SortedCollection
+   

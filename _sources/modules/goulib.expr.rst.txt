@@ -1,0 +1,21 @@
+﻿goulib.expr
+===========
+
+.. automodule:: goulib.expr
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_function_source
+      plouffe
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Context
+      Expr
+      TextVisitor
+   

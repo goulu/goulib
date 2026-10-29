@@ -1,0 +1,12 @@
+﻿goulib.piecewise
+================
+
+.. automodule:: goulib.piecewise
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Piecewise
+   

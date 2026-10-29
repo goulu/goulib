@@ -1,0 +1,42 @@
+﻿goulib.geom
+===========
+
+.. automodule:: goulib.geom
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      Polar
+      _center_of_circle_from_3_points
+      _connect_circle_circle
+      _connect_circle_line2
+      _connect_line2_line2
+      _connect_point2_circle
+      _connect_point2_line2
+      _hash
+      _intersect_circle_circle
+      _intersect_line2_circle
+      _intersect_line2_line2
+      arc_from_3_points
+      argPair
+      circle_from_3_points
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Arc2
+      Circle
+      Ellipse
+      Geometry
+      Line2
+      Matrix3
+      Point2
+      Polygon
+      Ray2
+      Segment2
+      Surface
+      Vector2
+   
