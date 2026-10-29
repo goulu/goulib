@@ -1,5 +1,12 @@
 # Changes
 
+## v3.0.5, 2026-10-29
+
+* reintegrated the {class}`containers.Sequence` class from OEIS project with dedicated unit tests
+* modernized Sphinx documentation to MyST Markdown (`myst-parser`), adopted `python_docs_theme` with fixed sidebar table of contents, and enhanced Graphviz inheritance diagrams (larger font, pan & zoom)
+* disabled documentation generation for internal fallback classes (such as fallback `index` in {mod}`graph`)
+* fixed module index discovery and documentation links
+
 ## v3.0.4, 2026-10-27
 
 * automated Conda packaging and publishing to Anaconda.org via GitHub Actions with dedicated recipe {file}`conda/meta.yaml`

@@ -9,11 +9,11 @@ for various projects
 Project location : https://github.com/goulu/goulib
 """
 
-__version__ = '3.0.4'
+__version__ = '3.0.5'
 
 __all__ = [
     'colors',
-    'container',
+    'containers',
     'datetime2',
     'decorators',
     'drawing',

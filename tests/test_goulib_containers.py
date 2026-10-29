@@ -140,3 +140,58 @@ def test_SortedCollection():
         assert 0, 'Oops, failed to notify of missing value'
     sd.remove('jumped')
     assert list(sd) == ['Brown', 'Fox', 'jUmPeD', 'quick', 'QuIcK', 'The']
+
+
+class TestSequence:
+    def test_basic_sequence(self):
+        # Sequence defined by formula f(i) = 2*i
+        s = Sequence(itemf=lambda i: 2 * i, desc="even numbers")
+        assert repr(s).startswith("Sequence = (0,2,4,6,8,10,12,14,16,18")
+        assert s[0] == 0
+        assert s[5] == 10
+        assert 10 in s
+        assert 11 not in s
+        assert s.index(10) == 5
+        assert s.index(11) == -1
+        assert list(islice(s, 5)) == [0, 2, 4, 6, 8]
+
+    def test_arithmetic(self):
+        s1 = Sequence(itemf=lambda i: 2 * i)
+        s2 = Sequence(itemf=lambda i: i)
+
+        s_add = s1 + s2
+        assert list(islice(s_add, 5)) == [0, 3, 6, 9, 12]
+        assert s_add[4] == 12
+
+        s_sub = s1 - s2
+        assert list(islice(s_sub, 5)) == [0, 1, 2, 3, 4]
+        assert s_sub[4] == 4
+
+        s_mul = s1 * s2
+        assert list(islice(s_mul, 5)) == [0, 2, 8, 18, 32]
+        assert s_mul[4] == 32
+
+        s_plus_int = s2 + 10
+        assert list(islice(s_plus_int, 5)) == [10, 11, 12, 13, 14]
+        assert 12 in s_plus_int
+
+        s_sub_int = s2 - 5
+        assert list(islice(s_sub_int, 5)) == [-5, -4, -3, -2, -1]
+
+    def test_filter_and_apply(self):
+        s = Sequence(itemf=lambda i: i)
+        s_even = s.filter(lambda x: x % 2 == 0)
+        assert list(islice(s_even, 5)) == [0, 2, 4, 6, 8]
+
+        s_sq = s.apply(lambda x: x * x)
+        assert list(islice(s_sq, 5)) == [0, 1, 4, 9, 16]
+
+    def test_accumulate_pairwise(self):
+        s = Sequence(itemf=lambda i: 1)
+        acc = s.accumulate()
+        assert list(islice(acc, 5)) == [1, 2, 3, 4, 5]
+
+        s_nats = Sequence(itemf=lambda i: i)
+        import operator
+        diffs = s_nats.pairwise(operator.sub)
+        assert list(islice(diffs, 5)) == [1, 1, 1, 1, 1]
