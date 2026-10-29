@@ -28,5 +28,4 @@
       DiGraph
       GeoGraph
       _Geo
-      index
    

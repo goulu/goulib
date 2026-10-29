@@ -171,64 +171,40 @@
     <span class="n">RTREE</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="c1"># logging.warning('rtree not available')</span>
 
-<div class="viewcode-block" id="index">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">index</span><span class="p">:</span>    <span class="c1"># pylint: disable=function-redefined</span>
+<span class="w">        </span><span class="sd">""":meta private:"""</span>
         <span class="c1"># mimics rtree.index module</span>
 
-<div class="viewcode-block" id="index.Property">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Property">[docs]</a>
         <span class="k">class</span><span class="w"> </span><span class="nc">Property</span><span class="p">:</span>
-<div class="viewcode-block" id="index.Property.set_dimension">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Property.set_dimension">[docs]</a>
             <span class="k">def</span><span class="w"> </span><span class="nf">set_dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span></div>
-</div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
 
-
-<div class="viewcode-block" id="index.Index">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Index">[docs]</a>
         <span class="k">class</span><span class="w"> </span><span class="nc">Index</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">"""fallback for rtree.index"""</span>
 
-<div class="viewcode-block" id="index.Index.__init__">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Index.__init__">[docs]</a>
             <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">prop</span> <span class="o">=</span> <span class="n">properties</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="n">properties</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span>  <span class="c1"># minx,miny,maxx,maxy, ...</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="n">properties</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span>  <span class="c1"># minx,miny,maxx,maxy, ...</span>
 
-
-<div class="viewcode-block" id="index.Index.count">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Index.count">[docs]</a>
             <span class="k">def</span><span class="w"> </span><span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignored</span><span class="p">):</span>
-                <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+                <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-
-<div class="viewcode-block" id="index.Index.insert">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Index.insert">[docs]</a>
             <span class="k">def</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
                 <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
                 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
                     <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">c</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
                     <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">prop</span><span class="o">.</span><span class="n">n</span><span class="o">+</span><span class="n">i</span><span class="p">]</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">prop</span><span class="o">.</span><span class="n">n</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">c</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span></div>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">prop</span><span class="o">.</span><span class="n">n</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">c</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 
-
-<div class="viewcode-block" id="index.Index.delete">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Index.delete">[docs]</a>
             <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
-                <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span></div>
+                <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
 
-
-<div class="viewcode-block" id="index.Index.nearest">
-<a class="viewcode-back" href="../../modules/goulib.graph.html#goulib.graph.index.Index.nearest">[docs]</a>
             <span class="k">def</span><span class="w"> </span><span class="nf">nearest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">num_results</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="s1">'raw'</span><span class="p">):</span>
 <span class="w">                </span><span class="sd">""" very inefficient, but remember it's a fallback..."""</span>
-                <span class="k">return</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">best</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="n">math2</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="n">num_results</span><span class="p">)</span></div>
-</div>
-</div>
+                <span class="k">return</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">best</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">q</span><span class="p">:</span> <span class="n">math2</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="n">num_results</span><span class="p">)</span>
 
+    <span class="n">index</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">=</span> <span class="s1">'rtree'</span>
 
 <span class="n">_nk</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># node key</span>
 
