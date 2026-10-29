@@ -44,6 +44,7 @@ except ImportError:  # fallback, especially because I couldn't manage to install
     # logging.warning('rtree not available')
 
     class index:    # pylint: disable=function-redefined
+        """:meta private:"""
         # mimics rtree.index module
 
         class Property:
@@ -74,6 +75,8 @@ except ImportError:  # fallback, especially because I couldn't manage to install
             def nearest(self, p, num_results, objects='raw'):
                 """ very inefficient, but remember it's a fallback..."""
                 return itertools2.best(list(self.values()), key=lambda q: math2.dist(p, q), n=num_results)
+
+    index.__module__ = 'rtree'
 
 _nk = 0  # node key
 
