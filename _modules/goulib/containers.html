@@ -190,18 +190,95 @@
 <div class="viewcode-block" id="Sequence">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Sequence</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""combines a generator and a read-only list</span>
-<span class="sd">    used for INFINITE numeric (integer) sequences</span>
+<span class="w">    </span><span class="sd">"""Container representing a finite or infinite numeric sequence.</span>
+
+<span class="sd">    Inspired by the On-Line Encyclopedia of Integer Sequences (OEIS),</span>
+<span class="sd">    ``Sequence`` unifies three complementary programming concepts into a single</span>
+<span class="sd">    transparent object:</span>
+
+<span class="sd">    1. **Generator / Iterable**: ``for x in seq: ...`` iterates through the terms</span>
+<span class="sd">       sequentially (potentially indefinitely).</span>
+<span class="sd">    2. **Indexable sequence**: ``seq[i]`` accesses the *i*-th element directly,</span>
+<span class="sd">       and slicing ``seq[start:stop:step]`` returns an iterator over the requested range.</span>
+<span class="sd">    3. **Set / Membership container**: ``x in seq`` tests whether an integer belongs</span>
+<span class="sd">       to the sequence.</span>
+
+<span class="sd">    Any combination of ``iterf``, ``itemf``, and ``containf`` can be provided to</span>
+<span class="sd">    the constructor. When multiple functions are available, ``Sequence`` leverages</span>
+<span class="sd">    the most efficient one for each operation:</span>
+
+<span class="sd">    * If ``itemf`` is given, ``seq[i]`` runs in :math:`O(1)` or without iterating from 0.</span>
+<span class="sd">    * If ``containf`` is given, ``x in seq`` performs a fast direct membership check.</span>
+<span class="sd">    * If ``iterf`` is given, iteration is generated sequentially via the iterator.</span>
+
+<span class="sd">    Computations are fully **lazy**: transformations (filtering, mapping, arithmetic,</span>
+<span class="sd">    set combinations) build new ``Sequence`` instances without immediate evaluation.</span>
+<span class="sd">    Terms are only computed when consumed.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        Defining the prime numbers (OEIS `A000040 &lt;https://oeis.org/A000040&gt;`_)</span>
+<span class="sd">        using only a primality test:</span>
+
+<span class="sd">        &gt;&gt;&gt; from goulib.containers import Sequence</span>
+<span class="sd">        &gt;&gt;&gt; from goulib import math2</span>
+<span class="sd">        &gt;&gt;&gt; primes = Sequence(containf=math2.is_prime, desc="Prime numbers")</span>
+<span class="sd">        &gt;&gt;&gt; 201420142013 in primes</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; primes.index(7)</span>
+<span class="sd">        3</span>
+
+<span class="sd">        Defining the Fibonacci numbers (OEIS `A000045 &lt;https://oeis.org/A000045&gt;`_)</span>
+<span class="sd">        with optimal algorithms for generation, direct indexing, and membership:</span>
+
+<span class="sd">        &gt;&gt;&gt; fib = Sequence(</span>
+<span class="sd">        ...     iterf=math2.fibonacci_gen,</span>
+<span class="sd">        ...     itemf=math2.fibonacci,</span>
+<span class="sd">        ...     containf=math2.is_fibonacci,</span>
+<span class="sd">        ...     desc="Fibonacci numbers"</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; fib[10]</span>
+<span class="sd">        55</span>
+<span class="sd">        &gt;&gt;&gt; [fib[i] for i in range(7)]</span>
+<span class="sd">        [0, 1, 1, 2, 3, 5, 8]</span>
+
+<span class="sd">        Deriving new sequences using arithmetic and higher-order methods:</span>
+
+<span class="sd">        &gt;&gt;&gt; import operator</span>
+<span class="sd">        &gt;&gt;&gt; # Differences between consecutive primes / prime gaps (OEIS A001223):</span>
+<span class="sd">        &gt;&gt;&gt; prime_gaps = primes.pairwise(operator.sub)</span>
+
+<span class="sd">        &gt;&gt;&gt; # Fermat numbers 2^(2^n) + 1 (OEIS A000215) by adding scalar 1:</span>
+<span class="sd">        &gt;&gt;&gt; # fermat = Sequence(itemf=lambda n: 2**(2**n)) + 1</span>
+
+<span class="sd">        &gt;&gt;&gt; # Filter primes to Mersenne exponents (OEIS A000043):</span>
+<span class="sd">        &gt;&gt;&gt; # mersenne_exp = primes.filter(math2.lucas_lehmer)</span>
+
+<span class="sd">        &gt;&gt;&gt; # Set operations between sequences:</span>
+<span class="sd">        &gt;&gt;&gt; # single_primes = primes % twin_primes  # terms in primes not in twin_primes</span>
+<span class="sd">        &gt;&gt;&gt; # binary_primes = A007088 &amp; primes      # primes written with 0 and 1 only</span>
+<span class="sd">        &gt;&gt;&gt; # merged = seq1 | seq2                 # union of sorted sequences</span>
+
+<span class="sd">    See also:</span>
+<span class="sd">        `Suites infinies et OEIS en Python (Dr. Goulu) &lt;https://drgoulu.com/2017/06/26/series-infinies-et-oeis-en-python/&gt;`_</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="Sequence.__init__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__init__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">itemf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">containf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        :param iterf: optional iterator, or a function returning an iterator</span>
-<span class="sd">        :param itemf: optional function(i) returning the i-th element</span>
-<span class="sd">        :param containf: optional function(n) return bool True if n belongs to Sequence</span>
-<span class="sd">        :param desc: string description</span>
+<span class="w">        </span><span class="sd">"""Initialize a numeric Sequence.</span>
+
+<span class="sd">        :param iterf: Optional iterator, callable returning an iterator, or int offset.</span>
+<span class="sd">            Generates the sequence terms sequentially. If an integer is supplied,</span>
+<span class="sd">            it specifies the starting offset for a counting sequence.</span>
+<span class="sd">        :param itemf: Optional callable ``itemf(i)`` returning the *i*-th element.</span>
+<span class="sd">            Enables direct :math:`O(1)` or fast indexing.</span>
+<span class="sd">        :param containf: Optional callable ``containf(n)`` returning ``True`` if *n*</span>
+<span class="sd">            belongs to the sequence. Enables fast membership testing (``n in self``).</span>
+<span class="sd">        :param desc: String description of the sequence. If omitted and ``itemf``</span>
+<span class="sd">            is provided, defaults to ``itemf.__doc__``.</span>
+<span class="sd">        :param timeout: Optional float maximum computation time in seconds allowed</span>
+<span class="sd">            when iterating through terms. A :exc:`~goulib.decorators.TimeoutError`</span>
+<span class="sd">            is raised if exceeded.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>  <span class="c1"># by default</span>
 
@@ -228,6 +305,11 @@
 <div class="viewcode-block" id="Sequence.__repr__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__repr__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Return a string representation showing the first computed terms.</span>
+
+<span class="sd">        Evaluates up to the first 10 terms within a 1-second timeout using</span>
+<span class="sd">        :func:`goulib.tests.pprint` to avoid blocking debuggers or interactive shells.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repr</span><span class="p">:</span>  <span class="c1"># cache for speed</span>
             <span class="c1"># must be very quick for debugger</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">tests</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
@@ -238,6 +320,16 @@
 <div class="viewcode-block" id="Sequence.save">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.save">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">maxtime</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Save the first *n* terms of the sequence to a text file.</span>
+
+<span class="sd">        Exports lines formatted as ``index value``, compatible with OEIS b-file format.</span>
+
+<span class="sd">        :param filename: Path to the output text file.</span>
+<span class="sd">        :param comment: Optional header comment line. Defaults to sequence description</span>
+<span class="sd">            and current date.</span>
+<span class="sd">        :param n: Maximum number of terms to export (default: 1000).</span>
+<span class="sd">        :param maxtime: Maximum time allowed in seconds for generating the terms.</span>
+<span class="sd">        """</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'wt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
             <span class="n">comment</span> <span class="o">=</span> <span class="n">comment</span> <span class="ow">or</span> <span class="s2">"</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desc</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
@@ -251,9 +343,13 @@
 <div class="viewcode-block" id="Sequence.__iter__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__iter__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""reset the generator</span>
+<span class="w">        </span><span class="sd">"""Return an independent generator iterating from the beginning of the sequence.</span>
 
-<span class="sd">        :return: a tee-ed copy of iterf, optionally timeout decorated</span>
+<span class="sd">        If ``iterf`` is provided, it is duplicated using :func:`itertools.tee`.</span>
+<span class="sd">        Otherwise, an iterator is constructed from ``itemf`` or by filtering</span>
+<span class="sd">        integers using ``containf``. Iteration can be optionally protected by ``timeout``.</span>
+
+<span class="sd">        :return: Generator yielding sequence elements.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterf</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">iterf</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">tee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterf</span><span class="p">)</span>
@@ -273,6 +369,12 @@
 <div class="viewcode-block" id="Sequence.__getitem__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__getitem__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Get the *i*-th element or a slice of the sequence.</span>
+
+<span class="sd">        :param i: Zero-based integer index or :class:`slice` object.</span>
+<span class="sd">        :return: The *i*-th value if *i* is an integer, or an :func:`itertools.islice`</span>
+<span class="sd">            iterator if *i* is a slice.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">itemf</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">itemf</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -285,6 +387,14 @@
 <div class="viewcode-block" id="Sequence.index">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Find the index of value *v* in a strictly growing sequence.</span>
+
+<span class="sd">        Scans the sequence sequentially. As the sequence is assumed to be monotonically</span>
+<span class="sd">        increasing, searching stops as soon as a term exceeds *v*.</span>
+
+<span class="sd">        :param v: Value to locate.</span>
+<span class="sd">        :return: Integer index of *v*, or -1 if *v* is not in the sequence.</span>
+<span class="sd">        """</span>
         <span class="c1"># assume sequence is growing</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
@@ -296,6 +406,13 @@
 <div class="viewcode-block" id="Sequence.__contains__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__contains__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Test whether *n* belongs to the sequence.</span>
+
+<span class="sd">        Uses ``containf(n)`` if defined; otherwise falls back to ``self.index(n) &gt;= 0``.</span>
+
+<span class="sd">        :param n: Value to test.</span>
+<span class="sd">        :return: ``True`` if *n* is in the sequence, ``False`` otherwise.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">containf</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">containf</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -305,6 +422,15 @@
 <div class="viewcode-block" id="Sequence.__add__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__add__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Add a scalar integer or another Sequence element-wise.</span>
+
+<span class="sd">        If *other* is an integer :math:`k`, translates the sequence by :math:`k`:</span>
+<span class="sd">        each term :math:`a_n` becomes :math:`a_n + k`.</span>
+<span class="sd">        If *other* is another Sequence, returns a new Sequence yielding :math:`a_n + b_n`.</span>
+
+<span class="sd">        :param other: Integer scalar or :class:`Sequence`.</span>
+<span class="sd">        :return: New :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span>
@@ -322,6 +448,15 @@
 <div class="viewcode-block" id="Sequence.__sub__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__sub__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Subtract a scalar integer or another Sequence element-wise.</span>
+
+<span class="sd">        If *other* is an integer :math:`k`, translates the sequence by :math:`-k`:</span>
+<span class="sd">        each term :math:`a_n` becomes :math:`a_n - k`.</span>
+<span class="sd">        If *other* is another Sequence, returns a new Sequence yielding :math:`a_n - b_n`.</span>
+
+<span class="sd">        :param other: Integer scalar or :class:`Sequence`.</span>
+<span class="sd">        :return: New :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="n">other</span><span class="p">)</span>
 
@@ -335,6 +470,11 @@
 <div class="viewcode-block" id="Sequence.__mul__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__mul__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Multiply by a scalar integer or another Sequence element-wise.</span>
+
+<span class="sd">        :param other: Integer scalar or :class:`Sequence`.</span>
+<span class="sd">        :return: New :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span>
@@ -352,6 +492,11 @@
 <div class="viewcode-block" id="Sequence.__div__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__div__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Perform integer division by a scalar or another Sequence element-wise.</span>
+
+<span class="sd">        :param other: Integer scalar or :class:`Sequence`.</span>
+<span class="sd">        :return: New :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">//</span> <span class="n">other</span><span class="p">,</span>
@@ -369,6 +514,11 @@
 <div class="viewcode-block" id="Sequence.__truediv__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__truediv__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Perform division by a scalar or another Sequence element-wise (using Fractions).</span>
+
+<span class="sd">        :param other: Integer scalar or :class:`Sequence`.</span>
+<span class="sd">        :return: New :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
@@ -387,8 +537,20 @@
 <div class="viewcode-block" id="Sequence.__or__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__or__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        :return: Sequence with items from both (sorted) operand Sequences</span>
+<span class="w">        </span><span class="sd">"""Return the union of two sorted sequences without duplicates.</span>
+
+<span class="sd">        Merges two monotonically increasing sequences using :func:`heapq.merge`</span>
+<span class="sd">        and removes duplicates with :func:`~goulib.itertools2.unique`.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Numbers with 4 divisors (OEIS `A030513 &lt;https://oeis.org/A030513&gt;`_)</span>
+<span class="sd">            as the union of semiprimes (product of two distinct primes) and</span>
+<span class="sd">            cubes of primes:</span>
+
+<span class="sd">            &gt;&gt;&gt; # A030513 = prime_cubes | semiprimes</span>
+
+<span class="sd">        :param other: Monotonically increasing :class:`Sequence`.</span>
+<span class="sd">        :return: Merged :class:`Sequence`.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
             <span class="n">itertools2</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)),</span>
@@ -400,8 +562,18 @@
 <div class="viewcode-block" id="Sequence.__and__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__and__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        :return: Sequence with items in both operands</span>
+<span class="w">        </span><span class="sd">"""Return the intersection of two sequences.</span>
+
+<span class="sd">        Filters the left sequence using the membership predicate of the right sequence</span>
+<span class="sd">        (or vice versa).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Primes with digits 0 and 1 only (OEIS `A020449 &lt;https://oeis.org/A020449&gt;`_):</span>
+
+<span class="sd">            &gt;&gt;&gt; # A020449 = binary_numbers &amp; primes</span>
+
+<span class="sd">        :param other: :class:`Sequence` with a defined ``containf``.</span>
+<span class="sd">        :return: Filtered :class:`Sequence` containing items common to both operands.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">containf</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">containf</span><span class="p">)</span>
@@ -413,8 +585,18 @@
 <div class="viewcode-block" id="Sequence.__mod__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__mod__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__mod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        :return: Sequence with items from left operand not in right</span>
+<span class="w">        </span><span class="sd">"""Return the set difference (self \\\\ other) of two sorted sequences.</span>
+
+<span class="sd">        Yields terms from *self* that are not present in *other*.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Isolated primes (OEIS `A007510 &lt;https://oeis.org/A007510&gt;`_),</span>
+<span class="sd">            i.e. primes that are not twin primes:</span>
+
+<span class="sd">            &gt;&gt;&gt; # A007510 = primes % twin_primes</span>
+
+<span class="sd">        :param other: Monotonically increasing :class:`Sequence`.</span>
+<span class="sd">        :return: Difference :class:`Sequence`.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
             <span class="n">itertools2</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()),</span> <span class="kc">None</span><span class="p">,</span>
@@ -425,7 +607,18 @@
 <div class="viewcode-block" id="Sequence.apply">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.apply">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">containf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">''</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">''' function composition'''</span>
+<span class="w">        </span><span class="sd">"""Apply a function to each term of the sequence (function composition).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Squares of primes (OEIS `A001248 &lt;https://oeis.org/A001248&gt;`_):</span>
+
+<span class="sd">            &gt;&gt;&gt; # A001248 = primes.apply(lambda n: n * n)</span>
+
+<span class="sd">        :param f: Callable to map over every element.</span>
+<span class="sd">        :param containf: Optional membership predicate for the resulting sequence.</span>
+<span class="sd">        :param desc: Optional description string.</span>
+<span class="sd">        :return: Transformed :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
             <span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
             <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
@@ -437,12 +630,31 @@
 <div class="viewcode-block" id="Sequence.__call__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__call__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Compose this sequence's item function with another sequence.</span>
+
+<span class="sd">        Equivalent to ``other.apply(self.itemf)``.</span>
+
+<span class="sd">        :param other: :class:`Sequence` to transform.</span>
+<span class="sd">        :return: Composed :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">itemf</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Sequence.filter">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.filter">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">''</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Filter the sequence by a predicate function.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Mersenne exponents (OEIS `A000043 &lt;https://oeis.org/A000043&gt;`_),</span>
+<span class="sd">            primes :math:`p` such that :math:`2^p - 1` is prime:</span>
+
+<span class="sd">            &gt;&gt;&gt; # A000043 = primes.filter(math2.lucas_lehmer)</span>
+
+<span class="sd">        :param f: Predicate callable returning ``True`` for terms to retain.</span>
+<span class="sd">        :param desc: Optional description string.</span>
+<span class="sd">        :return: Filtered :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
             <span class="nb">filter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
             <span class="kc">None</span><span class="p">,</span>
@@ -454,6 +666,7 @@
 <div class="viewcode-block" id="Sequence.__le__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__le__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Select terms from self where self[i] &lt;= other[i]."""</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
             <span class="n">itertools2</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">le</span><span class="p">)</span>
         <span class="p">)</span></div>
@@ -462,6 +675,7 @@
 <div class="viewcode-block" id="Sequence.__gt__">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__gt__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Select terms from self where self[i] &gt; other[i]."""</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
             <span class="n">itertools2</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">)</span>
         <span class="p">)</span></div>
@@ -470,29 +684,86 @@
 <div class="viewcode-block" id="Sequence.accumulate">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.accumulate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="p">[]):</span>
+<span class="w">        </span><span class="sd">"""Return a sequence of partial reductions / running accumulations.</span>
+
+<span class="sd">        By default, computes the prefix sums (:math:`s_n = \\\\sum_{k=0}^n a_k`).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Sum of the first *n* primes (OEIS `A007504 &lt;https://oeis.org/A007504&gt;`_):</span>
+
+<span class="sd">            &gt;&gt;&gt; # A007504 = primes.accumulate()</span>
+
+<span class="sd">        :param op: Binary operator function (default: :func:`operator.add`).</span>
+<span class="sd">        :param init: Optional initial elements sequence prepended to the result.</span>
+<span class="sd">        :return: Accumulated :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">init</span><span class="p">,</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="kc">False</span><span class="p">)))</span></div>
 
 
 <div class="viewcode-block" id="Sequence.pairwise">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.pairwise">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">pairwise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">skip_first</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Apply a binary operator to consecutive terms :math:`(a_n, a_{n+1})`.</span>
+
+<span class="sd">        Note that :func:`goulib.itertools2.pairwise` calls ``op(current, prev)``</span>
+<span class="sd">        (e.g., :func:`operator.sub` computes :math:`a_{n+1} - a_n`).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Differences between consecutive primes / prime gaps</span>
+<span class="sd">            (OEIS `A001223 &lt;https://oeis.org/A001223&gt;`_):</span>
+
+<span class="sd">            &gt;&gt;&gt; # A001223 = primes.pairwise(operator.sub)</span>
+
+<span class="sd">        :param op: Binary operator applied to consecutive pairs.</span>
+<span class="sd">        :param skip_first: If ``True``, omits the first pair.</span>
+<span class="sd">        :return: :class:`Sequence` of pairwise results.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Sequence.sort">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.sort">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Sort an almost-sorted (monotonically growing) infinite sequence.</span>
+
+<span class="sd">        Maintains a sliding buffer of size *buffer* using</span>
+<span class="sd">        :func:`goulib.itertools2.sorted_iterable`. As long as elements are not</span>
+<span class="sd">        displaced by more than *buffer* positions, the output sequence is</span>
+<span class="sd">        guaranteed to be strictly sorted.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Ordered areas of primitive Pythagorean triangles</span>
+<span class="sd">            (OEIS `A024406 &lt;https://oeis.org/A024406&gt;`_):</span>
+
+<span class="sd">            &gt;&gt;&gt; # A024406 = Sequence(math2.primitive_triples).apply(</span>
+<span class="sd">            ... #     lambda x: x[0] * x[1] // 2</span>
+<span class="sd">            ... # ).sort()</span>
+
+<span class="sd">        :param key: Optional sort key function.</span>
+<span class="sd">        :param buffer: Size of the lookahead buffer (default: 100).</span>
+<span class="sd">        :return: Sorted :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">sorted_iterable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Sequence.unique">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.unique">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">""" </span>
-<span class="sd">        :param buffer: int number of last elements found. </span>
-<span class="sd">            if two identical elements are separated by more than this number of elements</span>
-<span class="sd">            in self, they might be generated twice in the resulting Sequence</span>
-<span class="sd">        :return: Sequence made of unique elements of this one</span>
+<span class="w">        </span><span class="sd">"""Remove redundant duplicate elements from an almost-sorted sequence.</span>
+
+<span class="sd">        Maintains a history of the last *buffer* elements using</span>
+<span class="sd">        :func:`goulib.itertools2.unique`.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Twin prime members (OEIS `A001097 &lt;https://oeis.org/A001097&gt;`_)</span>
+<span class="sd">            from flattened twin prime pairs (where 5 appears in both (3,5) and (5,7)):</span>
+
+<span class="sd">            &gt;&gt;&gt; # A001097 = A077800.unique()</span>
+
+<span class="sd">        :param buffer: Number of recent elements to track for duplicates (default: 100).</span>
+<span class="sd">            If duplicate elements are separated by more than *buffer* terms, they might</span>
+<span class="sd">            be emitted more than once.</span>
+<span class="sd">        :return: :class:`Sequence` of unique elements.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">buffer</span><span class="p">))</span></div>
 
@@ -500,7 +771,17 @@
 <div class="viewcode-block" id="Sequence.product">
 <a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.product">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="nb">sum</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""cartesian product"""</span>
+<span class="w">        </span><span class="sd">"""Compute the Cartesian product of two sequences, transformed and sorted.</span>
+
+<span class="sd">        Generates pairs from *self* and *other* using</span>
+<span class="sd">        :func:`goulib.itertools2.product`, applies reduction *op* (default: :func:`sum`),</span>
+<span class="sd">        and sorts the stream with a buffer of size *buffer*.</span>
+
+<span class="sd">        :param other: Second :class:`Sequence`.</span>
+<span class="sd">        :param op: Function applied to each pair (default: :func:`sum`).</span>
+<span class="sd">        :param buffer: Size of sorting buffer (default: 100).</span>
+<span class="sd">        :return: Transformed and sorted :class:`Sequence`.</span>
+<span class="sd">        """</span>
         <span class="n">it</span> <span class="o">=</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">it</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">buffer</span><span class="o">=</span><span class="n">buffer</span><span class="p">)</span></div>
 </div>

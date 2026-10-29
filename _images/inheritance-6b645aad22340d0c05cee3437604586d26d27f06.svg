@@ -250,7 +250,7 @@
 
 <ns0:g id="node15" class="node">
 <ns0:title>containers.Sequence</ns0:title>
-<ns0:g id="a_node15"><ns0:a ns1:href="../modules/goulib.containers.html#goulib.containers.Sequence" ns1:title="combines a generator and a read-only list" target="_top">
+<ns0:g id="a_node15"><ns0:a ns1:href="../modules/goulib.containers.html#goulib.containers.Sequence" ns1:title="Container representing a finite or infinite numeric sequence." target="_top">
 <ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="189.6,-474.8 22.5,-474.8 22.5,-446 189.6,-446 189.6,-474.8" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-455.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">containers.Sequence</ns0:text>
 </ns0:a>

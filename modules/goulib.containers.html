@@ -17,6 +17,7 @@
     <script src="../_static/documentation_options.js?v=f4ced14b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
@@ -266,7 +267,7 @@
 <td><p>mimics a Pascal record or a C struct</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequence</span></code></a>([iterf, itemf, containf, desc, timeout])</p></td>
-<td><p>combines a generator and a read-only list used for INFINITE numeric (integer) sequences</p></td>
+<td><p>Container representing a finite or infinite numeric sequence.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goulib.containers.SortedCollection" title="goulib.containers.SortedCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SortedCollection</span></code></a>([iterable, key])</p></td>
 <td><p>Sequence sorted by a key function.</p></td>
@@ -507,28 +508,117 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
 <dt class="sig sig-object py" id="goulib.containers.Sequence">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.containers.</span></span><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">itemf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">containf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>combines a generator and a read-only list
-used for INFINITE numeric (integer) sequences</p>
+<p>Container representing a finite or infinite numeric sequence.</p>
+<p>Inspired by the On-Line Encyclopedia of Integer Sequences (OEIS),
+<code class="docutils literal notranslate"><span class="pre">Sequence</span></code> unifies three complementary programming concepts into a single
+transparent object:</p>
+<ol class="arabic simple">
+<li><p><strong>Generator / Iterable</strong>: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">seq:</span> <span class="pre">...</span></code> iterates through the terms
+sequentially (potentially indefinitely).</p></li>
+<li><p><strong>Indexable sequence</strong>: <code class="docutils literal notranslate"><span class="pre">seq[i]</span></code> accesses the <em>i</em>-th element directly,
+and slicing <code class="docutils literal notranslate"><span class="pre">seq[start:stop:step]</span></code> returns an iterator over the requested range.</p></li>
+<li><p><strong>Set / Membership container</strong>: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">seq</span></code> tests whether an integer belongs
+to the sequence.</p></li>
+</ol>
+<p>Any combination of <code class="docutils literal notranslate"><span class="pre">iterf</span></code>, <code class="docutils literal notranslate"><span class="pre">itemf</span></code>, and <code class="docutils literal notranslate"><span class="pre">containf</span></code> can be provided to
+the constructor. When multiple functions are available, <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> leverages
+the most efficient one for each operation:</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">itemf</span></code> is given, <code class="docutils literal notranslate"><span class="pre">seq[i]</span></code> runs in <span class="math notranslate nohighlight">\(O(1)\)</span> or without iterating from 0.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">containf</span></code> is given, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">seq</span></code> performs a fast direct membership check.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">iterf</span></code> is given, iteration is generated sequentially via the iterator.</p></li>
+</ul>
+<p>Computations are fully <strong>lazy</strong>: transformations (filtering, mapping, arithmetic,
+set combinations) build new <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> instances without immediate evaluation.
+Terms are only computed when consumed.</p>
+<dl>
+<dt>Examples:</dt><dd><p>Defining the prime numbers (OEIS <a class="reference external" href="https://oeis.org/A000040">A000040</a>)
+using only a primality test:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">goulib.containers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">goulib</span><span class="w"> </span><span class="kn">import</span> <span class="n">math2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">containf</span><span class="o">=</span><span class="n">math2</span><span class="o">.</span><span class="n">is_prime</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Prime numbers"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">201420142013</span> <span class="ow">in</span> <span class="n">primes</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>Defining the Fibonacci numbers (OEIS <a class="reference external" href="https://oeis.org/A000045">A000045</a>)
+with optimal algorithms for generation, direct indexing, and membership:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">iterf</span><span class="o">=</span><span class="n">math2</span><span class="o">.</span><span class="n">fibonacci_gen</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">itemf</span><span class="o">=</span><span class="n">math2</span><span class="o">.</span><span class="n">fibonacci</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">containf</span><span class="o">=</span><span class="n">math2</span><span class="o">.</span><span class="n">is_fibonacci</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">desc</span><span class="o">=</span><span class="s2">"Fibonacci numbers"</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">55</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">fib</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
+<span class="go">[0, 1, 1, 2, 3, 5, 8]</span>
+</pre></div>
+</div>
+<p>Deriving new sequences using arithmetic and higher-order methods:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Differences between consecutive primes / prime gaps (OEIS A001223):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prime_gaps</span> <span class="o">=</span> <span class="n">primes</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">sub</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fermat numbers 2^(2^n) + 1 (OEIS A000215) by adding scalar 1:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># fermat = Sequence(itemf=lambda n: 2**(2**n)) + 1</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Filter primes to Mersenne exponents (OEIS A000043):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># mersenne_exp = primes.filter(math2.lucas_lehmer)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Set operations between sequences:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># single_primes = primes % twin_primes  # terms in primes not in twin_primes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># binary_primes = A007088 &amp; primes      # primes written with 0 and 1 only</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># merged = seq1 | seq2                 # union of sorted sequences</span>
+</pre></div>
+</div>
+</dd>
+<dt>See also:</dt><dd><p><a class="reference external" href="https://drgoulu.com/2017/06/26/series-infinies-et-oeis-en-python/">Suites infinies et OEIS en Python (Dr. Goulu)</a></p>
+</dd>
+</dl>
+<p>Initialize a numeric Sequence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>iterf</strong> – optional iterator, or a function returning an iterator</p></li>
-<li><p><strong>itemf</strong> – optional function(i) returning the i-th element</p></li>
-<li><p><strong>containf</strong> – optional function(n) return bool True if n belongs to Sequence</p></li>
-<li><p><strong>desc</strong> – string description</p></li>
+<li><p><strong>iterf</strong> – Optional iterator, callable returning an iterator, or int offset.
+Generates the sequence terms sequentially. If an integer is supplied,
+it specifies the starting offset for a counting sequence.</p></li>
+<li><p><strong>itemf</strong> – Optional callable <code class="docutils literal notranslate"><span class="pre">itemf(i)</span></code> returning the <em>i</em>-th element.
+Enables direct <span class="math notranslate nohighlight">\(O(1)\)</span> or fast indexing.</p></li>
+<li><p><strong>containf</strong> – Optional callable <code class="docutils literal notranslate"><span class="pre">containf(n)</span></code> returning <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>n</em>
+belongs to the sequence. Enables fast membership testing (<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">in</span> <span class="pre">self</span></code>).</p></li>
+<li><p><strong>desc</strong> – String description of the sequence. If omitted and <code class="docutils literal notranslate"><span class="pre">itemf</span></code>
+is provided, defaults to <code class="docutils literal notranslate"><span class="pre">itemf.__doc__</span></code>.</p></li>
+<li><p><strong>timeout</strong> – Optional float maximum computation time in seconds allowed
+when iterating through terms. A <code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code>
+is raised if exceeded.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">itemf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">containf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__init__" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Initialize a numeric Sequence.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>iterf</strong> – optional iterator, or a function returning an iterator</p></li>
-<li><p><strong>itemf</strong> – optional function(i) returning the i-th element</p></li>
-<li><p><strong>containf</strong> – optional function(n) return bool True if n belongs to Sequence</p></li>
-<li><p><strong>desc</strong> – string description</p></li>
+<li><p><strong>iterf</strong> – Optional iterator, callable returning an iterator, or int offset.
+Generates the sequence terms sequentially. If an integer is supplied,
+it specifies the starting offset for a counting sequence.</p></li>
+<li><p><strong>itemf</strong> – Optional callable <code class="docutils literal notranslate"><span class="pre">itemf(i)</span></code> returning the <em>i</em>-th element.
+Enables direct <span class="math notranslate nohighlight">\(O(1)\)</span> or fast indexing.</p></li>
+<li><p><strong>containf</strong> – Optional callable <code class="docutils literal notranslate"><span class="pre">containf(n)</span></code> returning <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>n</em>
+belongs to the sequence. Enables fast membership testing (<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">in</span> <span class="pre">self</span></code>).</p></li>
+<li><p><strong>desc</strong> – String description of the sequence. If omitted and <code class="docutils literal notranslate"><span class="pre">itemf</span></code>
+is provided, defaults to <code class="docutils literal notranslate"><span class="pre">itemf.__doc__</span></code>.</p></li>
+<li><p><strong>timeout</strong> – Optional float maximum computation time in seconds allowed
+when iterating through terms. A <code class="xref py py-exc docutils literal notranslate"><span class="pre">TimeoutError</span></code>
+is raised if exceeded.</p></li>
 </ul>
 </dd>
 </dl>
@@ -537,21 +627,39 @@ used for INFINITE numeric (integer) sequences</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__repr__">
 <span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__repr__" title="Link to this definition">¶</a></dt>
-<dd><p>Return repr(self).</p>
+<dd><p>Return a string representation showing the first computed terms.</p>
+<p>Evaluates up to the first 10 terms within a 1-second timeout using
+<a class="reference internal" href="goulib.tests.html#goulib.tests.pprint" title="goulib.tests.pprint"><code class="xref py py-func docutils literal notranslate"><span class="pre">goulib.tests.pprint()</span></code></a> to avoid blocking debuggers or interactive shells.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.save">
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.save" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Save the first <em>n</em> terms of the sequence to a text file.</p>
+<p>Exports lines formatted as <code class="docutils literal notranslate"><span class="pre">index</span> <span class="pre">value</span></code>, compatible with OEIS b-file format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Path to the output text file.</p></li>
+<li><p><strong>comment</strong> – Optional header comment line. Defaults to sequence description
+and current date.</p></li>
+<li><p><strong>n</strong> – Maximum number of terms to export (default: 1000).</p></li>
+<li><p><strong>maxtime</strong> – Maximum time allowed in seconds for generating the terms.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__iter__">
 <span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__iter__" title="Link to this definition">¶</a></dt>
-<dd><p>reset the generator</p>
+<dd><p>Return an independent generator iterating from the beginning of the sequence.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">iterf</span></code> is provided, it is duplicated using <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.tee" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.tee()</span></code></a>.
+Otherwise, an iterator is constructed from <code class="docutils literal notranslate"><span class="pre">itemf</span></code> or by filtering
+integers using <code class="docutils literal notranslate"><span class="pre">containf</span></code>. Iteration can be optionally protected by <code class="docutils literal notranslate"><span class="pre">timeout</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>a tee-ed copy of iterf, optionally timeout decorated</p>
+<dd class="field-odd"><p>Generator yielding sequence elements.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -559,49 +667,146 @@ used for INFINITE numeric (integer) sequences</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__getitem__">
 <span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__getitem__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the <em>i</em>-th element or a slice of the sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> – Zero-based integer index or <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#slice" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a> object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <em>i</em>-th value if <em>i</em> is an integer, or an <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.islice()</span></code></a>
+iterator if <em>i</em> is a slice.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.index">
 <span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.index" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Find the index of value <em>v</em> in a strictly growing sequence.</p>
+<p>Scans the sequence sequentially. As the sequence is assumed to be monotonically
+increasing, searching stops as soon as a term exceeds <em>v</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – Value to locate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Integer index of <em>v</em>, or -1 if <em>v</em> is not in the sequence.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__contains__">
 <span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__contains__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__contains__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Test whether <em>n</em> belongs to the sequence.</p>
+<p>Uses <code class="docutils literal notranslate"><span class="pre">containf(n)</span></code> if defined; otherwise falls back to <code class="docutils literal notranslate"><span class="pre">self.index(n)</span> <span class="pre">&gt;=</span> <span class="pre">0</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> – Value to test.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>n</em> is in the sequence, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__add__">
 <span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__add__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add a scalar integer or another Sequence element-wise.</p>
+<p>If <em>other</em> is an integer <span class="math notranslate nohighlight">\(k\)</span>, translates the sequence by <span class="math notranslate nohighlight">\(k\)</span>:
+each term <span class="math notranslate nohighlight">\(a_n\)</span> becomes <span class="math notranslate nohighlight">\(a_n + k\)</span>.
+If <em>other</em> is another Sequence, returns a new Sequence yielding <span class="math notranslate nohighlight">\(a_n + b_n\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – Integer scalar or <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__sub__">
 <span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__sub__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Subtract a scalar integer or another Sequence element-wise.</p>
+<p>If <em>other</em> is an integer <span class="math notranslate nohighlight">\(k\)</span>, translates the sequence by <span class="math notranslate nohighlight">\(-k\)</span>:
+each term <span class="math notranslate nohighlight">\(a_n\)</span> becomes <span class="math notranslate nohighlight">\(a_n - k\)</span>.
+If <em>other</em> is another Sequence, returns a new Sequence yielding <span class="math notranslate nohighlight">\(a_n - b_n\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – Integer scalar or <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__mul__">
 <span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__mul__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Multiply by a scalar integer or another Sequence element-wise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – Integer scalar or <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__div__">
 <span class="sig-name descname"><span class="pre">__div__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__div__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__div__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Perform integer division by a scalar or another Sequence element-wise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – Integer scalar or <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__truediv__">
 <span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__truediv__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__truediv__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Perform division by a scalar or another Sequence element-wise (using Fractions).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – Integer scalar or <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__or__">
 <span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__or__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__or__" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Sequence with items from both (sorted) operand Sequences</p>
+<dd><p>Return the union of two sorted sequences without duplicates.</p>
+<p>Merges two monotonically increasing sequences using <a class="reference external" href="https://docs.python.org/3/library/heapq.html#heapq.merge" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">heapq.merge()</span></code></a>
+and removes duplicates with <a class="reference internal" href="goulib.itertools2.html#goulib.itertools2.unique" title="goulib.itertools2.unique"><code class="xref py py-func docutils literal notranslate"><span class="pre">unique()</span></code></a>.</p>
+<dl>
+<dt>Example:</dt><dd><p>Numbers with 4 divisors (OEIS <a class="reference external" href="https://oeis.org/A030513">A030513</a>)
+as the union of semiprimes (product of two distinct primes) and
+cubes of primes:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A030513 = prime_cubes | semiprimes</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – Monotonically increasing <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Merged <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -609,9 +814,22 @@ used for INFINITE numeric (integer) sequences</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__and__">
 <span class="sig-name descname"><span class="pre">__and__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__and__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__and__" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Sequence with items in both operands</p>
+<dd><p>Return the intersection of two sequences.</p>
+<p>Filters the left sequence using the membership predicate of the right sequence
+(or vice versa).</p>
+<dl>
+<dt>Example:</dt><dd><p>Primes with digits 0 and 1 only (OEIS <a class="reference external" href="https://oeis.org/A020449">A020449</a>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A020449 = binary_numbers &amp; primes</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a> with a defined <code class="docutils literal notranslate"><span class="pre">containf</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a> containing items common to both operands.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -619,9 +837,22 @@ used for INFINITE numeric (integer) sequences</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__mod__">
 <span class="sig-name descname"><span class="pre">__mod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__mod__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__mod__" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Sequence with items from left operand not in right</p>
+<dd><p>Return the set difference (self \ other) of two sorted sequences.</p>
+<p>Yields terms from <em>self</em> that are not present in <em>other</em>.</p>
+<dl>
+<dt>Example:</dt><dd><p>Isolated primes (OEIS <a class="reference external" href="https://oeis.org/A007510">A007510</a>),
+i.e. primes that are not twin primes:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A007510 = primes % twin_primes</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – Monotonically increasing <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Difference <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -629,58 +860,185 @@ used for INFINITE numeric (integer) sequences</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.apply">
 <span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">containf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.apply" title="Link to this definition">¶</a></dt>
-<dd><p>function composition</p>
+<dd><p>Apply a function to each term of the sequence (function composition).</p>
+<dl>
+<dt>Example:</dt><dd><p>Squares of primes (OEIS <a class="reference external" href="https://oeis.org/A001248">A001248</a>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A001248 = primes.apply(lambda n: n * n)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – Callable to map over every element.</p></li>
+<li><p><strong>containf</strong> – Optional membership predicate for the resulting sequence.</p></li>
+<li><p><strong>desc</strong> – Optional description string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transformed <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__call__" title="Link to this definition">¶</a></dt>
-<dd><p>Call self as a function.</p>
+<dd><p>Compose this sequence’s item function with another sequence.</p>
+<p>Equivalent to <code class="docutils literal notranslate"><span class="pre">other.apply(self.itemf)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> – <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a> to transform.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Composed <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.filter">
 <span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.filter" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Filter the sequence by a predicate function.</p>
+<dl>
+<dt>Example:</dt><dd><p>Mersenne exponents (OEIS <a class="reference external" href="https://oeis.org/A000043">A000043</a>),
+primes <span class="math notranslate nohighlight">\(p\)</span> such that <span class="math notranslate nohighlight">\(2^p - 1\)</span> is prime:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A000043 = primes.filter(math2.lucas_lehmer)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> – Predicate callable returning <code class="docutils literal notranslate"><span class="pre">True</span></code> for terms to retain.</p></li>
+<li><p><strong>desc</strong> – Optional description string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__le__">
 <span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__le__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__le__" title="Link to this definition">¶</a></dt>
-<dd><p>Return self&lt;=value.</p>
+<dd><p>Select terms from self where self[i] &lt;= other[i].</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.__gt__">
 <span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__gt__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__gt__" title="Link to this definition">¶</a></dt>
-<dd><p>Return self&gt;value.</p>
+<dd><p>Select terms from self where self[i] &gt; other[i].</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.accumulate">
 <span class="sig-name descname"><span class="pre">accumulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">add&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.accumulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.accumulate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return a sequence of partial reductions / running accumulations.</p>
+<p>By default, computes the prefix sums (<span class="math notranslate nohighlight">\(s_n = \\sum_{k=0}^n a_k\)</span>).</p>
+<dl>
+<dt>Example:</dt><dd><p>Sum of the first <em>n</em> primes (OEIS <a class="reference external" href="https://oeis.org/A007504">A007504</a>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A007504 = primes.accumulate()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op</strong> – Binary operator function (default: <a class="reference external" href="https://docs.python.org/3/library/operator.html#operator.add" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">operator.add()</span></code></a>).</p></li>
+<li><p><strong>init</strong> – Optional initial elements sequence prepended to the result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Accumulated <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.pairwise">
 <span class="sig-name descname"><span class="pre">pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.pairwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.pairwise" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Apply a binary operator to consecutive terms <span class="math notranslate nohighlight">\((a_n, a_{n+1})\)</span>.</p>
+<p>Note that <a class="reference internal" href="goulib.itertools2.html#goulib.itertools2.pairwise" title="goulib.itertools2.pairwise"><code class="xref py py-func docutils literal notranslate"><span class="pre">goulib.itertools2.pairwise()</span></code></a> calls <code class="docutils literal notranslate"><span class="pre">op(current,</span> <span class="pre">prev)</span></code>
+(e.g., <a class="reference external" href="https://docs.python.org/3/library/operator.html#operator.sub" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">operator.sub()</span></code></a> computes <span class="math notranslate nohighlight">\(a_{n+1} - a_n\)</span>).</p>
+<dl>
+<dt>Example:</dt><dd><p>Differences between consecutive primes / prime gaps
+(OEIS <a class="reference external" href="https://oeis.org/A001223">A001223</a>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A001223 = primes.pairwise(operator.sub)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op</strong> – Binary operator applied to consecutive pairs.</p></li>
+<li><p><strong>skip_first</strong> – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, omits the first pair.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a> of pairwise results.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.sort">
 <span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.sort" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sort an almost-sorted (monotonically growing) infinite sequence.</p>
+<p>Maintains a sliding buffer of size <em>buffer</em> using
+<a class="reference internal" href="goulib.itertools2.html#goulib.itertools2.sorted_iterable" title="goulib.itertools2.sorted_iterable"><code class="xref py py-func docutils literal notranslate"><span class="pre">goulib.itertools2.sorted_iterable()</span></code></a>. As long as elements are not
+displaced by more than <em>buffer</em> positions, the output sequence is
+guaranteed to be strictly sorted.</p>
+<dl>
+<dt>Example:</dt><dd><p>Ordered areas of primitive Pythagorean triangles
+(OEIS <a class="reference external" href="https://oeis.org/A024406">A024406</a>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A024406 = Sequence(math2.primitive_triples).apply(</span>
+<span class="gp">... </span><span class="c1">#     lambda x: x[0] * x[1] // 2</span>
+<span class="gp">... </span><span class="c1"># ).sort()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – Optional sort key function.</p></li>
+<li><p><strong>buffer</strong> – Size of the lookahead buffer (default: 100).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sorted <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.unique">
 <span class="sig-name descname"><span class="pre">unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.unique"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.unique" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Remove redundant duplicate elements from an almost-sorted sequence.</p>
+<p>Maintains a history of the last <em>buffer</em> elements using
+<a class="reference internal" href="goulib.itertools2.html#goulib.itertools2.unique" title="goulib.itertools2.unique"><code class="xref py py-func docutils literal notranslate"><span class="pre">goulib.itertools2.unique()</span></code></a>.</p>
+<dl>
+<dt>Example:</dt><dd><p>Twin prime members (OEIS <a class="reference external" href="https://oeis.org/A001097">A001097</a>)
+from flattened twin prime pairs (where 5 appears in both (3,5) and (5,7)):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># A001097 = A077800.unique()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>buffer</strong> – int number of last elements found. 
-if two identical elements are separated by more than this number of elements
-in self, they might be generated twice in the resulting Sequence</p>
+<dd class="field-odd"><p><strong>buffer</strong> – Number of recent elements to track for duplicates (default: 100).
+If duplicate elements are separated by more than <em>buffer</em> terms, they might
+be emitted more than once.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Sequence made of unique elements of this one</p>
+<dd class="field-even"><p><a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a> of unique elements.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -688,7 +1046,22 @@ in self, they might be generated twice in the resulting Sequence</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="goulib.containers.Sequence.product">
 <span class="sig-name descname"><span class="pre">product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">sum&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.product" title="Link to this definition">¶</a></dt>
-<dd><p>cartesian product</p>
+<dd><p>Compute the Cartesian product of two sequences, transformed and sorted.</p>
+<p>Generates pairs from <em>self</em> and <em>other</em> using
+<a class="reference internal" href="goulib.itertools2.html#goulib.itertools2.product" title="goulib.itertools2.product"><code class="xref py py-func docutils literal notranslate"><span class="pre">goulib.itertools2.product()</span></code></a>, applies reduction <em>op</em> (default: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#sum" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sum()</span></code></a>),
+and sorts the stream with a buffer of size <em>buffer</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> – Second <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p></li>
+<li><p><strong>op</strong> – Function applied to each pair (default: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#sum" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sum()</span></code></a>).</p></li>
+<li><p><strong>buffer</strong> – Size of sorting buffer (default: 100).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transformed and sorted <a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
