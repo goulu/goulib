@@ -5,20 +5,118 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.tests &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.tests &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.units" href="goulib.units.html" />
-    <link rel="prev" title="goulib.table" href="goulib.table.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.table" href="goulib.table.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.tests</a><ul>
+<li><a class="reference internal" href="#goulib.tests.pprint_gen"><code class="docutils literal notranslate"><span class="pre">pprint_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.pprint"><code class="docutils literal notranslate"><span class="pre">pprint()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase"><code class="docutils literal notranslate"><span class="pre">TestCase</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertSequenceEqual"><code class="docutils literal notranslate"><span class="pre">TestCase.assertSequenceEqual()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.base_types"><code class="docutils literal notranslate"><span class="pre">TestCase.base_types</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertEqual"><code class="docutils literal notranslate"><span class="pre">TestCase.assertEqual()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertCountEqual"><code class="docutils literal notranslate"><span class="pre">TestCase.assertCountEqual()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.assertMatch"><code class="docutils literal notranslate"><span class="pre">TestCase.assertMatch()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.longMessage"><code class="docutils literal notranslate"><span class="pre">TestCase.longMessage</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.TestCase.maxDiff"><code class="docutils literal notranslate"><span class="pre">TestCase.maxDiff</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.tests.setlog"><code class="docutils literal notranslate"><span class="pre">setlog()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.tests.runmodule"><code class="docutils literal notranslate"><span class="pre">runmodule()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.table.html"
+                          title="previous chapter">goulib.table</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.units.html"
+                          title="next chapter">goulib.units</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.tests.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +132,41 @@
         <li class="right" >
           <a href="goulib.table.html" title="goulib.table"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -234,7 +363,7 @@ see <a class="reference external" href="https://docs.pytest.org/en/stable/how-to
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -250,14 +379,62 @@ see <a class="reference external" href="https://docs.pytest.org/en/stable/how-to
         <li class="right" >
           <a href="goulib.table.html" title="goulib.table"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.tests</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

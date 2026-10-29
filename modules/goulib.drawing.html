@@ -5,20 +5,604 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.drawing &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.drawing &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.expr" href="goulib.expr.html" />
-    <link rel="prev" title="goulib.decorators" href="goulib.decorators.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.decorators" href="goulib.decorators.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.drawing</a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Trans"><code class="docutils literal notranslate"><span class="pre">Trans()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox"><code class="docutils literal notranslate"><span class="pre">BBox</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__init__"><code class="docutils literal notranslate"><span class="pre">BBox.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.xmin"><code class="docutils literal notranslate"><span class="pre">BBox.xmin</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.ymin"><code class="docutils literal notranslate"><span class="pre">BBox.ymin</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.xmax"><code class="docutils literal notranslate"><span class="pre">BBox.xmax</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.ymax"><code class="docutils literal notranslate"><span class="pre">BBox.ymax</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.xmed"><code class="docutils literal notranslate"><span class="pre">BBox.xmed</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.ymed"><code class="docutils literal notranslate"><span class="pre">BBox.ymed</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.width"><code class="docutils literal notranslate"><span class="pre">BBox.width</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.height"><code class="docutils literal notranslate"><span class="pre">BBox.height</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.area"><code class="docutils literal notranslate"><span class="pre">BBox.area</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__contains__"><code class="docutils literal notranslate"><span class="pre">BBox.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__iadd__"><code class="docutils literal notranslate"><span class="pre">BBox.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__call__"><code class="docutils literal notranslate"><span class="pre">BBox.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.size"><code class="docutils literal notranslate"><span class="pre">BBox.size()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.center"><code class="docutils literal notranslate"><span class="pre">BBox.center()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.trans"><code class="docutils literal notranslate"><span class="pre">BBox.trans()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__add__"><code class="docutils literal notranslate"><span class="pre">BBox.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">BBox.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__delitem__"><code class="docutils literal notranslate"><span class="pre">BBox.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__eq__"><code class="docutils literal notranslate"><span class="pre">BBox.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__ge__"><code class="docutils literal notranslate"><span class="pre">BBox.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__getattribute__"><code class="docutils literal notranslate"><span class="pre">BBox.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__getitem__"><code class="docutils literal notranslate"><span class="pre">BBox.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__gt__"><code class="docutils literal notranslate"><span class="pre">BBox.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__hash__"><code class="docutils literal notranslate"><span class="pre">BBox.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__imul__"><code class="docutils literal notranslate"><span class="pre">BBox.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__iter__"><code class="docutils literal notranslate"><span class="pre">BBox.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__le__"><code class="docutils literal notranslate"><span class="pre">BBox.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__len__"><code class="docutils literal notranslate"><span class="pre">BBox.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__lt__"><code class="docutils literal notranslate"><span class="pre">BBox.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__mul__"><code class="docutils literal notranslate"><span class="pre">BBox.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__ne__"><code class="docutils literal notranslate"><span class="pre">BBox.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__new__"><code class="docutils literal notranslate"><span class="pre">BBox.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__nonzero__"><code class="docutils literal notranslate"><span class="pre">BBox.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__repr__"><code class="docutils literal notranslate"><span class="pre">BBox.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__reversed__"><code class="docutils literal notranslate"><span class="pre">BBox.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__rmul__"><code class="docutils literal notranslate"><span class="pre">BBox.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__setitem__"><code class="docutils literal notranslate"><span class="pre">BBox.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.__sizeof__"><code class="docutils literal notranslate"><span class="pre">BBox.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.append"><code class="docutils literal notranslate"><span class="pre">BBox.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.clear"><code class="docutils literal notranslate"><span class="pre">BBox.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.copy"><code class="docutils literal notranslate"><span class="pre">BBox.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.corner"><code class="docutils literal notranslate"><span class="pre">BBox.corner()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.count"><code class="docutils literal notranslate"><span class="pre">BBox.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.empty"><code class="docutils literal notranslate"><span class="pre">BBox.empty()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.end"><code class="docutils literal notranslate"><span class="pre">BBox.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.extend"><code class="docutils literal notranslate"><span class="pre">BBox.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.index"><code class="docutils literal notranslate"><span class="pre">BBox.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.insert"><code class="docutils literal notranslate"><span class="pre">BBox.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.max"><code class="docutils literal notranslate"><span class="pre">BBox.max</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.min"><code class="docutils literal notranslate"><span class="pre">BBox.min</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.pop"><code class="docutils literal notranslate"><span class="pre">BBox.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.remove"><code class="docutils literal notranslate"><span class="pre">BBox.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.reverse"><code class="docutils literal notranslate"><span class="pre">BBox.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.sort"><code class="docutils literal notranslate"><span class="pre">BBox.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.BBox.start"><code class="docutils literal notranslate"><span class="pre">BBox.start</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.Entity"><code class="docutils literal notranslate"><span class="pre">Entity</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Entity.color"><code class="docutils literal notranslate"><span class="pre">Entity.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.setattr"><code class="docutils literal notranslate"><span class="pre">Entity.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.start"><code class="docutils literal notranslate"><span class="pre">Entity.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.end"><code class="docutils literal notranslate"><span class="pre">Entity.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.__repr__"><code class="docutils literal notranslate"><span class="pre">Entity.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.center"><code class="docutils literal notranslate"><span class="pre">Entity.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.bbox"><code class="docutils literal notranslate"><span class="pre">Entity.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.isclosed"><code class="docutils literal notranslate"><span class="pre">Entity.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.isline"><code class="docutils literal notranslate"><span class="pre">Entity.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.isvertical"><code class="docutils literal notranslate"><span class="pre">Entity.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Entity.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.to_dxf"><code class="docutils literal notranslate"><span class="pre">Entity.to_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.from_svg"><code class="docutils literal notranslate"><span class="pre">Entity.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.from_pdf"><code class="docutils literal notranslate"><span class="pre">Entity.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.from_dxf"><code class="docutils literal notranslate"><span class="pre">Entity.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.patches"><code class="docutils literal notranslate"><span class="pre">Entity.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.figure"><code class="docutils literal notranslate"><span class="pre">Entity.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.draw"><code class="docutils literal notranslate"><span class="pre">Entity.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.render"><code class="docutils literal notranslate"><span class="pre">Entity.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.html"><code class="docutils literal notranslate"><span class="pre">Entity.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.plot"><code class="docutils literal notranslate"><span class="pre">Entity.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.png"><code class="docutils literal notranslate"><span class="pre">Entity.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.save"><code class="docutils literal notranslate"><span class="pre">Entity.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Entity.svg"><code class="docutils literal notranslate"><span class="pre">Entity.svg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.Spline"><code class="docutils literal notranslate"><span class="pre">Spline</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Spline.__init__"><code class="docutils literal notranslate"><span class="pre">Spline.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.start"><code class="docutils literal notranslate"><span class="pre">Spline.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.end"><code class="docutils literal notranslate"><span class="pre">Spline.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.xy"><code class="docutils literal notranslate"><span class="pre">Spline.xy</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.length"><code class="docutils literal notranslate"><span class="pre">Spline.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.bbox"><code class="docutils literal notranslate"><span class="pre">Spline.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.swap"><code class="docutils literal notranslate"><span class="pre">Spline.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Spline.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.__annotations__"><code class="docutils literal notranslate"><span class="pre">Spline.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.__contains__"><code class="docutils literal notranslate"><span class="pre">Spline.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.__repr__"><code class="docutils literal notranslate"><span class="pre">Spline.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.center"><code class="docutils literal notranslate"><span class="pre">Spline.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.color"><code class="docutils literal notranslate"><span class="pre">Spline.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.connect"><code class="docutils literal notranslate"><span class="pre">Spline.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.distance"><code class="docutils literal notranslate"><span class="pre">Spline.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.draw"><code class="docutils literal notranslate"><span class="pre">Spline.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.figure"><code class="docutils literal notranslate"><span class="pre">Spline.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.from_dxf"><code class="docutils literal notranslate"><span class="pre">Spline.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.from_pdf"><code class="docutils literal notranslate"><span class="pre">Spline.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.from_svg"><code class="docutils literal notranslate"><span class="pre">Spline.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.html"><code class="docutils literal notranslate"><span class="pre">Spline.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.intersect"><code class="docutils literal notranslate"><span class="pre">Spline.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.isclosed"><code class="docutils literal notranslate"><span class="pre">Spline.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Spline.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.isline"><code class="docutils literal notranslate"><span class="pre">Spline.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.isvertical"><code class="docutils literal notranslate"><span class="pre">Spline.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.patches"><code class="docutils literal notranslate"><span class="pre">Spline.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.plot"><code class="docutils literal notranslate"><span class="pre">Spline.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.png"><code class="docutils literal notranslate"><span class="pre">Spline.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.point"><code class="docutils literal notranslate"><span class="pre">Spline.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.render"><code class="docutils literal notranslate"><span class="pre">Spline.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.save"><code class="docutils literal notranslate"><span class="pre">Spline.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.setattr"><code class="docutils literal notranslate"><span class="pre">Spline.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.svg"><code class="docutils literal notranslate"><span class="pre">Spline.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.tangent"><code class="docutils literal notranslate"><span class="pre">Spline.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Spline.to_dxf"><code class="docutils literal notranslate"><span class="pre">Spline.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.Group"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Group.color"><code class="docutils literal notranslate"><span class="pre">Group.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.layer"><code class="docutils literal notranslate"><span class="pre">Group.layer</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.append"><code class="docutils literal notranslate"><span class="pre">Group.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.extend"><code class="docutils literal notranslate"><span class="pre">Group.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__copy__"><code class="docutils literal notranslate"><span class="pre">Group.__copy__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.swap"><code class="docutils literal notranslate"><span class="pre">Group.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.chainify"><code class="docutils literal notranslate"><span class="pre">Group.chainify()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.from_dxf"><code class="docutils literal notranslate"><span class="pre">Group.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Group.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__add__"><code class="docutils literal notranslate"><span class="pre">Group.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__annotations__"><code class="docutils literal notranslate"><span class="pre">Group.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Group.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__contains__"><code class="docutils literal notranslate"><span class="pre">Group.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__delitem__"><code class="docutils literal notranslate"><span class="pre">Group.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__eq__"><code class="docutils literal notranslate"><span class="pre">Group.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__ge__"><code class="docutils literal notranslate"><span class="pre">Group.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Group.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__getitem__"><code class="docutils literal notranslate"><span class="pre">Group.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__gt__"><code class="docutils literal notranslate"><span class="pre">Group.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__hash__"><code class="docutils literal notranslate"><span class="pre">Group.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__iadd__"><code class="docutils literal notranslate"><span class="pre">Group.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__imul__"><code class="docutils literal notranslate"><span class="pre">Group.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__init__"><code class="docutils literal notranslate"><span class="pre">Group.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__iter__"><code class="docutils literal notranslate"><span class="pre">Group.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__le__"><code class="docutils literal notranslate"><span class="pre">Group.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__len__"><code class="docutils literal notranslate"><span class="pre">Group.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__lt__"><code class="docutils literal notranslate"><span class="pre">Group.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__mul__"><code class="docutils literal notranslate"><span class="pre">Group.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__ne__"><code class="docutils literal notranslate"><span class="pre">Group.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__new__"><code class="docutils literal notranslate"><span class="pre">Group.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__repr__"><code class="docutils literal notranslate"><span class="pre">Group.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__reversed__"><code class="docutils literal notranslate"><span class="pre">Group.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__rmul__"><code class="docutils literal notranslate"><span class="pre">Group.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__setitem__"><code class="docutils literal notranslate"><span class="pre">Group.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Group.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.bbox"><code class="docutils literal notranslate"><span class="pre">Group.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.center"><code class="docutils literal notranslate"><span class="pre">Group.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.clear"><code class="docutils literal notranslate"><span class="pre">Group.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.connect"><code class="docutils literal notranslate"><span class="pre">Group.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.copy"><code class="docutils literal notranslate"><span class="pre">Group.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.count"><code class="docutils literal notranslate"><span class="pre">Group.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.distance"><code class="docutils literal notranslate"><span class="pre">Group.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.draw"><code class="docutils literal notranslate"><span class="pre">Group.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.end"><code class="docutils literal notranslate"><span class="pre">Group.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.figure"><code class="docutils literal notranslate"><span class="pre">Group.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.from_pdf"><code class="docutils literal notranslate"><span class="pre">Group.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.from_svg"><code class="docutils literal notranslate"><span class="pre">Group.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.html"><code class="docutils literal notranslate"><span class="pre">Group.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.index"><code class="docutils literal notranslate"><span class="pre">Group.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.insert"><code class="docutils literal notranslate"><span class="pre">Group.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.intersect"><code class="docutils literal notranslate"><span class="pre">Group.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.isclosed"><code class="docutils literal notranslate"><span class="pre">Group.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Group.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.isline"><code class="docutils literal notranslate"><span class="pre">Group.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.isvertical"><code class="docutils literal notranslate"><span class="pre">Group.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.length"><code class="docutils literal notranslate"><span class="pre">Group.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.patches"><code class="docutils literal notranslate"><span class="pre">Group.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.plot"><code class="docutils literal notranslate"><span class="pre">Group.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.png"><code class="docutils literal notranslate"><span class="pre">Group.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.point"><code class="docutils literal notranslate"><span class="pre">Group.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.pop"><code class="docutils literal notranslate"><span class="pre">Group.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.remove"><code class="docutils literal notranslate"><span class="pre">Group.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.render"><code class="docutils literal notranslate"><span class="pre">Group.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.reverse"><code class="docutils literal notranslate"><span class="pre">Group.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.save"><code class="docutils literal notranslate"><span class="pre">Group.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.setattr"><code class="docutils literal notranslate"><span class="pre">Group.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.sort"><code class="docutils literal notranslate"><span class="pre">Group.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.start"><code class="docutils literal notranslate"><span class="pre">Group.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.svg"><code class="docutils literal notranslate"><span class="pre">Group.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.tangent"><code class="docutils literal notranslate"><span class="pre">Group.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Group.to_dxf"><code class="docutils literal notranslate"><span class="pre">Group.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.Instance"><code class="docutils literal notranslate"><span class="pre">Instance</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Instance.__init__"><code class="docutils literal notranslate"><span class="pre">Instance.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.from_dxf"><code class="docutils literal notranslate"><span class="pre">Instance.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.__repr__"><code class="docutils literal notranslate"><span class="pre">Instance.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.__iter__"><code class="docutils literal notranslate"><span class="pre">Instance.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Instance.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.__annotations__"><code class="docutils literal notranslate"><span class="pre">Instance.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.__contains__"><code class="docutils literal notranslate"><span class="pre">Instance.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.bbox"><code class="docutils literal notranslate"><span class="pre">Instance.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.center"><code class="docutils literal notranslate"><span class="pre">Instance.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.color"><code class="docutils literal notranslate"><span class="pre">Instance.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.connect"><code class="docutils literal notranslate"><span class="pre">Instance.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.distance"><code class="docutils literal notranslate"><span class="pre">Instance.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.draw"><code class="docutils literal notranslate"><span class="pre">Instance.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.end"><code class="docutils literal notranslate"><span class="pre">Instance.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.figure"><code class="docutils literal notranslate"><span class="pre">Instance.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.from_pdf"><code class="docutils literal notranslate"><span class="pre">Instance.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.from_svg"><code class="docutils literal notranslate"><span class="pre">Instance.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.html"><code class="docutils literal notranslate"><span class="pre">Instance.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.intersect"><code class="docutils literal notranslate"><span class="pre">Instance.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.isclosed"><code class="docutils literal notranslate"><span class="pre">Instance.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Instance.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.isline"><code class="docutils literal notranslate"><span class="pre">Instance.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.isvertical"><code class="docutils literal notranslate"><span class="pre">Instance.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.length"><code class="docutils literal notranslate"><span class="pre">Instance.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.patches"><code class="docutils literal notranslate"><span class="pre">Instance.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.plot"><code class="docutils literal notranslate"><span class="pre">Instance.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.png"><code class="docutils literal notranslate"><span class="pre">Instance.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.point"><code class="docutils literal notranslate"><span class="pre">Instance.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.render"><code class="docutils literal notranslate"><span class="pre">Instance.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.save"><code class="docutils literal notranslate"><span class="pre">Instance.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.setattr"><code class="docutils literal notranslate"><span class="pre">Instance.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.start"><code class="docutils literal notranslate"><span class="pre">Instance.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.svg"><code class="docutils literal notranslate"><span class="pre">Instance.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.tangent"><code class="docutils literal notranslate"><span class="pre">Instance.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Instance.to_dxf"><code class="docutils literal notranslate"><span class="pre">Instance.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.Chain"><code class="docutils literal notranslate"><span class="pre">Chain</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__init__"><code class="docutils literal notranslate"><span class="pre">Chain.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.start"><code class="docutils literal notranslate"><span class="pre">Chain.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.end"><code class="docutils literal notranslate"><span class="pre">Chain.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__repr__"><code class="docutils literal notranslate"><span class="pre">Chain.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.contiguous"><code class="docutils literal notranslate"><span class="pre">Chain.contiguous()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.append"><code class="docutils literal notranslate"><span class="pre">Chain.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.from_pdf"><code class="docutils literal notranslate"><span class="pre">Chain.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.from_svg"><code class="docutils literal notranslate"><span class="pre">Chain.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.from_dxf"><code class="docutils literal notranslate"><span class="pre">Chain.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.to_dxf"><code class="docutils literal notranslate"><span class="pre">Chain.to_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Chain.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__add__"><code class="docutils literal notranslate"><span class="pre">Chain.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__annotations__"><code class="docutils literal notranslate"><span class="pre">Chain.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Chain.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__contains__"><code class="docutils literal notranslate"><span class="pre">Chain.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__copy__"><code class="docutils literal notranslate"><span class="pre">Chain.__copy__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__delitem__"><code class="docutils literal notranslate"><span class="pre">Chain.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__eq__"><code class="docutils literal notranslate"><span class="pre">Chain.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__ge__"><code class="docutils literal notranslate"><span class="pre">Chain.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Chain.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__getitem__"><code class="docutils literal notranslate"><span class="pre">Chain.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__gt__"><code class="docutils literal notranslate"><span class="pre">Chain.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__hash__"><code class="docutils literal notranslate"><span class="pre">Chain.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__iadd__"><code class="docutils literal notranslate"><span class="pre">Chain.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__imul__"><code class="docutils literal notranslate"><span class="pre">Chain.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__iter__"><code class="docutils literal notranslate"><span class="pre">Chain.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__le__"><code class="docutils literal notranslate"><span class="pre">Chain.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__len__"><code class="docutils literal notranslate"><span class="pre">Chain.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__lt__"><code class="docutils literal notranslate"><span class="pre">Chain.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__mul__"><code class="docutils literal notranslate"><span class="pre">Chain.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__ne__"><code class="docutils literal notranslate"><span class="pre">Chain.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__new__"><code class="docutils literal notranslate"><span class="pre">Chain.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__reversed__"><code class="docutils literal notranslate"><span class="pre">Chain.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__rmul__"><code class="docutils literal notranslate"><span class="pre">Chain.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__setitem__"><code class="docutils literal notranslate"><span class="pre">Chain.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Chain.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.bbox"><code class="docutils literal notranslate"><span class="pre">Chain.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.center"><code class="docutils literal notranslate"><span class="pre">Chain.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.chainify"><code class="docutils literal notranslate"><span class="pre">Chain.chainify()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.clear"><code class="docutils literal notranslate"><span class="pre">Chain.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.color"><code class="docutils literal notranslate"><span class="pre">Chain.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.connect"><code class="docutils literal notranslate"><span class="pre">Chain.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.copy"><code class="docutils literal notranslate"><span class="pre">Chain.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.count"><code class="docutils literal notranslate"><span class="pre">Chain.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.distance"><code class="docutils literal notranslate"><span class="pre">Chain.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.draw"><code class="docutils literal notranslate"><span class="pre">Chain.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.extend"><code class="docutils literal notranslate"><span class="pre">Chain.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.figure"><code class="docutils literal notranslate"><span class="pre">Chain.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.html"><code class="docutils literal notranslate"><span class="pre">Chain.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.index"><code class="docutils literal notranslate"><span class="pre">Chain.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.insert"><code class="docutils literal notranslate"><span class="pre">Chain.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.intersect"><code class="docutils literal notranslate"><span class="pre">Chain.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.isclosed"><code class="docutils literal notranslate"><span class="pre">Chain.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Chain.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.isline"><code class="docutils literal notranslate"><span class="pre">Chain.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.isvertical"><code class="docutils literal notranslate"><span class="pre">Chain.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.layer"><code class="docutils literal notranslate"><span class="pre">Chain.layer</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.length"><code class="docutils literal notranslate"><span class="pre">Chain.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.patches"><code class="docutils literal notranslate"><span class="pre">Chain.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.plot"><code class="docutils literal notranslate"><span class="pre">Chain.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.png"><code class="docutils literal notranslate"><span class="pre">Chain.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.point"><code class="docutils literal notranslate"><span class="pre">Chain.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.pop"><code class="docutils literal notranslate"><span class="pre">Chain.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.remove"><code class="docutils literal notranslate"><span class="pre">Chain.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.render"><code class="docutils literal notranslate"><span class="pre">Chain.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.reverse"><code class="docutils literal notranslate"><span class="pre">Chain.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.save"><code class="docutils literal notranslate"><span class="pre">Chain.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.setattr"><code class="docutils literal notranslate"><span class="pre">Chain.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.sort"><code class="docutils literal notranslate"><span class="pre">Chain.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.svg"><code class="docutils literal notranslate"><span class="pre">Chain.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.swap"><code class="docutils literal notranslate"><span class="pre">Chain.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Chain.tangent"><code class="docutils literal notranslate"><span class="pre">Chain.tangent()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.chains"><code class="docutils literal notranslate"><span class="pre">chains()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect"><code class="docutils literal notranslate"><span class="pre">Rect</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__init__"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.p1"><code class="docutils literal notranslate"><span class="pre">Rect.p1</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.p2"><code class="docutils literal notranslate"><span class="pre">Rect.p2</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__repr__"><code class="docutils literal notranslate"><span class="pre">Rect.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Rect.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__add__"><code class="docutils literal notranslate"><span class="pre">Rect.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__annotations__"><code class="docutils literal notranslate"><span class="pre">Rect.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Rect.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__contains__"><code class="docutils literal notranslate"><span class="pre">Rect.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__copy__"><code class="docutils literal notranslate"><span class="pre">Rect.__copy__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__delitem__"><code class="docutils literal notranslate"><span class="pre">Rect.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__eq__"><code class="docutils literal notranslate"><span class="pre">Rect.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__ge__"><code class="docutils literal notranslate"><span class="pre">Rect.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Rect.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__getitem__"><code class="docutils literal notranslate"><span class="pre">Rect.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__gt__"><code class="docutils literal notranslate"><span class="pre">Rect.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__hash__"><code class="docutils literal notranslate"><span class="pre">Rect.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__iadd__"><code class="docutils literal notranslate"><span class="pre">Rect.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__imul__"><code class="docutils literal notranslate"><span class="pre">Rect.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__iter__"><code class="docutils literal notranslate"><span class="pre">Rect.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__le__"><code class="docutils literal notranslate"><span class="pre">Rect.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__len__"><code class="docutils literal notranslate"><span class="pre">Rect.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__lt__"><code class="docutils literal notranslate"><span class="pre">Rect.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__mul__"><code class="docutils literal notranslate"><span class="pre">Rect.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__ne__"><code class="docutils literal notranslate"><span class="pre">Rect.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__new__"><code class="docutils literal notranslate"><span class="pre">Rect.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__reversed__"><code class="docutils literal notranslate"><span class="pre">Rect.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__rmul__"><code class="docutils literal notranslate"><span class="pre">Rect.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__setitem__"><code class="docutils literal notranslate"><span class="pre">Rect.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Rect.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.append"><code class="docutils literal notranslate"><span class="pre">Rect.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.bbox"><code class="docutils literal notranslate"><span class="pre">Rect.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.center"><code class="docutils literal notranslate"><span class="pre">Rect.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.chainify"><code class="docutils literal notranslate"><span class="pre">Rect.chainify()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.clear"><code class="docutils literal notranslate"><span class="pre">Rect.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.color"><code class="docutils literal notranslate"><span class="pre">Rect.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.connect"><code class="docutils literal notranslate"><span class="pre">Rect.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.contiguous"><code class="docutils literal notranslate"><span class="pre">Rect.contiguous()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.copy"><code class="docutils literal notranslate"><span class="pre">Rect.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.count"><code class="docutils literal notranslate"><span class="pre">Rect.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.distance"><code class="docutils literal notranslate"><span class="pre">Rect.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.draw"><code class="docutils literal notranslate"><span class="pre">Rect.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.end"><code class="docutils literal notranslate"><span class="pre">Rect.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.extend"><code class="docutils literal notranslate"><span class="pre">Rect.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.figure"><code class="docutils literal notranslate"><span class="pre">Rect.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.from_dxf"><code class="docutils literal notranslate"><span class="pre">Rect.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.from_pdf"><code class="docutils literal notranslate"><span class="pre">Rect.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.from_svg"><code class="docutils literal notranslate"><span class="pre">Rect.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.html"><code class="docutils literal notranslate"><span class="pre">Rect.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.index"><code class="docutils literal notranslate"><span class="pre">Rect.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.insert"><code class="docutils literal notranslate"><span class="pre">Rect.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.intersect"><code class="docutils literal notranslate"><span class="pre">Rect.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.isclosed"><code class="docutils literal notranslate"><span class="pre">Rect.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Rect.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.isline"><code class="docutils literal notranslate"><span class="pre">Rect.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.isvertical"><code class="docutils literal notranslate"><span class="pre">Rect.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.layer"><code class="docutils literal notranslate"><span class="pre">Rect.layer</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.length"><code class="docutils literal notranslate"><span class="pre">Rect.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.patches"><code class="docutils literal notranslate"><span class="pre">Rect.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.plot"><code class="docutils literal notranslate"><span class="pre">Rect.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.png"><code class="docutils literal notranslate"><span class="pre">Rect.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.point"><code class="docutils literal notranslate"><span class="pre">Rect.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.pop"><code class="docutils literal notranslate"><span class="pre">Rect.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.remove"><code class="docutils literal notranslate"><span class="pre">Rect.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.render"><code class="docutils literal notranslate"><span class="pre">Rect.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.reverse"><code class="docutils literal notranslate"><span class="pre">Rect.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.save"><code class="docutils literal notranslate"><span class="pre">Rect.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.setattr"><code class="docutils literal notranslate"><span class="pre">Rect.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.sort"><code class="docutils literal notranslate"><span class="pre">Rect.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.start"><code class="docutils literal notranslate"><span class="pre">Rect.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.svg"><code class="docutils literal notranslate"><span class="pre">Rect.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.swap"><code class="docutils literal notranslate"><span class="pre">Rect.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.tangent"><code class="docutils literal notranslate"><span class="pre">Rect.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Rect.to_dxf"><code class="docutils literal notranslate"><span class="pre">Rect.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.Text"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Text.__init__"><code class="docutils literal notranslate"><span class="pre">Text.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.bbox"><code class="docutils literal notranslate"><span class="pre">Text.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.length"><code class="docutils literal notranslate"><span class="pre">Text.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.intersect"><code class="docutils literal notranslate"><span class="pre">Text.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.to_dxf"><code class="docutils literal notranslate"><span class="pre">Text.to_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.patches"><code class="docutils literal notranslate"><span class="pre">Text.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.__annotations__"><code class="docutils literal notranslate"><span class="pre">Text.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.__repr__"><code class="docutils literal notranslate"><span class="pre">Text.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.center"><code class="docutils literal notranslate"><span class="pre">Text.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.color"><code class="docutils literal notranslate"><span class="pre">Text.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.draw"><code class="docutils literal notranslate"><span class="pre">Text.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.end"><code class="docutils literal notranslate"><span class="pre">Text.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.figure"><code class="docutils literal notranslate"><span class="pre">Text.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.from_dxf"><code class="docutils literal notranslate"><span class="pre">Text.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.from_pdf"><code class="docutils literal notranslate"><span class="pre">Text.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.from_svg"><code class="docutils literal notranslate"><span class="pre">Text.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.html"><code class="docutils literal notranslate"><span class="pre">Text.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.isclosed"><code class="docutils literal notranslate"><span class="pre">Text.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Text.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.isline"><code class="docutils literal notranslate"><span class="pre">Text.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.isvertical"><code class="docutils literal notranslate"><span class="pre">Text.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.plot"><code class="docutils literal notranslate"><span class="pre">Text.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.png"><code class="docutils literal notranslate"><span class="pre">Text.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.render"><code class="docutils literal notranslate"><span class="pre">Text.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.save"><code class="docutils literal notranslate"><span class="pre">Text.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.setattr"><code class="docutils literal notranslate"><span class="pre">Text.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.start"><code class="docutils literal notranslate"><span class="pre">Text.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Text.svg"><code class="docutils literal notranslate"><span class="pre">Text.svg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing"><code class="docutils literal notranslate"><span class="pre">Drawing</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__init__"><code class="docutils literal notranslate"><span class="pre">Drawing.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.load"><code class="docutils literal notranslate"><span class="pre">Drawing.load()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.read_pdf"><code class="docutils literal notranslate"><span class="pre">Drawing.read_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.read_svg"><code class="docutils literal notranslate"><span class="pre">Drawing.read_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Drawing.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__add__"><code class="docutils literal notranslate"><span class="pre">Drawing.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__annotations__"><code class="docutils literal notranslate"><span class="pre">Drawing.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Drawing.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__contains__"><code class="docutils literal notranslate"><span class="pre">Drawing.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__copy__"><code class="docutils literal notranslate"><span class="pre">Drawing.__copy__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__delitem__"><code class="docutils literal notranslate"><span class="pre">Drawing.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__eq__"><code class="docutils literal notranslate"><span class="pre">Drawing.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__ge__"><code class="docutils literal notranslate"><span class="pre">Drawing.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Drawing.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__getitem__"><code class="docutils literal notranslate"><span class="pre">Drawing.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__gt__"><code class="docutils literal notranslate"><span class="pre">Drawing.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__hash__"><code class="docutils literal notranslate"><span class="pre">Drawing.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__iadd__"><code class="docutils literal notranslate"><span class="pre">Drawing.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__imul__"><code class="docutils literal notranslate"><span class="pre">Drawing.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__iter__"><code class="docutils literal notranslate"><span class="pre">Drawing.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__le__"><code class="docutils literal notranslate"><span class="pre">Drawing.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__len__"><code class="docutils literal notranslate"><span class="pre">Drawing.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__lt__"><code class="docutils literal notranslate"><span class="pre">Drawing.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__mul__"><code class="docutils literal notranslate"><span class="pre">Drawing.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__ne__"><code class="docutils literal notranslate"><span class="pre">Drawing.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__new__"><code class="docutils literal notranslate"><span class="pre">Drawing.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__repr__"><code class="docutils literal notranslate"><span class="pre">Drawing.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__reversed__"><code class="docutils literal notranslate"><span class="pre">Drawing.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__rmul__"><code class="docutils literal notranslate"><span class="pre">Drawing.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__setitem__"><code class="docutils literal notranslate"><span class="pre">Drawing.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Drawing.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.append"><code class="docutils literal notranslate"><span class="pre">Drawing.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.bbox"><code class="docutils literal notranslate"><span class="pre">Drawing.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.center"><code class="docutils literal notranslate"><span class="pre">Drawing.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.chainify"><code class="docutils literal notranslate"><span class="pre">Drawing.chainify()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.clear"><code class="docutils literal notranslate"><span class="pre">Drawing.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.color"><code class="docutils literal notranslate"><span class="pre">Drawing.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.connect"><code class="docutils literal notranslate"><span class="pre">Drawing.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.copy"><code class="docutils literal notranslate"><span class="pre">Drawing.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.count"><code class="docutils literal notranslate"><span class="pre">Drawing.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.distance"><code class="docutils literal notranslate"><span class="pre">Drawing.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.draw"><code class="docutils literal notranslate"><span class="pre">Drawing.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.end"><code class="docutils literal notranslate"><span class="pre">Drawing.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.extend"><code class="docutils literal notranslate"><span class="pre">Drawing.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.figure"><code class="docutils literal notranslate"><span class="pre">Drawing.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.from_dxf"><code class="docutils literal notranslate"><span class="pre">Drawing.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.from_pdf"><code class="docutils literal notranslate"><span class="pre">Drawing.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.from_svg"><code class="docutils literal notranslate"><span class="pre">Drawing.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.html"><code class="docutils literal notranslate"><span class="pre">Drawing.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.index"><code class="docutils literal notranslate"><span class="pre">Drawing.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.insert"><code class="docutils literal notranslate"><span class="pre">Drawing.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.intersect"><code class="docutils literal notranslate"><span class="pre">Drawing.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.isclosed"><code class="docutils literal notranslate"><span class="pre">Drawing.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Drawing.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.isline"><code class="docutils literal notranslate"><span class="pre">Drawing.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.isvertical"><code class="docutils literal notranslate"><span class="pre">Drawing.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.layer"><code class="docutils literal notranslate"><span class="pre">Drawing.layer</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.length"><code class="docutils literal notranslate"><span class="pre">Drawing.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.patches"><code class="docutils literal notranslate"><span class="pre">Drawing.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.plot"><code class="docutils literal notranslate"><span class="pre">Drawing.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.png"><code class="docutils literal notranslate"><span class="pre">Drawing.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.point"><code class="docutils literal notranslate"><span class="pre">Drawing.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.pop"><code class="docutils literal notranslate"><span class="pre">Drawing.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.read_dxf"><code class="docutils literal notranslate"><span class="pre">Drawing.read_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.remove"><code class="docutils literal notranslate"><span class="pre">Drawing.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.render"><code class="docutils literal notranslate"><span class="pre">Drawing.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.reverse"><code class="docutils literal notranslate"><span class="pre">Drawing.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.setattr"><code class="docutils literal notranslate"><span class="pre">Drawing.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.sort"><code class="docutils literal notranslate"><span class="pre">Drawing.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.start"><code class="docutils literal notranslate"><span class="pre">Drawing.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.svg"><code class="docutils literal notranslate"><span class="pre">Drawing.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.swap"><code class="docutils literal notranslate"><span class="pre">Drawing.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.tangent"><code class="docutils literal notranslate"><span class="pre">Drawing.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.to_dxf"><code class="docutils literal notranslate"><span class="pre">Drawing.to_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.drawing.Drawing.save"><code class="docutils literal notranslate"><span class="pre">Drawing.save()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.decorators.html"
+                          title="previous chapter">goulib.decorators</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.expr.html"
+                          title="next chapter">goulib.expr</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.drawing.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +618,41 @@
         <li class="right" >
           <a href="goulib.decorators.html" title="goulib.decorators"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.drawing</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.drawing</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -4183,7 +4798,7 @@ ascending or descending, according to their function values.</p>
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -4199,14 +4814,62 @@ ascending or descending, according to their function values.</p>
         <li class="right" >
           <a href="goulib.decorators.html" title="goulib.decorators"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.drawing</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.drawing</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

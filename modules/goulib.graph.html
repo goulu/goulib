@@ -5,20 +5,246 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.graph &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.graph &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.image" href="goulib.image.html" />
-    <link rel="prev" title="goulib.geom3d" href="goulib.geom3d.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.geom3d" href="goulib.geom3d.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.graph</a><ul>
+<li><a class="reference internal" href="#goulib.graph.index"><code class="docutils literal notranslate"><span class="pre">index</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.index.Index"><code class="docutils literal notranslate"><span class="pre">index.Index</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__contains__"><code class="docutils literal notranslate"><span class="pre">index.Index.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__delitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__eq__"><code class="docutils literal notranslate"><span class="pre">index.Index.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ge__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__getattribute__"><code class="docutils literal notranslate"><span class="pre">index.Index.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__getitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__gt__"><code class="docutils literal notranslate"><span class="pre">index.Index.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__hash__"><code class="docutils literal notranslate"><span class="pre">index.Index.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__init__"><code class="docutils literal notranslate"><span class="pre">index.Index.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ior__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ior__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__iter__"><code class="docutils literal notranslate"><span class="pre">index.Index.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__le__"><code class="docutils literal notranslate"><span class="pre">index.Index.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__len__"><code class="docutils literal notranslate"><span class="pre">index.Index.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__lt__"><code class="docutils literal notranslate"><span class="pre">index.Index.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ne__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__new__"><code class="docutils literal notranslate"><span class="pre">index.Index.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__or__"><code class="docutils literal notranslate"><span class="pre">index.Index.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__repr__"><code class="docutils literal notranslate"><span class="pre">index.Index.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__reversed__"><code class="docutils literal notranslate"><span class="pre">index.Index.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__ror__"><code class="docutils literal notranslate"><span class="pre">index.Index.__ror__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__setitem__"><code class="docutils literal notranslate"><span class="pre">index.Index.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.__sizeof__"><code class="docutils literal notranslate"><span class="pre">index.Index.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.clear"><code class="docutils literal notranslate"><span class="pre">index.Index.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.copy"><code class="docutils literal notranslate"><span class="pre">index.Index.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.count"><code class="docutils literal notranslate"><span class="pre">index.Index.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.delete"><code class="docutils literal notranslate"><span class="pre">index.Index.delete()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.fromkeys"><code class="docutils literal notranslate"><span class="pre">index.Index.fromkeys()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.get"><code class="docutils literal notranslate"><span class="pre">index.Index.get()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.insert"><code class="docutils literal notranslate"><span class="pre">index.Index.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.items"><code class="docutils literal notranslate"><span class="pre">index.Index.items()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.keys"><code class="docutils literal notranslate"><span class="pre">index.Index.keys()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.nearest"><code class="docutils literal notranslate"><span class="pre">index.Index.nearest()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.pop"><code class="docutils literal notranslate"><span class="pre">index.Index.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.popitem"><code class="docutils literal notranslate"><span class="pre">index.Index.popitem()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.setdefault"><code class="docutils literal notranslate"><span class="pre">index.Index.setdefault()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.update"><code class="docutils literal notranslate"><span class="pre">index.Index.update()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.index.Index.values"><code class="docutils literal notranslate"><span class="pre">index.Index.values()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.index.Property"><code class="docutils literal notranslate"><span class="pre">index.Property</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.index.Property.set_dimension"><code class="docutils literal notranslate"><span class="pre">index.Property.set_dimension()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.to_networkx_graph"><code class="docutils literal notranslate"><span class="pre">to_networkx_graph()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph"><code class="docutils literal notranslate"><span class="pre">GeoGraph</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__init__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__annotations__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__bool__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__bool__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__eq__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__hash__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__networkx_backend__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__networkx_backend__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__nonzero__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.__str__"><code class="docutils literal notranslate"><span class="pre">GeoGraph.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_edge2"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_edge2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_node"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.add_nodes_from"><code class="docutils literal notranslate"><span class="pre">GeoGraph.add_nodes_from()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.box"><code class="docutils literal notranslate"><span class="pre">GeoGraph.box()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.box_size"><code class="docutils literal notranslate"><span class="pre">GeoGraph.box_size()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.clear"><code class="docutils literal notranslate"><span class="pre">GeoGraph.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.closest_edges"><code class="docutils literal notranslate"><span class="pre">GeoGraph.closest_edges()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.closest_nodes"><code class="docutils literal notranslate"><span class="pre">GeoGraph.closest_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.contiguity"><code class="docutils literal notranslate"><span class="pre">GeoGraph.contiguity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.copy"><code class="docutils literal notranslate"><span class="pre">GeoGraph.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.dist"><code class="docutils literal notranslate"><span class="pre">GeoGraph.dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.draw"><code class="docutils literal notranslate"><span class="pre">GeoGraph.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.html"><code class="docutils literal notranslate"><span class="pre">GeoGraph.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.is_multigraph"><code class="docutils literal notranslate"><span class="pre">GeoGraph.is_multigraph()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.length"><code class="docutils literal notranslate"><span class="pre">GeoGraph.length()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.multi"><code class="docutils literal notranslate"><span class="pre">GeoGraph.multi</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.name"><code class="docutils literal notranslate"><span class="pre">GeoGraph.name</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.number_of_nodes"><code class="docutils literal notranslate"><span class="pre">GeoGraph.number_of_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.plot"><code class="docutils literal notranslate"><span class="pre">GeoGraph.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.png"><code class="docutils literal notranslate"><span class="pre">GeoGraph.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.pos"><code class="docutils literal notranslate"><span class="pre">GeoGraph.pos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.remove_edge"><code class="docutils literal notranslate"><span class="pre">GeoGraph.remove_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.remove_node"><code class="docutils literal notranslate"><span class="pre">GeoGraph.remove_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.render"><code class="docutils literal notranslate"><span class="pre">GeoGraph.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.save"><code class="docutils literal notranslate"><span class="pre">GeoGraph.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.shortest_path"><code class="docutils literal notranslate"><span class="pre">GeoGraph.shortest_path()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.stats"><code class="docutils literal notranslate"><span class="pre">GeoGraph.stats()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.svg"><code class="docutils literal notranslate"><span class="pre">GeoGraph.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.GeoGraph.tol"><code class="docutils literal notranslate"><span class="pre">GeoGraph.tol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph"><code class="docutils literal notranslate"><span class="pre">DiGraph</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__init__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__annotations__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__bool__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__bool__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__eq__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__hash__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__networkx_backend__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__networkx_backend__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__nonzero__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.__str__"><code class="docutils literal notranslate"><span class="pre">DiGraph.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_edge"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_edge2"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_edge2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_node"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.add_nodes_from"><code class="docutils literal notranslate"><span class="pre">DiGraph.add_nodes_from()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.box"><code class="docutils literal notranslate"><span class="pre">DiGraph.box()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.box_size"><code class="docutils literal notranslate"><span class="pre">DiGraph.box_size()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.clear"><code class="docutils literal notranslate"><span class="pre">DiGraph.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.closest_edges"><code class="docutils literal notranslate"><span class="pre">DiGraph.closest_edges()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.closest_nodes"><code class="docutils literal notranslate"><span class="pre">DiGraph.closest_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.contiguity"><code class="docutils literal notranslate"><span class="pre">DiGraph.contiguity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.copy"><code class="docutils literal notranslate"><span class="pre">DiGraph.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.dist"><code class="docutils literal notranslate"><span class="pre">DiGraph.dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.draw"><code class="docutils literal notranslate"><span class="pre">DiGraph.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.html"><code class="docutils literal notranslate"><span class="pre">DiGraph.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.is_multigraph"><code class="docutils literal notranslate"><span class="pre">DiGraph.is_multigraph()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.length"><code class="docutils literal notranslate"><span class="pre">DiGraph.length()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.multi"><code class="docutils literal notranslate"><span class="pre">DiGraph.multi</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.name"><code class="docutils literal notranslate"><span class="pre">DiGraph.name</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.number_of_nodes"><code class="docutils literal notranslate"><span class="pre">DiGraph.number_of_nodes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.plot"><code class="docutils literal notranslate"><span class="pre">DiGraph.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.png"><code class="docutils literal notranslate"><span class="pre">DiGraph.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.pos"><code class="docutils literal notranslate"><span class="pre">DiGraph.pos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.remove_edge"><code class="docutils literal notranslate"><span class="pre">DiGraph.remove_edge()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.remove_node"><code class="docutils literal notranslate"><span class="pre">DiGraph.remove_node()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.render"><code class="docutils literal notranslate"><span class="pre">DiGraph.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.save"><code class="docutils literal notranslate"><span class="pre">DiGraph.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.shortest_path"><code class="docutils literal notranslate"><span class="pre">DiGraph.shortest_path()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.stats"><code class="docutils literal notranslate"><span class="pre">DiGraph.stats()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.svg"><code class="docutils literal notranslate"><span class="pre">DiGraph.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.DiGraph.tol"><code class="docutils literal notranslate"><span class="pre">DiGraph.tol</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.graph.figure"><code class="docutils literal notranslate"><span class="pre">figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.draw_networkx"><code class="docutils literal notranslate"><span class="pre">draw_networkx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.to_drawing"><code class="docutils literal notranslate"><span class="pre">to_drawing()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.write_dxf"><code class="docutils literal notranslate"><span class="pre">write_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.write_dot"><code class="docutils literal notranslate"><span class="pre">write_dot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.to_json"><code class="docutils literal notranslate"><span class="pre">to_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.write_json"><code class="docutils literal notranslate"><span class="pre">write_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.read_json"><code class="docutils literal notranslate"><span class="pre">read_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.delauney_triangulation"><code class="docutils literal notranslate"><span class="pre">delauney_triangulation()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.euclidean_minimum_spanning_tree"><code class="docutils literal notranslate"><span class="pre">euclidean_minimum_spanning_tree()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.graph.points_on_sphere"><code class="docutils literal notranslate"><span class="pre">points_on_sphere()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.geom3d.html"
+                          title="previous chapter">goulib.geom3d</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.image.html"
+                          title="next chapter">goulib.image</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.graph.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +260,41 @@
         <li class="right" >
           <a href="goulib.geom3d.html" title="goulib.geom3d"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.graph</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.graph</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -1545,7 +1802,7 @@ which passes it to Qhull ( <a class="reference external" href="http://www.qhull.
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -1561,14 +1818,62 @@ which passes it to Qhull ( <a class="reference external" href="http://www.qhull.
         <li class="right" >
           <a href="goulib.geom3d.html" title="goulib.geom3d"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.graph</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.graph</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

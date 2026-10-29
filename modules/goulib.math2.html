@@ -5,20 +5,326 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.math2 &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.math2 &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.motion" href="goulib.motion.html" />
-    <link rel="prev" title="goulib.markup" href="goulib.markup.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.markup" href="goulib.markup.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.math2</a><ul>
+<li><a class="reference internal" href="#goulib.math2.longint"><code class="docutils literal notranslate"><span class="pre">longint()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.cmp"><code class="docutils literal notranslate"><span class="pre">cmp()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.allclose"><code class="docutils literal notranslate"><span class="pre">allclose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_number"><code class="docutils literal notranslate"><span class="pre">is_number()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_complex"><code class="docutils literal notranslate"><span class="pre">is_complex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_real"><code class="docutils literal notranslate"><span class="pre">is_real()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.rint"><code class="docutils literal notranslate"><span class="pre">rint()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_integer"><code class="docutils literal notranslate"><span class="pre">is_integer()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.int_or_float"><code class="docutils literal notranslate"><span class="pre">int_or_float()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.format"><code class="docutils literal notranslate"><span class="pre">format()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.gcd"><code class="docutils literal notranslate"><span class="pre">gcd()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lcm"><code class="docutils literal notranslate"><span class="pre">lcm()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.xgcd"><code class="docutils literal notranslate"><span class="pre">xgcd()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.coprime"><code class="docutils literal notranslate"><span class="pre">coprime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.coprimes_gen"><code class="docutils literal notranslate"><span class="pre">coprimes_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.carmichael"><code class="docutils literal notranslate"><span class="pre">carmichael()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_primitive_root"><code class="docutils literal notranslate"><span class="pre">is_primitive_root()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.primitive_root_gen"><code class="docutils literal notranslate"><span class="pre">primitive_root_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.primitive_roots"><code class="docutils literal notranslate"><span class="pre">primitive_roots()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.quad"><code class="docutils literal notranslate"><span class="pre">quad()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.ceildiv"><code class="docutils literal notranslate"><span class="pre">ceildiv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.ipow"><code class="docutils literal notranslate"><span class="pre">ipow()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pow"><code class="docutils literal notranslate"><span class="pre">pow()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sqrt"><code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.isqrt"><code class="docutils literal notranslate"><span class="pre">isqrt()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.icbrt"><code class="docutils literal notranslate"><span class="pre">icbrt()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_square"><code class="docutils literal notranslate"><span class="pre">is_square()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.introot"><code class="docutils literal notranslate"><span class="pre">introot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_power"><code class="docutils literal notranslate"><span class="pre">is_power()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.multiply"><code class="docutils literal notranslate"><span class="pre">multiply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.accsum"><code class="docutils literal notranslate"><span class="pre">accsum()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.cumsum"><code class="docutils literal notranslate"><span class="pre">cumsum()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mul"><code class="docutils literal notranslate"><span class="pre">mul()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.dot_vv"><code class="docutils literal notranslate"><span class="pre">dot_vv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.dot_mv"><code class="docutils literal notranslate"><span class="pre">dot_mv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.dot_mm"><code class="docutils literal notranslate"><span class="pre">dot_mm()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.dot"><code class="docutils literal notranslate"><span class="pre">dot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.zeros"><code class="docutils literal notranslate"><span class="pre">zeros()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.diag"><code class="docutils literal notranslate"><span class="pre">diag()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.identity"><code class="docutils literal notranslate"><span class="pre">identity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.eye"><code class="docutils literal notranslate"><span class="pre">eye()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.transpose"><code class="docutils literal notranslate"><span class="pre">transpose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.maximum"><code class="docutils literal notranslate"><span class="pre">maximum()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.minimum"><code class="docutils literal notranslate"><span class="pre">minimum()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.vecadd"><code class="docutils literal notranslate"><span class="pre">vecadd()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.vecsub"><code class="docutils literal notranslate"><span class="pre">vecsub()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.vecneg"><code class="docutils literal notranslate"><span class="pre">vecneg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.vecmul"><code class="docutils literal notranslate"><span class="pre">vecmul()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.vecdiv"><code class="docutils literal notranslate"><span class="pre">vecdiv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.veccompare"><code class="docutils literal notranslate"><span class="pre">veccompare()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sat"><code class="docutils literal notranslate"><span class="pre">sat()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.norm_2"><code class="docutils literal notranslate"><span class="pre">norm_2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.norm_1"><code class="docutils literal notranslate"><span class="pre">norm_1()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.norm_inf"><code class="docutils literal notranslate"><span class="pre">norm_inf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.norm"><code class="docutils literal notranslate"><span class="pre">norm()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.dist"><code class="docutils literal notranslate"><span class="pre">dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.vecunit"><code class="docutils literal notranslate"><span class="pre">vecunit()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.hamming"><code class="docutils literal notranslate"><span class="pre">hamming()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sets_dist"><code class="docutils literal notranslate"><span class="pre">sets_dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sets_levenshtein"><code class="docutils literal notranslate"><span class="pre">sets_levenshtein()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.levenshtein"><code class="docutils literal notranslate"><span class="pre">levenshtein()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.recurrence"><code class="docutils literal notranslate"><span class="pre">recurrence()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lucasU"><code class="docutils literal notranslate"><span class="pre">lucasU()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lucasV"><code class="docutils literal notranslate"><span class="pre">lucasV()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.kfibonacci_gen"><code class="docutils literal notranslate"><span class="pre">kfibonacci_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.fibonacci_gen"><code class="docutils literal notranslate"><span class="pre">fibonacci_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.kfibonacci"><code class="docutils literal notranslate"><span class="pre">kfibonacci()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.fibonacci"><code class="docutils literal notranslate"><span class="pre">fibonacci()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_fibonacci"><code class="docutils literal notranslate"><span class="pre">is_fibonacci()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pisano_cycle"><code class="docutils literal notranslate"><span class="pre">pisano_cycle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pisano_period"><code class="docutils literal notranslate"><span class="pre">pisano_period()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.collatz"><code class="docutils literal notranslate"><span class="pre">collatz()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.collatz_gen"><code class="docutils literal notranslate"><span class="pre">collatz_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.collatz_period"><code class="docutils literal notranslate"><span class="pre">collatz_period()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pascal_row_gen"><code class="docutils literal notranslate"><span class="pre">pascal_row_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pascal_gen"><code class="docutils literal notranslate"><span class="pre">pascal_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.catalan"><code class="docutils literal notranslate"><span class="pre">catalan()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.catalan_gen"><code class="docutils literal notranslate"><span class="pre">catalan_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_pythagorean_triple"><code class="docutils literal notranslate"><span class="pre">is_pythagorean_triple()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.primitive_triples"><code class="docutils literal notranslate"><span class="pre">primitive_triples()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.triples"><code class="docutils literal notranslate"><span class="pre">triples()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.divisors"><code class="docutils literal notranslate"><span class="pre">divisors()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.proper_divisors"><code class="docutils literal notranslate"><span class="pre">proper_divisors()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.erathostene"><code class="docutils literal notranslate"><span class="pre">erathostene()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.Sieve"><code class="docutils literal notranslate"><span class="pre">Sieve</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.math2.Sieve.__init__"><code class="docutils literal notranslate"><span class="pre">Sieve.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.Sieve.__len__"><code class="docutils literal notranslate"><span class="pre">Sieve.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.Sieve.__getitem__"><code class="docutils literal notranslate"><span class="pre">Sieve.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.Sieve.__call__"><code class="docutils literal notranslate"><span class="pre">Sieve.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.Sieve.resize"><code class="docutils literal notranslate"><span class="pre">Sieve.resize()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.math2.sieve"><code class="docutils literal notranslate"><span class="pre">sieve()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.primes"><code class="docutils literal notranslate"><span class="pre">primes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_prime_euler"><code class="docutils literal notranslate"><span class="pre">is_prime_euler()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_prime"><code class="docutils literal notranslate"><span class="pre">is_prime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.nextprime"><code class="docutils literal notranslate"><span class="pre">nextprime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.prevprime"><code class="docutils literal notranslate"><span class="pre">prevprime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.primes_gen"><code class="docutils literal notranslate"><span class="pre">primes_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.random_prime"><code class="docutils literal notranslate"><span class="pre">random_prime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.euclid_gen"><code class="docutils literal notranslate"><span class="pre">euclid_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.prime_factors"><code class="docutils literal notranslate"><span class="pre">prime_factors()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lpf"><code class="docutils literal notranslate"><span class="pre">lpf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.gpf"><code class="docutils literal notranslate"><span class="pre">gpf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.prime_divisors"><code class="docutils literal notranslate"><span class="pre">prime_divisors()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_multiple"><code class="docutils literal notranslate"><span class="pre">is_multiple()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.factorize"><code class="docutils literal notranslate"><span class="pre">factorize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.factors"><code class="docutils literal notranslate"><span class="pre">factors()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sigma"><code class="docutils literal notranslate"><span class="pre">sigma()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.number_of_divisors"><code class="docutils literal notranslate"><span class="pre">number_of_divisors()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.omega"><code class="docutils literal notranslate"><span class="pre">omega()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.bigomega"><code class="docutils literal notranslate"><span class="pre">bigomega()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.moebius"><code class="docutils literal notranslate"><span class="pre">moebius()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.euler_phi"><code class="docutils literal notranslate"><span class="pre">euler_phi()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.totient"><code class="docutils literal notranslate"><span class="pre">totient()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.kempner"><code class="docutils literal notranslate"><span class="pre">kempner()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.prime_ktuple"><code class="docutils literal notranslate"><span class="pre">prime_ktuple()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.twin_primes"><code class="docutils literal notranslate"><span class="pre">twin_primes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.cousin_primes"><code class="docutils literal notranslate"><span class="pre">cousin_primes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sexy_primes"><code class="docutils literal notranslate"><span class="pre">sexy_primes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sexy_prime_triplets"><code class="docutils literal notranslate"><span class="pre">sexy_prime_triplets()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sexy_prime_quadruplets"><code class="docutils literal notranslate"><span class="pre">sexy_prime_quadruplets()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lucas_lehmer"><code class="docutils literal notranslate"><span class="pre">lucas_lehmer()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.digits_gen"><code class="docutils literal notranslate"><span class="pre">digits_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.digits"><code class="docutils literal notranslate"><span class="pre">digits()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.digsum"><code class="docutils literal notranslate"><span class="pre">digsum()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.integer_exponent"><code class="docutils literal notranslate"><span class="pre">integer_exponent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.trailing_zeros"><code class="docutils literal notranslate"><span class="pre">trailing_zeros()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.power_tower"><code class="docutils literal notranslate"><span class="pre">power_tower()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.carries"><code class="docutils literal notranslate"><span class="pre">carries()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.powertrain"><code class="docutils literal notranslate"><span class="pre">powertrain()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.str_base"><code class="docutils literal notranslate"><span class="pre">str_base()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.int_base"><code class="docutils literal notranslate"><span class="pre">int_base()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.num_from_digits"><code class="docutils literal notranslate"><span class="pre">num_from_digits()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.reverse"><code class="docutils literal notranslate"><span class="pre">reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_palindromic"><code class="docutils literal notranslate"><span class="pre">is_palindromic()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_anagram"><code class="docutils literal notranslate"><span class="pre">is_anagram()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_pandigital"><code class="docutils literal notranslate"><span class="pre">is_pandigital()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.bouncy"><code class="docutils literal notranslate"><span class="pre">bouncy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.repunit_gen"><code class="docutils literal notranslate"><span class="pre">repunit_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.repunit"><code class="docutils literal notranslate"><span class="pre">repunit()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.rational_form"><code class="docutils literal notranslate"><span class="pre">rational_form()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.rational_str"><code class="docutils literal notranslate"><span class="pre">rational_str()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.rational_cycle"><code class="docutils literal notranslate"><span class="pre">rational_cycle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.tetrahedral"><code class="docutils literal notranslate"><span class="pre">tetrahedral()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sum_of_squares"><code class="docutils literal notranslate"><span class="pre">sum_of_squares()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pyramidal"><code class="docutils literal notranslate"><span class="pre">pyramidal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sum_of_cubes"><code class="docutils literal notranslate"><span class="pre">sum_of_cubes()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.bernouilli_gen"><code class="docutils literal notranslate"><span class="pre">bernouilli_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.bernouilli"><code class="docutils literal notranslate"><span class="pre">bernouilli()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.faulhaber"><code class="docutils literal notranslate"><span class="pre">faulhaber()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_happy"><code class="docutils literal notranslate"><span class="pre">is_happy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lychrel_seq"><code class="docutils literal notranslate"><span class="pre">lychrel_seq()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lychrel_count"><code class="docutils literal notranslate"><span class="pre">lychrel_count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_lychrel"><code class="docutils literal notranslate"><span class="pre">is_lychrel()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.polygonal"><code class="docutils literal notranslate"><span class="pre">polygonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.triangle"><code class="docutils literal notranslate"><span class="pre">triangle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.triangular"><code class="docutils literal notranslate"><span class="pre">triangular()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_triangle"><code class="docutils literal notranslate"><span class="pre">is_triangle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_triangular"><code class="docutils literal notranslate"><span class="pre">is_triangular()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.square"><code class="docutils literal notranslate"><span class="pre">square()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pentagonal"><code class="docutils literal notranslate"><span class="pre">pentagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_pentagonal"><code class="docutils literal notranslate"><span class="pre">is_pentagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.hexagonal"><code class="docutils literal notranslate"><span class="pre">hexagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_hexagonal"><code class="docutils literal notranslate"><span class="pre">is_hexagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.heptagonal"><code class="docutils literal notranslate"><span class="pre">heptagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_heptagonal"><code class="docutils literal notranslate"><span class="pre">is_heptagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.octagonal"><code class="docutils literal notranslate"><span class="pre">octagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_octagonal"><code class="docutils literal notranslate"><span class="pre">is_octagonal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.partition"><code class="docutils literal notranslate"><span class="pre">partition()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.partitionsQ"><code class="docutils literal notranslate"><span class="pre">partitionsQ()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.get_cardinal_name"><code class="docutils literal notranslate"><span class="pre">get_cardinal_name()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.abundance"><code class="docutils literal notranslate"><span class="pre">abundance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.is_perfect"><code class="docutils literal notranslate"><span class="pre">is_perfect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.number_of_digits"><code class="docutils literal notranslate"><span class="pre">number_of_digits()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.chakravala"><code class="docutils literal notranslate"><span class="pre">chakravala()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.factorialk"><code class="docutils literal notranslate"><span class="pre">factorialk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.factorial2"><code class="docutils literal notranslate"><span class="pre">factorial2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.factorial_gen"><code class="docutils literal notranslate"><span class="pre">factorial_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.log_factorial"><code class="docutils literal notranslate"><span class="pre">log_factorial()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lambertW"><code class="docutils literal notranslate"><span class="pre">lambertW()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.gamma_inverse"><code class="docutils literal notranslate"><span class="pre">gamma_inverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.binomial"><code class="docutils literal notranslate"><span class="pre">binomial()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.choose"><code class="docutils literal notranslate"><span class="pre">choose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.ncombinations"><code class="docutils literal notranslate"><span class="pre">ncombinations()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.binomial_exponent"><code class="docutils literal notranslate"><span class="pre">binomial_exponent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.log_binomial"><code class="docutils literal notranslate"><span class="pre">log_binomial()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.ilog"><code class="docutils literal notranslate"><span class="pre">ilog()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.angle"><code class="docutils literal notranslate"><span class="pre">angle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sin_over_x"><code class="docutils literal notranslate"><span class="pre">sin_over_x()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.slerp"><code class="docutils literal notranslate"><span class="pre">slerp()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.proportional"><code class="docutils literal notranslate"><span class="pre">proportional()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.triangular_repartition"><code class="docutils literal notranslate"><span class="pre">triangular_repartition()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.rectangular_repartition"><code class="docutils literal notranslate"><span class="pre">rectangular_repartition()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.de_bruijn"><code class="docutils literal notranslate"><span class="pre">de_bruijn()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_inv"><code class="docutils literal notranslate"><span class="pre">mod_inv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_div"><code class="docutils literal notranslate"><span class="pre">mod_div()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_fact"><code class="docutils literal notranslate"><span class="pre">mod_fact()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.chinese_remainder"><code class="docutils literal notranslate"><span class="pre">chinese_remainder()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_binomial"><code class="docutils literal notranslate"><span class="pre">mod_binomial()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.baby_step_giant_step"><code class="docutils literal notranslate"><span class="pre">baby_step_giant_step()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_matmul"><code class="docutils literal notranslate"><span class="pre">mod_matmul()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_matpow"><code class="docutils literal notranslate"><span class="pre">mod_matpow()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.matrix_power"><code class="docutils literal notranslate"><span class="pre">matrix_power()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_sqrt"><code class="docutils literal notranslate"><span class="pre">mod_sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mod_fac"><code class="docutils literal notranslate"><span class="pre">mod_fac()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pi_digits_gen"><code class="docutils literal notranslate"><span class="pre">pi_digits_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.lucky_gen"><code class="docutils literal notranslate"><span class="pre">lucky_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pfactor"><code class="docutils literal notranslate"><span class="pre">pfactor()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.sprp"><code class="docutils literal notranslate"><span class="pre">sprp()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.jacobi"><code class="docutils literal notranslate"><span class="pre">jacobi()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pollardRho_brent"><code class="docutils literal notranslate"><span class="pre">pollardRho_brent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.pollard_pm1"><code class="docutils literal notranslate"><span class="pre">pollard_pm1()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.mlucas"><code class="docutils literal notranslate"><span class="pre">mlucas()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.williams_pp1"><code class="docutils literal notranslate"><span class="pre">williams_pp1()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.ecadd"><code class="docutils literal notranslate"><span class="pre">ecadd()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.ecdub"><code class="docutils literal notranslate"><span class="pre">ecdub()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.ecmul"><code class="docutils literal notranslate"><span class="pre">ecmul()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.factor_ecm"><code class="docutils literal notranslate"><span class="pre">factor_ecm()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.legendre"><code class="docutils literal notranslate"><span class="pre">legendre()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.math2.legendre2"><code class="docutils literal notranslate"><span class="pre">legendre2()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.markup.html"
+                          title="previous chapter">goulib.markup</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.motion.html"
+                          title="next chapter">goulib.motion</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.math2.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +340,41 @@
         <li class="right" >
           <a href="goulib.markup.html" title="goulib.markup"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.math2</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.math2</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -3026,7 +3363,7 @@ The return value isn’t meaningful if p is composite
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -3042,14 +3379,62 @@ The return value isn’t meaningful if p is composite
         <li class="right" >
           <a href="goulib.markup.html" title="goulib.markup"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.math2</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.math2</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

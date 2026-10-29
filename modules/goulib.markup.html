@@ -5,20 +5,281 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.markup &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.markup &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.math2" href="goulib.math2.html" />
-    <link rel="prev" title="goulib.itertools2" href="goulib.itertools2.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.itertools2" href="goulib.itertools2.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.markup</a><ul>
+<li><a class="reference internal" href="#goulib.markup.cgiprint"><code class="docutils literal notranslate"><span class="pre">cgiprint()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.style_dict2str"><code class="docutils literal notranslate"><span class="pre">style_dict2str()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.style_str2dict"><code class="docutils literal notranslate"><span class="pre">style_str2dict()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.tag"><code class="docutils literal notranslate"><span class="pre">tag()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.element"><code class="docutils literal notranslate"><span class="pre">element</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.element.__init__"><code class="docutils literal notranslate"><span class="pre">element.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.element.__call__"><code class="docutils literal notranslate"><span class="pre">element.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.element.render"><code class="docutils literal notranslate"><span class="pre">element.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.element.close"><code class="docutils literal notranslate"><span class="pre">element.close()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.element.open"><code class="docutils literal notranslate"><span class="pre">element.open()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.page"><code class="docutils literal notranslate"><span class="pre">page</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.page.__init__"><code class="docutils literal notranslate"><span class="pre">page.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.__getattr__"><code class="docutils literal notranslate"><span class="pre">page.__getattr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.__str__"><code class="docutils literal notranslate"><span class="pre">page.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.__call__"><code class="docutils literal notranslate"><span class="pre">page.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.add"><code class="docutils literal notranslate"><span class="pre">page.add()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.addfooter"><code class="docutils literal notranslate"><span class="pre">page.addfooter()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.addheader"><code class="docutils literal notranslate"><span class="pre">page.addheader()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.addcontent"><code class="docutils literal notranslate"><span class="pre">page.addcontent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.init"><code class="docutils literal notranslate"><span class="pre">page.init()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.css"><code class="docutils literal notranslate"><span class="pre">page.css()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.metainfo"><code class="docutils literal notranslate"><span class="pre">page.metainfo()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.page.scripts"><code class="docutils literal notranslate"><span class="pre">page.scripts()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.escape"><code class="docutils literal notranslate"><span class="pre">escape()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.unescape"><code class="docutils literal notranslate"><span class="pre">unescape()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.dummy"><code class="docutils literal notranslate"><span class="pre">dummy</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.russell"><code class="docutils literal notranslate"><span class="pre">russell</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.russell.__contains__"><code class="docutils literal notranslate"><span class="pre">russell.__contains__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError"><code class="docutils literal notranslate"><span class="pre">MarkupError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__str__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__cause__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__context__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__init__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__new__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__reduce__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__repr__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__setstate__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.__traceback__"><code class="docutils literal notranslate"><span class="pre">MarkupError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.add_note"><code class="docutils literal notranslate"><span class="pre">MarkupError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.args"><code class="docutils literal notranslate"><span class="pre">MarkupError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.MarkupError.with_traceback"><code class="docutils literal notranslate"><span class="pre">MarkupError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError"><code class="docutils literal notranslate"><span class="pre">ClosingError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__init__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__annotations__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__cause__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__context__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__new__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__reduce__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__repr__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__setstate__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__str__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.__traceback__"><code class="docutils literal notranslate"><span class="pre">ClosingError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.add_note"><code class="docutils literal notranslate"><span class="pre">ClosingError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.args"><code class="docutils literal notranslate"><span class="pre">ClosingError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ClosingError.with_traceback"><code class="docutils literal notranslate"><span class="pre">ClosingError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError"><code class="docutils literal notranslate"><span class="pre">OpeningError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__init__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__annotations__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__cause__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__context__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__new__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__reduce__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__repr__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__setstate__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__str__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.__traceback__"><code class="docutils literal notranslate"><span class="pre">OpeningError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.add_note"><code class="docutils literal notranslate"><span class="pre">OpeningError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.args"><code class="docutils literal notranslate"><span class="pre">OpeningError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.OpeningError.with_traceback"><code class="docutils literal notranslate"><span class="pre">OpeningError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError"><code class="docutils literal notranslate"><span class="pre">ArgumentError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__init__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__annotations__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__cause__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__context__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__new__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__reduce__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__repr__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__setstate__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__str__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.__traceback__"><code class="docutils literal notranslate"><span class="pre">ArgumentError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.add_note"><code class="docutils literal notranslate"><span class="pre">ArgumentError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.args"><code class="docutils literal notranslate"><span class="pre">ArgumentError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ArgumentError.with_traceback"><code class="docutils literal notranslate"><span class="pre">ArgumentError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError"><code class="docutils literal notranslate"><span class="pre">InvalidElementError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__annotations__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__cause__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__context__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__init__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__new__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__reduce__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__repr__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__setstate__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__str__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.__traceback__"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.add_note"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.args"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.InvalidElementError.with_traceback"><code class="docutils literal notranslate"><span class="pre">InvalidElementError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError"><code class="docutils literal notranslate"><span class="pre">DeprecationError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__annotations__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__cause__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__context__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__new__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__reduce__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__repr__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__setstate__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__str__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__traceback__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.add_note"><code class="docutils literal notranslate"><span class="pre">DeprecationError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.args"><code class="docutils literal notranslate"><span class="pre">DeprecationError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.with_traceback"><code class="docutils literal notranslate"><span class="pre">DeprecationError.with_traceback()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.DeprecationError.__init__"><code class="docutils literal notranslate"><span class="pre">DeprecationError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.ModeError"><code class="docutils literal notranslate"><span class="pre">ModeError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__annotations__"><code class="docutils literal notranslate"><span class="pre">ModeError.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__cause__"><code class="docutils literal notranslate"><span class="pre">ModeError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__context__"><code class="docutils literal notranslate"><span class="pre">ModeError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">ModeError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__new__"><code class="docutils literal notranslate"><span class="pre">ModeError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__reduce__"><code class="docutils literal notranslate"><span class="pre">ModeError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__repr__"><code class="docutils literal notranslate"><span class="pre">ModeError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__setstate__"><code class="docutils literal notranslate"><span class="pre">ModeError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__str__"><code class="docutils literal notranslate"><span class="pre">ModeError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">ModeError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__traceback__"><code class="docutils literal notranslate"><span class="pre">ModeError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.add_note"><code class="docutils literal notranslate"><span class="pre">ModeError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.args"><code class="docutils literal notranslate"><span class="pre">ModeError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.with_traceback"><code class="docutils literal notranslate"><span class="pre">ModeError.with_traceback()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.ModeError.__init__"><code class="docutils literal notranslate"><span class="pre">ModeError.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError"><code class="docutils literal notranslate"><span class="pre">CustomizationError</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__annotations__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__cause__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__cause__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__context__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__getattribute__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__new__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__reduce__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__reduce__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__repr__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__setstate__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__setstate__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__str__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__suppress_context__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__suppress_context__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__traceback__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__traceback__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.add_note"><code class="docutils literal notranslate"><span class="pre">CustomizationError.add_note()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.args"><code class="docutils literal notranslate"><span class="pre">CustomizationError.args</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.with_traceback"><code class="docutils literal notranslate"><span class="pre">CustomizationError.with_traceback()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.markup.CustomizationError.__init__"><code class="docutils literal notranslate"><span class="pre">CustomizationError.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.itertools2.html"
+                          title="previous chapter">goulib.itertools2</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.math2.html"
+                          title="next chapter">goulib.math2</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.markup.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +295,41 @@
         <li class="right" >
           <a href="goulib.itertools2.html" title="goulib.itertools2"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.markup</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.markup</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -1376,7 +1668,7 @@ set self.__traceback__ to tb and return self.</p>
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -1392,14 +1684,62 @@ set self.__traceback__ to tb and return self.</p>
         <li class="right" >
           <a href="goulib.itertools2.html" title="goulib.itertools2"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.markup</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.markup</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

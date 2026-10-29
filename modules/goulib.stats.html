@@ -5,20 +5,295 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.stats &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.stats &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.table" href="goulib.table.html" />
-    <link rel="prev" title="goulib.polynomial" href="goulib.polynomial.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.polynomial" href="goulib.polynomial.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.stats</a><ul>
+<li><a class="reference internal" href="#goulib.stats.mean_var"><code class="docutils literal notranslate"><span class="pre">mean_var()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.mean"><code class="docutils literal notranslate"><span class="pre">mean()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.avg"><code class="docutils literal notranslate"><span class="pre">avg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.variance"><code class="docutils literal notranslate"><span class="pre">variance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.var"><code class="docutils literal notranslate"><span class="pre">var()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.stddev"><code class="docutils literal notranslate"><span class="pre">stddev()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.confidence_interval"><code class="docutils literal notranslate"><span class="pre">confidence_interval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.median"><code class="docutils literal notranslate"><span class="pre">median()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.mode"><code class="docutils literal notranslate"><span class="pre">mode()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.kurtosis"><code class="docutils literal notranslate"><span class="pre">kurtosis()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.covariance"><code class="docutils literal notranslate"><span class="pre">covariance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.stats"><code class="docutils literal notranslate"><span class="pre">stats()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats"><code class="docutils literal notranslate"><span class="pre">Stats</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.stats.Stats.__init__"><code class="docutils literal notranslate"><span class="pre">Stats.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.__repr__"><code class="docutils literal notranslate"><span class="pre">Stats.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.append"><code class="docutils literal notranslate"><span class="pre">Stats.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.extend"><code class="docutils literal notranslate"><span class="pre">Stats.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.remove"><code class="docutils literal notranslate"><span class="pre">Stats.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.sum"><code class="docutils literal notranslate"><span class="pre">Stats.sum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.sum1"><code class="docutils literal notranslate"><span class="pre">Stats.sum1</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.sum2"><code class="docutils literal notranslate"><span class="pre">Stats.sum2</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.mean"><code class="docutils literal notranslate"><span class="pre">Stats.mean</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.avg"><code class="docutils literal notranslate"><span class="pre">Stats.avg</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.average"><code class="docutils literal notranslate"><span class="pre">Stats.average</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.mu"><code class="docutils literal notranslate"><span class="pre">Stats.mu</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.variance"><code class="docutils literal notranslate"><span class="pre">Stats.variance</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.var"><code class="docutils literal notranslate"><span class="pre">Stats.var</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.stddev"><code class="docutils literal notranslate"><span class="pre">Stats.stddev</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.sigma"><code class="docutils literal notranslate"><span class="pre">Stats.sigma</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.__add__"><code class="docutils literal notranslate"><span class="pre">Stats.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.__sub__"><code class="docutils literal notranslate"><span class="pre">Stats.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.__mul__"><code class="docutils literal notranslate"><span class="pre">Stats.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.__neg__"><code class="docutils literal notranslate"><span class="pre">Stats.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.__pow__"><code class="docutils literal notranslate"><span class="pre">Stats.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Stats.covariance"><code class="docutils literal notranslate"><span class="pre">Stats.covariance()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.stats.Discrete"><code class="docutils literal notranslate"><span class="pre">Discrete</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__init__"><code class="docutils literal notranslate"><span class="pre">Discrete.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__call__"><code class="docutils literal notranslate"><span class="pre">Discrete.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__add__"><code class="docutils literal notranslate"><span class="pre">Discrete.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__annotations__"><code class="docutils literal notranslate"><span class="pre">Discrete.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__mul__"><code class="docutils literal notranslate"><span class="pre">Discrete.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__neg__"><code class="docutils literal notranslate"><span class="pre">Discrete.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__pow__"><code class="docutils literal notranslate"><span class="pre">Discrete.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__repr__"><code class="docutils literal notranslate"><span class="pre">Discrete.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.__sub__"><code class="docutils literal notranslate"><span class="pre">Discrete.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.append"><code class="docutils literal notranslate"><span class="pre">Discrete.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.average"><code class="docutils literal notranslate"><span class="pre">Discrete.average</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.avg"><code class="docutils literal notranslate"><span class="pre">Discrete.avg</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.covariance"><code class="docutils literal notranslate"><span class="pre">Discrete.covariance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.extend"><code class="docutils literal notranslate"><span class="pre">Discrete.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.mean"><code class="docutils literal notranslate"><span class="pre">Discrete.mean</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.mu"><code class="docutils literal notranslate"><span class="pre">Discrete.mu</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.remove"><code class="docutils literal notranslate"><span class="pre">Discrete.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.sigma"><code class="docutils literal notranslate"><span class="pre">Discrete.sigma</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.stddev"><code class="docutils literal notranslate"><span class="pre">Discrete.stddev</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.sum"><code class="docutils literal notranslate"><span class="pre">Discrete.sum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.sum1"><code class="docutils literal notranslate"><span class="pre">Discrete.sum1</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.sum2"><code class="docutils literal notranslate"><span class="pre">Discrete.sum2</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.var"><code class="docutils literal notranslate"><span class="pre">Discrete.var</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Discrete.variance"><code class="docutils literal notranslate"><span class="pre">Discrete.variance</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.stats.PDF"><code class="docutils literal notranslate"><span class="pre">PDF</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.stats.PDF.__init__"><code class="docutils literal notranslate"><span class="pre">PDF.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__call__"><code class="docutils literal notranslate"><span class="pre">PDF.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__add__"><code class="docutils literal notranslate"><span class="pre">PDF.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__and__"><code class="docutils literal notranslate"><span class="pre">PDF.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__annotations__"><code class="docutils literal notranslate"><span class="pre">PDF.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__div__"><code class="docutils literal notranslate"><span class="pre">PDF.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__eq__"><code class="docutils literal notranslate"><span class="pre">PDF.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__float__"><code class="docutils literal notranslate"><span class="pre">PDF.__float__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__ge__"><code class="docutils literal notranslate"><span class="pre">PDF.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__gt__"><code class="docutils literal notranslate"><span class="pre">PDF.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__hash__"><code class="docutils literal notranslate"><span class="pre">PDF.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__invert__"><code class="docutils literal notranslate"><span class="pre">PDF.__invert__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__le__"><code class="docutils literal notranslate"><span class="pre">PDF.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__lshift__"><code class="docutils literal notranslate"><span class="pre">PDF.__lshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__lt__"><code class="docutils literal notranslate"><span class="pre">PDF.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__mul__"><code class="docutils literal notranslate"><span class="pre">PDF.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__ne__"><code class="docutils literal notranslate"><span class="pre">PDF.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__neg__"><code class="docutils literal notranslate"><span class="pre">PDF.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__or__"><code class="docutils literal notranslate"><span class="pre">PDF.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__pow__"><code class="docutils literal notranslate"><span class="pre">PDF.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__repr__"><code class="docutils literal notranslate"><span class="pre">PDF.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__rmul__"><code class="docutils literal notranslate"><span class="pre">PDF.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__rshift__"><code class="docutils literal notranslate"><span class="pre">PDF.__rshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__str__"><code class="docutils literal notranslate"><span class="pre">PDF.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__sub__"><code class="docutils literal notranslate"><span class="pre">PDF.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__truediv__"><code class="docutils literal notranslate"><span class="pre">PDF.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.__xor__"><code class="docutils literal notranslate"><span class="pre">PDF.__xor__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.append"><code class="docutils literal notranslate"><span class="pre">PDF.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.applx"><code class="docutils literal notranslate"><span class="pre">PDF.applx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.apply"><code class="docutils literal notranslate"><span class="pre">PDF.apply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.average"><code class="docutils literal notranslate"><span class="pre">PDF.average</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.avg"><code class="docutils literal notranslate"><span class="pre">PDF.avg</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.complexity"><code class="docutils literal notranslate"><span class="pre">PDF.complexity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.covariance"><code class="docutils literal notranslate"><span class="pre">PDF.covariance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.eval"><code class="docutils literal notranslate"><span class="pre">PDF.eval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.extend"><code class="docutils literal notranslate"><span class="pre">PDF.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.html"><code class="docutils literal notranslate"><span class="pre">PDF.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.isNum"><code class="docutils literal notranslate"><span class="pre">PDF.isNum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.isconstant"><code class="docutils literal notranslate"><span class="pre">PDF.isconstant</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.latex"><code class="docutils literal notranslate"><span class="pre">PDF.latex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.mean"><code class="docutils literal notranslate"><span class="pre">PDF.mean</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.mu"><code class="docutils literal notranslate"><span class="pre">PDF.mu</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.plot"><code class="docutils literal notranslate"><span class="pre">PDF.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.png"><code class="docutils literal notranslate"><span class="pre">PDF.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.points"><code class="docutils literal notranslate"><span class="pre">PDF.points()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.remove"><code class="docutils literal notranslate"><span class="pre">PDF.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.render"><code class="docutils literal notranslate"><span class="pre">PDF.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.save"><code class="docutils literal notranslate"><span class="pre">PDF.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.sigma"><code class="docutils literal notranslate"><span class="pre">PDF.sigma</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.stddev"><code class="docutils literal notranslate"><span class="pre">PDF.stddev</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.sum"><code class="docutils literal notranslate"><span class="pre">PDF.sum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.sum1"><code class="docutils literal notranslate"><span class="pre">PDF.sum1</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.sum2"><code class="docutils literal notranslate"><span class="pre">PDF.sum2</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.svg"><code class="docutils literal notranslate"><span class="pre">PDF.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.var"><code class="docutils literal notranslate"><span class="pre">PDF.var</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.PDF.variance"><code class="docutils literal notranslate"><span class="pre">PDF.variance</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.stats.normal_pdf"><code class="docutils literal notranslate"><span class="pre">normal_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal"><code class="docutils literal notranslate"><span class="pre">Normal</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.stats.Normal.__init__"><code class="docutils literal notranslate"><span class="pre">Normal.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__str__"><code class="docutils literal notranslate"><span class="pre">Normal.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.latex"><code class="docutils literal notranslate"><span class="pre">Normal.latex()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.linear"><code class="docutils literal notranslate"><span class="pre">Normal.linear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__mul__"><code class="docutils literal notranslate"><span class="pre">Normal.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__div__"><code class="docutils literal notranslate"><span class="pre">Normal.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__truediv__"><code class="docutils literal notranslate"><span class="pre">Normal.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__add__"><code class="docutils literal notranslate"><span class="pre">Normal.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__radd__"><code class="docutils literal notranslate"><span class="pre">Normal.__radd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__neg__"><code class="docutils literal notranslate"><span class="pre">Normal.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__sub__"><code class="docutils literal notranslate"><span class="pre">Normal.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__rsub__"><code class="docutils literal notranslate"><span class="pre">Normal.__rsub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.covariance"><code class="docutils literal notranslate"><span class="pre">Normal.covariance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.cov"><code class="docutils literal notranslate"><span class="pre">Normal.cov()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.pearson"><code class="docutils literal notranslate"><span class="pre">Normal.pearson()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.correlation"><code class="docutils literal notranslate"><span class="pre">Normal.correlation()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.corr"><code class="docutils literal notranslate"><span class="pre">Normal.corr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__and__"><code class="docutils literal notranslate"><span class="pre">Normal.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__annotations__"><code class="docutils literal notranslate"><span class="pre">Normal.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__call__"><code class="docutils literal notranslate"><span class="pre">Normal.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__eq__"><code class="docutils literal notranslate"><span class="pre">Normal.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__float__"><code class="docutils literal notranslate"><span class="pre">Normal.__float__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__ge__"><code class="docutils literal notranslate"><span class="pre">Normal.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__gt__"><code class="docutils literal notranslate"><span class="pre">Normal.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__hash__"><code class="docutils literal notranslate"><span class="pre">Normal.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__invert__"><code class="docutils literal notranslate"><span class="pre">Normal.__invert__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__le__"><code class="docutils literal notranslate"><span class="pre">Normal.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__lshift__"><code class="docutils literal notranslate"><span class="pre">Normal.__lshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__lt__"><code class="docutils literal notranslate"><span class="pre">Normal.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__ne__"><code class="docutils literal notranslate"><span class="pre">Normal.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__or__"><code class="docutils literal notranslate"><span class="pre">Normal.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__pow__"><code class="docutils literal notranslate"><span class="pre">Normal.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__repr__"><code class="docutils literal notranslate"><span class="pre">Normal.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__rmul__"><code class="docutils literal notranslate"><span class="pre">Normal.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__rshift__"><code class="docutils literal notranslate"><span class="pre">Normal.__rshift__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.__xor__"><code class="docutils literal notranslate"><span class="pre">Normal.__xor__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.append"><code class="docutils literal notranslate"><span class="pre">Normal.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.applx"><code class="docutils literal notranslate"><span class="pre">Normal.applx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.apply"><code class="docutils literal notranslate"><span class="pre">Normal.apply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.average"><code class="docutils literal notranslate"><span class="pre">Normal.average</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.avg"><code class="docutils literal notranslate"><span class="pre">Normal.avg</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.complexity"><code class="docutils literal notranslate"><span class="pre">Normal.complexity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.eval"><code class="docutils literal notranslate"><span class="pre">Normal.eval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.extend"><code class="docutils literal notranslate"><span class="pre">Normal.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.html"><code class="docutils literal notranslate"><span class="pre">Normal.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.isNum"><code class="docutils literal notranslate"><span class="pre">Normal.isNum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.isconstant"><code class="docutils literal notranslate"><span class="pre">Normal.isconstant</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.mean"><code class="docutils literal notranslate"><span class="pre">Normal.mean</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.mu"><code class="docutils literal notranslate"><span class="pre">Normal.mu</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.plot"><code class="docutils literal notranslate"><span class="pre">Normal.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.png"><code class="docutils literal notranslate"><span class="pre">Normal.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.points"><code class="docutils literal notranslate"><span class="pre">Normal.points()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.remove"><code class="docutils literal notranslate"><span class="pre">Normal.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.render"><code class="docutils literal notranslate"><span class="pre">Normal.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.save"><code class="docutils literal notranslate"><span class="pre">Normal.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.sigma"><code class="docutils literal notranslate"><span class="pre">Normal.sigma</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.stddev"><code class="docutils literal notranslate"><span class="pre">Normal.stddev</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.sum"><code class="docutils literal notranslate"><span class="pre">Normal.sum</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.sum1"><code class="docutils literal notranslate"><span class="pre">Normal.sum1</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.sum2"><code class="docutils literal notranslate"><span class="pre">Normal.sum2</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.svg"><code class="docutils literal notranslate"><span class="pre">Normal.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.var"><code class="docutils literal notranslate"><span class="pre">Normal.var</span></code></a></li>
+<li><a class="reference internal" href="#goulib.stats.Normal.variance"><code class="docutils literal notranslate"><span class="pre">Normal.variance</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.stats.linear_regression"><code class="docutils literal notranslate"><span class="pre">linear_regression()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.polynomial.html"
+                          title="previous chapter">goulib.polynomial</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.table.html"
+                          title="next chapter">goulib.table</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.stats.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +309,41 @@
         <li class="right" >
           <a href="goulib.polynomial.html" title="goulib.polynomial"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.stats</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.stats</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -1461,7 +1767,7 @@ override in derived classes</p>
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -1477,14 +1783,62 @@ override in derived classes</p>
         <li class="right" >
           <a href="goulib.polynomial.html" title="goulib.polynomial"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.stats</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.stats</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

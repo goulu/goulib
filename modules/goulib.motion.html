@@ -5,20 +5,203 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.motion &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.motion &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.notebook" href="goulib.notebook.html" />
-    <link rel="prev" title="goulib.math2" href="goulib.math2.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.math2" href="goulib.math2.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.motion</a><ul>
+<li><a class="reference internal" href="#goulib.motion.PVA"><code class="docutils literal notranslate"><span class="pre">PVA</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.motion.PVA.__init__"><code class="docutils literal notranslate"><span class="pre">PVA.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.__call__"><code class="docutils literal notranslate"><span class="pre">PVA.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.__annotations__"><code class="docutils literal notranslate"><span class="pre">PVA.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.html"><code class="docutils literal notranslate"><span class="pre">PVA.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.plot"><code class="docutils literal notranslate"><span class="pre">PVA.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.png"><code class="docutils literal notranslate"><span class="pre">PVA.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.render"><code class="docutils literal notranslate"><span class="pre">PVA.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.save"><code class="docutils literal notranslate"><span class="pre">PVA.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.PVA.svg"><code class="docutils literal notranslate"><span class="pre">PVA.svg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.motion.Segment"><code class="docutils literal notranslate"><span class="pre">Segment</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.motion.Segment.__init__"><code class="docutils literal notranslate"><span class="pre">Segment.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.dt"><code class="docutils literal notranslate"><span class="pre">Segment.dt()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.start"><code class="docutils literal notranslate"><span class="pre">Segment.start()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.startPos"><code class="docutils literal notranslate"><span class="pre">Segment.startPos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.startSpeed"><code class="docutils literal notranslate"><span class="pre">Segment.startSpeed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.startAcc"><code class="docutils literal notranslate"><span class="pre">Segment.startAcc()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.startJerk"><code class="docutils literal notranslate"><span class="pre">Segment.startJerk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.startTime"><code class="docutils literal notranslate"><span class="pre">Segment.startTime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.end"><code class="docutils literal notranslate"><span class="pre">Segment.end()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.endPos"><code class="docutils literal notranslate"><span class="pre">Segment.endPos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.endSpeed"><code class="docutils literal notranslate"><span class="pre">Segment.endSpeed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.endAcc"><code class="docutils literal notranslate"><span class="pre">Segment.endAcc()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.endJerk"><code class="docutils literal notranslate"><span class="pre">Segment.endJerk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.endTime"><code class="docutils literal notranslate"><span class="pre">Segment.endTime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.timeWhenPosBiggerThan"><code class="docutils literal notranslate"><span class="pre">Segment.timeWhenPosBiggerThan()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.__call__"><code class="docutils literal notranslate"><span class="pre">Segment.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.__annotations__"><code class="docutils literal notranslate"><span class="pre">Segment.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.html"><code class="docutils literal notranslate"><span class="pre">Segment.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.plot"><code class="docutils literal notranslate"><span class="pre">Segment.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.png"><code class="docutils literal notranslate"><span class="pre">Segment.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.render"><code class="docutils literal notranslate"><span class="pre">Segment.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.save"><code class="docutils literal notranslate"><span class="pre">Segment.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment.svg"><code class="docutils literal notranslate"><span class="pre">Segment.svg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.motion.Segments"><code class="docutils literal notranslate"><span class="pre">Segments</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.motion.Segments.__init__"><code class="docutils literal notranslate"><span class="pre">Segments.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.__str__"><code class="docutils literal notranslate"><span class="pre">Segments.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.html"><code class="docutils literal notranslate"><span class="pre">Segments.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.update"><code class="docutils literal notranslate"><span class="pre">Segments.update()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.insert"><code class="docutils literal notranslate"><span class="pre">Segments.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.add"><code class="docutils literal notranslate"><span class="pre">Segments.add()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.start"><code class="docutils literal notranslate"><span class="pre">Segments.start()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.end"><code class="docutils literal notranslate"><span class="pre">Segments.end()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.__call__"><code class="docutils literal notranslate"><span class="pre">Segments.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.__annotations__"><code class="docutils literal notranslate"><span class="pre">Segments.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.dt"><code class="docutils literal notranslate"><span class="pre">Segments.dt()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.endAcc"><code class="docutils literal notranslate"><span class="pre">Segments.endAcc()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.endJerk"><code class="docutils literal notranslate"><span class="pre">Segments.endJerk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.endPos"><code class="docutils literal notranslate"><span class="pre">Segments.endPos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.endSpeed"><code class="docutils literal notranslate"><span class="pre">Segments.endSpeed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.endTime"><code class="docutils literal notranslate"><span class="pre">Segments.endTime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.plot"><code class="docutils literal notranslate"><span class="pre">Segments.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.png"><code class="docutils literal notranslate"><span class="pre">Segments.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.render"><code class="docutils literal notranslate"><span class="pre">Segments.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.save"><code class="docutils literal notranslate"><span class="pre">Segments.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.startAcc"><code class="docutils literal notranslate"><span class="pre">Segments.startAcc()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.startJerk"><code class="docutils literal notranslate"><span class="pre">Segments.startJerk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.startPos"><code class="docutils literal notranslate"><span class="pre">Segments.startPos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.startSpeed"><code class="docutils literal notranslate"><span class="pre">Segments.startSpeed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.startTime"><code class="docutils literal notranslate"><span class="pre">Segments.startTime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.svg"><code class="docutils literal notranslate"><span class="pre">Segments.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segments.timeWhenPosBiggerThan"><code class="docutils literal notranslate"><span class="pre">Segments.timeWhenPosBiggerThan()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly"><code class="docutils literal notranslate"><span class="pre">SegmentPoly</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.__init__"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.__annotations__"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.__call__"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.dt"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.dt()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.end"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.end()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.endAcc"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.endAcc()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.endJerk"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.endJerk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.endPos"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.endPos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.endSpeed"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.endSpeed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.endTime"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.endTime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.html"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.plot"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.png"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.render"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.save"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.start"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.start()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.startAcc"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.startAcc()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.startJerk"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.startJerk()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.startPos"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.startPos()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.startSpeed"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.startSpeed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.startTime"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.startTime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.svg"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentPoly.timeWhenPosBiggerThan"><code class="docutils literal notranslate"><span class="pre">SegmentPoly.timeWhenPosBiggerThan()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.motion.ramp"><code class="docutils literal notranslate"><span class="pre">ramp()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.trapeze"><code class="docutils literal notranslate"><span class="pre">trapeze()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment2ndDegree"><code class="docutils literal notranslate"><span class="pre">Segment2ndDegree()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.Segment4thDegree"><code class="docutils literal notranslate"><span class="pre">Segment4thDegree()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.motion.SegmentsTrapezoidalSpeed"><code class="docutils literal notranslate"><span class="pre">SegmentsTrapezoidalSpeed()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.math2.html"
+                          title="previous chapter">goulib.math2</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.notebook.html"
+                          title="next chapter">goulib.notebook</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.motion.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +217,41 @@
         <li class="right" >
           <a href="goulib.math2.html" title="goulib.math2"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.motion</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.motion</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -829,7 +1043,7 @@ among others (see tests):</p>
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -845,14 +1059,62 @@ among others (see tests):</p>
         <li class="right" >
           <a href="goulib.math2.html" title="goulib.math2"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.motion</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.motion</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

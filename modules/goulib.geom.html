@@ -5,20 +5,518 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.geom &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.geom &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.geom3d" href="goulib.geom3d.html" />
-    <link rel="prev" title="goulib.expr" href="goulib.expr.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.expr" href="goulib.expr.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.geom</a><ul>
+<li><a class="reference internal" href="#goulib.geom.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Geometry.__init__"><code class="docutils literal notranslate"><span class="pre">Geometry.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.point"><code class="docutils literal notranslate"><span class="pre">Geometry.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.tangent"><code class="docutils literal notranslate"><span class="pre">Geometry.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.intersect"><code class="docutils literal notranslate"><span class="pre">Geometry.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.connect"><code class="docutils literal notranslate"><span class="pre">Geometry.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.distance"><code class="docutils literal notranslate"><span class="pre">Geometry.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.__contains__"><code class="docutils literal notranslate"><span class="pre">Geometry.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Geometry.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Geometry.__annotations__"><code class="docutils literal notranslate"><span class="pre">Geometry.__annotations__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.argPair"><code class="docutils literal notranslate"><span class="pre">argPair()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2"><code class="docutils literal notranslate"><span class="pre">Vector2</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__init__"><code class="docutils literal notranslate"><span class="pre">Vector2.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.xy"><code class="docutils literal notranslate"><span class="pre">Vector2.xy</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__repr__"><code class="docutils literal notranslate"><span class="pre">Vector2.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__hash__"><code class="docutils literal notranslate"><span class="pre">Vector2.__hash__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__eq__"><code class="docutils literal notranslate"><span class="pre">Vector2.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__len__"><code class="docutils literal notranslate"><span class="pre">Vector2.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__iter__"><code class="docutils literal notranslate"><span class="pre">Vector2.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__add__"><code class="docutils literal notranslate"><span class="pre">Vector2.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__radd__"><code class="docutils literal notranslate"><span class="pre">Vector2.__radd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__iadd__"><code class="docutils literal notranslate"><span class="pre">Vector2.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__sub__"><code class="docutils literal notranslate"><span class="pre">Vector2.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__rsub__"><code class="docutils literal notranslate"><span class="pre">Vector2.__rsub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__mul__"><code class="docutils literal notranslate"><span class="pre">Vector2.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__rmul__"><code class="docutils literal notranslate"><span class="pre">Vector2.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__imul__"><code class="docutils literal notranslate"><span class="pre">Vector2.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__div__"><code class="docutils literal notranslate"><span class="pre">Vector2.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__rdiv__"><code class="docutils literal notranslate"><span class="pre">Vector2.__rdiv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__floordiv__"><code class="docutils literal notranslate"><span class="pre">Vector2.__floordiv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__rfloordiv__"><code class="docutils literal notranslate"><span class="pre">Vector2.__rfloordiv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__truediv__"><code class="docutils literal notranslate"><span class="pre">Vector2.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__rtruediv__"><code class="docutils literal notranslate"><span class="pre">Vector2.__rtruediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__neg__"><code class="docutils literal notranslate"><span class="pre">Vector2.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__pos__"><code class="docutils literal notranslate"><span class="pre">Vector2.__pos__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.__abs__"><code class="docutils literal notranslate"><span class="pre">Vector2.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.mag"><code class="docutils literal notranslate"><span class="pre">Vector2.mag()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.length"><code class="docutils literal notranslate"><span class="pre">Vector2.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.mag2"><code class="docutils literal notranslate"><span class="pre">Vector2.mag2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.normalize"><code class="docutils literal notranslate"><span class="pre">Vector2.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.normalized"><code class="docutils literal notranslate"><span class="pre">Vector2.normalized()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.dot"><code class="docutils literal notranslate"><span class="pre">Vector2.dot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.cross"><code class="docutils literal notranslate"><span class="pre">Vector2.cross()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.reflect"><code class="docutils literal notranslate"><span class="pre">Vector2.reflect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.angle"><code class="docutils literal notranslate"><span class="pre">Vector2.angle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Vector2.project"><code class="docutils literal notranslate"><span class="pre">Vector2.project()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Point2"><code class="docutils literal notranslate"><span class="pre">Point2</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Point2.dist"><code class="docutils literal notranslate"><span class="pre">Point2.dist()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__abs__"><code class="docutils literal notranslate"><span class="pre">Point2.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__contains__"><code class="docutils literal notranslate"><span class="pre">Point2.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.intersect"><code class="docutils literal notranslate"><span class="pre">Point2.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.connect"><code class="docutils literal notranslate"><span class="pre">Point2.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Point2.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__add__"><code class="docutils literal notranslate"><span class="pre">Point2.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__annotations__"><code class="docutils literal notranslate"><span class="pre">Point2.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__div__"><code class="docutils literal notranslate"><span class="pre">Point2.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__eq__"><code class="docutils literal notranslate"><span class="pre">Point2.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__floordiv__"><code class="docutils literal notranslate"><span class="pre">Point2.__floordiv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__hash__"><code class="docutils literal notranslate"><span class="pre">Point2.__hash__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__iadd__"><code class="docutils literal notranslate"><span class="pre">Point2.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__imul__"><code class="docutils literal notranslate"><span class="pre">Point2.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__init__"><code class="docutils literal notranslate"><span class="pre">Point2.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__iter__"><code class="docutils literal notranslate"><span class="pre">Point2.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__len__"><code class="docutils literal notranslate"><span class="pre">Point2.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__mul__"><code class="docutils literal notranslate"><span class="pre">Point2.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__neg__"><code class="docutils literal notranslate"><span class="pre">Point2.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__pos__"><code class="docutils literal notranslate"><span class="pre">Point2.__pos__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__radd__"><code class="docutils literal notranslate"><span class="pre">Point2.__radd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__rdiv__"><code class="docutils literal notranslate"><span class="pre">Point2.__rdiv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__repr__"><code class="docutils literal notranslate"><span class="pre">Point2.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__rfloordiv__"><code class="docutils literal notranslate"><span class="pre">Point2.__rfloordiv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__rmul__"><code class="docutils literal notranslate"><span class="pre">Point2.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__rsub__"><code class="docutils literal notranslate"><span class="pre">Point2.__rsub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__rtruediv__"><code class="docutils literal notranslate"><span class="pre">Point2.__rtruediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__sub__"><code class="docutils literal notranslate"><span class="pre">Point2.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.__truediv__"><code class="docutils literal notranslate"><span class="pre">Point2.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.angle"><code class="docutils literal notranslate"><span class="pre">Point2.angle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.bbox"><code class="docutils literal notranslate"><span class="pre">Point2.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.center"><code class="docutils literal notranslate"><span class="pre">Point2.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.color"><code class="docutils literal notranslate"><span class="pre">Point2.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.cross"><code class="docutils literal notranslate"><span class="pre">Point2.cross()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.distance"><code class="docutils literal notranslate"><span class="pre">Point2.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.dot"><code class="docutils literal notranslate"><span class="pre">Point2.dot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.draw"><code class="docutils literal notranslate"><span class="pre">Point2.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.end"><code class="docutils literal notranslate"><span class="pre">Point2.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.figure"><code class="docutils literal notranslate"><span class="pre">Point2.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.from_dxf"><code class="docutils literal notranslate"><span class="pre">Point2.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.from_pdf"><code class="docutils literal notranslate"><span class="pre">Point2.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.from_svg"><code class="docutils literal notranslate"><span class="pre">Point2.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.html"><code class="docutils literal notranslate"><span class="pre">Point2.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.isclosed"><code class="docutils literal notranslate"><span class="pre">Point2.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Point2.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.isline"><code class="docutils literal notranslate"><span class="pre">Point2.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.isvertical"><code class="docutils literal notranslate"><span class="pre">Point2.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.length"><code class="docutils literal notranslate"><span class="pre">Point2.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.mag"><code class="docutils literal notranslate"><span class="pre">Point2.mag()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.mag2"><code class="docutils literal notranslate"><span class="pre">Point2.mag2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.normalize"><code class="docutils literal notranslate"><span class="pre">Point2.normalize()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.normalized"><code class="docutils literal notranslate"><span class="pre">Point2.normalized()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.patches"><code class="docutils literal notranslate"><span class="pre">Point2.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.plot"><code class="docutils literal notranslate"><span class="pre">Point2.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.png"><code class="docutils literal notranslate"><span class="pre">Point2.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.point"><code class="docutils literal notranslate"><span class="pre">Point2.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.project"><code class="docutils literal notranslate"><span class="pre">Point2.project()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.reflect"><code class="docutils literal notranslate"><span class="pre">Point2.reflect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.render"><code class="docutils literal notranslate"><span class="pre">Point2.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.save"><code class="docutils literal notranslate"><span class="pre">Point2.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.setattr"><code class="docutils literal notranslate"><span class="pre">Point2.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.start"><code class="docutils literal notranslate"><span class="pre">Point2.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.svg"><code class="docutils literal notranslate"><span class="pre">Point2.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.tangent"><code class="docutils literal notranslate"><span class="pre">Point2.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.to_dxf"><code class="docutils literal notranslate"><span class="pre">Point2.to_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Point2.xy"><code class="docutils literal notranslate"><span class="pre">Point2.xy</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Polar"><code class="docutils literal notranslate"><span class="pre">Polar()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2"><code class="docutils literal notranslate"><span class="pre">Line2</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Line2.__init__"><code class="docutils literal notranslate"><span class="pre">Line2.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.__eq__"><code class="docutils literal notranslate"><span class="pre">Line2.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.__repr__"><code class="docutils literal notranslate"><span class="pre">Line2.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.point"><code class="docutils literal notranslate"><span class="pre">Line2.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.tangent"><code class="docutils literal notranslate"><span class="pre">Line2.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.intersect"><code class="docutils literal notranslate"><span class="pre">Line2.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.connect"><code class="docutils literal notranslate"><span class="pre">Line2.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Line2.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.__annotations__"><code class="docutils literal notranslate"><span class="pre">Line2.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.__contains__"><code class="docutils literal notranslate"><span class="pre">Line2.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.__hash__"><code class="docutils literal notranslate"><span class="pre">Line2.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Line2.distance"><code class="docutils literal notranslate"><span class="pre">Line2.distance()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Ray2"><code class="docutils literal notranslate"><span class="pre">Ray2</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Ray2.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Ray2.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.__annotations__"><code class="docutils literal notranslate"><span class="pre">Ray2.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.__contains__"><code class="docutils literal notranslate"><span class="pre">Ray2.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.__eq__"><code class="docutils literal notranslate"><span class="pre">Ray2.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.__hash__"><code class="docutils literal notranslate"><span class="pre">Ray2.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.__init__"><code class="docutils literal notranslate"><span class="pre">Ray2.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.__repr__"><code class="docutils literal notranslate"><span class="pre">Ray2.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.connect"><code class="docutils literal notranslate"><span class="pre">Ray2.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.distance"><code class="docutils literal notranslate"><span class="pre">Ray2.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.intersect"><code class="docutils literal notranslate"><span class="pre">Ray2.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.point"><code class="docutils literal notranslate"><span class="pre">Ray2.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ray2.tangent"><code class="docutils literal notranslate"><span class="pre">Ray2.tangent()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Segment2"><code class="docutils literal notranslate"><span class="pre">Segment2</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Segment2.p1"><code class="docutils literal notranslate"><span class="pre">Segment2.p1</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.p2"><code class="docutils literal notranslate"><span class="pre">Segment2.p2</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__repr__"><code class="docutils literal notranslate"><span class="pre">Segment2.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__abs__"><code class="docutils literal notranslate"><span class="pre">Segment2.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.mag2"><code class="docutils literal notranslate"><span class="pre">Segment2.mag2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.length"><code class="docutils literal notranslate"><span class="pre">Segment2.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.swap"><code class="docutils literal notranslate"><span class="pre">Segment2.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.midpoint"><code class="docutils literal notranslate"><span class="pre">Segment2.midpoint()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.bisect"><code class="docutils literal notranslate"><span class="pre">Segment2.bisect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Segment2.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__annotations__"><code class="docutils literal notranslate"><span class="pre">Segment2.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__contains__"><code class="docutils literal notranslate"><span class="pre">Segment2.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__eq__"><code class="docutils literal notranslate"><span class="pre">Segment2.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__hash__"><code class="docutils literal notranslate"><span class="pre">Segment2.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.__init__"><code class="docutils literal notranslate"><span class="pre">Segment2.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.bbox"><code class="docutils literal notranslate"><span class="pre">Segment2.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.center"><code class="docutils literal notranslate"><span class="pre">Segment2.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.color"><code class="docutils literal notranslate"><span class="pre">Segment2.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.connect"><code class="docutils literal notranslate"><span class="pre">Segment2.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.distance"><code class="docutils literal notranslate"><span class="pre">Segment2.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.draw"><code class="docutils literal notranslate"><span class="pre">Segment2.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.end"><code class="docutils literal notranslate"><span class="pre">Segment2.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.figure"><code class="docutils literal notranslate"><span class="pre">Segment2.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.from_dxf"><code class="docutils literal notranslate"><span class="pre">Segment2.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.from_pdf"><code class="docutils literal notranslate"><span class="pre">Segment2.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.from_svg"><code class="docutils literal notranslate"><span class="pre">Segment2.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.html"><code class="docutils literal notranslate"><span class="pre">Segment2.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.intersect"><code class="docutils literal notranslate"><span class="pre">Segment2.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.isclosed"><code class="docutils literal notranslate"><span class="pre">Segment2.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Segment2.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.isline"><code class="docutils literal notranslate"><span class="pre">Segment2.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.isvertical"><code class="docutils literal notranslate"><span class="pre">Segment2.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.patches"><code class="docutils literal notranslate"><span class="pre">Segment2.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.plot"><code class="docutils literal notranslate"><span class="pre">Segment2.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.png"><code class="docutils literal notranslate"><span class="pre">Segment2.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.point"><code class="docutils literal notranslate"><span class="pre">Segment2.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.render"><code class="docutils literal notranslate"><span class="pre">Segment2.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.save"><code class="docutils literal notranslate"><span class="pre">Segment2.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.setattr"><code class="docutils literal notranslate"><span class="pre">Segment2.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.start"><code class="docutils literal notranslate"><span class="pre">Segment2.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.svg"><code class="docutils literal notranslate"><span class="pre">Segment2.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.tangent"><code class="docutils literal notranslate"><span class="pre">Segment2.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Segment2.to_dxf"><code class="docutils literal notranslate"><span class="pre">Segment2.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Surface"><code class="docutils literal notranslate"><span class="pre">Surface</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Surface.length"><code class="docutils literal notranslate"><span class="pre">Surface.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.area"><code class="docutils literal notranslate"><span class="pre">Surface.area</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.center"><code class="docutils literal notranslate"><span class="pre">Surface.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Surface.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.__annotations__"><code class="docutils literal notranslate"><span class="pre">Surface.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.__contains__"><code class="docutils literal notranslate"><span class="pre">Surface.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.__init__"><code class="docutils literal notranslate"><span class="pre">Surface.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.connect"><code class="docutils literal notranslate"><span class="pre">Surface.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.distance"><code class="docutils literal notranslate"><span class="pre">Surface.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.intersect"><code class="docutils literal notranslate"><span class="pre">Surface.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.point"><code class="docutils literal notranslate"><span class="pre">Surface.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Surface.tangent"><code class="docutils literal notranslate"><span class="pre">Surface.tangent()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Polygon"><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Polygon.__init__"><code class="docutils literal notranslate"><span class="pre">Polygon.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.__repr__"><code class="docutils literal notranslate"><span class="pre">Polygon.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.xy"><code class="docutils literal notranslate"><span class="pre">Polygon.xy</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.__iter__"><code class="docutils literal notranslate"><span class="pre">Polygon.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.__abs__"><code class="docutils literal notranslate"><span class="pre">Polygon.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.area"><code class="docutils literal notranslate"><span class="pre">Polygon.area</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.center"><code class="docutils literal notranslate"><span class="pre">Polygon.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.__contains__"><code class="docutils literal notranslate"><span class="pre">Polygon.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.intersect"><code class="docutils literal notranslate"><span class="pre">Polygon.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Polygon.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.__annotations__"><code class="docutils literal notranslate"><span class="pre">Polygon.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.bbox"><code class="docutils literal notranslate"><span class="pre">Polygon.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.color"><code class="docutils literal notranslate"><span class="pre">Polygon.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.connect"><code class="docutils literal notranslate"><span class="pre">Polygon.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.distance"><code class="docutils literal notranslate"><span class="pre">Polygon.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.draw"><code class="docutils literal notranslate"><span class="pre">Polygon.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.end"><code class="docutils literal notranslate"><span class="pre">Polygon.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.figure"><code class="docutils literal notranslate"><span class="pre">Polygon.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.from_dxf"><code class="docutils literal notranslate"><span class="pre">Polygon.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.from_pdf"><code class="docutils literal notranslate"><span class="pre">Polygon.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.from_svg"><code class="docutils literal notranslate"><span class="pre">Polygon.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.html"><code class="docutils literal notranslate"><span class="pre">Polygon.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.isclosed"><code class="docutils literal notranslate"><span class="pre">Polygon.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Polygon.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.isline"><code class="docutils literal notranslate"><span class="pre">Polygon.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.isvertical"><code class="docutils literal notranslate"><span class="pre">Polygon.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.length"><code class="docutils literal notranslate"><span class="pre">Polygon.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.patches"><code class="docutils literal notranslate"><span class="pre">Polygon.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.plot"><code class="docutils literal notranslate"><span class="pre">Polygon.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.png"><code class="docutils literal notranslate"><span class="pre">Polygon.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.point"><code class="docutils literal notranslate"><span class="pre">Polygon.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.render"><code class="docutils literal notranslate"><span class="pre">Polygon.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.save"><code class="docutils literal notranslate"><span class="pre">Polygon.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.setattr"><code class="docutils literal notranslate"><span class="pre">Polygon.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.start"><code class="docutils literal notranslate"><span class="pre">Polygon.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.svg"><code class="docutils literal notranslate"><span class="pre">Polygon.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.tangent"><code class="docutils literal notranslate"><span class="pre">Polygon.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Polygon.to_dxf"><code class="docutils literal notranslate"><span class="pre">Polygon.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Circle"><code class="docutils literal notranslate"><span class="pre">Circle</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Circle.__init__"><code class="docutils literal notranslate"><span class="pre">Circle.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.__eq__"><code class="docutils literal notranslate"><span class="pre">Circle.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.__repr__"><code class="docutils literal notranslate"><span class="pre">Circle.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.__abs__"><code class="docutils literal notranslate"><span class="pre">Circle.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.center"><code class="docutils literal notranslate"><span class="pre">Circle.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.area"><code class="docutils literal notranslate"><span class="pre">Circle.area</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.point"><code class="docutils literal notranslate"><span class="pre">Circle.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.tangent"><code class="docutils literal notranslate"><span class="pre">Circle.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.__contains__"><code class="docutils literal notranslate"><span class="pre">Circle.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.intersect"><code class="docutils literal notranslate"><span class="pre">Circle.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.connect"><code class="docutils literal notranslate"><span class="pre">Circle.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.swap"><code class="docutils literal notranslate"><span class="pre">Circle.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Circle.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.__annotations__"><code class="docutils literal notranslate"><span class="pre">Circle.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.__hash__"><code class="docutils literal notranslate"><span class="pre">Circle.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.bbox"><code class="docutils literal notranslate"><span class="pre">Circle.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.color"><code class="docutils literal notranslate"><span class="pre">Circle.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.distance"><code class="docutils literal notranslate"><span class="pre">Circle.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.draw"><code class="docutils literal notranslate"><span class="pre">Circle.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.end"><code class="docutils literal notranslate"><span class="pre">Circle.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.figure"><code class="docutils literal notranslate"><span class="pre">Circle.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.from_dxf"><code class="docutils literal notranslate"><span class="pre">Circle.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.from_pdf"><code class="docutils literal notranslate"><span class="pre">Circle.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.from_svg"><code class="docutils literal notranslate"><span class="pre">Circle.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.html"><code class="docutils literal notranslate"><span class="pre">Circle.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.isclosed"><code class="docutils literal notranslate"><span class="pre">Circle.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Circle.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.isline"><code class="docutils literal notranslate"><span class="pre">Circle.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.isvertical"><code class="docutils literal notranslate"><span class="pre">Circle.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.length"><code class="docutils literal notranslate"><span class="pre">Circle.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.patches"><code class="docutils literal notranslate"><span class="pre">Circle.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.plot"><code class="docutils literal notranslate"><span class="pre">Circle.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.png"><code class="docutils literal notranslate"><span class="pre">Circle.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.render"><code class="docutils literal notranslate"><span class="pre">Circle.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.save"><code class="docutils literal notranslate"><span class="pre">Circle.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.setattr"><code class="docutils literal notranslate"><span class="pre">Circle.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.start"><code class="docutils literal notranslate"><span class="pre">Circle.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.svg"><code class="docutils literal notranslate"><span class="pre">Circle.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Circle.to_dxf"><code class="docutils literal notranslate"><span class="pre">Circle.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.circle_from_3_points"><code class="docutils literal notranslate"><span class="pre">circle_from_3_points()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.arc_from_3_points"><code class="docutils literal notranslate"><span class="pre">arc_from_3_points()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2"><code class="docutils literal notranslate"><span class="pre">Arc2</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__init__"><code class="docutils literal notranslate"><span class="pre">Arc2.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.angle"><code class="docutils literal notranslate"><span class="pre">Arc2.angle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__abs__"><code class="docutils literal notranslate"><span class="pre">Arc2.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.point"><code class="docutils literal notranslate"><span class="pre">Arc2.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.tangent"><code class="docutils literal notranslate"><span class="pre">Arc2.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__eq__"><code class="docutils literal notranslate"><span class="pre">Arc2.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__repr__"><code class="docutils literal notranslate"><span class="pre">Arc2.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.swap"><code class="docutils literal notranslate"><span class="pre">Arc2.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__contains__"><code class="docutils literal notranslate"><span class="pre">Arc2.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.intersect"><code class="docutils literal notranslate"><span class="pre">Arc2.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Arc2.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__annotations__"><code class="docutils literal notranslate"><span class="pre">Arc2.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.__hash__"><code class="docutils literal notranslate"><span class="pre">Arc2.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.area"><code class="docutils literal notranslate"><span class="pre">Arc2.area</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.bbox"><code class="docutils literal notranslate"><span class="pre">Arc2.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.center"><code class="docutils literal notranslate"><span class="pre">Arc2.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.color"><code class="docutils literal notranslate"><span class="pre">Arc2.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.connect"><code class="docutils literal notranslate"><span class="pre">Arc2.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.distance"><code class="docutils literal notranslate"><span class="pre">Arc2.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.draw"><code class="docutils literal notranslate"><span class="pre">Arc2.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.end"><code class="docutils literal notranslate"><span class="pre">Arc2.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.figure"><code class="docutils literal notranslate"><span class="pre">Arc2.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.from_dxf"><code class="docutils literal notranslate"><span class="pre">Arc2.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.from_pdf"><code class="docutils literal notranslate"><span class="pre">Arc2.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.from_svg"><code class="docutils literal notranslate"><span class="pre">Arc2.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.html"><code class="docutils literal notranslate"><span class="pre">Arc2.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.isclosed"><code class="docutils literal notranslate"><span class="pre">Arc2.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Arc2.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.isline"><code class="docutils literal notranslate"><span class="pre">Arc2.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.isvertical"><code class="docutils literal notranslate"><span class="pre">Arc2.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.length"><code class="docutils literal notranslate"><span class="pre">Arc2.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.patches"><code class="docutils literal notranslate"><span class="pre">Arc2.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.plot"><code class="docutils literal notranslate"><span class="pre">Arc2.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.png"><code class="docutils literal notranslate"><span class="pre">Arc2.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.render"><code class="docutils literal notranslate"><span class="pre">Arc2.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.save"><code class="docutils literal notranslate"><span class="pre">Arc2.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.setattr"><code class="docutils literal notranslate"><span class="pre">Arc2.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.start"><code class="docutils literal notranslate"><span class="pre">Arc2.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.svg"><code class="docutils literal notranslate"><span class="pre">Arc2.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Arc2.to_dxf"><code class="docutils literal notranslate"><span class="pre">Arc2.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse"><code class="docutils literal notranslate"><span class="pre">Ellipse</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__init__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__repr__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__eq__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__abs__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__annotations__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__contains__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.__hash__"><code class="docutils literal notranslate"><span class="pre">Ellipse.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.area"><code class="docutils literal notranslate"><span class="pre">Ellipse.area</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.bbox"><code class="docutils literal notranslate"><span class="pre">Ellipse.bbox()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.center"><code class="docutils literal notranslate"><span class="pre">Ellipse.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.color"><code class="docutils literal notranslate"><span class="pre">Ellipse.color</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.connect"><code class="docutils literal notranslate"><span class="pre">Ellipse.connect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.distance"><code class="docutils literal notranslate"><span class="pre">Ellipse.distance()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.draw"><code class="docutils literal notranslate"><span class="pre">Ellipse.draw()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.end"><code class="docutils literal notranslate"><span class="pre">Ellipse.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.figure"><code class="docutils literal notranslate"><span class="pre">Ellipse.figure()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.from_dxf"><code class="docutils literal notranslate"><span class="pre">Ellipse.from_dxf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.from_pdf"><code class="docutils literal notranslate"><span class="pre">Ellipse.from_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.from_svg"><code class="docutils literal notranslate"><span class="pre">Ellipse.from_svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.html"><code class="docutils literal notranslate"><span class="pre">Ellipse.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.intersect"><code class="docutils literal notranslate"><span class="pre">Ellipse.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.isclosed"><code class="docutils literal notranslate"><span class="pre">Ellipse.isclosed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.ishorizontal"><code class="docutils literal notranslate"><span class="pre">Ellipse.ishorizontal()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.isline"><code class="docutils literal notranslate"><span class="pre">Ellipse.isline()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.isvertical"><code class="docutils literal notranslate"><span class="pre">Ellipse.isvertical()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.length"><code class="docutils literal notranslate"><span class="pre">Ellipse.length</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.patches"><code class="docutils literal notranslate"><span class="pre">Ellipse.patches()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.plot"><code class="docutils literal notranslate"><span class="pre">Ellipse.plot()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.png"><code class="docutils literal notranslate"><span class="pre">Ellipse.png()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.point"><code class="docutils literal notranslate"><span class="pre">Ellipse.point()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.render"><code class="docutils literal notranslate"><span class="pre">Ellipse.render()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.save"><code class="docutils literal notranslate"><span class="pre">Ellipse.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.setattr"><code class="docutils literal notranslate"><span class="pre">Ellipse.setattr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.start"><code class="docutils literal notranslate"><span class="pre">Ellipse.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.svg"><code class="docutils literal notranslate"><span class="pre">Ellipse.svg()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.swap"><code class="docutils literal notranslate"><span class="pre">Ellipse.swap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.tangent"><code class="docutils literal notranslate"><span class="pre">Ellipse.tangent()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Ellipse.to_dxf"><code class="docutils literal notranslate"><span class="pre">Ellipse.to_dxf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3"><code class="docutils literal notranslate"><span class="pre">Matrix3</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__init__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__repr__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__iter__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__getitem__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__setitem__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__eq__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__sub__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__imul__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__mul__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__call__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.identity"><code class="docutils literal notranslate"><span class="pre">Matrix3.identity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.scale"><code class="docutils literal notranslate"><span class="pre">Matrix3.scale()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.offset"><code class="docutils literal notranslate"><span class="pre">Matrix3.offset()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__hash__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__slotnames__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__slotnames__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.angle"><code class="docutils literal notranslate"><span class="pre">Matrix3.angle()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.mag"><code class="docutils literal notranslate"><span class="pre">Matrix3.mag()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.translate"><code class="docutils literal notranslate"><span class="pre">Matrix3.translate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.rotate"><code class="docutils literal notranslate"><span class="pre">Matrix3.rotate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.new_identity"><code class="docutils literal notranslate"><span class="pre">Matrix3.new_identity()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.new_scale"><code class="docutils literal notranslate"><span class="pre">Matrix3.new_scale()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.new_translate"><code class="docutils literal notranslate"><span class="pre">Matrix3.new_translate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.new_rotate"><code class="docutils literal notranslate"><span class="pre">Matrix3.new_rotate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.mag2"><code class="docutils literal notranslate"><span class="pre">Matrix3.mag2()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.__abs__"><code class="docutils literal notranslate"><span class="pre">Matrix3.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.transpose"><code class="docutils literal notranslate"><span class="pre">Matrix3.transpose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.transposed"><code class="docutils literal notranslate"><span class="pre">Matrix3.transposed()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.determinant"><code class="docutils literal notranslate"><span class="pre">Matrix3.determinant()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.inverse"><code class="docutils literal notranslate"><span class="pre">Matrix3.inverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.geom.Matrix3.orientation"><code class="docutils literal notranslate"><span class="pre">Matrix3.orientation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.expr.html"
+                          title="previous chapter">goulib.expr</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.geom3d.html"
+                          title="next chapter">goulib.geom3d</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.geom.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +532,41 @@
         <li class="right" >
           <a href="goulib.expr.html" title="goulib.expr"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.geom</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.geom</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -3907,7 +4436,7 @@ behaves in the obvious way.</p>
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -3923,14 +4452,62 @@ behaves in the obvious way.</p>
         <li class="right" >
           <a href="goulib.expr.html" title="goulib.expr"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.geom</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.geom</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

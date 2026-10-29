@@ -5,20 +5,226 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.interval &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.interval &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.itertools2" href="goulib.itertools2.html" />
-    <link rel="prev" title="goulib.image" href="goulib.image.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.image" href="goulib.image.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.interval</a><ul>
+<li><a class="reference internal" href="#goulib.interval.in_interval"><code class="docutils literal notranslate"><span class="pre">in_interval()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.intersect"><code class="docutils literal notranslate"><span class="pre">intersect()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.intersection"><code class="docutils literal notranslate"><span class="pre">intersection()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.intersectlen"><code class="docutils literal notranslate"><span class="pre">intersectlen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval"><code class="docutils literal notranslate"><span class="pre">Interval</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.interval.Interval.__init__"><code class="docutils literal notranslate"><span class="pre">Interval.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.start"><code class="docutils literal notranslate"><span class="pre">Interval.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.end"><code class="docutils literal notranslate"><span class="pre">Interval.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__str__"><code class="docutils literal notranslate"><span class="pre">Interval.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__repr__"><code class="docutils literal notranslate"><span class="pre">Interval.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__hash__"><code class="docutils literal notranslate"><span class="pre">Interval.__hash__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__lt__"><code class="docutils literal notranslate"><span class="pre">Interval.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__eq__"><code class="docutils literal notranslate"><span class="pre">Interval.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.size"><code class="docutils literal notranslate"><span class="pre">Interval.size</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.center"><code class="docutils literal notranslate"><span class="pre">Interval.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.separation"><code class="docutils literal notranslate"><span class="pre">Interval.separation()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.overlap"><code class="docutils literal notranslate"><span class="pre">Interval.overlap()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.intersection"><code class="docutils literal notranslate"><span class="pre">Interval.intersection()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__iadd__"><code class="docutils literal notranslate"><span class="pre">Interval.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.hull"><code class="docutils literal notranslate"><span class="pre">Interval.hull()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__add__"><code class="docutils literal notranslate"><span class="pre">Interval.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__contains__"><code class="docutils literal notranslate"><span class="pre">Interval.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.subset"><code class="docutils literal notranslate"><span class="pre">Interval.subset()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.proper_subset"><code class="docutils literal notranslate"><span class="pre">Interval.proper_subset()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.empty"><code class="docutils literal notranslate"><span class="pre">Interval.empty()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__nonzero__"><code class="docutils literal notranslate"><span class="pre">Interval.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.singleton"><code class="docutils literal notranslate"><span class="pre">Interval.singleton()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Interval.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__delitem__"><code class="docutils literal notranslate"><span class="pre">Interval.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__ge__"><code class="docutils literal notranslate"><span class="pre">Interval.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Interval.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__getitem__"><code class="docutils literal notranslate"><span class="pre">Interval.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__gt__"><code class="docutils literal notranslate"><span class="pre">Interval.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__imul__"><code class="docutils literal notranslate"><span class="pre">Interval.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__iter__"><code class="docutils literal notranslate"><span class="pre">Interval.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__le__"><code class="docutils literal notranslate"><span class="pre">Interval.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__len__"><code class="docutils literal notranslate"><span class="pre">Interval.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__mul__"><code class="docutils literal notranslate"><span class="pre">Interval.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__ne__"><code class="docutils literal notranslate"><span class="pre">Interval.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__new__"><code class="docutils literal notranslate"><span class="pre">Interval.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__reversed__"><code class="docutils literal notranslate"><span class="pre">Interval.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__rmul__"><code class="docutils literal notranslate"><span class="pre">Interval.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__setitem__"><code class="docutils literal notranslate"><span class="pre">Interval.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Interval.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.append"><code class="docutils literal notranslate"><span class="pre">Interval.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.clear"><code class="docutils literal notranslate"><span class="pre">Interval.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.copy"><code class="docutils literal notranslate"><span class="pre">Interval.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.count"><code class="docutils literal notranslate"><span class="pre">Interval.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.extend"><code class="docutils literal notranslate"><span class="pre">Interval.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.index"><code class="docutils literal notranslate"><span class="pre">Interval.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.insert"><code class="docutils literal notranslate"><span class="pre">Interval.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.pop"><code class="docutils literal notranslate"><span class="pre">Interval.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.remove"><code class="docutils literal notranslate"><span class="pre">Interval.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.reverse"><code class="docutils literal notranslate"><span class="pre">Interval.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Interval.sort"><code class="docutils literal notranslate"><span class="pre">Interval.sort()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.interval.Intervals"><code class="docutils literal notranslate"><span class="pre">Intervals</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.interval.Intervals.update"><code class="docutils literal notranslate"><span class="pre">Intervals.update()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.add"><code class="docutils literal notranslate"><span class="pre">Intervals.add()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.insert"><code class="docutils literal notranslate"><span class="pre">Intervals.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.__iadd__"><code class="docutils literal notranslate"><span class="pre">Intervals.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.__add__"><code class="docutils literal notranslate"><span class="pre">Intervals.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.__call__"><code class="docutils literal notranslate"><span class="pre">Intervals.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.__str__"><code class="docutils literal notranslate"><span class="pre">Intervals.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.DEFAULT_LOAD_FACTOR"><code class="docutils literal notranslate"><span class="pre">Intervals.DEFAULT_LOAD_FACTOR</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Intervals.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.__hash__"><code class="docutils literal notranslate"><span class="pre">Intervals.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.__slots__"><code class="docutils literal notranslate"><span class="pre">Intervals.__slots__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Intervals.key"><code class="docutils literal notranslate"><span class="pre">Intervals.key</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.interval.Box"><code class="docutils literal notranslate"><span class="pre">Box</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.interval.Box.__init__"><code class="docutils literal notranslate"><span class="pre">Box.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.corner"><code class="docutils literal notranslate"><span class="pre">Box.corner()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.start"><code class="docutils literal notranslate"><span class="pre">Box.start</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.end"><code class="docutils literal notranslate"><span class="pre">Box.end</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.min"><code class="docutils literal notranslate"><span class="pre">Box.min</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.max"><code class="docutils literal notranslate"><span class="pre">Box.max</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.size"><code class="docutils literal notranslate"><span class="pre">Box.size</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.center"><code class="docutils literal notranslate"><span class="pre">Box.center</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__call__"><code class="docutils literal notranslate"><span class="pre">Box.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__iadd__"><code class="docutils literal notranslate"><span class="pre">Box.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__add__"><code class="docutils literal notranslate"><span class="pre">Box.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__contains__"><code class="docutils literal notranslate"><span class="pre">Box.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__nonzero__"><code class="docutils literal notranslate"><span class="pre">Box.__nonzero__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.empty"><code class="docutils literal notranslate"><span class="pre">Box.empty()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__annotations__"><code class="docutils literal notranslate"><span class="pre">Box.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Box.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__delitem__"><code class="docutils literal notranslate"><span class="pre">Box.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__eq__"><code class="docutils literal notranslate"><span class="pre">Box.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__ge__"><code class="docutils literal notranslate"><span class="pre">Box.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Box.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__getitem__"><code class="docutils literal notranslate"><span class="pre">Box.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__gt__"><code class="docutils literal notranslate"><span class="pre">Box.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__hash__"><code class="docutils literal notranslate"><span class="pre">Box.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__imul__"><code class="docutils literal notranslate"><span class="pre">Box.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__iter__"><code class="docutils literal notranslate"><span class="pre">Box.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__le__"><code class="docutils literal notranslate"><span class="pre">Box.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__len__"><code class="docutils literal notranslate"><span class="pre">Box.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__lt__"><code class="docutils literal notranslate"><span class="pre">Box.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__mul__"><code class="docutils literal notranslate"><span class="pre">Box.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__ne__"><code class="docutils literal notranslate"><span class="pre">Box.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__new__"><code class="docutils literal notranslate"><span class="pre">Box.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__repr__"><code class="docutils literal notranslate"><span class="pre">Box.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__reversed__"><code class="docutils literal notranslate"><span class="pre">Box.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__rmul__"><code class="docutils literal notranslate"><span class="pre">Box.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__setitem__"><code class="docutils literal notranslate"><span class="pre">Box.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Box.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.append"><code class="docutils literal notranslate"><span class="pre">Box.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.clear"><code class="docutils literal notranslate"><span class="pre">Box.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.copy"><code class="docutils literal notranslate"><span class="pre">Box.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.count"><code class="docutils literal notranslate"><span class="pre">Box.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.extend"><code class="docutils literal notranslate"><span class="pre">Box.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.index"><code class="docutils literal notranslate"><span class="pre">Box.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.insert"><code class="docutils literal notranslate"><span class="pre">Box.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.pop"><code class="docutils literal notranslate"><span class="pre">Box.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.remove"><code class="docutils literal notranslate"><span class="pre">Box.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.reverse"><code class="docutils literal notranslate"><span class="pre">Box.reverse()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.interval.Box.sort"><code class="docutils literal notranslate"><span class="pre">Box.sort()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.image.html"
+                          title="previous chapter">goulib.image</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.itertools2.html"
+                          title="next chapter">goulib.itertools2</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.interval.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +240,41 @@
         <li class="right" >
           <a href="goulib.image.html" title="goulib.image"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.interval</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.interval</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -1113,7 +1350,7 @@ ascending or descending, according to their function values.</p>
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -1129,14 +1366,62 @@ ascending or descending, according to their function values.</p>
         <li class="right" >
           <a href="goulib.image.html" title="goulib.image"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.interval</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.interval</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>

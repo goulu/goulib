@@ -5,20 +5,191 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.table &#8212; goulib 3.0.4 documentation</title>
+    <title>goulib.table &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=67a6116b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=48df1187" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
+    
     <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="goulib.tests" href="goulib.tests.html" />
-    <link rel="prev" title="goulib.stats" href="goulib.stats.html" /> 
-  </head><body>
+    <link rel="prev" title="goulib.stats" href="goulib.stats.html" /><link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg">
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu">
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://github.com/goulu/goulib" class="nav-logo">
+                <img src="../_static/py.svg" alt="Python logo">
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q">
+                <input type="submit" value="Go">
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">goulib.table</a><ul>
+<li><a class="reference internal" href="#goulib.table.attr"><code class="docutils literal notranslate"><span class="pre">attr()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell"><code class="docutils literal notranslate"><span class="pre">Cell</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.table.Cell.__init__"><code class="docutils literal notranslate"><span class="pre">Cell.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell.__str__"><code class="docutils literal notranslate"><span class="pre">Cell.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell.read"><code class="docutils literal notranslate"><span class="pre">Cell.read()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Cell.html"><code class="docutils literal notranslate"><span class="pre">Cell.html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.table.Row"><code class="docutils literal notranslate"><span class="pre">Row</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.table.Row.__init__"><code class="docutils literal notranslate"><span class="pre">Row.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Row.__str__"><code class="docutils literal notranslate"><span class="pre">Row.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Row.html"><code class="docutils literal notranslate"><span class="pre">Row.html()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goulib.table.Table"><code class="docutils literal notranslate"><span class="pre">Table</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.table.Table.__init__"><code class="docutils literal notranslate"><span class="pre">Table.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__repr__"><code class="docutils literal notranslate"><span class="pre">Table.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__str__"><code class="docutils literal notranslate"><span class="pre">Table.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.html"><code class="docutils literal notranslate"><span class="pre">Table.html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.load"><code class="docutils literal notranslate"><span class="pre">Table.load()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_element"><code class="docutils literal notranslate"><span class="pre">Table.read_element()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_html"><code class="docutils literal notranslate"><span class="pre">Table.read_html()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_json"><code class="docutils literal notranslate"><span class="pre">Table.read_json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_xls"><code class="docutils literal notranslate"><span class="pre">Table.read_xls()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.read_csv"><code class="docutils literal notranslate"><span class="pre">Table.read_csv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.save"><code class="docutils literal notranslate"><span class="pre">Table.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.write_xlsx"><code class="docutils literal notranslate"><span class="pre">Table.write_xlsx()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.json"><code class="docutils literal notranslate"><span class="pre">Table.json()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.write_csv"><code class="docutils literal notranslate"><span class="pre">Table.write_csv()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__eq__"><code class="docutils literal notranslate"><span class="pre">Table.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.ncols"><code class="docutils literal notranslate"><span class="pre">Table.ncols()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.find_col"><code class="docutils literal notranslate"><span class="pre">Table.find_col()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.icol"><code class="docutils literal notranslate"><span class="pre">Table.icol()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.col"><code class="docutils literal notranslate"><span class="pre">Table.col()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.cols"><code class="docutils literal notranslate"><span class="pre">Table.cols()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.transpose"><code class="docutils literal notranslate"><span class="pre">Table.transpose()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.index"><code class="docutils literal notranslate"><span class="pre">Table.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__getitem__"><code class="docutils literal notranslate"><span class="pre">Table.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.get"><code class="docutils literal notranslate"><span class="pre">Table.get()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.set"><code class="docutils literal notranslate"><span class="pre">Table.set()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.setcol"><code class="docutils literal notranslate"><span class="pre">Table.setcol()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.append"><code class="docutils literal notranslate"><span class="pre">Table.append()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.addcol"><code class="docutils literal notranslate"><span class="pre">Table.addcol()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.sort"><code class="docutils literal notranslate"><span class="pre">Table.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.rowasdict"><code class="docutils literal notranslate"><span class="pre">Table.rowasdict()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.asdict"><code class="docutils literal notranslate"><span class="pre">Table.asdict()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.groupby_gen"><code class="docutils literal notranslate"><span class="pre">Table.groupby_gen()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.groupby"><code class="docutils literal notranslate"><span class="pre">Table.groupby()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.hierarchy"><code class="docutils literal notranslate"><span class="pre">Table.hierarchy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.applyf"><code class="docutils literal notranslate"><span class="pre">Table.applyf()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_datetime"><code class="docutils literal notranslate"><span class="pre">Table.to_datetime()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_date"><code class="docutils literal notranslate"><span class="pre">Table.to_date()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_time"><code class="docutils literal notranslate"><span class="pre">Table.to_time()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.to_timedelta"><code class="docutils literal notranslate"><span class="pre">Table.to_timedelta()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.total"><code class="docutils literal notranslate"><span class="pre">Table.total()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.remove_lines_where"><code class="docutils literal notranslate"><span class="pre">Table.remove_lines_where()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__add__"><code class="docutils literal notranslate"><span class="pre">Table.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__class_getitem__"><code class="docutils literal notranslate"><span class="pre">Table.__class_getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__contains__"><code class="docutils literal notranslate"><span class="pre">Table.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__delitem__"><code class="docutils literal notranslate"><span class="pre">Table.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__ge__"><code class="docutils literal notranslate"><span class="pre">Table.__ge__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__getattribute__"><code class="docutils literal notranslate"><span class="pre">Table.__getattribute__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__gt__"><code class="docutils literal notranslate"><span class="pre">Table.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__hash__"><code class="docutils literal notranslate"><span class="pre">Table.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__iadd__"><code class="docutils literal notranslate"><span class="pre">Table.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__imul__"><code class="docutils literal notranslate"><span class="pre">Table.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__iter__"><code class="docutils literal notranslate"><span class="pre">Table.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__le__"><code class="docutils literal notranslate"><span class="pre">Table.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__len__"><code class="docutils literal notranslate"><span class="pre">Table.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__lt__"><code class="docutils literal notranslate"><span class="pre">Table.__lt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__mul__"><code class="docutils literal notranslate"><span class="pre">Table.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__ne__"><code class="docutils literal notranslate"><span class="pre">Table.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__new__"><code class="docutils literal notranslate"><span class="pre">Table.__new__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__reversed__"><code class="docutils literal notranslate"><span class="pre">Table.__reversed__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__rmul__"><code class="docutils literal notranslate"><span class="pre">Table.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__setitem__"><code class="docutils literal notranslate"><span class="pre">Table.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.__sizeof__"><code class="docutils literal notranslate"><span class="pre">Table.__sizeof__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.clear"><code class="docutils literal notranslate"><span class="pre">Table.clear()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.copy"><code class="docutils literal notranslate"><span class="pre">Table.copy()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.count"><code class="docutils literal notranslate"><span class="pre">Table.count()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.extend"><code class="docutils literal notranslate"><span class="pre">Table.extend()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.insert"><code class="docutils literal notranslate"><span class="pre">Table.insert()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.pop"><code class="docutils literal notranslate"><span class="pre">Table.pop()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.remove"><code class="docutils literal notranslate"><span class="pre">Table.remove()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.table.Table.reverse"><code class="docutils literal notranslate"><span class="pre">Table.reverse()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="goulib.stats.html"
+                          title="previous chapter">goulib.stats</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="goulib.tests.html"
+                          title="next chapter">goulib.tests</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/modules/goulib.table.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -34,10 +205,41 @@
         <li class="right" >
           <a href="goulib.stats.html" title="goulib.stats"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.table</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.table</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>  
+    </div>    
 
     <div class="document">
       <div class="documentwrapper">
@@ -803,7 +1005,7 @@ are displayed before and/or after the lines</p></li>
         </div>
       </div>
       <div class="clearer"></div>
-    </div>
+    </div>  
     <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
@@ -819,14 +1021,62 @@ are displayed before and/or after the lines</p></li>
         <li class="right" >
           <a href="goulib.stats.html" title="goulib.stats"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">goulib 3.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">goulib.table</a></li> 
+          <li class="root-icon"><img src="../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"></li>
+          <li><a href="https://github.com/goulu/goulib">goulib</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">goulib.table</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box">
+          <input type="submit" value="Go">
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
       </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2015-2026, Ph. Guglielmetti, https://github.com/goulu/goulib.
+    <br>
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br>
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br>
+    
+    
+    <br>
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br>
+    <br>
       Last updated on Oct 29, 2026.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+    
+    <br>
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
     </div>
+
   </body>
 </html>
