@@ -9,5 +9,6 @@
    .. autosummary::
    
       Record
+      Sequence
       SortedCollection
    

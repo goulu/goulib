@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>goulib.containers &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>goulib.containers &#8212; goulib 3.0.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css?v=0fc419ee" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5b7663f2" />
     
-    <script src="../../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../../_static/documentation_options.js?v=f4ced14b"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/graphviz_zoom.js?v=4de27ae4"></script>
@@ -91,7 +91,7 @@
           </li>
           <li>
               
-              <a href="../../index.html">goulib 3.0.4 documentation</a> &#187;
+              <a href="../../index.html">goulib 3.0.5 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
@@ -129,7 +129,8 @@
 <span></span><span class="sd">"""</span>
 <span class="sd">advanced containers : </span>
 <span class="sd">- Record (struct) </span>
-<span class="sd">- INFINITE Sequence has been moved to OEIS project</span>
+<span class="sd">- INFINITE Sequence</span>
+<span class="sd">- SortedCollection</span>
 <span class="sd">"""</span>
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Philippe Guglielmetti"</span>
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright 2015, Philippe Guglielmetti"</span>
@@ -138,6 +139,10 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">bisect</span><span class="w"> </span><span class="kn">import</span> <span class="n">bisect_left</span><span class="p">,</span> <span class="n">bisect_right</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">tee</span><span class="p">,</span> <span class="n">islice</span><span class="p">,</span> <span class="n">chain</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">itertools2</span><span class="p">,</span> <span class="n">decorators</span><span class="p">,</span> <span class="n">tests</span>
 
 
 <div class="viewcode-block" id="Record">
@@ -179,6 +184,327 @@
         <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span>
         <span class="k">return</span> <span class="s1">'{{</span><span class="si">%s</span><span class="s1">}}'</span> <span class="o">%</span> <span class="p">(</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">))</span></div>
 </div>
+
+
+
+<div class="viewcode-block" id="Sequence">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Sequence</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""combines a generator and a read-only list</span>
+<span class="sd">    used for INFINITE numeric (integer) sequences</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Sequence.__init__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">itemf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">containf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :param iterf: optional iterator, or a function returning an iterator</span>
+<span class="sd">        :param itemf: optional function(i) returning the i-th element</span>
+<span class="sd">        :param containf: optional function(n) return bool True if n belongs to Sequence</span>
+<span class="sd">        :param desc: string description</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>  <span class="c1"># by default</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">iterf</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">iterf</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterf</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">iterf</span> <span class="o">=</span> <span class="n">iterf</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterf</span> <span class="o">=</span> <span class="n">iterf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">itemf</span> <span class="o">=</span> <span class="n">itemf</span>
+        <span class="k">if</span> <span class="n">itemf</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">desc</span><span class="p">:</span>
+            <span class="n">desc</span> <span class="o">=</span> <span class="n">itemf</span><span class="o">.</span><span class="vm">__doc__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">containf</span> <span class="o">=</span> <span class="n">containf</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_repr</span> <span class="o">=</span> <span class="s1">''</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__repr__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__repr__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repr</span><span class="p">:</span>  <span class="c1"># cache for speed</span>
+            <span class="c1"># must be very quick for debugger</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">tests</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_repr</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1"> = (</span><span class="si">%s</span><span class="s1">)'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repr</span></div>
+
+
+<div class="viewcode-block" id="Sequence.save">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.save">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">maxtime</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'wt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+            <span class="n">comment</span> <span class="o">=</span> <span class="n">comment</span> <span class="ow">or</span> <span class="s2">"</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desc</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">'#'</span> <span class="o">+</span> <span class="n">comment</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__iter__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__iter__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""reset the generator</span>
+
+<span class="sd">        :return: a tee-ed copy of iterf, optionally timeout decorated</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterf</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterf</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">tee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterf</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">decorators</span><span class="o">.</span><span class="n">itimeout</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">it</span> <span class="o">=</span> <span class="n">count</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
+                <span class="n">it</span> <span class="o">=</span> <span class="n">decorators</span><span class="o">.</span><span class="n">itimeout</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">itemf</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">it</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">)</span>  <span class="c1"># uses containf</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__getitem__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__getitem__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">itemf</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">itemf</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">islice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">step</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.index">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.index">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="c1"># assume sequence is growing</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">i</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__contains__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__contains__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">containf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">containf</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__add__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__add__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">other</span><span class="p">,</span>
+                <span class="n">containf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="n">other</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">,</span>
+                <span class="n">desc</span><span class="o">=</span><span class="s1">'</span><span class="si">%s</span><span class="s1">+</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_</span><span class="p">():</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__sub__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__sub__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="n">other</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_</span><span class="p">():</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__mul__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__mul__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">other</span><span class="p">,</span>
+                <span class="n">containf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">other</span> <span class="o">/</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">,</span>
+                <span class="n">desc</span><span class="o">=</span><span class="s1">'</span><span class="si">%d</span><span class="s1">*</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_</span><span class="p">():</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__div__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__div__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">//</span> <span class="n">other</span><span class="p">,</span>
+                <span class="n">containf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">other</span> <span class="o">*</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">,</span>
+                <span class="n">desc</span><span class="o">=</span><span class="s1">'</span><span class="si">%s</span><span class="s1">//</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_</span><span class="p">():</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">a</span> <span class="o">//</span> <span class="n">b</span>
+
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__truediv__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__truediv__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">/</span> <span class="n">other</span><span class="p">,</span>
+                <span class="n">containf</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">other</span> <span class="o">*</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">,</span>
+                <span class="n">desc</span><span class="o">=</span><span class="s1">'</span><span class="si">%s</span><span class="s1">/</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_</span><span class="p">():</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">fractions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fraction</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__or__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__or__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :return: Sequence with items from both (sorted) operand Sequences</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
+            <span class="n">itertools2</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)),</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">or</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">other</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__and__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__and__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :return: Sequence with items in both operands</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">containf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">containf</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">containf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">containf</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__mod__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__mod__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__mod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :return: Sequence with items from left operand not in right</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
+            <span class="n">itertools2</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()),</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">and</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">other</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.apply">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.apply">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">containf</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">''</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">''' function composition'''</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
+            <span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
+            <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+            <span class="n">containf</span><span class="p">,</span>
+            <span class="n">desc</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__call__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">itemf</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.filter">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.filter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">''</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
+            <span class="nb">filter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">and</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">,</span>
+            <span class="n">desc</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__le__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__le__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
+            <span class="n">itertools2</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">le</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.__gt__">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.__gt__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span>
+            <span class="n">itertools2</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Sequence.accumulate">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.accumulate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">init</span><span class="p">,</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="kc">False</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="Sequence.pairwise">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.pairwise">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pairwise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">skip_first</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Sequence.sort">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.sort">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">sorted_iterable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">buffer</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Sequence.unique">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.unique">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">""" </span>
+<span class="sd">        :param buffer: int number of last elements found. </span>
+<span class="sd">            if two identical elements are separated by more than this number of elements</span>
+<span class="sd">            in self, they might be generated twice in the resulting Sequence</span>
+<span class="sd">        :return: Sequence made of unique elements of this one</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">itertools2</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">buffer</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Sequence.product">
+<a class="viewcode-back" href="../../modules/goulib.containers.html#goulib.containers.Sequence.product">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="nb">sum</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""cartesian product"""</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">itertools2</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">it</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">op</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">buffer</span><span class="o">=</span><span class="n">buffer</span><span class="p">)</span></div>
+</div>
+
 
 
 <span class="c1"># copied from https://code.activestate.com/recipes/577197-sortedcollection/</span>
@@ -485,7 +811,7 @@
           </li>
           <li>
               
-              <a href="../../index.html">goulib 3.0.4 documentation</a> &#187;
+              <a href="../../index.html">goulib 3.0.5 documentation</a> &#187;
               
           </li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>

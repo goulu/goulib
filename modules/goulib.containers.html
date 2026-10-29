@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>goulib.containers &#8212; goulib 3.0.4 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>goulib.containers &#8212; goulib 3.0.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=0fc419ee" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5b7663f2" />
     
-    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/documentation_options.js?v=f4ced14b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/graphviz_zoom.js?v=4de27ae4"></script>
@@ -108,6 +108,34 @@
 <li><a class="reference internal" href="#goulib.containers.Record.values"><code class="docutils literal notranslate"><span class="pre">Record.values()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#goulib.containers.Sequence"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__init__"><code class="docutils literal notranslate"><span class="pre">Sequence.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__repr__"><code class="docutils literal notranslate"><span class="pre">Sequence.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.save"><code class="docutils literal notranslate"><span class="pre">Sequence.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__iter__"><code class="docutils literal notranslate"><span class="pre">Sequence.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__getitem__"><code class="docutils literal notranslate"><span class="pre">Sequence.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.index"><code class="docutils literal notranslate"><span class="pre">Sequence.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__contains__"><code class="docutils literal notranslate"><span class="pre">Sequence.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__add__"><code class="docutils literal notranslate"><span class="pre">Sequence.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__sub__"><code class="docutils literal notranslate"><span class="pre">Sequence.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__mul__"><code class="docutils literal notranslate"><span class="pre">Sequence.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__div__"><code class="docutils literal notranslate"><span class="pre">Sequence.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__truediv__"><code class="docutils literal notranslate"><span class="pre">Sequence.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__or__"><code class="docutils literal notranslate"><span class="pre">Sequence.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__and__"><code class="docutils literal notranslate"><span class="pre">Sequence.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__mod__"><code class="docutils literal notranslate"><span class="pre">Sequence.__mod__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.apply"><code class="docutils literal notranslate"><span class="pre">Sequence.apply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__call__"><code class="docutils literal notranslate"><span class="pre">Sequence.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.filter"><code class="docutils literal notranslate"><span class="pre">Sequence.filter()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__le__"><code class="docutils literal notranslate"><span class="pre">Sequence.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__gt__"><code class="docutils literal notranslate"><span class="pre">Sequence.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.accumulate"><code class="docutils literal notranslate"><span class="pre">Sequence.accumulate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.pairwise"><code class="docutils literal notranslate"><span class="pre">Sequence.pairwise()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.sort"><code class="docutils literal notranslate"><span class="pre">Sequence.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.unique"><code class="docutils literal notranslate"><span class="pre">Sequence.unique()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.product"><code class="docutils literal notranslate"><span class="pre">Sequence.product()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#goulib.containers.SortedCollection"><code class="docutils literal notranslate"><span class="pre">SortedCollection</span></code></a><ul>
 <li><a class="reference internal" href="#goulib.containers.SortedCollection.__init__"><code class="docutils literal notranslate"><span class="pre">SortedCollection.__init__()</span></code></a></li>
 <li><a class="reference internal" href="#goulib.containers.SortedCollection.key"><code class="docutils literal notranslate"><span class="pre">SortedCollection.key</span></code></a></li>
@@ -192,7 +220,7 @@
           </li>
           <li>
               
-              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              <a href="../index.html">goulib 3.0.5 documentation</a> &#187;
               
           </li>
         <li class="nav-item nav-item-this"><a href="">goulib.containers</a></li>
@@ -229,14 +257,18 @@
 <span id="goulib-containers"></span><h1>goulib.containers<a class="headerlink" href="#module-goulib.containers" title="Link to this heading">¶</a></h1>
 <p>advanced containers : 
 - Record (struct) 
-- INFINITE Sequence has been moved to OEIS project</p>
+- INFINITE Sequence
+- SortedCollection</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goulib.containers.Record" title="goulib.containers.Record"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Record</span></code></a>(*args, **kwargs)</p></td>
 <td><p>mimics a Pascal record or a C struct</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goulib.containers.SortedCollection" title="goulib.containers.SortedCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SortedCollection</span></code></a>([iterable, key])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goulib.containers.Sequence" title="goulib.containers.Sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequence</span></code></a>([iterf, itemf, containf, desc, timeout])</p></td>
+<td><p>combines a generator and a read-only list used for INFINITE numeric (integer) sequences</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goulib.containers.SortedCollection" title="goulib.containers.SortedCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SortedCollection</span></code></a>([iterable, key])</p></td>
 <td><p>Sequence sorted by a key function.</p></td>
 </tr>
 </tbody>
@@ -468,6 +500,196 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
 <dt class="sig sig-object py" id="goulib.containers.Record.values">
 <span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#goulib.containers.Record.values" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="goulib.containers.Sequence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">goulib.containers.</span></span><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">itemf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">containf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>combines a generator and a read-only list
+used for INFINITE numeric (integer) sequences</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterf</strong> – optional iterator, or a function returning an iterator</p></li>
+<li><p><strong>itemf</strong> – optional function(i) returning the i-th element</p></li>
+<li><p><strong>containf</strong> – optional function(n) return bool True if n belongs to Sequence</p></li>
+<li><p><strong>desc</strong> – string description</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">itemf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">containf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterf</strong> – optional iterator, or a function returning an iterator</p></li>
+<li><p><strong>itemf</strong> – optional function(i) returning the i-th element</p></li>
+<li><p><strong>containf</strong> – optional function(n) return bool True if n belongs to Sequence</p></li>
+<li><p><strong>desc</strong> – string description</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__iter__" title="Link to this definition">¶</a></dt>
+<dd><p>reset the generator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a tee-ed copy of iterf, optionally timeout decorated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__getitem__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.index" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__contains__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__contains__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__sub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__mul__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__mul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__div__">
+<span class="sig-name descname"><span class="pre">__div__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__div__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__div__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__truediv__">
+<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__truediv__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__truediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__or__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__or__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sequence with items from both (sorted) operand Sequences</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__and__">
+<span class="sig-name descname"><span class="pre">__and__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__and__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__and__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sequence with items in both operands</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__mod__">
+<span class="sig-name descname"><span class="pre">__mod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__mod__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__mod__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sequence with items from left operand not in right</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">containf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.apply" title="Link to this definition">¶</a></dt>
+<dd><p>function composition</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.filter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__le__">
+<span class="sig-name descname"><span class="pre">__le__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__le__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__le__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&lt;=value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.__gt__">
+<span class="sig-name descname"><span class="pre">__gt__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.__gt__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.__gt__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self&gt;value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.accumulate">
+<span class="sig-name descname"><span class="pre">accumulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">add&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.accumulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.accumulate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.pairwise">
+<span class="sig-name descname"><span class="pre">pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.pairwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.pairwise" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.sort">
+<span class="sig-name descname"><span class="pre">sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.sort" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.unique">
+<span class="sig-name descname"><span class="pre">unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.unique"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.unique" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buffer</strong> – int number of last elements found. 
+if two identical elements are separated by more than this number of elements
+in self, they might be generated twice in the resulting Sequence</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sequence made of unique elements of this one</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goulib.containers.Sequence.product">
+<span class="sig-name descname"><span class="pre">product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">sum&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goulib/containers.html#Sequence.product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goulib.containers.Sequence.product" title="Link to this definition">¶</a></dt>
+<dd><p>cartesian product</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -718,6 +940,34 @@ bisect but with a simpler API and support for key functions.</p>
 <li><a class="reference internal" href="#goulib.containers.Record.values"><code class="docutils literal notranslate"><span class="pre">Record.values()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#goulib.containers.Sequence"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a><ul>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__init__"><code class="docutils literal notranslate"><span class="pre">Sequence.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__repr__"><code class="docutils literal notranslate"><span class="pre">Sequence.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.save"><code class="docutils literal notranslate"><span class="pre">Sequence.save()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__iter__"><code class="docutils literal notranslate"><span class="pre">Sequence.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__getitem__"><code class="docutils literal notranslate"><span class="pre">Sequence.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.index"><code class="docutils literal notranslate"><span class="pre">Sequence.index()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__contains__"><code class="docutils literal notranslate"><span class="pre">Sequence.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__add__"><code class="docutils literal notranslate"><span class="pre">Sequence.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__sub__"><code class="docutils literal notranslate"><span class="pre">Sequence.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__mul__"><code class="docutils literal notranslate"><span class="pre">Sequence.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__div__"><code class="docutils literal notranslate"><span class="pre">Sequence.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__truediv__"><code class="docutils literal notranslate"><span class="pre">Sequence.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__or__"><code class="docutils literal notranslate"><span class="pre">Sequence.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__and__"><code class="docutils literal notranslate"><span class="pre">Sequence.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__mod__"><code class="docutils literal notranslate"><span class="pre">Sequence.__mod__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.apply"><code class="docutils literal notranslate"><span class="pre">Sequence.apply()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__call__"><code class="docutils literal notranslate"><span class="pre">Sequence.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.filter"><code class="docutils literal notranslate"><span class="pre">Sequence.filter()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__le__"><code class="docutils literal notranslate"><span class="pre">Sequence.__le__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.__gt__"><code class="docutils literal notranslate"><span class="pre">Sequence.__gt__()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.accumulate"><code class="docutils literal notranslate"><span class="pre">Sequence.accumulate()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.pairwise"><code class="docutils literal notranslate"><span class="pre">Sequence.pairwise()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.sort"><code class="docutils literal notranslate"><span class="pre">Sequence.sort()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.unique"><code class="docutils literal notranslate"><span class="pre">Sequence.unique()</span></code></a></li>
+<li><a class="reference internal" href="#goulib.containers.Sequence.product"><code class="docutils literal notranslate"><span class="pre">Sequence.product()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#goulib.containers.SortedCollection"><code class="docutils literal notranslate"><span class="pre">SortedCollection</span></code></a><ul>
 <li><a class="reference internal" href="#goulib.containers.SortedCollection.__init__"><code class="docutils literal notranslate"><span class="pre">SortedCollection.__init__()</span></code></a></li>
 <li><a class="reference internal" href="#goulib.containers.SortedCollection.key"><code class="docutils literal notranslate"><span class="pre">SortedCollection.key</span></code></a></li>
@@ -802,7 +1052,7 @@ bisect but with a simpler API and support for key functions.</p>
           </li>
           <li>
               
-              <a href="../index.html">goulib 3.0.4 documentation</a> &#187;
+              <a href="../index.html">goulib 3.0.5 documentation</a> &#187;
               
           </li>
         <li class="nav-item nav-item-this"><a href="">goulib.containers</a></li>

@@ -1,0 +1,1262 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="1481pt" height="2362pt" viewBox="0.00 0.00 1481.00 2362.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 2357.8)">
+<ns0:title>inheritancea608b7cfae</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>abc.Collection</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Collection" ns1:title="abc.Collection" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="396.82,-169.8 278.47,-169.8 278.47,-141 396.82,-141 396.82,-169.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-150.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.Collection</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>abc.Sequence</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" ns1:title="All the operations on a read-only sequence." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="625.8,-146.8 506.7,-146.8 506.7,-118 625.8,-118 625.8,-146.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-127.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.Sequence</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge8" class="edge">
+<ns0:title>abc.Collection-&gt;abc.Sequence</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M397.3,-149.45C428.77,-146.25 467.64,-142.31 500.06,-139.02" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="500.9,-140.69 505.7,-138.44 500.55,-137.21 500.9,-140.69" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>abc.Sized</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sized" ns1:title="abc.Sized" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="150.22,-216.8 61.87,-216.8 61.87,-188 150.22,-188 150.22,-216.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-197.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.Sized</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>abc.Sized-&gt;abc.Collection</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M150.51,-193.5C184.81,-186.48 233.2,-176.58 272.05,-168.62" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="272.9,-170.24 277.45,-167.52 272.2,-166.81 272.9,-170.24" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>abc.Iterable</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" ns1:title="abc.Iterable" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="158.1,-122.8 54,-122.8 54,-94 158.1,-94 158.1,-122.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-103.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.Iterable</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>abc.Iterable-&gt;abc.Collection</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M158.58,-118.95C192.07,-125.8 236.02,-134.8 271.87,-142.14" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="272.02,-143.96 277.27,-143.24 272.72,-140.53 272.02,-143.96" />
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>abc.Iterator</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" ns1:title="abc.Iterator" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="388.95,-75.8 286.35,-75.8 286.35,-47 388.95,-47 388.95,-75.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-56.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.Iterator</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>abc.Iterable-&gt;abc.Iterator</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M158.58,-97.85C194.57,-90.48 242.64,-80.64 279.76,-73.05" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="280.8,-74.62 285.34,-71.9 280.09,-71.19 280.8,-74.62" />
+</ns0:g>
+
+<ns0:g id="node8" class="node">
+<ns0:title>abc.Reversible</ns0:title>
+<ns0:g id="a_node8"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Reversible" ns1:title="abc.Reversible" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="399.07,-122.8 276.22,-122.8 276.22,-94 399.07,-94 399.07,-122.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-103.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.Reversible</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>abc.Iterable-&gt;abc.Reversible</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M158.58,-108.4C191.45,-108.4 234.38,-108.4 269.86,-108.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="270.18,-110.15 275.18,-108.4 270.18,-106.65 270.18,-110.15" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>abc.Container</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Container" ns1:title="abc.Container" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="165.22,-169.8 46.87,-169.8 46.87,-141 165.22,-141 165.22,-169.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-150.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.Container</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>abc.Container-&gt;abc.Collection</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M165.58,-155.4C198.1,-155.4 238.62,-155.4 272.07,-155.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="272.47,-157.15 277.47,-155.4 272.47,-153.65 272.47,-157.15" />
+</ns0:g>
+
+<ns0:g id="node69" class="node">
+<ns0:title>itertools2.keep</ns0:title>
+<ns0:g id="a_node69"><ns0:a ns1:href="../modules/goulib.itertools2.html#goulib.itertools2.keep" ns1:title="iterator that keeps the last value" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="628.42,-52.8 504.07,-52.8 504.07,-24 628.42,-24 628.42,-52.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-33.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">itertools2.keep</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge49" class="edge">
+<ns0:title>abc.Iterator-&gt;itertools2.keep</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M389.22,-56.27C421.15,-53.03 462.78,-48.8 497.54,-45.27" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="498.39,-46.94 503.19,-44.7 498.04,-43.46 498.39,-46.94" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>abc.MutableSequence</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence" ns1:title="All the operations on a read-write sequence." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="879.9,-146.8 705.3,-146.8 705.3,-118 879.9,-118 879.9,-146.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="792.6" y="-127.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">abc.MutableSequence</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node83" class="node">
+<ns0:title>sortedlist.SortedList</ns0:title>
+<ns0:g id="a_node83"><ns0:a ns1:title="Sorted list is a sorted mutable sequence.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="1076.25,-146.8 915.9,-146.8 915.9,-118 1076.25,-118 1076.25,-146.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="996.07" y="-127.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">sortedlist.SortedList</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge62" class="edge">
+<ns0:title>abc.MutableSequence-&gt;sortedlist.SortedList</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M880.21,-132.4C889.84,-132.4 899.64,-132.4 909.25,-132.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="909.78,-134.15 914.78,-132.4 909.78,-130.65 909.78,-134.15" />
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>abc.Sequence-&gt;abc.MutableSequence</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M626.2,-132.4C648.46,-132.4 674.36,-132.4 698.97,-132.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="699.43,-134.15 704.43,-132.4 699.43,-130.65 699.43,-134.15" />
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>abc.Reversible-&gt;abc.Sequence</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.37,-114.83C430.47,-118.12 468.35,-122.14 500.06,-125.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="500.41,-127.29 505.56,-126.08 500.78,-123.81 500.41,-127.29" />
+</ns0:g>
+
+<ns0:g id="node9" class="node">
+<ns0:title>ast.NodeVisitor</ns0:title>
+<ns0:g id="a_node9"><ns0:a ns1:href="https://docs.python.org/3/library/ast.html#ast.NodeVisitor" ns1:title="A node visitor base class that walks the abstract syntax tree and calls a" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="169.35,-263.8 42.75,-263.8 42.75,-235 169.35,-235 169.35,-263.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-244.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">ast.NodeVisitor</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node34" class="node">
+<ns0:title>expr.TextVisitor</ns0:title>
+<ns0:g id="a_node34"><ns0:a ns1:href="../modules/goulib.expr.html#goulib.expr.TextVisitor" ns1:title="expr.TextVisitor" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="401.32,-263.8 273.97,-263.8 273.97,-235 401.32,-235 401.32,-263.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-244.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">expr.TextVisitor</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge21" class="edge">
+<ns0:title>ast.NodeVisitor-&gt;expr.TextVisitor</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M169.79,-249.4C200.04,-249.4 236.4,-249.4 267.45,-249.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="267.83,-251.15 272.83,-249.4 267.83,-247.65 267.83,-251.15" />
+</ns0:g>
+
+<ns0:g id="node10" class="node">
+<ns0:title>case.TestCase</ns0:title>
+<ns0:g id="a_node10"><ns0:a ns1:title="A class whose instances are single test cases.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="165.22,-310.8 46.87,-310.8 46.87,-282 165.22,-282 165.22,-310.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-291.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">case.TestCase</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node91" class="node">
+<ns0:title>tests.TestCase</ns0:title>
+<ns0:g id="a_node91"><ns0:a ns1:href="../modules/goulib.tests.html#goulib.tests.TestCase" ns1:title="tests.TestCase" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="397.95,-310.8 277.35,-310.8 277.35,-282 397.95,-282 397.95,-310.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-291.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">tests.TestCase</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge67" class="edge">
+<ns0:title>case.TestCase-&gt;tests.TestCase</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M165.58,-296.4C197.73,-296.4 237.69,-296.4 270.91,-296.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="271.27,-298.15 276.27,-296.4 271.27,-294.65 271.27,-298.15" />
+</ns0:g>
+
+<ns0:g id="node11" class="node">
+<ns0:title>collections.OrderedDict</ns0:title>
+<ns0:g id="a_node11"><ns0:a ns1:href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" ns1:title="Dictionary that remembers insertion order" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="197.1,-380.8 15,-380.8 15,-352 197.1,-352 197.1,-380.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-361.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">collections.OrderedDict</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node13" class="node">
+<ns0:title>colors.Palette</ns0:title>
+<ns0:g id="a_node13"><ns0:a ns1:href="../modules/goulib.colors.html#goulib.colors.Palette" ns1:title="dict of Colors indexed by anything" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="394.57,-404.8 280.72,-404.8 280.72,-376 394.57,-376 394.57,-404.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-385.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">colors.Palette</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge9" class="edge">
+<ns0:title>collections.OrderedDict-&gt;colors.Palette</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M197.46,-375.85C223.15,-378.54 250.55,-381.4 274.18,-383.87" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="274.52,-385.66 279.67,-384.44 274.88,-382.18 274.52,-385.66" />
+</ns0:g>
+
+<ns0:g id="node14" class="node">
+<ns0:title>containers.Record</ns0:title>
+<ns0:g id="a_node14"><ns0:a ns1:href="../modules/goulib.containers.html#goulib.containers.Record" ns1:title="mimics a Pascal record or a C struct" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="410.7,-357.8 264.6,-357.8 264.6,-329 410.7,-329 410.7,-357.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-338.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">containers.Record</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge10" class="edge">
+<ns0:title>collections.OrderedDict-&gt;containers.Record</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M197.46,-357.34C217.51,-355.34 238.59,-353.22 258.11,-351.27" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="258.84,-352.95 263.64,-350.71 258.49,-349.47 258.84,-352.95" />
+</ns0:g>
+
+<ns0:g id="node12" class="node">
+<ns0:title>colors.Color</ns0:title>
+<ns0:g id="a_node12"><ns0:a ns1:href="../modules/goulib.colors.html#goulib.colors.Color" ns1:title="A color with math operations and conversions" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="157.72,-427.8 54.37,-427.8 54.37,-399 157.72,-399 157.72,-427.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-408.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">colors.Color</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node15" class="node">
+<ns0:title>containers.Sequence</ns0:title>
+<ns0:g id="a_node15"><ns0:a ns1:href="../modules/goulib.containers.html#goulib.containers.Sequence" ns1:title="combines a generator and a read-only list" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="189.6,-474.8 22.5,-474.8 22.5,-446 189.6,-446 189.6,-474.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-455.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">containers.Sequence</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node16" class="node">
+<ns0:title>containers.SortedCollection</ns0:title>
+<ns0:g id="a_node16"><ns0:a ns1:href="../modules/goulib.containers.html#goulib.containers.SortedCollection" ns1:title="Sequence sorted by a key function." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="212.1,-521.8 0,-521.8 0,-493 212.1,-493 212.1,-521.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-502.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">containers.SortedCollection</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node17" class="node">
+<ns0:title>decorators.MultiMethod</ns0:title>
+<ns0:g id="a_node17"><ns0:a ns1:href="../modules/goulib.decorators.html#goulib.decorators.MultiMethod" ns1:title="decorators.MultiMethod" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="198.97,-568.8 13.12,-568.8 13.12,-540 198.97,-540 198.97,-568.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-549.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">decorators.MultiMethod</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node18" class="node">
+<ns0:title>digraph.DiGraph</ns0:title>
+<ns0:g id="a_node18"><ns0:a ns1:title="Base class for directed graphs.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="406.2,-638.8 269.1,-638.8 269.1,-610 406.2,-610 406.2,-638.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-619.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">digraph.DiGraph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node56" class="node">
+<ns0:title>multidigraph.MultiDiGraph</ns0:title>
+<ns0:g id="a_node56"><ns0:a ns1:title="A directed graph class that can store multiedges.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="669.3,-638.8 463.2,-638.8 463.2,-610 669.3,-610 669.3,-638.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-619.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">multidigraph.MultiDiGraph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge56" class="edge">
+<ns0:title>digraph.DiGraph-&gt;multidigraph.MultiDiGraph</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M406.64,-624.4C422.43,-624.4 439.62,-624.4 456.68,-624.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="457.19,-626.15 462.19,-624.4 457.19,-622.65 457.19,-626.15" />
+</ns0:g>
+
+<ns0:g id="node19" class="node">
+<ns0:title>graph.Graph</ns0:title>
+<ns0:g id="a_node19"><ns0:a ns1:title="Base class for undirected graphs.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="161.1,-615.8 51,-615.8 51,-587 161.1,-587 161.1,-615.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-596.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">graph.Graph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge11" class="edge">
+<ns0:title>graph.Graph-&gt;digraph.DiGraph</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M161.46,-606.85C191.67,-609.88 229.68,-613.68 262.57,-616.98" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="262.75,-618.76 267.9,-617.51 263.1,-615.27 262.75,-618.76" />
+</ns0:g>
+
+<ns0:g id="node58" class="node">
+<ns0:title>multigraph.MultiGraph</ns0:title>
+<ns0:g id="a_node58"><ns0:a ns1:title="An undirected graph class that can store multiedges.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="427.2,-591.8 248.1,-591.8 248.1,-563 427.2,-563 427.2,-591.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-572.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">multigraph.MultiGraph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge57" class="edge">
+<ns0:title>graph.Graph-&gt;multigraph.MultiGraph</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M161.46,-595.71C185.38,-593.21 214.19,-590.2 241.47,-587.35" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="242.09,-589.04 246.88,-586.78 241.72,-585.56 242.09,-589.04" />
+</ns0:g>
+
+<ns0:g id="node20" class="node">
+<ns0:title>drawing.BBox</ns0:title>
+<ns0:g id="a_node20"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.BBox" ns1:title="bounding box" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="396.82,-685.8 278.47,-685.8 278.47,-657 396.82,-657 396.82,-685.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-666.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.BBox</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node21" class="node">
+<ns0:title>interval.Box</ns0:title>
+<ns0:g id="a_node21"><ns0:a ns1:href="../modules/goulib.interval.html#goulib.interval.Box" ns1:title="a N dimensional rectangular box defined by a list of N Intervals" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="158.47,-685.8 53.62,-685.8 53.62,-657 158.47,-657 158.47,-685.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-666.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">interval.Box</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge12" class="edge">
+<ns0:title>interval.Box-&gt;drawing.BBox</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M158.86,-671.4C192.37,-671.4 236.25,-671.4 272.03,-671.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="272.4,-673.15 277.4,-671.4 272.4,-669.65 272.4,-673.15" />
+</ns0:g>
+
+<ns0:g id="node22" class="node">
+<ns0:title>drawing.Chain</ns0:title>
+<ns0:g id="a_node22"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Chain" ns1:title="group of contiguous Entities (Polyline or similar)" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="398.7,-779.8 276.6,-779.8 276.6,-751 398.7,-751 398.7,-779.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-760.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Chain</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node28" class="node">
+<ns0:title>drawing.Rect</ns0:title>
+<ns0:g id="a_node28"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Rect" ns1:title="a rectangle starting at low/left and going trigowise through top/right" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="622.42,-779.8 510.07,-779.8 510.07,-751 622.42,-751 622.42,-779.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-760.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Rect</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge16" class="edge">
+<ns0:title>drawing.Chain-&gt;drawing.Rect</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.08,-765.4C431.28,-765.4 470.83,-765.4 503.27,-765.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="503.9,-767.15 508.9,-765.4 503.9,-763.65 503.9,-767.15" />
+</ns0:g>
+
+<ns0:g id="node23" class="node">
+<ns0:title>drawing.Group</ns0:title>
+<ns0:g id="a_node23"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Group" ns1:title="group of Entities" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="168.22,-755.8 43.87,-755.8 43.87,-727 168.22,-727 168.22,-755.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-736.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Group</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge13" class="edge">
+<ns0:title>drawing.Group-&gt;drawing.Chain</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M168.58,-747.83C199.84,-751.1 237.86,-755.07 269.83,-758.42" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="270.24,-760.22 275.39,-759 270.6,-756.74 270.24,-760.22" />
+</ns0:g>
+
+<ns0:g id="node24" class="node">
+<ns0:title>drawing.Drawing</ns0:title>
+<ns0:g id="a_node24"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Drawing" ns1:title="list of Entities representing a vector graphics drawing" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="407.7,-732.8 267.6,-732.8 267.6,-704 407.7,-704 407.7,-732.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-713.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Drawing</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge14" class="edge">
+<ns0:title>drawing.Group-&gt;drawing.Drawing</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M168.58,-735.24C196.98,-732.39 230.96,-728.99 260.92,-725.99" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="261.7,-727.67 266.5,-725.43 261.35,-724.18 261.7,-727.67" />
+</ns0:g>
+
+<ns0:g id="node25" class="node">
+<ns0:title>drawing.Entity</ns0:title>
+<ns0:g id="a_node25"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Entity" ns1:title="Base class for all drawing entities" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="399.07,-1155.8 276.22,-1155.8 276.22,-1127 399.07,-1127 399.07,-1155.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1136.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Entity</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node29" class="node">
+<ns0:title>drawing.Spline</ns0:title>
+<ns0:g id="a_node29"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Spline" ns1:title="cubic spline segment" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="628.8,-1326.8 503.7,-1326.8 503.7,-1298 628.8,-1298 628.8,-1326.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1307.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Spline</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge17" class="edge">
+<ns0:title>drawing.Entity-&gt;drawing.Spline</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.13,-1149.09C409.47,-1152.69 419.39,-1157.9 427.2,-1165.4 465.54,-1202.19 425.76,-1241.7 463.2,-1279.4 472.64,-1288.91 484.84,-1295.68 497.51,-1300.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="497.34,-1302.3 502.63,-1302.33 498.51,-1299 497.34,-1302.3" />
+</ns0:g>
+
+<ns0:g id="node31" class="node">
+<ns0:title>drawing.Text</ns0:title>
+<ns0:g id="a_node31"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Text" ns1:title="drawing.Text" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="621.3,-1155.8 511.2,-1155.8 511.2,-1127 621.3,-1127 621.3,-1155.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1136.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Text</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge19" class="edge">
+<ns0:title>drawing.Entity-&gt;drawing.Text</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.37,-1141.4C431.94,-1141.4 471.96,-1141.4 504.53,-1141.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="505.18,-1143.15 510.18,-1141.4 505.18,-1139.65 505.18,-1143.15" />
+</ns0:g>
+
+<ns0:g id="node36" class="node">
+<ns0:title>geom.Circle</ns0:title>
+<ns0:g id="a_node36"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Circle" ns1:title="Circles are constructed with a center **Point2** and a radius::" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="617.92,-1205.8 514.57,-1205.8 514.57,-1177 617.92,-1177 617.92,-1205.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1186.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Circle</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge24" class="edge">
+<ns0:title>drawing.Entity-&gt;geom.Circle</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.37,-1154.8C433.19,-1162.26 475.03,-1171.49 508.24,-1178.82" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="508.33,-1180.63 513.59,-1180 509.09,-1177.22 508.33,-1180.63" />
+</ns0:g>
+
+<ns0:g id="node41" class="node">
+<ns0:title>geom.Point2</ns0:title>
+<ns0:g id="a_node41"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Point2" ns1:title="A point on a 2D plane. Construct in the obvious way::" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="620.55,-1108.8 511.95,-1108.8 511.95,-1080 620.55,-1080 620.55,-1108.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1089.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Point2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge29" class="edge">
+<ns0:title>drawing.Entity-&gt;geom.Point2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.37,-1128.8C432.33,-1121.97 472.9,-1113.55 505.67,-1106.76" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="506.42,-1108.39 510.96,-1105.66 505.71,-1104.96 506.42,-1108.39" />
+</ns0:g>
+
+<ns0:g id="node43" class="node">
+<ns0:title>geom.Polygon</ns0:title>
+<ns0:g id="a_node43"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Polygon" ns1:title="geom.Polygon" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="626.17,-1270.8 506.32,-1270.8 506.32,-1242 626.17,-1242 626.17,-1270.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1251.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Polygon</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge31" class="edge">
+<ns0:title>drawing.Entity-&gt;geom.Polygon</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.18,-1151.92C409.05,-1155.25 418.79,-1159.64 427.2,-1165.4 449.49,-1180.68 441.91,-1197.75 463.2,-1214.4 476.51,-1224.81 492.75,-1233.03 508.33,-1239.33" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="508.04,-1241.1 513.33,-1241.29 509.32,-1237.84 508.04,-1241.1" />
+</ns0:g>
+
+<ns0:g id="node45" class="node">
+<ns0:title>geom.Segment2</ns0:title>
+<ns0:g id="a_node45"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Segment2" ns1:title="geom.Segment2" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="634.42,-1378.8 498.07,-1378.8 498.07,-1350 634.42,-1350 634.42,-1378.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1359.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Segment2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge34" class="edge">
+<ns0:title>drawing.Entity-&gt;geom.Segment2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.28,-1148.33C409.74,-1151.99 419.65,-1157.41 427.2,-1165.4 480.26,-1221.52 410.48,-1278.96 463.2,-1335.4 471,-1343.75 481,-1349.75 491.7,-1354.06" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="491.69,-1355.92 496.99,-1356.02 492.9,-1352.64 491.69,-1355.92" />
+</ns0:g>
+
+<ns0:g id="node26" class="node">
+<ns0:title>plot.Plot</ns0:title>
+<ns0:g id="a_node26"><ns0:a ns1:href="../modules/goulib.plot.html#goulib.plot.Plot" ns1:title="base class for plotable rich object display on IPython notebooks" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="144.97,-920.8 67.12,-920.8 67.12,-892 144.97,-892 144.97,-920.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-901.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">plot.Plot</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge15" class="edge">
+<ns0:title>plot.Plot-&gt;drawing.Entity</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M112.54,-921.06C127.75,-959.57 174.21,-1064.3 248.1,-1117.4 254.7,-1122.14 262.18,-1125.94 269.93,-1129" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="269.9,-1130.85 275.19,-1130.93 271.1,-1127.56 269.9,-1130.85" />
+</ns0:g>
+
+<ns0:g id="node33" class="node">
+<ns0:title>expr.Expr</ns0:title>
+<ns0:g id="a_node33"><ns0:a ns1:href="../modules/goulib.expr.html#goulib.expr.Expr" ns1:title="Math expressions that can be evaluated like standard functions" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="381.82,-967.8 293.47,-967.8 293.47,-939 381.82,-939 381.82,-967.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-948.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">expr.Expr</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge20" class="edge">
+<ns0:title>plot.Plot-&gt;expr.Expr</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M145.22,-914.21C184.11,-922.18 244.6,-934.56 287.15,-943.27" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="287.3,-945.09 292.55,-944.37 288.01,-941.66 287.3,-945.09" />
+</ns0:g>
+
+<ns0:g id="node62" class="node">
+<ns0:title>image.Image</ns0:title>
+<ns0:g id="a_node62"><ns0:a ns1:href="../modules/goulib.image.html#goulib.image.Image" ns1:title="image.Image" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="393.82,-873.8 281.47,-873.8 281.47,-845 393.82,-845 393.82,-873.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-854.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">image.Image</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge47" class="edge">
+<ns0:title>plot.Plot-&gt;image.Image</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M145.22,-898.59C180.52,-891.36 233.6,-880.5 274.92,-872.04" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="275.89,-873.62 280.44,-870.91 275.19,-870.19 275.89,-873.62" />
+</ns0:g>
+
+<ns0:g id="node72" class="node">
+<ns0:title>motion.PVA</ns0:title>
+<ns0:g id="a_node72"><ns0:a ns1:href="../modules/goulib.motion.html#goulib.motion.PVA" ns1:title="represents a function of time returning position, velocity, and acceleration" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="388.2,-826.8 287.1,-826.8 287.1,-798 388.2,-798 388.2,-826.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-807.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">motion.PVA</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge51" class="edge">
+<ns0:title>plot.Plot-&gt;motion.PVA</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M133.13,-891.51C160.93,-876.12 206.57,-852.16 248.1,-836.4 258.53,-832.44 269.88,-828.85 280.86,-825.73" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="281.85,-827.27 286.19,-824.24 280.91,-823.9 281.85,-827.27" />
+</ns0:g>
+
+<ns0:g id="node27" class="node">
+<ns0:title>drawing.Instance</ns0:title>
+<ns0:g id="a_node27"><ns0:a ns1:href="../modules/goulib.drawing.html#goulib.drawing.Instance" ns1:title="drawing.Instance" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="176.85,-1366.8 35.25,-1366.8 35.25,-1338 176.85,-1338 176.85,-1366.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1347.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">drawing.Instance</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node30" class="node">
+<ns0:title>geom.Geometry</ns0:title>
+<ns0:g id="a_node30"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Geometry" ns1:title="The following classes are available for dealing with simple 2D geometry." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="172.72,-1319.8 39.37,-1319.8 39.37,-1291 172.72,-1291 172.72,-1319.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1300.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Geometry</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge18" class="edge">
+<ns0:title>geom.Geometry-&gt;drawing.Spline</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M173.15,-1316.85C186.31,-1320.14 199.85,-1324.27 212.1,-1329.4 229.61,-1336.73 229.88,-1347.08 248.1,-1352.4 324.51,-1374.72 348.47,-1364.16 427.2,-1352.4 443.75,-1349.93 447.15,-1346.13 463.2,-1341.4 477.11,-1337.3 492.12,-1332.98 506.24,-1328.96" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="507.17,-1330.51 511.5,-1327.46 506.21,-1327.14 507.17,-1330.51" />
+</ns0:g>
+
+<ns0:g id="node37" class="node">
+<ns0:title>geom.Surface</ns0:title>
+<ns0:g id="a_node37"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Surface" ns1:title="geom.Surface" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="396.82,-1343.8 278.47,-1343.8 278.47,-1315 396.82,-1315 396.82,-1343.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1324.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Surface</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge35" class="edge">
+<ns0:title>geom.Geometry-&gt;geom.Surface</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M173.15,-1312.31C204.07,-1315.54 240.78,-1319.38 271.57,-1322.6" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="272.14,-1324.42 277.29,-1323.2 272.5,-1320.93 272.14,-1324.42" />
+</ns0:g>
+
+<ns0:g id="node39" class="node">
+<ns0:title>geom.Line2</ns0:title>
+<ns0:g id="a_node39"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Line2" ns1:title="A **Line2** is a line on a 2D plane extending to infinity in both directions;" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="388.95,-1427.8 286.35,-1427.8 286.35,-1399 388.95,-1399 388.95,-1427.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1408.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Line2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge26" class="edge">
+<ns0:title>geom.Geometry-&gt;geom.Line2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M173.11,-1312.34C186.84,-1315.94 200.62,-1321.34 212.1,-1329.4 236.32,-1346.4 224.6,-1367.43 248.1,-1385.4 257.48,-1392.57 268.74,-1397.93 280.04,-1401.93" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="279.92,-1403.74 285.22,-1403.66 281.03,-1400.42 279.92,-1403.74" />
+</ns0:g>
+
+<ns0:g id="edge28" class="edge">
+<ns0:title>geom.Geometry-&gt;geom.Point2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M130.36,-1290.69C154.45,-1274.27 191.38,-1245.49 212.1,-1211.4 245.48,-1156.5 197.33,-1110.77 248.1,-1071.4 286.9,-1041.32 424.88,-1064.14 505.5,-1080.87" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="505.68,-1082.7 510.94,-1082.01 506.4,-1079.27 505.68,-1082.7" />
+</ns0:g>
+
+<ns0:g id="node46" class="node">
+<ns0:title>geom3d.Line3</ns0:title>
+<ns0:g id="a_node46"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Line3" ns1:title="A **Line3** is a line on a 3D plane extending to infinity in both directions;" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="397.95,-1474.8 277.35,-1474.8 277.35,-1446 397.95,-1446 397.95,-1474.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1455.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Line3</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge36" class="edge">
+<ns0:title>geom.Geometry-&gt;geom3d.Line3</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M173.09,-1309.87C187.3,-1313.56 201.28,-1319.61 212.1,-1329.4 249.31,-1363.06 211.57,-1402 248.1,-1436.4 254.69,-1442.61 262.73,-1447.25 271.24,-1450.7" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="271.19,-1452.55 276.49,-1452.65 272.41,-1449.27 271.19,-1452.55" />
+</ns0:g>
+
+<ns0:g id="node48" class="node">
+<ns0:title>geom3d.Plane</ns0:title>
+<ns0:g id="a_node48"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Plane" ns1:title="Planes can be constructed with any of:" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="397.95,-1296.8 277.35,-1296.8 277.35,-1268 397.95,-1268 397.95,-1296.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1277.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Plane</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge37" class="edge">
+<ns0:title>geom.Geometry-&gt;geom3d.Plane</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M173.15,-1298.78C203.7,-1295.72 239.9,-1292.09 270.46,-1289.03" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="271.34,-1290.7 276.14,-1288.46 270.99,-1287.22 271.34,-1290.7" />
+</ns0:g>
+
+<ns0:g id="node49" class="node">
+<ns0:title>geom3d.Point3</ns0:title>
+<ns0:g id="a_node49"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Point3" ns1:title="A point on a 3D plane. &#160;Construct in the obvious way::" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="400.95,-1202.8 274.35,-1202.8 274.35,-1174 400.95,-1174 400.95,-1202.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1183.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Point3</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge39" class="edge">
+<ns0:title>geom.Geometry-&gt;geom3d.Point3</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M125.1,-1290.74C150.91,-1270.45 200.51,-1233.87 248.1,-1212.4 254.57,-1209.48 261.46,-1206.86 268.44,-1204.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="269.38,-1206.04 273.6,-1202.83 268.3,-1202.71 269.38,-1206.04" />
+</ns0:g>
+
+<ns0:g id="node54" class="node">
+<ns0:title>geom3d.Sphere</ns0:title>
+<ns0:g id="a_node54"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Sphere" ns1:title="Spheres are constructed with a center **Point3** and a radius::" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="403.57,-1249.8 271.72,-1249.8 271.72,-1221 403.57,-1221 403.57,-1249.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1230.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Sphere</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge42" class="edge">
+<ns0:title>geom.Geometry-&gt;geom3d.Sphere</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M150.71,-1290.53C178.48,-1281.23 215.27,-1269.19 248.1,-1259.4 256.53,-1256.88 265.45,-1254.34 274.25,-1251.89" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="275.23,-1253.43 279.59,-1250.41 274.3,-1250.06 275.23,-1253.43" />
+</ns0:g>
+
+<ns0:g id="node32" class="node">
+<ns0:title>expr.Context</ns0:title>
+<ns0:g id="a_node32"><ns0:a ns1:href="../modules/goulib.expr.html#goulib.expr.Context" ns1:title="expr.Context" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="161.1,-1413.8 51,-1413.8 51,-1385 161.1,-1385 161.1,-1413.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1394.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">expr.Context</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node80" class="node">
+<ns0:title>periodic.Periodic</ns0:title>
+<ns0:g id="a_node80"><ns0:a ns1:href="../modules/goulib.periodic.html#goulib.periodic.Periodic" ns1:title="periodic function defined by an Expr and a period" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="634.42,-1061.8 498.07,-1061.8 498.07,-1033 634.42,-1033 634.42,-1061.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1042.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">periodic.Periodic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge58" class="edge">
+<ns0:title>expr.Expr-&gt;periodic.Periodic</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M360.22,-968.01C384.35,-983.76 425.06,-1008.54 463.2,-1023.4 472.26,-1026.93 481.98,-1030.03 491.69,-1032.73" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="491.72,-1034.55 497,-1034.16 492.63,-1031.17 491.72,-1034.55" />
+</ns0:g>
+
+<ns0:g id="node81" class="node">
+<ns0:title>piecewise.Piecewise</ns0:title>
+<ns0:g id="a_node81"><ns0:a ns1:href="../modules/goulib.piecewise.html#goulib.piecewise.Piecewise" ns1:title="piecewise function defined by a sorted list of (startx, Expr)" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="646.42,-1014.8 486.07,-1014.8 486.07,-986 646.42,-986 646.42,-1014.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-995.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">piecewise.Piecewise</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge59" class="edge">
+<ns0:title>expr.Expr-&gt;piecewise.Piecewise</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M382.07,-962.41C411.84,-968.58 452.15,-976.94 487.39,-984.25" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="487.46,-986.05 492.71,-985.35 488.17,-982.62 487.46,-986.05" />
+</ns0:g>
+
+<ns0:g id="node82" class="node">
+<ns0:title>polynomial.Polynomial</ns0:title>
+<ns0:g id="a_node82"><ns0:a ns1:href="../modules/goulib.polynomial.html#goulib.polynomial.Polynomial" ns1:title="polynomial.Polynomial" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="654.67,-967.8 477.82,-967.8 477.82,-939 654.67,-939 654.67,-967.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-948.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">polynomial.Polynomial</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge60" class="edge">
+<ns0:title>expr.Expr-&gt;polynomial.Polynomial</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M382.07,-953.4C407.37,-953.4 440.3,-953.4 471.25,-953.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="471.65,-955.15 476.65,-953.4 471.65,-951.65 471.65,-955.15" />
+</ns0:g>
+
+<ns0:g id="node87" class="node">
+<ns0:title>stats.PDF</ns0:title>
+<ns0:g id="a_node87"><ns0:a ns1:href="../modules/goulib.stats.html#goulib.stats.PDF" ns1:title="probability density function" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="609.67,-920.8 522.82,-920.8 522.82,-892 609.67,-892 609.67,-920.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-901.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">stats.PDF</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge65" class="edge">
+<ns0:title>expr.Expr-&gt;stats.PDF</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M382.07,-944.39C420.38,-936.45 476.16,-924.88 516.09,-916.6" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="517.08,-918.18 521.62,-915.45 516.37,-914.75 517.08,-918.18" />
+</ns0:g>
+
+<ns0:g id="node35" class="node">
+<ns0:title>geom.Arc2</ns0:title>
+<ns0:g id="a_node35"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Arc2" ns1:title="geom.Arc2" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="840.9,-1228.8 744.3,-1228.8 744.3,-1200 840.9,-1200 840.9,-1228.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="792.6" y="-1209.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Arc2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge22" class="edge">
+<ns0:title>geom.Circle-&gt;geom.Arc2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M618.16,-1196.62C653.84,-1200.28 701.46,-1205.16 737.78,-1208.88" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="738.06,-1210.67 743.21,-1209.44 738.41,-1207.19 738.06,-1210.67" />
+</ns0:g>
+
+<ns0:g id="node38" class="node">
+<ns0:title>geom.Ellipse</ns0:title>
+<ns0:g id="a_node38"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Ellipse" ns1:title="geom.Ellipse" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="847.65,-1181.8 737.55,-1181.8 737.55,-1153 847.65,-1153 847.65,-1181.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="792.6" y="-1162.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Ellipse</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge25" class="edge">
+<ns0:title>geom.Circle-&gt;geom.Ellipse</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M618.16,-1185.95C651.77,-1182.36 695.96,-1177.63 731.32,-1173.85" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="731.83,-1175.55 736.62,-1173.28 731.46,-1172.07 731.83,-1175.55" />
+</ns0:g>
+
+<ns0:g id="edge23" class="edge">
+<ns0:title>geom.Surface-&gt;geom.Circle</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M397.29,-1320.99C408.04,-1317.46 418.57,-1312.46 427.2,-1305.4 454.89,-1282.74 436.99,-1257.76 463.2,-1233.4 475.89,-1221.61 492.34,-1212.91 508.31,-1206.59" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="509.41,-1208.04 513.46,-1204.63 508.17,-1204.77 509.41,-1208.04" />
+</ns0:g>
+
+<ns0:g id="edge30" class="edge">
+<ns0:title>geom.Surface-&gt;geom.Polygon</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M397.15,-1314.91C407.26,-1312.02 417.59,-1308.81 427.2,-1305.4 443.7,-1299.54 446.85,-1295.66 463.2,-1289.4 478.17,-1283.67 494.61,-1278.06 509.84,-1273.15" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="510.88,-1274.65 515.11,-1271.45 509.82,-1271.31 510.88,-1274.65" />
+</ns0:g>
+
+<ns0:g id="node44" class="node">
+<ns0:title>geom.Ray2</ns0:title>
+<ns0:g id="a_node44"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Ray2" ns1:title="geom.Ray2" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="616.42,-1427.8 516.07,-1427.8 516.07,-1399 616.42,-1399 616.42,-1427.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1408.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Ray2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge32" class="edge">
+<ns0:title>geom.Line2-&gt;geom.Ray2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M389.22,-1413.4C424.86,-1413.4 472.58,-1413.4 509.35,-1413.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="509.86,-1415.15 514.86,-1413.4 509.86,-1411.65 509.86,-1415.15" />
+</ns0:g>
+
+<ns0:g id="edge33" class="edge">
+<ns0:title>geom.Line2-&gt;geom.Segment2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M389.22,-1402.46C419.31,-1395.96 458.01,-1387.59 491.46,-1380.36" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="492.38,-1381.95 496.9,-1379.18 491.64,-1378.53 492.38,-1381.95" />
+</ns0:g>
+
+<ns0:g id="node40" class="node">
+<ns0:title>geom.Matrix3</ns0:title>
+<ns0:g id="a_node40"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Matrix3" ns1:title="Two matrix classes are supplied, *Matrix3*, a 3x3 matrix for working with 2D" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="164.85,-1460.8 47.25,-1460.8 47.25,-1432 164.85,-1432 164.85,-1460.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1441.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Matrix3</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node42" class="node">
+<ns0:title>geom.Vector2</ns0:title>
+<ns0:g id="a_node42"><ns0:a ns1:href="../modules/goulib.geom.html#goulib.geom.Vector2" ns1:title="Mutable 2D vector:" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="396.45,-1108.8 278.85,-1108.8 278.85,-1080 396.45,-1080 396.45,-1108.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1089.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom.Vector2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge27" class="edge">
+<ns0:title>geom.Vector2-&gt;geom.Point2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M396.71,-1094.4C430.04,-1094.4 471.82,-1094.4 505.44,-1094.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="505.86,-1096.15 510.86,-1094.4 505.86,-1092.65 505.86,-1096.15" />
+</ns0:g>
+
+<ns0:g id="node52" class="node">
+<ns0:title>geom3d.Ray3</ns0:title>
+<ns0:g id="a_node52"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Ray3" ns1:title="geom3d.Ray3" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="625.42,-1521.8 507.07,-1521.8 507.07,-1493 625.42,-1493 625.42,-1521.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1502.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Ray3</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge40" class="edge">
+<ns0:title>geom3d.Line3-&gt;geom3d.Ray3</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M398.19,-1472.75C429.66,-1479.28 468.33,-1487.3 500.54,-1493.98" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="500.9,-1495.84 506.15,-1495.14 501.61,-1492.41 500.9,-1495.84" />
+</ns0:g>
+
+<ns0:g id="node53" class="node">
+<ns0:title>geom3d.Segment3</ns0:title>
+<ns0:g id="a_node53"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Segment3" ns1:title="geom3d.Segment3" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="643.42,-1474.8 489.07,-1474.8 489.07,-1446 643.42,-1446 643.42,-1474.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1455.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Segment3</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge41" class="edge">
+<ns0:title>geom3d.Line3-&gt;geom3d.Segment3</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M398.19,-1460.4C423.91,-1460.4 454.44,-1460.4 482.33,-1460.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="482.85,-1462.15 487.85,-1460.4 482.85,-1458.65 482.85,-1462.15" />
+</ns0:g>
+
+<ns0:g id="node47" class="node">
+<ns0:title>geom3d.Matrix4</ns0:title>
+<ns0:g id="a_node47"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Matrix4" ns1:title="geom3d.Matrix4" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="173.85,-1507.8 38.25,-1507.8 38.25,-1479 173.85,-1479 173.85,-1507.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1488.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Matrix4</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node50" class="node">
+<ns0:title>geom3d.Vector3</ns0:title>
+<ns0:g id="a_node50"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Vector3" ns1:title="Mutable 3D Vector." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="173.85,-1202.8 38.25,-1202.8 38.25,-1174 173.85,-1174 173.85,-1202.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1183.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Vector3</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge38" class="edge">
+<ns0:title>geom3d.Vector3-&gt;geom3d.Point3</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M174.08,-1188.4C203.49,-1188.4 237.99,-1188.4 267.62,-1188.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="268.11,-1190.15 273.11,-1188.4 268.11,-1186.65 268.11,-1190.15" />
+</ns0:g>
+
+<ns0:g id="node51" class="node">
+<ns0:title>geom3d.Quaternion</ns0:title>
+<ns0:g id="a_node51"><ns0:a ns1:href="../modules/goulib.geom3d.html#goulib.geom3d.Quaternion" ns1:title="A quaternion represents a three-dimensional rotation or reflection" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="186.22,-1554.8 25.87,-1554.8 25.87,-1526 186.22,-1526 186.22,-1554.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1535.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">geom3d.Quaternion</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node55" class="node">
+<ns0:title>graph.DiGraph</ns0:title>
+<ns0:g id="a_node55"><ns0:a ns1:href="../modules/goulib.graph.html#goulib.graph.DiGraph" ns1:title="directed graph with nodes positions" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="854.77,-638.8 730.42,-638.8 730.42,-610 854.77,-610 854.77,-638.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="792.6" y="-619.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">graph.DiGraph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge43" class="edge">
+<ns0:title>multidigraph.MultiDiGraph-&gt;graph.DiGraph</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M669.58,-624.4C688,-624.4 706.78,-624.4 723.91,-624.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="724.39,-626.15 729.39,-624.4 724.39,-622.65 724.39,-626.15" />
+</ns0:g>
+
+<ns0:g id="node57" class="node">
+<ns0:title>graph.GeoGraph</ns0:title>
+<ns0:g id="a_node57"><ns0:a ns1:href="../modules/goulib.graph.html#goulib.graph.GeoGraph" ns1:title="Undirected graph with nodes positions" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="634.8,-591.8 497.7,-591.8 497.7,-563 634.8,-563 634.8,-591.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-572.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">graph.GeoGraph</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge55" class="edge">
+<ns0:title>multigraph.MultiGraph-&gt;multidigraph.MultiDiGraph</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M410.35,-592.27C434.85,-597.35 462.37,-603.06 487.34,-608.24" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="487.64,-610.09 492.89,-609.39 488.35,-606.66 487.64,-610.09" />
+</ns0:g>
+
+<ns0:g id="edge44" class="edge">
+<ns0:title>multigraph.MultiGraph-&gt;graph.GeoGraph</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M427.56,-577.4C448.48,-577.4 470.57,-577.4 490.78,-577.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="491.51,-579.15 496.51,-577.4 491.51,-575.65 491.51,-579.15" />
+</ns0:g>
+
+<ns0:g id="node59" class="node">
+<ns0:title>image.Ditherer</ns0:title>
+<ns0:g id="a_node59"><ns0:a ns1:href="../modules/goulib.image.html#goulib.image.Ditherer" ns1:title="image.Ditherer" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="168.6,-1601.8 43.5,-1601.8 43.5,-1573 168.6,-1573 168.6,-1601.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1582.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">image.Ditherer</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node60" class="node">
+<ns0:title>image.ErrorDiffusion</ns0:title>
+<ns0:g id="a_node60"><ns0:a ns1:href="../modules/goulib.image.html#goulib.image.ErrorDiffusion" ns1:title="image.ErrorDiffusion" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="419.7,-1601.8 255.6,-1601.8 255.6,-1573 419.7,-1573 419.7,-1601.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-1582.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">image.ErrorDiffusion</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge45" class="edge">
+<ns0:title>image.Ditherer-&gt;image.ErrorDiffusion</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M168.88,-1587.4C193.47,-1587.4 222.22,-1587.4 248.9,-1587.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="249.52,-1589.15 254.52,-1587.4 249.52,-1585.65 249.52,-1589.15" />
+</ns0:g>
+
+<ns0:g id="node61" class="node">
+<ns0:title>image.FloydSteinberg</ns0:title>
+<ns0:g id="a_node61"><ns0:a ns1:href="../modules/goulib.image.html#goulib.image.FloydSteinberg" ns1:title="image.FloydSteinberg" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="652.8,-1601.8 479.7,-1601.8 479.7,-1573 652.8,-1573 652.8,-1601.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-1582.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">image.FloydSteinberg</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge46" class="edge">
+<ns0:title>image.ErrorDiffusion-&gt;image.FloydSteinberg</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M420.14,-1587.4C437.31,-1587.4 455.55,-1587.4 473.09,-1587.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="473.76,-1589.15 478.76,-1587.4 473.76,-1585.65 473.76,-1589.15" />
+</ns0:g>
+
+<ns0:g id="node63" class="node">
+<ns0:title>image.Mode</ns0:title>
+<ns0:g id="a_node63"><ns0:a ns1:href="../modules/goulib.image.html#goulib.image.Mode" ns1:title="image.Mode" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="159.22,-1648.8 52.87,-1648.8 52.87,-1620 159.22,-1620 159.22,-1648.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1629.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">image.Mode</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node64" class="node">
+<ns0:title>interval.Interval</ns0:title>
+<ns0:g id="a_node64"><ns0:a ns1:href="../modules/goulib.interval.html#goulib.interval.Interval" ns1:title="Represents an interval. " target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="171.97,-1695.8 40.12,-1695.8 40.12,-1667 171.97,-1667 171.97,-1695.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1676.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">interval.Interval</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node65" class="node">
+<ns0:title>interval.Intervals</ns0:title>
+<ns0:g id="a_node65"><ns0:a ns1:href="../modules/goulib.interval.html#goulib.interval.Intervals" ns1:title="a list of intervals kept in ascending order" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="1472.7,-146.8 1333.35,-146.8 1333.35,-118 1472.7,-118 1472.7,-146.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="1403.02" y="-127.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">interval.Intervals</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node66" class="node">
+<ns0:title>sortedlist.SortedKeyList</ns0:title>
+<ns0:g id="a_node66"><ns0:a ns1:title="Sorted-key list is a subtype of sorted list.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="1297.35,-146.8 1112.25,-146.8 1112.25,-118 1297.35,-118 1297.35,-146.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="1204.8" y="-127.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">sortedlist.SortedKeyList</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge48" class="edge">
+<ns0:title>sortedlist.SortedKeyList-&gt;interval.Intervals</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M1297.59,-132.4C1307.24,-132.4 1316.96,-132.4 1326.4,-132.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="1327.12,-134.15 1332.12,-132.4 1327.12,-130.65 1327.12,-134.15" />
+</ns0:g>
+
+<ns0:g id="node67" class="node">
+<ns0:title>itertools2.SortingError</ns0:title>
+<ns0:g id="a_node67"><ns0:a ns1:href="../modules/goulib.itertools2.html#goulib.itertools2.SortingError" ns1:title="itertools2.SortingError" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="193.72,-1742.8 18.37,-1742.8 18.37,-1714 193.72,-1714 193.72,-1742.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1723.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">itertools2.SortingError</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node68" class="node">
+<ns0:title>itertools2.iter2</ns0:title>
+<ns0:g id="a_node68"><ns0:a ns1:href="../modules/goulib.itertools2.html#goulib.itertools2.iter2" ns1:title="Takes in an object that is iterable." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="167.85,-1789.8 44.25,-1789.8 44.25,-1761 167.85,-1761 167.85,-1789.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1770.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">itertools2.iter2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node70" class="node">
+<ns0:title>typing.Generic</ns0:title>
+<ns0:g id="a_node70"><ns0:a ns1:href="https://docs.python.org/3/library/typing.html#typing.Generic" ns1:title="Abstract base class for generic types." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="399.45,-28.8 275.85,-28.8 275.85,0 399.45,0 399.45,-28.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-9.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">typing.Generic</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge50" class="edge">
+<ns0:title>typing.Generic-&gt;itertools2.keep</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M399.67,-20.86C429.9,-24.07 466.5,-27.94 497.58,-31.23" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="497.82,-33.02 502.97,-31.8 498.18,-29.54 497.82,-33.02" />
+</ns0:g>
+
+<ns0:g id="node71" class="node">
+<ns0:title>math2.Sieve</ns0:title>
+<ns0:g id="a_node71"><ns0:a ns1:href="../modules/goulib.math2.html#goulib.math2.Sieve" ns1:title="General sieve" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="160.35,-1836.8 51.75,-1836.8 51.75,-1808 160.35,-1808 160.35,-1836.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1817.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">math2.Sieve</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node73" class="node">
+<ns0:title>motion.Segment</ns0:title>
+<ns0:g id="a_node73"><ns0:a ns1:href="../modules/goulib.motion.html#goulib.motion.Segment" ns1:title="a PVA defined between 2 times, null elsewhere" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="634.42,-826.8 498.07,-826.8 498.07,-798 634.42,-798 634.42,-826.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-807.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">motion.Segment</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge52" class="edge">
+<ns0:title>motion.PVA-&gt;motion.Segment</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M388.66,-812.4C418.84,-812.4 457.85,-812.4 491.52,-812.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="491.99,-814.15 496.99,-812.4 491.99,-810.65 491.99,-814.15" />
+</ns0:g>
+
+<ns0:g id="node74" class="node">
+<ns0:title>motion.SegmentPoly</ns0:title>
+<ns0:g id="a_node74"><ns0:a ns1:href="../modules/goulib.motion.html#goulib.motion.SegmentPoly" ns1:title="a segment defined by a polynomial position law" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="875.02,-803.8 710.17,-803.8 710.17,-775 875.02,-775 875.02,-803.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="792.6" y="-784.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">motion.SegmentPoly</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge53" class="edge">
+<ns0:title>motion.Segment-&gt;motion.SegmentPoly</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M634.87,-805.47C656.45,-803.26 680.66,-800.77 703.47,-798.43" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="704.32,-800.11 709.12,-797.86 703.96,-796.63 704.32,-800.11" />
+</ns0:g>
+
+<ns0:g id="node75" class="node">
+<ns0:title>motion.Segments</ns0:title>
+<ns0:g id="a_node75"><ns0:a ns1:href="../modules/goulib.motion.html#goulib.motion.Segments" ns1:title="motion.Segments" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="864.52,-850.8 720.67,-850.8 720.67,-822 864.52,-822 864.52,-850.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="792.6" y="-831.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">motion.Segments</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge54" class="edge">
+<ns0:title>motion.Segment-&gt;motion.Segments</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M634.87,-819.63C659.73,-822.29 688.07,-825.32 713.76,-828.07" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="714.32,-829.89 719.47,-828.68 714.69,-826.41 714.32,-829.89" />
+</ns0:g>
+
+<ns0:g id="node76" class="node">
+<ns0:title>optim.BinDict</ns0:title>
+<ns0:g id="a_node76"><ns0:a ns1:href="../modules/goulib.optim.html#goulib.optim.BinDict" ns1:title="optim.BinDict" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="163.72,-1883.8 48.37,-1883.8 48.37,-1855 163.72,-1855 163.72,-1883.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1864.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">optim.BinDict</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node77" class="node">
+<ns0:title>optim.BinList</ns0:title>
+<ns0:g id="a_node77"><ns0:a ns1:href="../modules/goulib.optim.html#goulib.optim.BinList" ns1:title="optim.BinList" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="162.22,-1930.8 49.87,-1930.8 49.87,-1902 162.22,-1902 162.22,-1930.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1911.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">optim.BinList</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node78" class="node">
+<ns0:title>optim.DifferentialEvolution</ns0:title>
+<ns0:g id="a_node78"><ns0:a ns1:href="../modules/goulib.optim.html#goulib.optim.DifferentialEvolution" ns1:title="This is a python implementation of differential evolution taken from" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="209.1,-1977.8 3,-1977.8 3,-1949 209.1,-1949 209.1,-1977.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-1958.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">optim.DifferentialEvolution</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node79" class="node">
+<ns0:title>optim.ObjectiveFunction</ns0:title>
+<ns0:g id="a_node79"><ns0:a ns1:href="../modules/goulib.optim.html#goulib.optim.ObjectiveFunction" ns1:title="class to wrap an objective function and" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="201.22,-2024.8 10.87,-2024.8 10.87,-1996 201.22,-1996 201.22,-2024.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2005.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">optim.ObjectiveFunction</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge61" class="edge">
+<ns0:title>sortedlist.SortedList-&gt;sortedlist.SortedKeyList</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M1076.7,-132.4C1086.13,-132.4 1095.83,-132.4 1105.47,-132.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="1106.04,-134.15 1111.04,-132.4 1106.04,-130.65 1106.04,-134.15" />
+</ns0:g>
+
+<ns0:g id="node84" class="node">
+<ns0:title>stats.Discrete</ns0:title>
+<ns0:g id="a_node84"><ns0:a ns1:href="../modules/goulib.stats.html#goulib.stats.Discrete" ns1:title="discrete probability density function" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="624.3,-873.8 508.2,-873.8 508.2,-845 624.3,-845 624.3,-873.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="566.25" y="-854.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">stats.Discrete</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node85" class="node">
+<ns0:title>stats.Stats</ns0:title>
+<ns0:g id="a_node85"><ns0:a ns1:href="../modules/goulib.stats.html#goulib.stats.Stats" ns1:title="an object that computes mean, variance and modes of data that is appended to it" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="385.2,-920.8 290.1,-920.8 290.1,-892 385.2,-892 385.2,-920.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="337.65" y="-901.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">stats.Stats</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge63" class="edge">
+<ns0:title>stats.Stats-&gt;stats.Discrete</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M385.6,-896.66C419.18,-889.7 464.76,-880.24 501.61,-872.6" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="502.63,-874.18 507.17,-871.45 501.92,-870.75 502.63,-874.18" />
+</ns0:g>
+
+<ns0:g id="edge66" class="edge">
+<ns0:title>stats.Stats-&gt;stats.PDF</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M385.6,-906.4C423.87,-906.4 477.73,-906.4 516.48,-906.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="516.81,-908.15 521.81,-906.4 516.81,-904.65 516.81,-908.15" />
+</ns0:g>
+
+<ns0:g id="node86" class="node">
+<ns0:title>stats.Normal</ns0:title>
+<ns0:g id="a_node86"><ns0:a ns1:href="../modules/goulib.stats.html#goulib.stats.Normal" ns1:title="represents a normal distributed variable" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="847.27,-920.8 737.92,-920.8 737.92,-892 847.27,-892 847.27,-920.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="792.6" y="-901.73" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">stats.Normal</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge64" class="edge">
+<ns0:title>stats.PDF-&gt;stats.Normal</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M609.98,-906.4C644.37,-906.4 693.12,-906.4 731.46,-906.4" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="731.76,-908.15 736.76,-906.4 731.76,-904.65 731.76,-908.15" />
+</ns0:g>
+
+<ns0:g id="node88" class="node">
+<ns0:title>table.Cell</ns0:title>
+<ns0:g id="a_node88"><ns0:a ns1:href="../modules/goulib.table.html#goulib.table.Cell" ns1:title="Table cell with HTML attributes" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="149.1,-2071.8 63,-2071.8 63,-2043 149.1,-2043 149.1,-2071.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2052.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">table.Cell</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node89" class="node">
+<ns0:title>table.Row</ns0:title>
+<ns0:g id="a_node89"><ns0:a ns1:href="../modules/goulib.table.html#goulib.table.Row" ns1:title="Table row with HTML attributes" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="150.6,-2118.8 61.5,-2118.8 61.5,-2090 150.6,-2090 150.6,-2118.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2099.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">table.Row</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node90" class="node">
+<ns0:title>table.Table</ns0:title>
+<ns0:g id="a_node90"><ns0:a ns1:href="../modules/goulib.table.html#goulib.table.Table" ns1:title="Table class with CSV I/O, easy access to columns, HTML output" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="153.97,-2165.8 58.12,-2165.8 58.12,-2137 153.97,-2137 153.97,-2165.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2146.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">table.Table</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node92" class="node">
+<ns0:title>units.Row</ns0:title>
+<ns0:g id="a_node92"><ns0:a ns1:href="../modules/goulib.units.html#goulib.units.Row" ns1:title="a Raw is internally a dict of {'colname1':value,'colname2',value...}" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="150.6,-2212.8 61.5,-2212.8 61.5,-2184 150.6,-2184 150.6,-2212.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2193.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">units.Row</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node93" class="node">
+<ns0:title>units.Table</ns0:title>
+<ns0:g id="a_node93"><ns0:a ns1:href="../modules/goulib.units.html#goulib.units.Table" ns1:title="To create a table, use the following syntax::" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="153.97,-2259.8 58.12,-2259.8 58.12,-2231 153.97,-2231 153.97,-2259.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2240.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">units.Table</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node94" class="node">
+<ns0:title>units.View</ns0:title>
+<ns0:g id="a_node94"><ns0:a ns1:href="../modules/goulib.units.html#goulib.units.View" ns1:title="units.View" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="152.47,-2306.8 59.62,-2306.8 59.62,-2278 152.47,-2278 152.47,-2306.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2287.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">units.View</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node95" class="node">
+<ns0:title>workdays.WorkCalendar</ns0:title>
+<ns0:g id="a_node95"><ns0:a ns1:href="../modules/goulib.workdays.html#goulib.workdays.WorkCalendar" ns1:title="WorkCalendar class with datetime operations on working hours" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="201.22,-2353.8 10.87,-2353.8 10.87,-2325 201.22,-2325 201.22,-2353.8" />
+<ns0:text xml:space="preserve" text-anchor="middle" x="106.05" y="-2334.72" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="14.00">workdays.WorkCalendar</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>
