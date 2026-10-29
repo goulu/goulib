@@ -45,16 +45,93 @@ class Record(OrderedDict):
 
 
 class Sequence(object):
-    """combines a generator and a read-only list
-    used for INFINITE numeric (integer) sequences
+    """Container representing a finite or infinite numeric sequence.
+
+    Inspired by the On-Line Encyclopedia of Integer Sequences (OEIS),
+    ``Sequence`` unifies three complementary programming concepts into a single
+    transparent object:
+
+    1. **Generator / Iterable**: ``for x in seq: ...`` iterates through the terms
+       sequentially (potentially indefinitely).
+    2. **Indexable sequence**: ``seq[i]`` accesses the *i*-th element directly,
+       and slicing ``seq[start:stop:step]`` returns an iterator over the requested range.
+    3. **Set / Membership container**: ``x in seq`` tests whether an integer belongs
+       to the sequence.
+
+    Any combination of ``iterf``, ``itemf``, and ``containf`` can be provided to
+    the constructor. When multiple functions are available, ``Sequence`` leverages
+    the most efficient one for each operation:
+
+    * If ``itemf`` is given, ``seq[i]`` runs in :math:`O(1)` or without iterating from 0.
+    * If ``containf`` is given, ``x in seq`` performs a fast direct membership check.
+    * If ``iterf`` is given, iteration is generated sequentially via the iterator.
+
+    Computations are fully **lazy**: transformations (filtering, mapping, arithmetic,
+    set combinations) build new ``Sequence`` instances without immediate evaluation.
+    Terms are only computed when consumed.
+
+    Examples:
+        Defining the prime numbers (OEIS `A000040 <https://oeis.org/A000040>`_)
+        using only a primality test:
+
+        >>> from goulib.containers import Sequence
+        >>> from goulib import math2
+        >>> primes = Sequence(containf=math2.is_prime, desc="Prime numbers")
+        >>> 201420142013 in primes
+        True
+        >>> primes.index(7)
+        3
+
+        Defining the Fibonacci numbers (OEIS `A000045 <https://oeis.org/A000045>`_)
+        with optimal algorithms for generation, direct indexing, and membership:
+
+        >>> fib = Sequence(
+        ...     iterf=math2.fibonacci_gen,
+        ...     itemf=math2.fibonacci,
+        ...     containf=math2.is_fibonacci,
+        ...     desc="Fibonacci numbers"
+        ... )
+        >>> fib[10]
+        55
+        >>> [fib[i] for i in range(7)]
+        [0, 1, 1, 2, 3, 5, 8]
+
+        Deriving new sequences using arithmetic and higher-order methods:
+
+        >>> import operator
+        >>> # Differences between consecutive primes / prime gaps (OEIS A001223):
+        >>> prime_gaps = primes.pairwise(operator.sub)
+
+        >>> # Fermat numbers 2^(2^n) + 1 (OEIS A000215) by adding scalar 1:
+        >>> # fermat = Sequence(itemf=lambda n: 2**(2**n)) + 1
+
+        >>> # Filter primes to Mersenne exponents (OEIS A000043):
+        >>> # mersenne_exp = primes.filter(math2.lucas_lehmer)
+
+        >>> # Set operations between sequences:
+        >>> # single_primes = primes % twin_primes  # terms in primes not in twin_primes
+        >>> # binary_primes = A007088 & primes      # primes written with 0 and 1 only
+        >>> # merged = seq1 | seq2                 # union of sorted sequences
+
+    See also:
+        `Suites infinies et OEIS en Python (Dr. Goulu) <https://drgoulu.com/2017/06/26/series-infinies-et-oeis-en-python/>`_
     """
 
     def __init__(self, iterf=None, itemf=None, containf=None, desc='', timeout=0):
-        """
-        :param iterf: optional iterator, or a function returning an iterator
-        :param itemf: optional function(i) returning the i-th element
-        :param containf: optional function(n) return bool True if n belongs to Sequence
-        :param desc: string description
+        """Initialize a numeric Sequence.
+
+        :param iterf: Optional iterator, callable returning an iterator, or int offset.
+            Generates the sequence terms sequentially. If an integer is supplied,
+            it specifies the starting offset for a counting sequence.
+        :param itemf: Optional callable ``itemf(i)`` returning the *i*-th element.
+            Enables direct :math:`O(1)` or fast indexing.
+        :param containf: Optional callable ``containf(n)`` returning ``True`` if *n*
+            belongs to the sequence. Enables fast membership testing (``n in self``).
+        :param desc: String description of the sequence. If omitted and ``itemf``
+            is provided, defaults to ``itemf.__doc__``.
+        :param timeout: Optional float maximum computation time in seconds allowed
+            when iterating through terms. A :exc:`~goulib.decorators.TimeoutError`
+            is raised if exceeded.
         """
         self.name = self.__class__.__name__  # by default
 
@@ -78,6 +155,11 @@ class Sequence(object):
         self._repr = ''
 
     def __repr__(self):
+        """Return a string representation showing the first computed terms.
+
+        Evaluates up to the first 10 terms within a 1-second timeout using
+        :func:`goulib.tests.pprint` to avoid blocking debuggers or interactive shells.
+        """
         if not self._repr:  # cache for speed
             # must be very quick for debugger
             s = tests.pprint(self, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1)
@@ -85,6 +167,16 @@ class Sequence(object):
         return self._repr
 
     def save(self, filename, comment=None, n=1000, maxtime=60):
+        """Save the first *n* terms of the sequence to a text file.
+
+        Exports lines formatted as ``index value``, compatible with OEIS b-file format.
+
+        :param filename: Path to the output text file.
+        :param comment: Optional header comment line. Defaults to sequence description
+            and current date.
+        :param n: Maximum number of terms to export (default: 1000).
+        :param maxtime: Maximum time allowed in seconds for generating the terms.
+        """
         with open(filename, 'wt') as f:
             from datetime import date
             comment = comment or "%s %s" % (self.desc, date.today())
@@ -95,9 +187,13 @@ class Sequence(object):
                 print(i + self.offset, v, file=f)
 
     def __iter__(self):
-        """reset the generator
+        """Return an independent generator iterating from the beginning of the sequence.
 
-        :return: a tee-ed copy of iterf, optionally timeout decorated
+        If ``iterf`` is provided, it is duplicated using :func:`itertools.tee`.
+        Otherwise, an iterator is constructed from ``itemf`` or by filtering
+        integers using ``containf``. Iteration can be optionally protected by ``timeout``.
+
+        :return: Generator yielding sequence elements.
         """
         if self.iterf:
             self.iterf, res = tee(self.iterf)
@@ -114,6 +210,12 @@ class Sequence(object):
         return res
 
     def __getitem__(self, i):
+        """Get the *i*-th element or a slice of the sequence.
+
+        :param i: Zero-based integer index or :class:`slice` object.
+        :return: The *i*-th value if *i* is an integer, or an :func:`itertools.islice`
+            iterator if *i* is a slice.
+        """
         if not isinstance(i, slice):
             if self.itemf:
                 return self.itemf(i)
@@ -123,6 +225,14 @@ class Sequence(object):
             return islice(self, i.start, i.stop, i.step)
 
     def index(self, v):
+        """Find the index of value *v* in a strictly growing sequence.
+
+        Scans the sequence sequentially. As the sequence is assumed to be monotonically
+        increasing, searching stops as soon as a term exceeds *v*.
+
+        :param v: Value to locate.
+        :return: Integer index of *v*, or -1 if *v* is not in the sequence.
+        """
         # assume sequence is growing
         for i, n in enumerate(self):
             if v == n:
@@ -131,12 +241,28 @@ class Sequence(object):
                 return -1
 
     def __contains__(self, n):
+        """Test whether *n* belongs to the sequence.
+
+        Uses ``containf(n)`` if defined; otherwise falls back to ``self.index(n) >= 0``.
+
+        :param n: Value to test.
+        :return: ``True`` if *n* is in the sequence, ``False`` otherwise.
+        """
         if self.containf:
             return self.containf(n)
         else:
             return self.index(n) >= 0
 
     def __add__(self, other):
+        """Add a scalar integer or another Sequence element-wise.
+
+        If *other* is an integer :math:`k`, translates the sequence by :math:`k`:
+        each term :math:`a_n` becomes :math:`a_n + k`.
+        If *other* is another Sequence, returns a new Sequence yielding :math:`a_n + b_n`.
+
+        :param other: Integer scalar or :class:`Sequence`.
+        :return: New :class:`Sequence`.
+        """
         if type(other) is int:
             return self.apply(
                 lambda n: n + other,
@@ -151,6 +277,15 @@ class Sequence(object):
         return Sequence(_, lambda i: self[i] + other[i])
 
     def __sub__(self, other):
+        """Subtract a scalar integer or another Sequence element-wise.
+
+        If *other* is an integer :math:`k`, translates the sequence by :math:`-k`:
+        each term :math:`a_n` becomes :math:`a_n - k`.
+        If *other* is another Sequence, returns a new Sequence yielding :math:`a_n - b_n`.
+
+        :param other: Integer scalar or :class:`Sequence`.
+        :return: New :class:`Sequence`.
+        """
         if type(other) is int:
             return self + (-other)
 
@@ -161,6 +296,11 @@ class Sequence(object):
         return Sequence(_, lambda i: self[i] - other[i])
 
     def __mul__(self, other):
+        """Multiply by a scalar integer or another Sequence element-wise.
+
+        :param other: Integer scalar or :class:`Sequence`.
+        :return: New :class:`Sequence`.
+        """
         if type(other) is int:
             return self.apply(
                 lambda n: n * other,
@@ -175,6 +315,11 @@ class Sequence(object):
         return Sequence(_, lambda i: self[i] * other[i])
 
     def __div__(self, other):
+        """Perform integer division by a scalar or another Sequence element-wise.
+
+        :param other: Integer scalar or :class:`Sequence`.
+        :return: New :class:`Sequence`.
+        """
         if type(other) is int:
             return self.apply(
                 lambda n: n // other,
@@ -189,6 +334,11 @@ class Sequence(object):
         return Sequence(_, lambda i: self[i] // other[i])
 
     def __truediv__(self, other):
+        """Perform division by a scalar or another Sequence element-wise (using Fractions).
+
+        :param other: Integer scalar or :class:`Sequence`.
+        :return: New :class:`Sequence`.
+        """
         if type(other) is int:
             return self.apply(
                 lambda n: n / other,
@@ -204,8 +354,20 @@ class Sequence(object):
         return Sequence(_, lambda i: self[i] / other[i])
 
     def __or__(self, other):
-        """
-        :return: Sequence with items from both (sorted) operand Sequences
+        """Return the union of two sorted sequences without duplicates.
+
+        Merges two monotonically increasing sequences using :func:`heapq.merge`
+        and removes duplicates with :func:`~goulib.itertools2.unique`.
+
+        Example:
+            Numbers with 4 divisors (OEIS `A030513 <https://oeis.org/A030513>`_)
+            as the union of semiprimes (product of two distinct primes) and
+            cubes of primes:
+
+            >>> # A030513 = prime_cubes | semiprimes
+
+        :param other: Monotonically increasing :class:`Sequence`.
+        :return: Merged :class:`Sequence`.
         """
         return Sequence(
             itertools2.unique(itertools2.merge(self, other)),
@@ -214,8 +376,18 @@ class Sequence(object):
         )
 
     def __and__(self, other):
-        """
-        :return: Sequence with items in both operands
+        """Return the intersection of two sequences.
+
+        Filters the left sequence using the membership predicate of the right sequence
+        (or vice versa).
+
+        Example:
+            Primes with digits 0 and 1 only (OEIS `A020449 <https://oeis.org/A020449>`_):
+
+            >>> # A020449 = binary_numbers & primes
+
+        :param other: :class:`Sequence` with a defined ``containf``.
+        :return: Filtered :class:`Sequence` containing items common to both operands.
         """
         if other.containf:
             return self.filter(other.containf)
@@ -224,8 +396,18 @@ class Sequence(object):
         raise (NotImplementedError)
 
     def __mod__(self, other):
-        """
-        :return: Sequence with items from left operand not in right
+        """Return the set difference (self \\\\ other) of two sorted sequences.
+
+        Yields terms from *self* that are not present in *other*.
+
+        Example:
+            Isolated primes (OEIS `A007510 <https://oeis.org/A007510>`_),
+            i.e. primes that are not twin primes:
+
+            >>> # A007510 = primes % twin_primes
+
+        :param other: Monotonically increasing :class:`Sequence`.
+        :return: Difference :class:`Sequence`.
         """
         return Sequence(
             itertools2.diff(self.__iter__(), other.__iter__()), None,
@@ -233,7 +415,18 @@ class Sequence(object):
         )
 
     def apply(self, f, containf=None, desc=''):
-        ''' function composition'''
+        """Apply a function to each term of the sequence (function composition).
+
+        Example:
+            Squares of primes (OEIS `A001248 <https://oeis.org/A001248>`_):
+
+            >>> # A001248 = primes.apply(lambda n: n * n)
+
+        :param f: Callable to map over every element.
+        :param containf: Optional membership predicate for the resulting sequence.
+        :param desc: Optional description string.
+        :return: Transformed :class:`Sequence`.
+        """
         return Sequence(
             map(f, self),
             lambda i: f(self[i]),
@@ -242,9 +435,28 @@ class Sequence(object):
         )
 
     def __call__(self, other):
+        """Compose this sequence's item function with another sequence.
+
+        Equivalent to ``other.apply(self.itemf)``.
+
+        :param other: :class:`Sequence` to transform.
+        :return: Composed :class:`Sequence`.
+        """
         return other.apply(self.itemf)
 
     def filter(self, f, desc=''):
+        """Filter the sequence by a predicate function.
+
+        Example:
+            Mersenne exponents (OEIS `A000043 <https://oeis.org/A000043>`_),
+            primes :math:`p` such that :math:`2^p - 1` is prime:
+
+            >>> # A000043 = primes.filter(math2.lucas_lehmer)
+
+        :param f: Predicate callable returning ``True`` for terms to retain.
+        :param desc: Optional description string.
+        :return: Filtered :class:`Sequence`.
+        """
         return Sequence(
             filter(f, self),
             None,
@@ -253,35 +465,104 @@ class Sequence(object):
         )
 
     def __le__(self, other):
+        """Select terms from self where self[i] <= other[i]."""
         return Sequence(
             itertools2.select(self, other, operator.le)
         )
 
     def __gt__(self, other):
+        """Select terms from self where self[i] > other[i]."""
         return Sequence(
             itertools2.select(self, other, operator.gt)
         )
 
     def accumulate(self, op=operator.add, init=[]):
+        """Return a sequence of partial reductions / running accumulations.
+
+        By default, computes the prefix sums (:math:`s_n = \\\\sum_{k=0}^n a_k`).
+
+        Example:
+            Sum of the first *n* primes (OEIS `A007504 <https://oeis.org/A007504>`_):
+
+            >>> # A007504 = primes.accumulate()
+
+        :param op: Binary operator function (default: :func:`operator.add`).
+        :param init: Optional initial elements sequence prepended to the result.
+        :return: Accumulated :class:`Sequence`.
+        """
         return Sequence(chain(init, itertools2.accumulate(self, op, False)))
 
     def pairwise(self, op, skip_first=False):
+        """Apply a binary operator to consecutive terms :math:`(a_n, a_{n+1})`.
+
+        Note that :func:`goulib.itertools2.pairwise` calls ``op(current, prev)``
+        (e.g., :func:`operator.sub` computes :math:`a_{n+1} - a_n`).
+
+        Example:
+            Differences between consecutive primes / prime gaps
+            (OEIS `A001223 <https://oeis.org/A001223>`_):
+
+            >>> # A001223 = primes.pairwise(operator.sub)
+
+        :param op: Binary operator applied to consecutive pairs.
+        :param skip_first: If ``True``, omits the first pair.
+        :return: :class:`Sequence` of pairwise results.
+        """
         return Sequence(itertools2.pairwise(self, op))
 
     def sort(self, key=None, buffer=100):
+        """Sort an almost-sorted (monotonically growing) infinite sequence.
+
+        Maintains a sliding buffer of size *buffer* using
+        :func:`goulib.itertools2.sorted_iterable`. As long as elements are not
+        displaced by more than *buffer* positions, the output sequence is
+        guaranteed to be strictly sorted.
+
+        Example:
+            Ordered areas of primitive Pythagorean triangles
+            (OEIS `A024406 <https://oeis.org/A024406>`_):
+
+            >>> # A024406 = Sequence(math2.primitive_triples).apply(
+            ... #     lambda x: x[0] * x[1] // 2
+            ... # ).sort()
+
+        :param key: Optional sort key function.
+        :param buffer: Size of the lookahead buffer (default: 100).
+        :return: Sorted :class:`Sequence`.
+        """
         return Sequence(itertools2.sorted_iterable(self, key, buffer))
 
     def unique(self, buffer=100):
-        """ 
-        :param buffer: int number of last elements found. 
-            if two identical elements are separated by more than this number of elements
-            in self, they might be generated twice in the resulting Sequence
-        :return: Sequence made of unique elements of this one
+        """Remove redundant duplicate elements from an almost-sorted sequence.
+
+        Maintains a history of the last *buffer* elements using
+        :func:`goulib.itertools2.unique`.
+
+        Example:
+            Twin prime members (OEIS `A001097 <https://oeis.org/A001097>`_)
+            from flattened twin prime pairs (where 5 appears in both (3,5) and (5,7)):
+
+            >>> # A001097 = A077800.unique()
+
+        :param buffer: Number of recent elements to track for duplicates (default: 100).
+            If duplicate elements are separated by more than *buffer* terms, they might
+            be emitted more than once.
+        :return: :class:`Sequence` of unique elements.
         """
         return Sequence(itertools2.unique(self, None, buffer))
 
     def product(self, other, op=sum, buffer=100):
-        """cartesian product"""
+        """Compute the Cartesian product of two sequences, transformed and sorted.
+
+        Generates pairs from *self* and *other* using
+        :func:`goulib.itertools2.product`, applies reduction *op* (default: :func:`sum`),
+        and sorts the stream with a buffer of size *buffer*.
+
+        :param other: Second :class:`Sequence`.
+        :param op: Function applied to each pair (default: :func:`sum`).
+        :param buffer: Size of sorting buffer (default: 100).
+        :return: Transformed and sorted :class:`Sequence`.
+        """
         it = itertools2.product(self, other)
         return Sequence(it).apply(op).sort(buffer=buffer)
 
