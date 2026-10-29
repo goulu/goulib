@@ -1,4 +1,5 @@
 sphinx
 myst-parser
+python-docs-theme
 pytest
 pytest-cov

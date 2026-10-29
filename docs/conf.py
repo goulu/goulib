@@ -165,12 +165,14 @@ intersphinx_mapping = {
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 
-html_theme = 'sphinxdoc'
+html_theme = 'python_docs_theme'
 
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#html_theme_options = {}
+html_theme_options = {
+    'root_name': 'goulib',
+    'root_url': 'https://github.com/goulu/goulib',
+    'root_icon': 'py.svg',
+    'root_include_title': True,
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
